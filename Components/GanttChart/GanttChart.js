@@ -14,7 +14,6 @@ import TimeTable from './TimeTable';
 
 export default function GanttChart() {
     const [tasks, setTasks] = useState(null);
-    const [taskDurations, setTaskDurations] = useState(null);
     const [timeRange, setTimeRange] = useState({
       fromSelectMonth: 0,
       fromSelectYear: '2022',
@@ -25,7 +24,6 @@ export default function GanttChart() {
         client('datosintervenciones.json').then(
           (datosintervenciones) => {
             setTasks(datosintervenciones?.tasks);
-            setTaskDurations(datosintervenciones);
           },
           (error) => {
             console.error('Error: ', error);
@@ -38,7 +36,8 @@ export default function GanttChart() {
   function mostrar() {
     setMostrarComponente(!mostrarPeriodo);
   }
-    
+
+     
   return (
     <div className={styles.ganttContainer} id="gantt-container">
       <h2> Diagrama de Gantt</h2>
@@ -55,13 +54,10 @@ export default function GanttChart() {
         <Tasks
           tasks={tasks}
           setTasks={setTasks}
-          setTaskDurations={setTaskDurations}
         />
         <TimeTable
           timeRange={timeRange}
           tasks={tasks}
-          taskDurations={taskDurations}
-          setTaskDurations={setTaskDurations}
         />
       </Grid>
    

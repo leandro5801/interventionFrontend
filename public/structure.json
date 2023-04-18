@@ -1,0 +1,153 @@
+{
+    "ueb": [
+        {
+            "ueb": "AICA",
+            "entidad": "AICA+",
+            "codigo": "16"
+        },
+        {
+            "ueb": "LIORAD",
+            "entidad": "AICA+",
+            "codigo": "25"
+        },
+        {
+            "ueb": "JULIO TRIGO",
+            "entidad": "AICA+",
+            "codigo": "55"
+        },
+        {
+            "ueb": "CITOSTÁTICOS",
+            "entidad": "AICA+",
+            "codigo": "100"
+        },
+        {
+            "ueb": "SH+",
+            "entidad": "AICA+",
+            "codigo": "57"
+        }
+    ],
+    "structure": [
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "codigo": "1"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Direción",
+            "codigo": "2"  
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "codigo": "3"
+        }
+    ],
+    "area":[
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "DOCUMENTACIÓN"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "GRUPO DE TESTIGO, SUSTANCIAS DE REFERENCIA Y MUESTREO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "INSPECCIÓN DE LA CALIDAD "
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "LABORATORIO DE MICROBIOLOGIA "
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "LABORATORIO FÍSICO QUÍMICO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "LIBERACIÓN DE LOTES"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Calidad",
+            "area" : "REGISTRO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Direción",
+            "area" : "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Direción",
+            "area" : "DIRECCIÓN"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Departamento de Direción",
+            "area" : "GRUPO DE INFORMATICA"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "AREA ESTERILIZACIÓN"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "ÁREA DE LAVADO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "ÁREA DE LIOFILIZADO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "ÁREA DE LLENADO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "DEPARTAMENTO TÉCNICO PRODUCTIVO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "GRUPO DE PREPARACION DE MEDICAMENTOS"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "GRUPO TÉCNICO"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "PLANTA DE PRODUCCIÓN"
+        },
+        {
+            "ueb": "LIORAD",
+            "structure": "Dirección Técnico Productiva",
+            "area" : "REVISIÓN DE CARPULES Y BULBOS"
+        }
+    ]
+}

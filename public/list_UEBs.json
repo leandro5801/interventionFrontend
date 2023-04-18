@@ -1,0 +1,32 @@
+[
+    {
+        "nombre": "AICA",
+        "entidad": "AICA+",
+        "Descripcion": null,
+        "codigo": "16"
+    },
+    {
+        "nombre": "LIORAD",
+        "entidad": "AICA+",
+        "Descripcion": null,
+        "codigo": "25"
+    },
+    {
+        "nombre": "JULIO TRIGO",
+        "entidad": "AICA+",
+        "Descripcion": null,
+        "codigo": "55"
+    },
+    {
+        "nombre": "CITOSTÁTICOS",
+        "entidad": "AICA+",
+        "Descripcion": null,
+        "codigo": "100"
+    },
+    {
+        "nombre": "SH+",
+        "entidad": "AICA+",
+        "Descripcion": null,
+        "codigo": "57"
+    }
+]

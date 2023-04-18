@@ -1,8 +1,12 @@
 import { useEffect, useRef } from "react";
 
-import styles from '../../styles/Home.module.css'
+import { client } from "../../utils/fetchWrapper";
+import React, { useState } from "react";
 
-export default function Tasks({ tasks, setTasks, setTaskDurations }) {
+import styles from "../../styles/Home.module.css";
+import InterventionTable from "../InterventionTable";
+
+export default function Tasks({ tasks, setTasks}) {
   const inputRef = useRef([]);
   const indexRef = useRef(null);
 
@@ -13,13 +17,6 @@ export default function Tasks({ tasks, setTasks, setTaskDurations }) {
     // update state (if data on backend - make API request to update data)
     setTasks(newTasks);
 
-    setTaskDurations((prevState) => {
-      // delete any taskDurations associated with the task
-      const newTaskDurations = prevState.filter(
-        (taskDuration) => taskDuration.task !== idNum
-      );
-      return newTaskDurations;
-    });
   }
 
   //  Editar tarea
@@ -41,27 +38,48 @@ export default function Tasks({ tasks, setTasks, setTaskDurations }) {
     }
   });
 
+  // Para cuando presiono sobre un intput
+  const handleClick = () => {
+    console.log("Se ha presionado el botón");
+  };
   return (
-    <div className={styles.ganttGridContainerTasks} id="gantt-grid-container__tasks">
-      <div className={styles.ganttTaskRow}></div>
-      <div className={styles.ganttTaskRow}></div>
-      <div className={styles.ganttTaskRow}></div>
+    <div>
+      <div
+        className={styles.ganttGridContainerTasks}
+        id="gantt-grid-container__tasks"
+      >
+        <div className={styles.ganttTaskRow}></div>
+        <div className={styles.ganttTaskRow}></div>
+        <div className={styles.ganttTaskRow}></div>
 
-      {/* Creación de filas de tareas */}
-      {tasks &&
-        tasks.map((tsk, i) => (
-          <div key={`${i}-${tsk?.id}-${tsk.name}`} className={styles.ganttTaskRow}>
-            <input className={styles.inputTask}
-              data-task-id={tsk?.id}
-              value={tsk?.name}
-              onChange={(e) => onChange(e, i)}
-              ref={(el) => (inputRef.current[i] = el)}
-            />
-            <button className={styles.btnTask} type="button" data-task-id={tsk?.id} onClick={handleDelete}>
-              x
-            </button>
-          </div>
-        ))}
+        {/* Creación de filas de tareas */}
+        {tasks &&
+          tasks.map((tsk, i) => (
+            <div
+              key={`${i}-${tsk?.id}-${tsk.name}`}
+              className={styles.ganttTaskRow}
+            >
+              <input
+                className={styles.inputTask}
+                data-task-id={tsk?.id}
+                value={tsk?.name}
+                // onChange={(e) => onChange(e, i)}
+                onClick={handleClick}
+                // ref={(el) => (inputRef.current[i] = el)}
+              />
+              <button
+                className={styles.btnTask}
+                type="button"
+                data-task-id={tsk?.id}
+                onClick={handleDelete}
+              >
+                x
+              </button>
+            </div>
+          ))}
+      </div>
+
+      <div></div>
     </div>
   );
 }

@@ -1,16 +1,40 @@
-import { useState } from "react";
+// import { useState } from "react";
 import styles from "../styles/Home.module.css";
 import path from "path";
-import data from '../procesos.json'
+import Select from "react-select";
+
+import { client } from "../utils/fetchWrapper";
+import { useState, useEffect } from "react";
 
 export default function Form(props) {
-    const array = props.objectData;
+  const [process, setProcess] = useState(null);
+  useEffect(() => {
+    client("procesos.json").then(
+      (procesos) => {
+        setProcess(procesos?.process);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
 
-  const [areaProcesos, setAreaProcesos] = useState("");
+  const [ueb, setUeb] = useState(null);
+  useEffect(() => {
+    client("list_UEBs.json").then(
+      (ueb) => {
+        setUeb(ueb);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+  const array = props.objectData;
+
   const [intervencion, setIntervencion] = useState("");
   const [consultor, setConsultor] = useState("");
   const [trabajador, setTrabajador] = useState("");
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,20 +44,23 @@ export default function Form(props) {
   return (
     <form onSubmit={handleSubmit}>
       <div className={styles.formGrid}>
+      <div>
+          <label htmlFor="ueb">UEB:</label>
+          <Select
+            options={
+              ueb &&
+              ueb.map((sup) => ({ label: sup.nombre, value: sup.codigo }))
+            }  placeholder="Seleccione..."
+          />
+        </div>
         <div>
-          <label htmlFor="area-procesos">Área de Procesos:</label>
-          <select
-            className={styles.select}
-            id="area-procesos"
-            value={areaProcesos}
-            onChange={(event) => setAreaProcesos(event.target.value)}
-          >
-            <option value="" disabled hidden>
-              Selecciona una opción
-            </option>
-
-            <option value="produccion">Producción</option>
-          </select>
+          <label htmlFor="area-procesos">Proceso:</label>
+          <Select
+            options={
+              process &&
+              process.map((sup) => ({ label: sup.label, value: sup.name }))
+            }  placeholder="Seleccione..."
+          />
         </div>
 
         <div>
