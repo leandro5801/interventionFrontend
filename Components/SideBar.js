@@ -1,37 +1,16 @@
-import { useState, useEffect } from "react";
+
 import styles from "../styles/Home.module.css";
 
-import Filter from "../Components/Filter";
+import Filters from "./Filters";
 
-import { client } from "../utils/fetchWrapper";
-
-import DropdownMenu from "../Components/DropdownMenu";
-
-function SideBar() {
-  const [showMenu, setShowMenu] = useState(false);
-
-  function toggleMenu() {
-    setShowMenu(!showMenu);
-  }
-
-    //para cargar del json
-    const [ueb, setUeb] = useState(null);
-    const [structure, setStructure] = useState(null);
-    const [area, setArea] = useState(null);
-  
-    useEffect(() => {
-      client("structure.json").then(
-        (structure) => {
-          setUeb(structure?.ueb);
-          setStructure(structure?.structure);
-          setArea(structure?.area);
-        },
-        (error) => {
-          console.error("Error: ", error);
-        }
-      );
-    }, []);
-
+function SideBar({
+  selectedUeb,
+  setSelectedUeb,
+  selectedStructure,
+  setSelectedStructure,
+  selectedArea,
+  setSelectedArea,
+}) {
   return (
     <div className={styles.sidebarcontainer}>
       <div className={styles.logo}>
@@ -39,11 +18,15 @@ function SideBar() {
       </div>
 
       <div className={styles.wrapper}>
-        <Filter 
-        ueb={ueb}
-        structure={structure}
-        area={area}
-          />
+        <Filters
+          selectedUeb={selectedUeb}
+          setSelectedUeb={setSelectedUeb}
+          selectedStructure={selectedStructure}
+          setSelectedStructure={setSelectedStructure}
+          selectedArea={selectedArea}
+          setSelectedArea={setSelectedArea}
+        />
+
         {/* <ul>
           <li>
             <a href="#">Intervenciones</a>

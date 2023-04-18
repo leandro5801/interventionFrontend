@@ -11,7 +11,13 @@ import { months } from "../../constants";
 
 import styles from "../../styles/Home.module.css";
 
-export default function TimeTable({ timeRange, tasks }) {
+export default function TimeTable({
+  timeRange,
+  tasks,
+  selectedUeb,
+  selectedStructure,
+  selectedArea,
+}) {
   const [taskDurationElDraggedId, setTaskDurationElDraggedId] = useState(null);
 
   // for dynamic css styling
@@ -44,6 +50,18 @@ export default function TimeTable({ timeRange, tasks }) {
     boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.05)",
     cursor: "move",
   };
+  
+   // para el filtrado
+ let filteredTasks = [];
+
+ if (tasks) {
+   filteredTasks = tasks.filter(
+     (task) =>
+       (!selectedUeb || task.ueb === selectedUeb) &&
+       (!selectedStructure || task.structure === selectedStructure) &&
+       (!selectedArea || task.area === selectedArea)
+   );
+ }
 
   // creating rows
   const startMonth = new Date(
@@ -107,8 +125,8 @@ export default function TimeTable({ timeRange, tasks }) {
     month.setMonth(month.getMonth() + 1);
   }
   // create task rows
-  if (tasks) {
-    tasks.forEach((task) => {
+  if (filteredTasks) {
+    filteredTasks.forEach((task) => {
       let mnth = new Date(startMonth);
       for (let i = 0; i < numMonths; i++) {
         const curYear = mnth.getFullYear();
@@ -138,7 +156,7 @@ export default function TimeTable({ timeRange, tasks }) {
               onDrop={onTaskDurationDrop}
               data-date={formattedDate}
             >
-              {tasks.map((el, i) => {
+              {filteredTasks.map((el, i) => {
                 if (el?.id === task?.id && el?.start === formattedDate) {
                   return (
                     <div
@@ -175,7 +193,6 @@ export default function TimeTable({ timeRange, tasks }) {
       }
     });
   }
-
 
   function onTaskDurationDrop(e) {
     const targetCell = e.target;
@@ -229,7 +246,6 @@ export default function TimeTable({ timeRange, tasks }) {
       >
         {taskRows}
       </div>
-
     </div>
   );
 }

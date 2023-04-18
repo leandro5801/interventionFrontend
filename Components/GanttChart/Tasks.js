@@ -1,12 +1,14 @@
-import { useEffect, useRef } from "react";
-
-import { client } from "../../utils/fetchWrapper";
-import React, { useState } from "react";
+import React, { useEffect, useRef} from "react";
 
 import styles from "../../styles/Home.module.css";
-import InterventionTable from "../InterventionTable";
 
-export default function Tasks({ tasks, setTasks}) {
+export default function Tasks({
+  tasks,
+  setTasks,
+  selectedUeb,
+  selectedStructure,
+  selectedArea,
+}) {
   const inputRef = useRef([]);
   const indexRef = useRef(null);
 
@@ -16,7 +18,6 @@ export default function Tasks({ tasks, setTasks}) {
     const newTasks = tasks.filter((task) => task.id !== idNum);
     // update state (if data on backend - make API request to update data)
     setTasks(newTasks);
-
   }
 
   //  Editar tarea
@@ -42,6 +43,18 @@ export default function Tasks({ tasks, setTasks}) {
   const handleClick = () => {
     console.log("Se ha presionado el botón");
   };
+  // para el filtrado
+  let filteredTasks = [];
+
+  if (tasks) {
+    filteredTasks = tasks.filter(
+      (task) =>
+        (!selectedUeb || task.ueb === selectedUeb) &&
+        (!selectedStructure || task.structure === selectedStructure) &&
+        (!selectedArea || task.area === selectedArea)
+    );
+  }
+
   return (
     <div>
       <div
@@ -53,8 +66,8 @@ export default function Tasks({ tasks, setTasks}) {
         <div className={styles.ganttTaskRow}></div>
 
         {/* Creación de filas de tareas */}
-        {tasks &&
-          tasks.map((tsk, i) => (
+        {filteredTasks &&
+          filteredTasks.map((tsk, i) => (
             <div
               key={`${i}-${tsk?.id}-${tsk.name}`}
               className={styles.ganttTaskRow}
