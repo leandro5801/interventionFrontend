@@ -1,15 +1,17 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import Form from "./form";
-import Dialog from "../Components/Dialog";
+import Navbar from "../Components/DropdownMenu/NavBar";
+import  Dialog  from "./Dialog";
+import Form from "./form"
 
-function Header() {
+function Header({setTableVisible }) {
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   return (
     <div className={styles.headcontainer}>
       <div className={styles.headwrapper}>
-        <div>
+        {/* <div>
           <button
             className={styles.btn}
             onClick={() => setMostrarFormulario(true)}
@@ -22,16 +24,15 @@ function Header() {
           >
             <Form />
           </Dialog>
-        </div>
+        </div> */}
 
-        <div>
-          <button
-            className={styles.btn}
-            onClick={() => setMostrarFormulario(true)}
+        <Navbar setDialogOpen={setDialogOpen} setTableVisible={setTableVisible}/>
+        <Dialog
+            open={dialogOpen}
+            onClose={() => {setMostrarFormulario(false), setDialogOpen(false)}}
           >
-            Nueva Intervención
-          </button>
-        </div>
+            <Form />
+          </Dialog>
       </div>
     </div>
   );

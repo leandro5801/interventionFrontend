@@ -10,6 +10,8 @@ export default function Home() {
   const [selectedUeb, setSelectedUeb] = useState(null);
   const [selectedStructure, setSelectedStructure] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
+
+  const [tableVisible, setTableVisible] = useState(false);
   return (
     <div className={styles.container}>
       <Head>
@@ -25,11 +27,13 @@ export default function Home() {
         selectedArea={selectedArea}
         setSelectedArea={setSelectedArea}
       />
-      <Header />
+      <Header setTableVisible={setTableVisible} />
       <Content
         selectedUeb={selectedUeb}
         selectedStructure={selectedStructure}
         selectedArea={selectedArea}
+        tableVisible={tableVisible}
+        setTableVisible={setTableVisible}
       />
 
       {/* <footer className={styles.footer}>

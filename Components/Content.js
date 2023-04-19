@@ -4,8 +4,15 @@ import GanttChart from "../Components/GanttChart/GanttChart";
 
 import { client } from "../utils/fetchWrapper";
 import { useState, useEffect } from "react";
+import InterventionTable from "./InterventionTable";
 
-function Content({ selectedUeb, selectedStructure, selectedArea }) {
+function Content({
+  selectedUeb,
+  selectedStructure,
+  selectedArea,
+  tableVisible,
+  setTableVisible,
+}) {
   const [tasks, setTasks] = useState(null);
   useEffect(() => {
     client("datosintervenciones.json").then(
@@ -42,41 +49,15 @@ function Content({ selectedUeb, selectedStructure, selectedArea }) {
       </div>
 
       {/* Tabla de intervenciones */}
-
-      <div className={styles.contentwrapper}>
-        <div className={styles.divTable}>
-          <h2>Intervenciones</h2>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th className={styles.spacing}>Intervención</th>
-                <th className={styles.spacing}>Descripción</th>
-                <th className={styles.spacing}>Proceso</th>
-                <th className={styles.spacing}>UEB</th>
-                <th className={styles.spacing}>Estructura</th>
-                <th className={styles.spacing}>Área</th>
-                <th className={styles.spacing}>Consultor</th>
-                <th className={styles.spacing}>Trabajador</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTasks &&
-                filteredTasks.map((tsk, i) => (
-                  <tr key={tsk.id} className={styles.trStyle}>
-                    <td className={styles.tdStyle}>{tsk.name}</td>
-                    <td className={styles.tdStyle}>{tsk.description}</td>
-                    <td className={styles.tdStyle}>{tsk.process}</td>
-                    <td className={styles.tdStyle}>{tsk.ueb}</td>
-                    <td className={styles.tdStyle}>{tsk.structure}</td>
-                    <td className={styles.tdStyle}>{tsk.area}</td>
-                    <td className={styles.tdStyle}>{tsk.consultor}</td>
-                    <td className={styles.tdStyle}>{tsk.worker}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+      {tableVisible && (
+        <div className={styles.contentwrapper}>
+          <InterventionTable
+            tableVisible={tableVisible}
+            setTableVisible={setTableVisible}
+            filteredTasks={filteredTasks}
+          />
         </div>
-      </div>
+      )}
       {/* Fin de la tabla  */}
     </div>
   );

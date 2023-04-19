@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
 import Dropdown from 'react-dropdown';
 import data from '../public/structure.json';
-import styles from '../styles/Home.module.css'
 
 const uebOptions = data.ueb.map(item => ({
     value: item.ueb,
