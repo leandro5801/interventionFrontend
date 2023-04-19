@@ -3,8 +3,6 @@ import { client } from "../../utils/fetchWrapper";
 
 import styles from "../../styles/Home.module.css";
 
-import AddTaskDuration from "./AddTaskDuration";
-import AddTask from "./AddTask";
 import Grid from "./Grid";
 import Settings from "./Settings";
 import Tasks from "./Tasks";
@@ -15,6 +13,7 @@ export default function GanttChart({
   selectedUeb,
   selectedStructure,
   selectedArea,
+  setSelectedIntervention,
 }) {
   const [tasks, setTasks] = useState(null);
   const [timeRange, setTimeRange] = useState({
@@ -62,6 +61,7 @@ export default function GanttChart({
           selectedUeb={selectedUeb}
           selectedStructure={selectedStructure}
           selectedArea={selectedArea}
+          setSelectedIntervention={setSelectedIntervention}
         />
         <TimeTable
           timeRange={timeRange}

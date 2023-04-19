@@ -13,8 +13,8 @@ const Dropdown = ({ submenus, dropdown, setDialogOpen,setTableVisible, setDropdo
     else if (title === "Eliminar Intervención") {
       console.log("Eliminar Intervención");
     }
-    else  {
-      console.log("Listar Intervención");
+    else  if (title === "Listar Intervenciones"){
+      console.log("Listar Intervenciones");
       setTableVisible(true);
     }
     setDropdown(false);
@@ -24,7 +24,7 @@ const Dropdown = ({ submenus, dropdown, setDialogOpen,setTableVisible, setDropdo
     <ul className={`dropdown ${dropdown ? "show" : ""}`}>
     {submenus.map((submenu, index) => (
       <li key={index} className="menu-items">
-        <a href={submenu.url} onClick={() => handleClick(submenu.title)}>
+        <a onClick={() => handleClick(submenu.title)}>
           {submenu.title}
         </a>
         

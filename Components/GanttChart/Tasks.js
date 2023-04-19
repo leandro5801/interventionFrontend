@@ -1,6 +1,6 @@
-import React, { useEffect, useRef} from "react";
-
+import React, { useEffect, useRef, useState} from "react";
 import styles from "../../styles/Home.module.css";
+
 
 export default function Tasks({
   tasks,
@@ -8,6 +8,7 @@ export default function Tasks({
   selectedUeb,
   selectedStructure,
   selectedArea,
+  setSelectedIntervention,
 }) {
   const inputRef = useRef([]);
   const indexRef = useRef(null);
@@ -38,11 +39,6 @@ export default function Tasks({
       inputRef?.current[indexRef.current]?.focus();
     }
   });
-
-  // Para cuando presiono sobre un intput
-  const handleClick = () => {
-    console.log("Se ha presionado el botón");
-  };
   // para el filtrado
   let filteredTasks = [];
 
@@ -54,6 +50,13 @@ export default function Tasks({
         (!selectedArea || task.area === selectedArea)
     );
   }
+
+  // Para cuando presiono sobre un intput
+  const handleClick = (e) => {
+    const taskId = parseInt(e.target.getAttribute("data-task-id"));
+    const task = filteredTasks.find((t) => t.id === taskId);
+    setSelectedIntervention(task);
+  };
 
   return (
     <div>
@@ -72,10 +75,11 @@ export default function Tasks({
               key={`${i}-${tsk?.id}-${tsk.name}`}
               className={styles.ganttTaskRow}
             >
-              <input
+              <input readOnly
                 className={styles.inputTask}
                 data-task-id={tsk?.id}
                 value={tsk?.name}
+                
                 // onChange={(e) => onChange(e, i)}
                 onClick={handleClick}
                 // ref={(el) => (inputRef.current[i] = el)}

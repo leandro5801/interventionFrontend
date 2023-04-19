@@ -33,7 +33,7 @@ export const menuItems = [
         title: 'Eliminar Recomendación',
       },
       {
-        title: 'Listar Intervenciones',
+        title: 'Listar Recomendaciones',
       },
     ],
   },

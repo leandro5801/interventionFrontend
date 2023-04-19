@@ -68,7 +68,7 @@
 
   transition: 0.2;
 }
-
+/* ------------------------------------------------------------------------------------------------------ */
 /* Menu desplegable  */
 .dropdown {
   position: relative;
@@ -130,6 +130,7 @@
   }
 }
 
+/* ------------------------------------------------------------------------------------------------------------- */
 
 /* header css started */
 
@@ -200,6 +201,7 @@
   color: white;
 }
 
+/* ------------------------------------------------------------------------------------------------------------ */
 /* dashboard content started */
 
 .contenetcontainer {
@@ -293,6 +295,7 @@
 /* .container {
   padding: 0 2rem;
 }
+/* ------------------------------------------------------------------------------------------------------------ */
 
 /* dialog css started */
 .dialogOverlay {
@@ -369,6 +372,7 @@
   color: #0099CC;
 }
 
+/* -------------------------------------------------------------------------------------------------------------- */
 /* GanttChart started */
 .ganttContainer {
   --color-text: #272a2e;
@@ -455,8 +459,14 @@
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   text-align: center;
+  cursor:pointer;
 }
-
+.inputTask:focus{
+  /* background-color: darkgray; */
+  transition: 0.2;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  
+}
 .btnTask{
   line-height: 0px;
   color: var(--color-orange);
