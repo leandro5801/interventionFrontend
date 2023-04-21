@@ -1,7 +1,12 @@
 import Dropdown from "./Dropdown";
 import { useState } from "react";
 
-const MenuItems = ({ items ,setDialogOpen,setTableVisible}) => {
+const MenuItems = ({
+  items,
+  setDialogCreInteOpen,
+  setDialogRecomendationOpen,
+  setTableVisible,
+}) => {
   const [dropdown, setDropdown] = useState(false);
 
   return (
@@ -14,9 +19,16 @@ const MenuItems = ({ items ,setDialogOpen,setTableVisible}) => {
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => setDropdown((prev) => !prev)}
           >
-           {items.title}{" "}
+            {items.title}{" "}
           </button>
-          <Dropdown submenus={items.submenu}  dropdown={dropdown} setDropdown={setDropdown} setDialogOpen={setDialogOpen} setTableVisible={setTableVisible}/>
+          <Dropdown
+            submenus={items.submenu}
+            dropdown={dropdown}
+            setDropdown={setDropdown}
+            setDialogCreInteOpen={setDialogCreInteOpen}
+            setDialogRecomendationOpen={setDialogRecomendationOpen}
+            setTableVisible={setTableVisible}
+          />
         </>
       ) : (
         <a href={items.url}> {items.title} </a>

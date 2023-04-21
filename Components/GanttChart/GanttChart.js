@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { client } from "../../utils/fetchWrapper";
 
 import styles from "../../styles/Home.module.css";
 
@@ -10,35 +9,26 @@ import TimeRange from "./TimeRange";
 import TimeTable from "./TimeTable";
 
 export default function GanttChart({
+  interventions, 
+  setInterventions,
   selectedUeb,
   selectedStructure,
   selectedArea,
+  selectedIntervention,
   setSelectedIntervention,
 }) {
-  const [tasks, setTasks] = useState(null);
   const [timeRange, setTimeRange] = useState({
     fromSelectMonth: 0,
     fromSelectYear: "2022",
     toSelectMonth: 1,
     toSelectYear: "2022",
   });
-  useEffect(() => {
-    client("datosintervenciones.json").then(
-      (datosintervenciones) => {
-        setTasks(datosintervenciones?.tasks);
-      },
-      (error) => {
-        console.error("Error: ", error);
-      }
-    );
-  }, []);
 
   // Para mostrar el periodo de tiempo
   const [mostrarPeriodo, setMostrarComponente] = useState(false);
   function mostrar() {
     setMostrarComponente(!mostrarPeriodo);
   }
-
   return (
     <div className={styles.ganttContainer} id="gantt-container">
       <h2> Diagrama de Gantt</h2>
@@ -56,16 +46,17 @@ export default function GanttChart({
       </Settings>
       <Grid>
         <Tasks
-          tasks={tasks}
-          setTasks={setTasks}
+          interventions={interventions}
+          setInterventions={setInterventions}
           selectedUeb={selectedUeb}
           selectedStructure={selectedStructure}
           selectedArea={selectedArea}
+          selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
         />
         <TimeTable
           timeRange={timeRange}
-          tasks={tasks}
+          tasks={interventions}
           selectedUeb={selectedUeb}
           selectedStructure={selectedStructure}
           selectedArea={selectedArea}

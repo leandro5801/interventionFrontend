@@ -1,13 +1,14 @@
-import styles from "../styles/Home.module.css";
-
-import { client } from "../utils/fetchWrapper";
+import styles from "../../styles/Home.module.css";
+import { useState } from "react";
 
 function InterventionTable({ filteredTasks, tableVisible, setTableVisible }) {
+ 
+
   return (
-    <div className={styles.divTable}>
+    <div className={styles.divTableInter}>
       <h2>Intervenciones</h2>
       {tableVisible && (
-        <table className={styles.table} >
+        <table className={styles.table}>
           <thead>
             <tr>
               <th className={styles.spacing}>Intervención</th>

@@ -1,17 +1,26 @@
 import { menuItems } from "./menuItemss";
 import MenuItems from "./MenuItems";
 
-const Navbar = ({setDialogOpen,setTableVisible}) => {
-    
+const Navbar = ({
+  setDialogCreInteOpen,
+  setTableVisible,
+  setDialogRecomendationOpen,
+}) => {
   return (
     <nav>
       <ul className="menus">
         {menuItems.map((menu, index) => {
-          return <MenuItems items={menu} key={index} setDialogOpen={setDialogOpen} setTableVisible={setTableVisible}/>;
+          return (
+            <MenuItems
+              items={menu}
+              key={index}
+              setDialogCreInteOpen={setDialogCreInteOpen}
+              setDialogRecomendationOpen={setDialogRecomendationOpen}
+              setTableVisible={setTableVisible}
+            />
+          );
         })}
-        
       </ul>
-      
     </nav>
   );
 };

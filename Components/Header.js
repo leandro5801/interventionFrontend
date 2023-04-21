@@ -1,38 +1,69 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../Components/DropdownMenu/NavBar";
-import  Dialog  from "./Dialog";
-import Form from "./form"
+import Dialog from "./Forms/Dialog";
+import IntervrntionForm from "./Forms/IntervrntionForm";
+import RecomendationForm from "./Forms/RecomendationForm";
+import { client } from "../utils/fetchWrapper";
 
-function Header({setTableVisible }) {
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+function Header({ setTableVisible, tasks,setTasks, recomendations, setRecomendations }) {
+  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
+  const [process, setProcess] = useState(null);
+  useEffect(() => {
+    client("procesos.json").then(
+      (procesos) => {
+        setProcess(procesos?.process);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+
+  const [ueb, setUeb] = useState(null);
+  useEffect(() => {
+    client("list_UEBs.json").then(
+      (ueb) => {
+        setUeb(ueb);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+
   return (
     <div className={styles.headcontainer}>
       <div className={styles.headwrapper}>
-        {/* <div>
-          <button
-            className={styles.btn}
-            onClick={() => setMostrarFormulario(true)}
-          >
-            Nueva Intervención
-          </button>
-          <Dialog
-            open={mostrarFormulario}
-            onClose={() => setMostrarFormulario(false)}
-          >
-            <Form />
-          </Dialog>
-        </div> */}
-
-        <Navbar setDialogOpen={setDialogOpen} setTableVisible={setTableVisible}/>
+        <Navbar
+          setDialogCreInteOpen={setDialogCreInteOpen}
+          setDialogRecomendationOpen={setDialogRecomendationOpen}
+          setTableVisible={setTableVisible}
+        />
         <Dialog
-            open={dialogOpen}
-            onClose={() => {setMostrarFormulario(false), setDialogOpen(false)}}
-          >
-            <Form />
-          </Dialog>
+          open={dialogCreInteOpen}
+          onClose={() => {
+            setDialogCreInteOpen(false);
+          }}
+        >
+          <IntervrntionForm process={process} ueb={ueb} />
+        </Dialog>
+
+        <Dialog
+          open={dialogRecomendationOpen}
+          onClose={() => {
+            setDialogRecomendationOpen(false);
+          }}
+        >
+          <RecomendationForm
+            process={process}
+            ueb={ueb}
+            tasks={tasks}
+            setTasks={setTasks}
+          />
+        </Dialog>
       </div>
     </div>
   );

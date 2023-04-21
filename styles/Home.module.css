@@ -232,6 +232,11 @@
 
 .divTable{
   overflow-x: auto;
+  min-height: 80px;
+  max-height: 300px;
+  overflow-y: scroll auto;
+}
+.divTableInter{
   overflow-y: scroll;
   max-height: 400px;
 }
@@ -308,7 +313,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
   z-index: 9999;
 }
 
@@ -324,10 +328,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.dialogTitle {
-  margin: 0;
 }
 
 .dialogCloseButton {
@@ -346,13 +346,20 @@
   gap: 20px;
 
 }
+.formTitle {
+  margin: 0;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  color: #0099CC;
+}
 
 .input,
 .select {
-  padding: 10px;
+  padding: 7px;
   border: none;
   border-bottom: 2px solid #ddd;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .input:focus,
@@ -371,6 +378,10 @@
   font-family: Arial, sans-serif;
   color: #0099CC;
 }
+
+
+
+  
 
 /* -------------------------------------------------------------------------------------------------------------- */
 /* GanttChart started */
@@ -434,7 +445,7 @@
   outline: 2px solid var(--color-outline);
   border-radius: 5px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
-  overflow-y: scroll;
+  overflow-y: scroll auto;
   max-height: 400px;
 }
 

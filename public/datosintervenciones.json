@@ -62,30 +62,91 @@
             "id": 1,
             "idIntervention": 1,
             "name": "Recom1 Int1",
-            "description": "Recom 1 defrg",
+            "description": "Recom 1  defrg dertet56y7 ertyui ertyuy ert5ydefrg",
             "consultor": "Carlos Ramón",
-            "follow": "Si"
-        }, {
+            "follow": "Si",
+            "classification": "Tipo 1"
+        },
+        {
             "id": 2,
             "idIntervention": 1,
             "name": "Recom2 Int1",
-            "description": "Recom 2 defrg",
+            "description": "Recom 2 defrg dertet56y7 ertyui ertyuy ert5y",
             "consultor": "Laura Alfonzo perez",
-            "follow": "No"
-        }, {
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
             "id": 3,
             "idIntervention": 2,
             "name": "Recom1 Int2",
-            "description": "Recom 1 defrg",
+            "description": "Recom 1 defrg dertet56y7 ertyui ertyuy ert5y",
             "consultor": "Laura Alfonzo perez",
-            "follow": "Si"
-        }, {
+            "follow": "Si",
+            "classification": "Tipo 1"
+        },
+        {
             "id": 4,
             "idIntervention": 3,
             "name": "Recom1 Int3",
+            "description": "Recom 1 defrg dertet56y7 ertyui ertyuy ert5y",
+            "consultor": "Laura Alfonzo perez",
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
+            "id": 5,
+            "idIntervention": 1,
+            "name": "Recom3 Int1",
+            "description": "Recom 1 defrg dertet56y7 ertyui ertyuy ert5y",
+            "consultor": "Laura Alfonzo perez",
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
+            "id": 6,
+            "idIntervention": 1,
+            "name": "Recom4 Int1",
             "description": "Recom 1 defrg",
             "consultor": "Laura Alfonzo perez",
-            "follow": "No"
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
+            "id": 7,
+            "idIntervention": 1,
+            "name": "Recom5 Int1",
+            "description": "Recom 1 defrg dertet56y7 ertyui ertyuy ert5y",
+            "consultor": "Laura Alfonzo perez",
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
+            "id": 8,
+            "idIntervention": 1,
+            "name": "Recom6 Int1",
+            "description": "Recom 1 defrg",
+            "consultor": "Laura Alfonzo perez",
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
+            "id": 9,
+            "idIntervention": 1,
+            "name": "Recom6 Int1",
+            "description": "Recom 1 defrg",
+            "consultor": "Laura Alfonzo perez",
+            "follow": "No",
+            "classification": "Tipo 1"
+        },
+        {
+            "id": 10,
+            "idIntervention": 1,
+            "name": "Recom6 Int1",
+            "description": "Recom 1 defrg",
+            "consultor": "Laura Alfonzo perez",
+            "follow": "No",
+            "classification": "Tipo 1"
         }
     ]
 }

@@ -1,6 +1,6 @@
 export const menuItems = [
   {
-    title: 'Diagrama de Gantt',
+    title: 'Gantt',
     url: '/',
   },
   {
@@ -8,12 +8,6 @@ export const menuItems = [
    submenu: [
       {
         title: 'Crear Intervención',
-      },
-      {
-        title: 'Modificar Intervención',
-      },
-      {
-        title: 'Eliminar Intervención',
       },
       {
         title: 'Listar Intervenciones',
@@ -25,12 +19,6 @@ export const menuItems = [
     submenu: [
       {
         title: 'Crear Recomendación',
-      },
-      {
-        title: 'Modificar Recomendación',
-      },
-      {
-        title: 'Eliminar Recomendación',
       },
       {
         title: 'Listar Recomendaciones',

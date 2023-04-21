@@ -3,11 +3,12 @@ import styles from "../../styles/Home.module.css";
 
 
 export default function Tasks({
-  tasks,
-  setTasks,
+  interventions,
+  setInterventions,
   selectedUeb,
   selectedStructure,
   selectedArea,
+  selectedIntervention,
   setSelectedIntervention,
 }) {
   const inputRef = useRef([]);
@@ -16,9 +17,10 @@ export default function Tasks({
   // Eliminar tarea
   function handleDelete(e) {
     const idNum = parseInt(e.target.getAttribute("data-task-id"));
-    const newTasks = tasks.filter((task) => task.id !== idNum);
+    const newTasks = interventions.filter((task) => task.id !== idNum);
+    setSelectedIntervention((selectedIntervention.id !==idNum) ? selectedIntervention :null);
     // update state (if data on backend - make API request to update data)
-    setTasks(newTasks);
+    setInterventions(newTasks);
   }
 
   //  Editar tarea
@@ -26,11 +28,11 @@ export default function Tasks({
     const { value } = e.target;
     const idNum = parseInt(e.target.getAttribute("data-task-id"));
 
-    let newTasks = tasks.filter((task) => task.id !== idNum);
+    let newTasks = interventions.filter((task) => task.id !== idNum);
     newTasks.push({ id: idNum, name: value });
     newTasks = newTasks.sort((a, b) => a.id - b.id);
     // update state (if data on backend - make API request to update data)
-    setTasks(newTasks);
+    setInterventions(newTasks);
     indexRef.current = i;
   }
 
@@ -42,8 +44,8 @@ export default function Tasks({
   // para el filtrado
   let filteredTasks = [];
 
-  if (tasks) {
-    filteredTasks = tasks.filter(
+  if (interventions) {
+    filteredTasks = interventions.filter(
       (task) =>
         (!selectedUeb || task.ueb === selectedUeb) &&
         (!selectedStructure || task.structure === selectedStructure) &&
