@@ -55,6 +55,19 @@
             "end": "2022-01-23",
             "consultor": "Alberto López Gónzalez",
             "progress": 75
+        },  {
+            "id": 5,
+            "name": "Intervencion 5",
+            "description": "Intervencion 4 defehehdegttujiiuytre",
+            "process": "Gestión de Información y comunicación",
+            "ueb": "LIORAD",
+            "structure": "Departamento de Direción",
+            "area": "DIRECCIÓN",
+            "worker": "Liset  Perez  Lavin",
+            "start": "2022-01-22",
+            "end": "2022-01-23",
+            "consultor": "Alberto López Gónzalez",
+            "progress": 75
         }
     ],
     "recomendations": [

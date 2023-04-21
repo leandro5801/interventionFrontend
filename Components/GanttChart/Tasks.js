@@ -5,6 +5,7 @@ import styles from "../../styles/Home.module.css";
 export default function Tasks({
   interventions,
   setInterventions,
+  // filteredTasks,
   selectedUeb,
   selectedStructure,
   selectedArea,

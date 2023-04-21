@@ -359,7 +359,7 @@
   padding: 7px;
   border: none;
   border-bottom: 2px solid #ddd;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .input:focus,
@@ -377,11 +377,8 @@
   padding-right: 40px;
   font-family: Arial, sans-serif;
   color: #0099CC;
+  font-weight: bold;
 }
-
-
-
-  
 
 /* -------------------------------------------------------------------------------------------------------------- */
 /* GanttChart started */
@@ -497,4 +494,22 @@
   display: grid;
   overflow-x: auto;
   outline: 0.5px solid var(--color-outline);
+}
+
+.faFilterIcon{
+   width: 16px;
+   color: #0099CC;
+   opacity: 0.6;
+   margin-left: 20px;
+   cursor: pointer;
+}
+.faFilterIcon:hover{
+  color:#016f94;
+}
+
+.divIconH2{
+  display: flex;
+  align-items:center;
+  padding: 20px;
+  left: 5px;
 }
