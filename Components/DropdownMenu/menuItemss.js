@@ -14,15 +14,4 @@ export const menuItems = [
       },
     ],
   },
-  {
-    title: 'Gestionar Recomendaciones',
-    submenu: [
-      {
-        title: 'Crear Recomendación',
-      },
-      {
-        title: 'Listar Recomendaciones',
-      },
-    ],
-  },
 ];

@@ -13,12 +13,13 @@ import styles from "../../styles/Home.module.css";
 
 export default function TimeTable({
   timeRange,
-  tasks,
+  interventions,
+  setInterventions,
   selectedUeb,
   selectedStructure,
   selectedArea,
 }) {
-  const [taskDurationElDraggedId, setTaskDurationElDraggedId] = useState(null);
+
 
   // for dynamic css styling
   const ganttTimePeriod = {
@@ -50,18 +51,18 @@ export default function TimeTable({
     boxShadow: "3px 3px 3px rgba(0, 0, 0, 0.05)",
     cursor: "move",
   };
-  
-   // para el filtrado
- let filteredTasks = [];
 
- if (tasks) {
-   filteredTasks = tasks.filter(
-     (task) =>
-       (!selectedUeb || task.ueb === selectedUeb) &&
-       (!selectedStructure || task.structure === selectedStructure) &&
-       (!selectedArea || task.area === selectedArea)
-   );
- }
+  // para el filtrado
+  let filteredTasks = [];
+
+  if (interventions) {
+    filteredTasks = interventions.filter(
+      (task) =>
+        (!selectedUeb || task.ueb === selectedUeb) &&
+        (!selectedStructure || task.structure === selectedStructure) &&
+        (!selectedArea || task.area === selectedArea)
+    );
+  }
 
   // creating rows
   const startMonth = new Date(
@@ -126,7 +127,7 @@ export default function TimeTable({
   }
   // create task rows
   if (filteredTasks) {
-    filteredTasks.forEach((task) => {
+    filteredTasks.map((task) => {
       let mnth = new Date(startMonth);
       for (let i = 0; i < numMonths; i++) {
         const curYear = mnth.getFullYear();
@@ -153,7 +154,6 @@ export default function TimeTable({
                   dayOfTheWeek === "S" ? "var(--color-tertiary)" : "#fff",
               }}
               data-task={task?.id}
-              onDrop={onTaskDurationDrop}
               data-date={formattedDate}
             >
               {filteredTasks.map((el, i) => {
@@ -161,19 +161,14 @@ export default function TimeTable({
                   return (
                     <div
                       key={`${i}-${el?.id}`}
-                      draggable="true"
                       tabIndex="0"
-                      // onDragStart={() => handleDragStart(el?.id)}
                       style={{
                         ...taskDuration,
                         width: `calc(${dayDiff(
                           el?.start,
                           el?.end
                         )} * 100% - 1px)`,
-                        opacity:
-                          taskDurationElDraggedId === el?.id ? "0.5" : "1",
                       }}
-                      onKeyDown={(e) => deleteTaskDuration(e, el?.id)}
                     ></div>
                   );
                 }
@@ -193,38 +188,6 @@ export default function TimeTable({
       }
     });
   }
-
-  function onTaskDurationDrop(e) {
-    const targetCell = e.target;
-    // prevent adding on another taskDuration
-    if (!targetCell.hasAttribute("draggable")) {
-      // find task
-      const taskDuration = tasks.filter(
-        (taskDuration) => taskDuration.id === taskDurationElDraggedId
-      )[0];
-
-      const dataTask = targetCell.getAttribute("data-task");
-      const dataDate = targetCell.getAttribute("data-date");
-
-      // const daysDuration = dayDiff(taskDuration.start, taskDuration.end);
-
-      // get new task values
-      // get start, calc end using daysDuration - make Date objects - change taskDurations
-      const newTask = parseInt(dataTask);
-      const newStartDate = new Date(dataDate);
-      let newEndDate = new Date(dataDate);
-
-      const newTaskDurations = tasks.filter(
-        (taskDuration) => taskDuration.id !== taskDurationElDraggedId
-      );
-      newTaskDurations.push(taskDuration);
-
-      // update state (if data on backend - make API request to update data)
-      // setTaskDurations(newTaskDurations);
-    }
-    setTaskDurationElDraggedId(null);
-  }
-
   return (
     <div
       className={styles.ganttGridContainerTime}
@@ -242,7 +205,6 @@ export default function TimeTable({
           gridTemplateColumns: `repeat(${numMonths}, 1fr)`,
           paddingLeft: "0.5px",
         }}
-        onDragOver={(e) => e.preventDefault()}
       >
         {taskRows}
       </div>

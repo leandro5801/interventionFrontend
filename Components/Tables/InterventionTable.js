@@ -87,7 +87,7 @@ function InterventionTable({ filteredTasks, tableVisible, setTableVisible }) {
           <FontAwesomeIcon
             icon={faFilter}
             onClick={toggleFilters}
-            className={styles.faFilterIcon}
+            className={styles.faIcon}
           />
         </div>
         {showFilters && (

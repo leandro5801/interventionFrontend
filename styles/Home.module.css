@@ -496,15 +496,15 @@
   outline: 0.5px solid var(--color-outline);
 }
 
-.faFilterIcon{
+.faIcon{
    width: 16px;
    color: #0099CC;
    opacity: 0.6;
    margin-left: 20px;
    cursor: pointer;
 }
-.faFilterIcon:hover{
-  color:#016f94;
+.faIcon:hover{
+  color:#025a78;
 }
 
 .divIconH2{
@@ -512,4 +512,9 @@
   align-items:center;
   padding: 20px;
   left: 5px;
+}
+.divIcons{
+  display: flex;
+  align-items:center;
+  padding: 0px;
 }

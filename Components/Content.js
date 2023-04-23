@@ -9,6 +9,9 @@ import RecomendationTable from "./Tables/RecomendationTable";
 import IntervrntionForm from "./Forms/IntervrntionForm";
 import Dialog from "./Forms/Dialog";
 import RecomendationForm from "./Forms/RecomendationForm";
+import Settings from "./GanttChart/Settings";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 function Content({
   selectedUeb,
@@ -64,34 +67,10 @@ function Content({
   const interventionUpdate = (updatedRow) => {
     // Actualiza el estado de los datos en la tabla
     setSelectedIntervention(updatedRow);
-  };
-
-  // Para editar una recomendacion desde la tabla
-  const [tableRData, setTableRData] = useState();
-
-  useEffect(() => {
-    setTableRData(filteredRecomendation);
-  }, [filteredRecomendation]);
-
-  const [editRIdx, setEditRIdx] = useState(-1);
-
-  const handleSaveR = () => {
-    setEditRIdx(-1);
-  };
-
-  const handleCancelR = () => {
-    setEditRIdx(-1);
-  };
-
-  const recomendationUpdate = (updatedRow) => {
-    // Crea una copia de los datos de la tabla
-    const updatedTableRData = [...tableRData];
-
-    // Actualiza los datos de la fila que se está editando
-    updatedTableRData[editRIdx] = updatedRow;
-
-    // Actualiza el estado de los datos en la tabla
-    setTableRData(updatedTableRData);
+    //  const intervenciones = interventions.filter((i)=> i === updatedRow.id)
+    setInterventions((prevData) =>
+      prevData.map((item) => (item.id === updatedRow.id ? updatedRow : item))
+    );
   };
 
   return (
@@ -99,13 +78,14 @@ function Content({
       {/* Diagrama de Gantt  */}
       <div className={styles.contentwrapper}>
         <GanttChart
-          interventions={interventions}
+          interventions={filteredTasks}
           setInterventions={setInterventions}
           selectedUeb={selectedUeb}
           selectedStructure={selectedStructure}
           selectedArea={selectedArea}
           selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
+          setRecomendationTableVisible={setRecomendationTableVisible}
         />
       </div>
       {/* Datos de una intervencion */}
@@ -156,7 +136,11 @@ function Content({
                       {selectedIntervention.worker}
                     </td>
                     <td>
-                      <button onClick={() => setIsIEditing(true)}>Edit</button>
+                      <FontAwesomeIcon
+                        icon={faEdit}
+                        onClick={() => setIsIEditing(true)}
+                        className={styles.faIcon}
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -164,41 +148,30 @@ function Content({
 
               <Dialog open={isIEditing} onClose={handleCancelI}>
                 <IntervrntionForm
-                  interventionUpdate={interventionUpdate}
+                  setInterventions={interventionUpdate}
                   intervention={selectedIntervention}
                   onSave={handleSaveI}
                   onCancel={handleCancelI}
                 />
               </Dialog>
-
-              <button className={styles.btn} onClick={mostrar}>
-                Mostrar Recomendaciones
-              </button>
+              <Settings>
+                <button className={styles.btn} onClick={mostrar}>
+                  Mostrar Recomendaciones
+                </button>
+              </Settings>
             </div>
           </div>
           {/* Datos de Recomendaciones */}
           {recomendationTableVisible && (
             <div className={styles.contentwrapper}>
               <div className={styles.divTable}>
-                {tableRData.length === 0 && <h2> No hay </h2>}
                 <RecomendationTable
-                  tableRData={tableRData}
-                  setTableRData={setTableRData}
-                  setEditRIdx={setEditRIdx}
+                  filteredRecomendation={filteredRecomendation}
                   tableVisible={recomendationTableVisible}
                   recomendations={recomendations}
                   setRecomendations={setRecomendations}
+                  selectedIntervention={selectedIntervention}
                 />
-
-                <Dialog open={editRIdx !== -1} onClose={handleCancelR}>
-                  <RecomendationForm
-                    recomendationUpdate={recomendationUpdate}
-                    editRIdx={editRIdx}
-                    recomendation={filteredRecomendation[editRIdx]}
-                    onCancel={handleCancelR}
-                    onSave={handleSaveR}
-                  />
-                </Dialog>
               </div>
             </div>
           )}

@@ -3,44 +3,48 @@ import Select from "react-select";
 
 import { useState, useEffect } from "react";
 
-export default function FormRecomendation({
-  recomendationUpdate,
-  editRIdx,
+export default function RecomendationForm({
+  recomendations,
+  setTableRData,
+  setRecomendations,
   recomendation,
   onCancel,
   onSave,
+  selectedIntervention,
 }) {
   //intervention ? intervention.name : null
-  const [name, setName] = useState(recomendation ? recomendation.name : null);
+  const [name, setName] = useState(recomendation ? recomendation.name : "");
   const [description, setDescription] = useState(
-    recomendation ? recomendation.description : null
+    recomendation ? recomendation.description : ""
   );
   const [consultor, setConsultor] = useState(
-    recomendation ? recomendation.consultor : null
+    recomendation ? recomendation.consultor : ""
   );
   const [follow, setFollow] = useState(
-    recomendation ? recomendation.follow : null
+    recomendation ? recomendation.follow : ""
   );
   const [classification, setClassification] = useState(
-    recomendation ? recomendation.classification : null
+    recomendation ? recomendation.classification : ""
   );
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Crea un objeto con los datos actualizados de la fila
     const updatedRow = {
-      id: null,
+      id: recomendation ? recomendation.id : recomendations.length + 1,
+      idIntervention: selectedIntervention.id,
       name,
       description,
       consultor,
       follow,
       classification,
     };
-    if (recomendation) {
-      updatedRow.id = editRIdx;
-      recomendationUpdate(updatedRow);
+    setTableRData(recomendation ?
+      updatedRow : (prevData) => [...prevData, updatedRow]);
 
-      onSave();
+    onSave();
+    if (!recomendation) {
+      setRecomendations([...recomendations, updatedRow]);
     }
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos

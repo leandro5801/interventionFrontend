@@ -4,7 +4,6 @@ import MenuItems from "./MenuItems";
 const Navbar = ({
   setDialogCreInteOpen,
   setTableVisible,
-  setDialogRecomendationOpen,
 }) => {
   return (
     <nav>
@@ -15,7 +14,6 @@ const Navbar = ({
               items={menu}
               key={index}
               setDialogCreInteOpen={setDialogCreInteOpen}
-              setDialogRecomendationOpen={setDialogRecomendationOpen}
               setTableVisible={setTableVisible}
             />
           );

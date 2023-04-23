@@ -142,24 +142,7 @@
             "consultor": "Laura Alfonzo perez",
             "follow": "No",
             "classification": "Tipo 1"
-        },
-        {
-            "id": 9,
-            "idIntervention": 1,
-            "name": "Recom6 Int1",
-            "description": "Recom 1 defrg",
-            "consultor": "Laura Alfonzo perez",
-            "follow": "No",
-            "classification": "Tipo 1"
-        },
-        {
-            "id": 10,
-            "idIntervention": 1,
-            "name": "Recom6 Int1",
-            "description": "Recom 1 defrg",
-            "consultor": "Laura Alfonzo perez",
-            "follow": "No",
-            "classification": "Tipo 1"
         }
+      
     ]
 }

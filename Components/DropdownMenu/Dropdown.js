@@ -2,15 +2,12 @@ const Dropdown = ({
   submenus,
   dropdown,
   setDialogCreInteOpen,
-  setDialogRecomendationOpen,
   setTableVisible,
   setDropdown,
 }) => {
   const handleClick = (title) => {
     if (title === "Crear Intervención") {
       setDialogCreInteOpen(true);
-    } else if (title === "Crear Recomendación") {
-      setDialogRecomendationOpen(true);
     } else if (title === "Listar Intervenciones") {
       setTableVisible(true);
     }

@@ -6,8 +6,10 @@ import data from "../../public/structure.json";
 import { useState, useEffect } from "react";
 
 export default function FormUpdateIntervention({
-  interventionUpdate,
+  setInterventions,
+  interventions,
   intervention,
+  interventionUpdate,
   onCancel,
   onSave,
 }) {
@@ -37,12 +39,14 @@ export default function FormUpdateIntervention({
   const [worker, setWorker] = useState(
     intervention ? intervention.worker : null
   );
+  const [start, setStart] = useState(intervention ? intervention.start : null);
+  const [end, setEnd] = useState(intervention ? intervention.end : null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Crea un objeto con los datos actualizados de la fila
     const updatedRow = {
-      id: null,
+      id: intervention ? intervention.id : interventions.length + 1,
       name,
       description,
       process: selectedProcess.value,
@@ -51,16 +55,15 @@ export default function FormUpdateIntervention({
       area: selectedArea.value,
       consultor,
       worker,
+      start,
+      end,
     };
 
-    if (intervention) {
-      updatedRow.id= intervention.id;
-      interventionUpdate(updatedRow);
-      onSave();
-    }
-
+    setInterventions(
+      intervention ? updatedRow : (prevData) => [...prevData, updatedRow]
+    );
+    onSave();
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
-  
   };
 
   // Cargando los datos de los procesos, las ueb y las estructuras
@@ -192,6 +195,26 @@ export default function FormUpdateIntervention({
             id="worker"
             value={worker}
             onChange={(event) => setWorker(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="start">Fecha de inicio:</label>
+          <input
+            className={styles.input}
+            type="date"
+            id="start"
+            value={start}
+            onChange={(event) => setStart(event.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="end">Fecha de Fin:</label>
+          <input
+            className={styles.input}
+            type="date"
+            id="end"
+            value={end}
+            onChange={(event) => setEnd(event.target.value)}
           />
         </div>
       </div>

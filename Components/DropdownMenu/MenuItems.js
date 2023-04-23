@@ -4,7 +4,6 @@ import { useState } from "react";
 const MenuItems = ({
   items,
   setDialogCreInteOpen,
-  setDialogRecomendationOpen,
   setTableVisible,
 }) => {
   const [dropdown, setDropdown] = useState(false);
@@ -26,7 +25,6 @@ const MenuItems = ({
             dropdown={dropdown}
             setDropdown={setDropdown}
             setDialogCreInteOpen={setDialogCreInteOpen}
-            setDialogRecomendationOpen={setDialogRecomendationOpen}
             setTableVisible={setTableVisible}
           />
         </>

@@ -5,12 +5,12 @@ import styles from "../../styles/Home.module.css";
 export default function Tasks({
   interventions,
   setInterventions,
-  // filteredTasks,
   selectedUeb,
   selectedStructure,
   selectedArea,
   selectedIntervention,
   setSelectedIntervention,
+  setRecomendationTableVisible,
 }) {
   const inputRef = useRef([]);
   const indexRef = useRef(null);
@@ -22,19 +22,6 @@ export default function Tasks({
     setSelectedIntervention((selectedIntervention.id !==idNum) ? selectedIntervention :null);
     // update state (if data on backend - make API request to update data)
     setInterventions(newTasks);
-  }
-
-  //  Editar tarea
-  function onChange(e, i) {
-    const { value } = e.target;
-    const idNum = parseInt(e.target.getAttribute("data-task-id"));
-
-    let newTasks = interventions.filter((task) => task.id !== idNum);
-    newTasks.push({ id: idNum, name: value });
-    newTasks = newTasks.sort((a, b) => a.id - b.id);
-    // update state (if data on backend - make API request to update data)
-    setInterventions(newTasks);
-    indexRef.current = i;
   }
 
   useEffect(() => {
@@ -59,6 +46,7 @@ export default function Tasks({
     const taskId = parseInt(e.target.getAttribute("data-task-id"));
     const task = filteredTasks.find((t) => t.id === taskId);
     setSelectedIntervention(task);
+    setRecomendationTableVisible(false);
   };
 
   return (

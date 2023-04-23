@@ -50,8 +50,8 @@ export default function Home() {
       />
       <Header
         setTableVisible={setTableVisible}
-        tasks={interventions}
-        recomendations={recomendations}
+        interventions={interventions}
+        setInterventions={setInterventions}
       />
       <Content
         selectedUeb={selectedUeb}

@@ -7,7 +7,11 @@ import IntervrntionForm from "./Forms/IntervrntionForm";
 import RecomendationForm from "./Forms/RecomendationForm";
 import { client } from "../utils/fetchWrapper";
 
-function Header({ setTableVisible, tasks,setTasks, recomendations, setRecomendations }) {
+function Header({
+  setTableVisible,
+  interventions,
+  setInterventions,
+}) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
   const [process, setProcess] = useState(null);
@@ -33,13 +37,11 @@ function Header({ setTableVisible, tasks,setTasks, recomendations, setRecomendat
       }
     );
   }, []);
-
   return (
     <div className={styles.headcontainer}>
       <div className={styles.headwrapper}>
         <Navbar
           setDialogCreInteOpen={setDialogCreInteOpen}
-          setDialogRecomendationOpen={setDialogRecomendationOpen}
           setTableVisible={setTableVisible}
         />
         <Dialog
@@ -48,22 +50,18 @@ function Header({ setTableVisible, tasks,setTasks, recomendations, setRecomendat
             setDialogCreInteOpen(false);
           }}
         >
-          <IntervrntionForm process={process} ueb={ueb} />
-        </Dialog>
-
-        <Dialog
-          open={dialogRecomendationOpen}
-          onClose={() => {
-            setDialogRecomendationOpen(false);
-          }}
-        >
-          <RecomendationForm
-            process={process}
-            ueb={ueb}
-            tasks={tasks}
-            setTasks={setTasks}
+          <IntervrntionForm
+            setInterventions={setInterventions}
+            interventions={interventions}
+            onSave={() => {
+              setDialogCreInteOpen(false);
+            }}
+            onCancel={() => {
+              setDialogCreInteOpen(false);
+            }}
           />
         </Dialog>
+
       </div>
     </div>
   );

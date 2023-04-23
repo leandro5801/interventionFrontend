@@ -16,6 +16,7 @@ export default function GanttChart({
   selectedArea,
   selectedIntervention,
   setSelectedIntervention,
+  setRecomendationTableVisible,
 }) {
   const [timeRange, setTimeRange] = useState({
     fromSelectMonth: 0,
@@ -53,10 +54,12 @@ export default function GanttChart({
           selectedArea={selectedArea}
           selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
+          setRecomendationTableVisible={setRecomendationTableVisible}
         />
         <TimeTable
           timeRange={timeRange}
-          tasks={interventions}
+          interventions={interventions}
+          setInterventions={setInterventions}
           selectedUeb={selectedUeb}
           selectedStructure={selectedStructure}
           selectedArea={selectedArea}
