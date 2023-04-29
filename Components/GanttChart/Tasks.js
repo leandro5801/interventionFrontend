@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/Home.module.css";
-
 
 export default function Tasks({
   interventions,
@@ -10,7 +9,9 @@ export default function Tasks({
   selectedArea,
   selectedIntervention,
   setSelectedIntervention,
-  setRecomendationTableVisible,
+  recomendations,
+  setRecomendations,
+  setTableRData,
 }) {
   const inputRef = useRef([]);
   const indexRef = useRef(null);
@@ -19,7 +20,11 @@ export default function Tasks({
   function handleDelete(e) {
     const idNum = parseInt(e.target.getAttribute("data-task-id"));
     const newTasks = interventions.filter((task) => task.id !== idNum);
-    setSelectedIntervention((selectedIntervention.id !==idNum) ? selectedIntervention :null);
+    const newRecomendations = recomendations.filter(
+      (recomendation) => recomendation.idIntervention !== idNum
+    );
+    setRecomendations(newRecomendations);
+
     // update state (if data on backend - make API request to update data)
     setInterventions(newTasks);
   }
@@ -46,48 +51,49 @@ export default function Tasks({
     const taskId = parseInt(e.target.getAttribute("data-task-id"));
     const task = filteredTasks.find((t) => t.id === taskId);
     setSelectedIntervention(task);
-    setRecomendationTableVisible(false);
+    setTableRData(
+      recomendations.filter(
+        (recomendation) => recomendation.idIntervention === task.id
+      )
+    );
+    setRecomendations;
   };
 
   return (
-    <div>
-      <div
-        className={styles.ganttGridContainerTasks}
-        id="gantt-grid-container__tasks"
-      >
-        <div className={styles.ganttTaskRow}></div>
-        <div className={styles.ganttTaskRow}></div>
-        <div className={styles.ganttTaskRow}></div>
+    <div
+      className={styles.ganttGridContainerTasks}
+      id="gantt-grid-container__tasks"
+    >
+      <div className={styles.ganttTaskRow}></div>
+      <div className={styles.ganttTaskRow}></div>
+      <div className={styles.ganttTaskRow}></div>
 
-        {/* Creación de filas de tareas */}
-        {filteredTasks &&
-          filteredTasks.map((tsk, i) => (
-            <div
-              key={`${i}-${tsk?.id}-${tsk.name}`}
-              className={styles.ganttTaskRow}
+      {/* Creación de filas de tareas */}
+      {filteredTasks &&
+        filteredTasks.map((tsk, i) => (
+          <div
+            key={`${i}-${tsk?.id}-${tsk.name}`}
+            className={styles.ganttTaskRow}
+          >
+            <input
+              readOnly
+              className={styles.inputTask}
+              data-task-id={tsk?.id}
+              value={tsk?.name}
+              // onChange={(e) => onChange(e, i)}
+              onClick={handleClick}
+              // ref={(el) => (inputRef.current[i] = el)}
+            />
+            <button
+              className={styles.btnTask}
+              type="button"
+              data-task-id={tsk?.id}
+              onClick={handleDelete}
             >
-              <input readOnly
-                className={styles.inputTask}
-                data-task-id={tsk?.id}
-                value={tsk?.name}
-                
-                // onChange={(e) => onChange(e, i)}
-                onClick={handleClick}
-                // ref={(el) => (inputRef.current[i] = el)}
-              />
-              <button
-                className={styles.btnTask}
-                type="button"
-                data-task-id={tsk?.id}
-                onClick={handleDelete}
-              >
-                x
-              </button>
-            </div>
-          ))}
-      </div>
-
-      <div></div>
+              x
+            </button>
+          </div>
+        ))}
     </div>
   );
 }

@@ -44,12 +44,12 @@ const uebOptions = data.ueb.map(item => ({
   
     return (
       <>
-        <Dropdown menuClassName="custom-menu" options={uebOptions} onChange={handleUebSelect} value={selectedUeb} placeholder="Selecciona una UEB" />
+        <Dropdown menuClassName="custom-menu" options={uebOptions} onChange={handleUebSelect} value={selectedUeb} placeholder="Seleccione una UEB" />
         {selectedUeb && (
-          <Dropdown options={structureOptions} onChange={handleStructureSelect} value={selectedStructure} placeholder="Selecciona una estructura" />
+          <Dropdown options={structureOptions} onChange={handleStructureSelect} value={selectedStructure} placeholder="Seleccione departamento o dirección" />
         )}
         {selectedStructure && (
-          <Dropdown options={areaOptions} onChange={handleAreaSelect} value={selectedArea} placeholder="Selecciona un área" />
+          <Dropdown options={areaOptions} onChange={handleAreaSelect} value={selectedArea} placeholder="Seleccione un área" />
         )}
       </>
     );

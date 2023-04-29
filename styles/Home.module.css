@@ -1,7 +1,7 @@
 /* Dashboard */
 .sidebarcontainer {
   position: fixed;
-  width: 300px;
+  width: 200px;
   height: 100%;
   margin: 20px;
   padding: 10px;
@@ -9,7 +9,6 @@
   background-color: #0099CC;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
     0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-
 }
 
 .wrapper {
@@ -37,7 +36,7 @@
   font-weight: bold;
 }
 
-.wrapper>h2{
+.wrapper>h2 {
   color: #fff;
   font-size: 20px;
   margin-top: 20px;
@@ -68,6 +67,7 @@
 
   transition: 0.2;
 }
+
 /* ------------------------------------------------------------------------------------------------------ */
 /* Menu desplegable  */
 .dropdown {
@@ -87,8 +87,13 @@
 }
 
 @keyframes example {
-  from {opacity:0;}
-  to {opacity:1;}
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 
@@ -139,7 +144,7 @@
   flex-wrap: wrap;
   height: 70px;
   /* background-color: rgb(255,255,255); */
-  margin-left: 280px;
+  margin-left: 90px;
 
 }
 
@@ -207,7 +212,8 @@
 .contenetcontainer {
   display: flex;
   flex-wrap: wrap;
-  margin-left: 300px;
+  margin-left: 100px;
+  margin-right: 0px;
   align-items: center;
   justify-content: center;
 }
@@ -218,7 +224,8 @@
   gap: 40px;
   border-radius: 30px;
   background-color: #fff;
-  width: 1000px;
+  margin-left: 100px;
+  width: 1090px;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
@@ -230,14 +237,15 @@
   color: #0099CC;
 }
 
-.divTable{
+.divTable {
   overflow-x: auto;
   min-height: 80px;
   max-height: 300px;
-  overflow-y: scroll auto;
+  overflow-y: auto;
 }
-.divTableInter{
-  overflow-y: scroll;
+
+.divTableInter {
+  overflow-y: auto;
   max-height: 400px;
 }
 
@@ -270,14 +278,14 @@
 
 .tabs {
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   align-items: center;
-  width: 250px;
-  height: 100px;
-  background-color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 3px 0px 6px 0px rgb(246, 246, 246, 0.75);
+  /* width: 250px; */
+  /* height: 100px; */
+  /* background-color: #fff; */
+  /* border-radius: 10px; */
+  /* cursor: pointer; */
+  /* box-shadow: 3px 0px 6px 0px rgb(246, 246, 246, 0.75); */
 }
 
 /* for mobiles phones */
@@ -346,6 +354,7 @@
   gap: 20px;
 
 }
+
 .formTitle {
   margin: 0;
   align-items: center;
@@ -442,13 +451,14 @@
   outline: 2px solid var(--color-outline);
   border-radius: 5px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
-  overflow-y: scroll auto;
-  max-height: 400px;
+  max-height: 350px;
+  overflow-y:auto;
 }
 
 /* ganttTask */
 .ganttGridContainerTasks {
   outline: 0.5px solid var(--color-outline);
+  /* max-height: 300px; */
 }
 
 .ganttTaskRow {
@@ -467,15 +477,17 @@
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   text-align: center;
-  cursor:pointer;
+  cursor: pointer;
 }
-.inputTask:focus{
+
+.inputTask:focus {
   /* background-color: darkgray; */
   transition: 0.2;
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  
+
 }
-.btnTask{
+
+.btnTask {
   line-height: 0px;
   color: var(--color-orange);
   background: none;
@@ -490,31 +502,33 @@
 }
 
 /* Time table  */
-.ganttGridContainerTime{
+.ganttGridContainerTime {
   display: grid;
   overflow-x: auto;
   outline: 0.5px solid var(--color-outline);
 }
 
-.faIcon{
-   width: 16px;
-   color: #0099CC;
-   opacity: 0.6;
-   margin-left: 20px;
-   cursor: pointer;
-}
-.faIcon:hover{
-  color:#025a78;
+.faIcon {
+  width: 16px;
+  color: #0099CC;
+  opacity: 0.6;
+  margin-left: 20px;
+  cursor: pointer;
 }
 
-.divIconH2{
+.faIcon:hover {
+  color: #025a78;
+}
+
+.divIconH2 {
   display: flex;
-  align-items:center;
+  align-items: center;
   padding: 20px;
   left: 5px;
 }
-.divIcons{
+
+.divIcons {
   display: flex;
-  align-items:center;
+  align-items: center;
   padding: 0px;
 }

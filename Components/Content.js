@@ -12,6 +12,8 @@ import RecomendationForm from "./Forms/RecomendationForm";
 import Settings from "./GanttChart/Settings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { Container, Row, Col } from "react-grid-system";
+import { Card, Button } from "react-bootstrap";
 
 function Content({
   selectedUeb,
@@ -37,23 +39,10 @@ function Content({
   }
   const [selectedIntervention, setSelectedIntervention] = useState(null);
 
-  const filteredRecomendation = useMemo(() => {
-    if (recomendations && selectedIntervention) {
-      return recomendations.filter(
-        (recomendation) =>
-          recomendation.idIntervention === selectedIntervention.id
-      );
-    }
-    return [];
-  }, [recomendations, selectedIntervention]);
+  const [tableRData, setTableRData] = useState(null);
 
   //Para que se muestren las recomendaciones solo cuando se ha seleccionado la opcion
-  const [recomendationTableVisible, setRecomendationTableVisible] =
-    useState(false);
-  function mostrar() {
-    setRecomendationTableVisible(!recomendationTableVisible);
-  }
-
+ 
   // Para editar una intervencion desde la tabla
   const [isIEditing, setIsIEditing] = useState(false);
 
@@ -85,7 +74,9 @@ function Content({
           selectedArea={selectedArea}
           selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
-          setRecomendationTableVisible={setRecomendationTableVisible}
+          recomendations={recomendations}
+          setRecomendations={setRecomendations}
+          setTableRData={setTableRData}
         />
       </div>
       {/* Datos de una intervencion */}
@@ -95,15 +86,50 @@ function Content({
           {/* Datos de la intervencion seleccionada */}
           <div className={styles.contentwrapper}>
             <div className={styles.divTable}>
-              <h2>Intervención</h2>
-              <table className={styles.table}>
+              <div className={styles.divIconH2}>
+                <h2>Intervención</h2>
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  onClick={() => setIsIEditing(true)}
+                  className={styles.faIcon}
+                />
+              </div>
+
+              <Container key={selectedIntervention.id}>
+                <Card style={{ width: "60rem" }}>
+                  <Card.Body>
+                    <Card.Title>
+                      Intervención: {selectedIntervention.name}
+                    </Card.Title>
+                    <Card.Text>
+                      Descripción: {selectedIntervention.description}
+                    </Card.Text>
+                    <Card.Text>
+                      Proceso: {selectedIntervention.process}
+                    </Card.Text>
+                    <Card.Text>UEB: {selectedIntervention.ueb}</Card.Text>
+                    <Card.Text>
+                      Despartamento/Direción: {selectedIntervention.structure}
+                    </Card.Text>
+                    <Card.Text>Área: {selectedIntervention.area}</Card.Text>
+                    <Card.Text>
+                      Consultor: {selectedIntervention.consultor}
+                    </Card.Text>
+                    <Card.Text>
+                      Trabajador: {selectedIntervention.worker}
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Container>
+
+              {/* <table className={styles.table}>
                 <thead>
                   <tr>
                     <th className={styles.spacing}>Intervención</th>
                     <th className={styles.spacing}>Descripción</th>
                     <th className={styles.spacing}>Proceso</th>
                     <th className={styles.spacing}>UEB</th>
-                    <th className={styles.spacing}>Estructura</th>
+                    <th className={styles.spacing}>Departamento/Direción</th>
                     <th className={styles.spacing}>Área</th>
                     <th className={styles.spacing}>Consultor</th>
                     <th className={styles.spacing}>Trabajador</th>
@@ -144,7 +170,7 @@ function Content({
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
 
               <Dialog open={isIEditing} onClose={handleCancelI}>
                 <IntervrntionForm
@@ -154,27 +180,21 @@ function Content({
                   onCancel={handleCancelI}
                 />
               </Dialog>
-              <Settings>
-                <button className={styles.btn} onClick={mostrar}>
-                  Mostrar Recomendaciones
-                </button>
-              </Settings>
             </div>
           </div>
           {/* Datos de Recomendaciones */}
-          {recomendationTableVisible && (
-            <div className={styles.contentwrapper}>
-              <div className={styles.divTable}>
-                <RecomendationTable
-                  filteredRecomendation={filteredRecomendation}
-                  tableVisible={recomendationTableVisible}
-                  recomendations={recomendations}
-                  setRecomendations={setRecomendations}
-                  selectedIntervention={selectedIntervention}
-                />
-              </div>
+
+          <div className={styles.contentwrapper}>
+            <div className={styles.divTable}>
+              <RecomendationTable
+                tableRData={tableRData}
+                setTableRData={setTableRData}
+                recomendations={recomendations}
+                setRecomendations={setRecomendations}
+                selectedIntervention={selectedIntervention}
+              />
             </div>
-          )}
+          </div>
         </>
       )}
 

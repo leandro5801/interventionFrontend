@@ -139,7 +139,7 @@ function InterventionTable({ filteredTasks, tableVisible, setTableVisible }) {
                 <th className={styles.spacing}>Descripción</th>
                 <th className={styles.spacing}>Proceso</th>
                 <th className={styles.spacing}>UEB</th>
-                <th className={styles.spacing}>Estructura</th>
+                <th className={styles.spacing}>Departamento/Dirección</th>
                 <th className={styles.spacing}>Área</th>
                 <th className={styles.spacing}>Consultor</th>
                 <th className={styles.spacing}>Trabajador</th>

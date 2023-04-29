@@ -16,13 +16,15 @@ export default function GanttChart({
   selectedArea,
   selectedIntervention,
   setSelectedIntervention,
-  setRecomendationTableVisible,
+  recomendations,
+  setRecomendations,
+  setTableRData,
 }) {
   const [timeRange, setTimeRange] = useState({
     fromSelectMonth: 0,
-    fromSelectYear: "2022",
+    fromSelectYear: "2023",
     toSelectMonth: 1,
-    toSelectYear: "2022",
+    toSelectYear: "2023",
   });
 
   // Para mostrar el periodo de tiempo
@@ -54,7 +56,9 @@ export default function GanttChart({
           selectedArea={selectedArea}
           selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
-          setRecomendationTableVisible={setRecomendationTableVisible}
+          recomendations={recomendations}
+          setRecomendations={setRecomendations}
+          setTableRData={setTableRData}
         />
         <TimeTable
           timeRange={timeRange}

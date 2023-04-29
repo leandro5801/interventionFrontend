@@ -145,7 +145,7 @@ export default function FormUpdateIntervention({
           />
         </div>
         <div>
-          <label htmlFor="sructure">Estructura:</label>
+          <label htmlFor="sructure">Departamento/Dirección:</label>
           <Select
             value={selectedStructure}
             onChange={handleStructureChange}
@@ -154,7 +154,7 @@ export default function FormUpdateIntervention({
           />
         </div>
         <div>
-          <label htmlFor="area">Area:</label>
+          <label htmlFor="area">Área:</label>
           <Select
             value={selectedArea}
             onChange={setSelectedArea}

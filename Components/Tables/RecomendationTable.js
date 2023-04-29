@@ -14,8 +14,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function RecomendationTable({
-  filteredRecomendation,
-  tableVisible,
+  tableRData,
+  setTableRData,
   recomendations,
   setRecomendations,
   selectedIntervention,
@@ -26,7 +26,6 @@ function RecomendationTable({
     setDialogRecomendationOpen(!dialogRecomendationOpen);
   }
   // Para editar una recomendacion desde la tabla
-  const [tableRData, setTableRData] = useState(filteredRecomendation);
 
   const [editRIdx, setEditRIdx] = useState(-1);
 
@@ -117,15 +116,14 @@ function RecomendationTable({
     <>
       {tableRData.length === 0 && (
         <div className={styles.divIconH2}>
-          <h2> No hay Recomendaciones</h2>
-          {" "}
+          <h2> No hay Recomendaciones</h2>{" "}
           <FontAwesomeIcon
             icon={faPlus}
             onClick={toggleFormulario}
             className={styles.faIcon}
           />
           <Dialog open={dialogRecomendationOpen} onClose={toggleFormulario}>
-          <RecomendationForm
+            <RecomendationForm
               recomendations={recomendations}
               setTableRData={setTableRData}
               onCancel={() => {
@@ -202,53 +200,56 @@ function RecomendationTable({
         </>
       )}
       <>
-        {tableVisible && <h2>Recomendaciones</h2> && (
-          <table className={styles.table}>
-            <thead>
-              {filteredData.length === 0 || (
-                <tr>
-                  <th className={styles.spacing}>Recomendación</th>
-                  <th className={styles.spacing}>Descripción</th>
-                  <th className={styles.spacing}>Consultor</th>
-                  <th className={styles.spacing}>Tipo</th>
-                  <th className={styles.spacing}>Seguimiento</th>
+        <table className={styles.table}>
+          <thead>
+            {filteredData.length === 0 || (
+              <tr>
+                <th className={styles.spacing}>Recomendación</th>
+                <th className={styles.spacing}>Descripción</th>
+                <th className={styles.spacing}>Consultor</th>
+                <th className={styles.spacing}>Tipo</th>
+                <th className={styles.spacing}>Seguimiento</th>
+              </tr>
+            )}
+          </thead>
+          <tbody>
+            {filteredData &&
+              filteredData.map((recomendation, i) => (
+                <tr key={recomendation.id} className={styles.trStyle}>
+                  <td className={styles.tdStyle}>{recomendation.name}</td>
+                  <td className={styles.tdStyle}>
+                    {recomendation.description}
+                  </td>
+                  <td className={styles.tdStyle}>{recomendation.consultor}</td>
+                  <td className={styles.tdStyle}>
+                    {recomendation.classification}
+                  </td>
+                  <td className={styles.tdStyle}>{recomendation.follow}</td>
+                  <td className={styles.tdStyle}>
+                    <FontAwesomeIcon
+                      icon={faEdit}
+                      onClick={() =>
+                        setEditRIdx(
+                          filteredData.findIndex(
+                            (item) => item.id === recomendation?.id
+                          )
+                        )
+                      }
+                      className={styles.faIcon}
+                    />
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      onClick={() => handleDelete(recomendation?.id)}
+                      data-task-id={recomendation?.id}
+                      className={styles.faIcon}
+                    />
+                  </td>
                 </tr>
-              )}
-            </thead>
-            <tbody>
-              {filteredData &&
-                filteredData.map((recomendation, i) => (
-                  <tr key={recomendation.id} className={styles.trStyle}>
-                    <td className={styles.tdStyle}>{recomendation.name}</td>
-                    <td className={styles.tdStyle}>
-                      {recomendation.description}
-                    </td>
-                    <td className={styles.tdStyle}>
-                      {recomendation.consultor}
-                    </td>
-                    <td className={styles.tdStyle}>
-                      {recomendation.classification}
-                    </td>
-                    <td className={styles.tdStyle}>{recomendation.follow}</td>
-                    <td className={styles.tdStyle}>
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        onClick={() => setEditRIdx(filteredData.findIndex(item => item.id === recomendation?.id))}
-                        className={styles.faIcon}
-                      />
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        onClick={() => handleDelete(recomendation?.id)}
-                        data-task-id={recomendation?.id}
-                        className={styles.faIcon}
-                      />
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        )}
-      {/* Para editar  */}
+              ))}
+          </tbody>
+        </table>
+
+        {/* Para editar  */}
         <Dialog open={editRIdx !== -1} onClose={handleCancelR}>
           <RecomendationForm
             setTableRData={recomendationUpdate}
