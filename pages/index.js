@@ -8,15 +8,16 @@ import Content from "../Components/Content";
 
 import { client } from "../utils/fetchWrapper";
 
-const clasificaciones= [
-  { id: 1, name: 'Tipo 1' },
-  { id: 2, name: 'Tipo 2' },
-  { id: 3, name: 'Tipo 3' }
+const clasificaciones = [
+  { id: 1, name: "Tipo 1" },
+  { id: 2, name: "Tipo 2" },
+  { id: 3, name: "Tipo 3" },
 ];
-const consultoress= [
-  { id: 1, name: 'Carlos Ramón López Paz' },
-  { id: 2, name: 'Laura Alfonzo Perez' },
-  { id: 3, name: 'Lazaro Días Alvares' }
+const consultoress = [
+  { id: 1, name: "Carlos Ramón López Paz" },
+  { id: 2, name: "Laura Alfonzo Perez" },
+  { id: 2, name: "Alberto López Gónzalez" },
+  { id: 3, name: "Lazaro Días Alvares" },
 ];
 
 export default function Home() {
@@ -24,9 +25,20 @@ export default function Home() {
   const [selectedUeb, setSelectedUeb] = useState(null);
   const [selectedStructure, setSelectedStructure] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
+  const [process, setProcess] = useState(null);
+  // Cargando los datos de los procesos
+  useEffect(() => {
+    client("procesos.json").then(
+      (procesos) => {
+        setProcess(procesos?.process);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
 
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
-
 
   const [tableVisible, setTableVisible] = useState(false);
   const [interventions, setInterventions] = useState(null);
@@ -35,9 +47,8 @@ export default function Home() {
   const [classifications, setClassifications] = useState(clasificaciones);
   const [consultores, setConsultores] = useState(consultoress);
 
+  //Para modificar una intervencion
 
-  //Para modificar una intervencion 
-  
   useEffect(() => {
     client("datosintervenciones.json").then(
       (datosintervenciones) => {
@@ -49,7 +60,7 @@ export default function Home() {
       }
     );
   }, []);
-  
+
   return (
     <div className={styles.container}>
       <Head>
@@ -72,6 +83,7 @@ export default function Home() {
         recomendations={recomendations}
         setRecomendations={setRecomendations}
         consultores={consultores}
+        process={process}
         classifications={classifications}
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
@@ -88,6 +100,7 @@ export default function Home() {
         setRecomendations={setRecomendations}
         classifications={classifications}
         consultores={consultores}
+        process={process}
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
       />

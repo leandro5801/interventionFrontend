@@ -7,6 +7,8 @@ export default function Tasks({
   selectedUeb,
   selectedStructure,
   selectedArea,
+  selectedConsultor,
+  selectedProcess,
   selectedIntervention,
   setSelectedIntervention,
   recomendations,
@@ -42,7 +44,9 @@ export default function Tasks({
       (task) =>
         (!selectedUeb || task.ueb === selectedUeb) &&
         (!selectedStructure || task.structure === selectedStructure) &&
-        (!selectedArea || task.area === selectedArea)
+        (!selectedArea || task.area === selectedArea) &&
+        (!selectedConsultor || task.consultor === selectedConsultor) &&
+        (!selectedProcess || task.process === selectedProcess)
     );
   }
 

@@ -14,21 +14,12 @@ function Header({
   recomendations,
   setRecomendations,
   consultores,
+  process,
   classifications,
 }) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
-  const [process, setProcess] = useState(null);
-  useEffect(() => {
-    client("procesos.json").then(
-      (procesos) => {
-        setProcess(procesos?.process);
-      },
-      (error) => {
-        console.error("Error: ", error);
-      }
-    );
-  }, []);
+
 
   const [ueb, setUeb] = useState(null);
   useEffect(() => {
@@ -65,6 +56,7 @@ function Header({
               setDialogCreInteOpen(false);
             }}
             consultores={consultores}
+            process={process}
           />
         </Dialog>
         <Dialog

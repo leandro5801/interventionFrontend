@@ -1,9 +1,7 @@
-
-
 html,
 body {
   background-color: #eeeeee;
-    background-color: #eeeeee;
+  background-color: #eeeeee;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -11,7 +9,7 @@ body {
 }
 
 a {
-  color:black;
+  color: black;
   text-decoration: none;
 }
 
@@ -33,10 +31,12 @@ body {
   height: 100%;
 
 }
+
 body {
   background-color: #eeeeee;
   color: #3c4858;
 }
+
 /* ------------------------------------------------------------------------------------ */
 /*Menu de filtrado */
 /* Estilo para el contenedor del menú desplegable */
@@ -59,7 +59,7 @@ body {
   list-style: none;
   color: #fff;
   text-decoration: none;
-  cursor:pointer;
+  cursor: pointer;
   outline: none;
   padding: 8px 52px 10px 20px;
 }
@@ -69,20 +69,20 @@ body {
 }
 
 /* Estilo para la flecha del menú desplegable */
- .Dropdown-arrow {
+.Dropdown-arrow {
   border-color: #eeeeee transparent transparent;
   border-style: solid;
-  border-width: 5px 5px 0; 
+  border-width: 5px 5px 0;
   /* content: ' '; */
   /* display: block; */
   /* height: 0; */
   /* margin-top: -ceil(2.5); */
-   position: absolute;
-   /* right: 5px;  */
-   left: 3px;
+  position: absolute;
+  /* right: 5px;  */
+  left: 3px;
   top: 18px;
   width: 0
-} 
+}
 
 
 .is-open .Dropdown-arrow {
@@ -95,7 +95,7 @@ body {
   /* Cambia el color de fondo del menú */
   background-color: #0099CC;
   /* border: 1px solid #ccc; */
-  color:#eeeeee ;
+  color: #eeeeee;
   font-size: 16px;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
@@ -107,10 +107,10 @@ body {
   width: 100%;
   z-index: 1000;
   -webkit-overflow-scrolling: touch;
-  cursor:pointer;
+  cursor: pointer;
 }
 
-.Dropdown-menu .Dropdown-group > .Dropdown-title{
+.Dropdown-menu .Dropdown-group>.Dropdown-title {
   padding: 8px 10px;
   color: rgba(51, 51, 51, 1);
   font-weight: bold;
@@ -121,19 +121,19 @@ body {
 .Dropdown-option {
   /* Agrega un relleno a las opciones */
   padding: 10px;
-  
-  
 }
 
 /* Estilo para la opción seleccionada del menú desplegable */
 .Dropdown-option.is-selected {
   /* Cambia el color de fondo de la opción seleccionada */
-  background-color: #73c2dd;;
+  background-color: #73c2dd;
+  ;
 }
 
 .custom-menu::-webkit-scrollbar {
   width: 5px;
 }
+
 /* ---------------------------------------------------------------------------- */
 /* Para el menu de gestiones */
 .nav-area {
@@ -185,7 +185,8 @@ button span {
   margin-left: 3px;
 }
 
-.menu-items > a, .menu-items button {
+.menu-items>a,
+.menu-items button {
   text-align: left;
   padding: 0.7rem 1rem;
 }

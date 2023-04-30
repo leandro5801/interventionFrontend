@@ -390,8 +390,8 @@
 }
 
 .input[type="radio"] {
- appearance: none;
- position: relative;
+  appearance: none;
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -469,6 +469,7 @@
   font-family: Arial, sans-serif;
   color: #0099CC;
   margin-top: 0.5rem;
+  z-index: 999;
 }
 
 /* settings */
@@ -565,4 +566,17 @@
   display: flex;
   align-items: center;
   padding: 0px;
+}
+
+/* filtrado en el gantt --------------------------------------------------------------- */
+.selectReact{
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 10px;
+  z-index: 999;
+}
+.select:focus {
+  outline: none;
+  border-bottom-color: #0099CC;
 }

@@ -18,6 +18,8 @@ export default function TimeTable({
   selectedUeb,
   selectedStructure,
   selectedArea,
+  selectedConsultor,
+  selectedProcess,
 }) {
 
 
@@ -60,7 +62,9 @@ export default function TimeTable({
       (task) =>
         (!selectedUeb || task.ueb === selectedUeb) &&
         (!selectedStructure || task.structure === selectedStructure) &&
-        (!selectedArea || task.area === selectedArea)
+        (!selectedArea || task.area === selectedArea)&&
+        (!selectedConsultor || task.consultor === selectedConsultor)&&
+        (!selectedProcess || task.process === selectedProcess)
     );
   }
 

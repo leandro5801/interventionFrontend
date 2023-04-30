@@ -13,6 +13,7 @@ export default function FormUpdateIntervention({
   onCancel,
   onSave,
   consultores,
+  process,
 }) {
   const [name, setName] = useState(intervention ? intervention.name : null);
   const [description, setDescription] = useState(
@@ -71,19 +72,6 @@ export default function FormUpdateIntervention({
     onSave();
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
   };
-
-  // Cargando los datos de los procesos, las ueb y las estructuras
-  const [process, setProcess] = useState(null);
-  useEffect(() => {
-    client("procesos.json").then(
-      (procesos) => {
-        setProcess(procesos?.process);
-      },
-      (error) => {
-        console.error("Error: ", error);
-      }
-    );
-  }, []);
 
   const consultoresOptions =
     consultores &&

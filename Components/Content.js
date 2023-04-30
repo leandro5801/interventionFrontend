@@ -27,8 +27,9 @@ function Content({
   setRecomendations,
   classifications,
   consultores,
+  process,
   dialogRecomendationOpen,
-  setDialogRecomendationOpen
+  setDialogRecomendationOpen,
 }) {
   // para el filtrado
   let filteredTasks = [];
@@ -81,6 +82,8 @@ function Content({
           recomendations={recomendations}
           setRecomendations={setRecomendations}
           setTableRData={setTableRData}
+          consultores={consultores}
+          process={process}
         />
       </div>
       {/* Datos de una intervencion */}
@@ -183,6 +186,7 @@ function Content({
                   onSave={handleSaveI}
                   onCancel={handleCancelI}
                   consultores={consultores}
+                  process={process}
                 />
               </Dialog>
             </div>
