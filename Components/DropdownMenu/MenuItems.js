@@ -5,6 +5,7 @@ const MenuItems = ({
   items,
   setDialogCreInteOpen,
   setTableVisible,
+  setDialogRecomendationOpen,
 }) => {
   const [dropdown, setDropdown] = useState(false);
 
@@ -26,6 +27,7 @@ const MenuItems = ({
             setDropdown={setDropdown}
             setDialogCreInteOpen={setDialogCreInteOpen}
             setTableVisible={setTableVisible}
+            setDialogRecomendationOpen={setDialogRecomendationOpen}
           />
         </>
       ) : (

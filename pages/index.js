@@ -25,6 +25,8 @@ export default function Home() {
   const [selectedStructure, setSelectedStructure] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
 
+  const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
+
 
   const [tableVisible, setTableVisible] = useState(false);
   const [interventions, setInterventions] = useState(null);
@@ -67,7 +69,12 @@ export default function Home() {
         setTableVisible={setTableVisible}
         interventions={interventions}
         setInterventions={setInterventions}
+        recomendations={recomendations}
+        setRecomendations={setRecomendations}
         consultores={consultores}
+        classifications={classifications}
+        dialogRecomendationOpen={dialogRecomendationOpen}
+        setDialogRecomendationOpen={setDialogRecomendationOpen}
       />
       <Content
         selectedUeb={selectedUeb}
@@ -81,6 +88,8 @@ export default function Home() {
         setRecomendations={setRecomendations}
         classifications={classifications}
         consultores={consultores}
+        dialogRecomendationOpen={dialogRecomendationOpen}
+        setDialogRecomendationOpen={setDialogRecomendationOpen}
       />
 
       {/* <footer className={styles.footer}>

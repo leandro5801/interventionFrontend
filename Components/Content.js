@@ -27,6 +27,8 @@ function Content({
   setRecomendations,
   classifications,
   consultores,
+  dialogRecomendationOpen,
+  setDialogRecomendationOpen
 }) {
   // para el filtrado
   let filteredTasks = [];
@@ -197,6 +199,8 @@ function Content({
                 selectedIntervention={selectedIntervention}
                 classifications={classifications}
                 consultores={consultores}
+                dialogRecomendationOpen={dialogRecomendationOpen}
+                setDialogRecomendationOpen={setDialogRecomendationOpen}
               />
             </div>
           </div>

@@ -21,9 +21,10 @@ function RecomendationTable({
   selectedIntervention,
   classifications,
   consultores,
+  dialogRecomendationOpen,
+  setDialogRecomendationOpen,
 }) {
   //Para abrir formulario de crear recomendacion
-  const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
   function toggleFormulario() {
     setDialogRecomendationOpen(!dialogRecomendationOpen);
   }

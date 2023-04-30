@@ -4,13 +4,16 @@ export const menuItems = [
     url: '/',
   },
   {
-    title: 'Gestionar Intervenciones',
+    title: 'Menú de gestiones',
    submenu: [
       {
         title: 'Crear Intervención',
       },
       {
         title: 'Listar Intervenciones',
+      },
+      {
+        title: 'Crear Recomendación',
       },
     ],
   },
