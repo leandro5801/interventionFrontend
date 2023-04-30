@@ -1,0 +1,213 @@
+{
+    "Unidad": "UEB LIORAD                                                                      ",
+    "Trabajadores": [
+        {
+            "Nombre": "RONALD  MATOS  RODRIGUEZ",
+            "CI": "75120701424",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "ROLANDO  VEGA  TABARES",
+            "CI": "59062505821",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Jefe de Grupo de Seguridad Interna                                                                  "
+        },
+        {
+            "Nombre": "Francisco  Varona  Valdés",
+            "CI": "60061603241",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "JOSE EMILIO  CARLES  GUTIERREZ",
+            "CI": "61122800903",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "VENERANDA  HERRADA  ROMERO",
+            "CI": "68060925977",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "SOLANGEL  IGLESIAS  BAYEUX",
+            "CI": "72080107810",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "HERNÁN  DÍAZ  SERRET",
+            "CI": "46071728588",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "EDUARDO  CASTILLO  CORREOSO",
+            "CI": "49120200103",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "RAMÓN LUIS  SIMONOT  VEGA",
+            "CI": "62083109740",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "KIRIA LÁZARA  BLANCO  DE ANAYA RUIZ",
+            "CI": "62092602933",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ORLANDO  VEGA  REYES",
+            "CI": "63022110606",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "MANUEL  PINO  CASTILLO",
+            "CI": "64010115720",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "JUAN ANTONIO  LA ROSA  LOPEZ",
+            "CI": "64092707105",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "FERMÍN  SÁNCHEZ  CHÁVEZ",
+            "CI": "67111702683",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ANDRÉS  SORDO  QUINTANILLA",
+            "CI": "68111030409",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ISRAEL  MORALES  HERNÁNDEZ",
+            "CI": "71011014083",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "FRANCISCO  AMETLLER  REVILLA",
+            "CI": "71102009242",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "YHUANAY  RAMOS  RODRÍGUEZ",
+            "CI": "81050104132",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "LUIS ENRIQUE  FERNÁNDEZ  BLANCO",
+            "CI": "81120521664",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "HUMBERTO  DE LA CRUZ  RONDON",
+            "CI": "89101917866",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "DANAY D/L CARIDAD  PÉREZ  GONZÁLEZ",
+            "CI": "89121221374",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "JOSÉ RAMÓN  MIRABAL  QUESADA",
+            "CI": "91042729803",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "YISEL  MARTINEZ  GONZALEZ",
+            "CI": "85091604579",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN                                                                       ",
+            "Cargo": "Director de UEB                                                                                     "
+        },
+        {
+            "Nombre": "CECILIA  PALACIOS  FLORES",
+            "CI": "62031804734",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN                                                                       ",
+            "Cargo": "Especialista en Cuadros                                                                             "
+        },
+        {
+            "Nombre": "ANDRES  ALMEIDA  FIERRO",
+            "CI": "69092301768",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "DIRECCIÓN                                                                       ",
+            "Cargo": "Chofer D                                                                                            "
+        },
+        {
+            "Nombre": "AILIME  CONRADO  BARTHELEMY",
+            "CI": "83101430438",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INFORMATICA                                                            ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        }
+    ]
+}

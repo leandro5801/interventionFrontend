@@ -1,0 +1,189 @@
+{
+    "Unidad": "UEB SH+                                                                         ",
+    "Trabajadores": [
+        {
+            "Nombre": "BELKIS  MARTINEZ  REYES",
+            "CI": "74042904917",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE ASEGURAMIENTO DE LA CALIDAD                                     ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "FARA  VALDES  CABRERA",
+            "CI": "65120719712",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE ASEGURAMIENTO DE LA CALIDAD                                     ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "MILEYDIS  RODRÍGUEZ  VERA",
+            "CI": "73100201317",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "MARIA DEL PILAR  ALVAREZ  CASTELLO",
+            "CI": "57101210490",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "XIOMARA  PEREZ  PEREZ",
+            "CI": "66102214975",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "NOLKIS  MOREIRA  CASTRO",
+            "CI": "66121726313",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "INDIRA  VALERA  PEREZ",
+            "CI": "78121806876",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YANNA  LOPEZ  RODRIGUEZ",
+            "CI": "79122809371",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "ANNIE  MANGANELLI  HERNANDEZ",
+            "CI": "85091904199",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "ARELYS  MORENO  PÉREZ",
+            "CI": "88031509554",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                           ",
+            "Cargo": "Técnico en Gestión de la Calidad                                                                    "
+        },
+        {
+            "Nombre": "YOANDY  RAMÍREZ  PÉREZ",
+            "CI": "74112110505",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "YADIRA  SALMON  FERRER",
+            "CI": "84120526750",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "MARIBEL  ORTEGA   LABRADOR",
+            "CI": "86061207778",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "ANA ELENA  GARCÍA  ENAMORADO",
+            "CI": "86112102998",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "GRETCHEN  ARREDONDO   VALDES",
+            "CI": "95051729557",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "DOLORES  FUENTES  RUIZ",
+            "CI": "57072102936",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YUNEISI  LLERA  ROIG",
+            "CI": "87031902258",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  ",
+            "Cargo": "Técnico en Gestión de la Calidad                                                                    "
+        },
+        {
+            "Nombre": "LEYDIS MARIAN  RAMÍREZ  FUENTES",
+            "CI": "01110881034",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECCIÒN                                                             ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "DOLORES DE LA CARIDAD  VALERINO  HERRERA",
+            "CI": "68040514112",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECCIÒN                                                             ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ORQUIDEA  PALACIO   MUSTELIER",
+            "CI": "71030327673",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECCIÒN                                                             ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YANET  PONS  DOMINGUEZ",
+            "CI": "73071712411",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECCIÒN                                                             ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "NORELBIS  ALVAREZ  RAMOS",
+            "CI": "81020606617",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECCIÒN                                                             ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "LIANNY  LOPEZ  PANTOJA",
+            "CI": "95111328419",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECCIÒN                                                             ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        }
+    ]
+}

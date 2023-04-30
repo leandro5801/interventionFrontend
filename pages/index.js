@@ -8,6 +8,16 @@ import Content from "../Components/Content";
 
 import { client } from "../utils/fetchWrapper";
 
+const clasificaciones= [
+  { id: 1, name: 'Tipo 1' },
+  { id: 2, name: 'Tipo 2' },
+  { id: 3, name: 'Tipo 3' }
+];
+const consultoress= [
+  { id: 1, name: 'Carlos Ramón López Paz' },
+  { id: 2, name: 'Laura Alfonzo Perez' },
+  { id: 3, name: 'Lazaro Días Alvares' }
+];
 
 export default function Home() {
   // para el filtrado
@@ -19,6 +29,10 @@ export default function Home() {
   const [tableVisible, setTableVisible] = useState(false);
   const [interventions, setInterventions] = useState(null);
   const [recomendations, setRecomendations] = useState(null);
+
+  const [classifications, setClassifications] = useState(clasificaciones);
+  const [consultores, setConsultores] = useState(consultoress);
+
 
   //Para modificar una intervencion 
   
@@ -33,6 +47,7 @@ export default function Home() {
       }
     );
   }, []);
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -52,6 +67,7 @@ export default function Home() {
         setTableVisible={setTableVisible}
         interventions={interventions}
         setInterventions={setInterventions}
+        consultores={consultores}
       />
       <Content
         selectedUeb={selectedUeb}
@@ -63,6 +79,8 @@ export default function Home() {
         setInterventions={setInterventions}
         recomendations={recomendations}
         setRecomendations={setRecomendations}
+        classifications={classifications}
+        consultores={consultores}
       />
 
       {/* <footer className={styles.footer}>

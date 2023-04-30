@@ -1,0 +1,197 @@
+{
+    "Unidad": "UEB CITOSTÁTICOS                                                                ",
+    "Trabajadores": [
+        {
+            "Nombre": "DIANELIS  DOMINGUEZ  MUÑOZ",
+            "CI": "81112407539",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": " THALIA  GUZMAN  VIGOA",
+            "CI": "02101864430",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MARIANELYS  CRUZ  SAURA",
+            "CI": "75070626152",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YAUMARA  SALVA  GARCIA",
+            "CI": "75091202272",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "OSCAR  GARCIA  PEREZ",
+            "CI": "73111709865",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YORDAN  CARDENAS  RIQUELME",
+            "CI": "88100409146",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "RISSI  FIGUEROA  MALDONADO",
+            "CI": "65122112576",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CARMEN  PROVEDO  GARCIA",
+            "CI": "69031229979",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "IRAIDA   LIMA   RAMIREZ",
+            "CI": "72050803135",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RENE  TEJEDOR  GUNDIAN",
+            "CI": "77090106829",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ALEJANDRO  PEREZ  ALDANA",
+            "CI": "95070530967",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "KEVIN  LOPEZ  VALDEZ",
+            "CI": "99122607149",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "GERARDO  PAZ  RIOS",
+            "CI": "85110508042",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "ROSA ELENA  BALMACEDA  RIVERO",
+            "CI": "88060324533",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "WILVER  FERNANDEZ  WILSON",
+            "CI": "89042721142",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "INALDIS LUIS  GONZALEZ  VICO",
+            "CI": "89111539301",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "ARMANDO HIGINIO  CARTAYA   DIAZ",
+            "CI": "76012302280",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YOSVANI  RODRIGUEZ  HIPE",
+            "CI": "94021730749",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " FORMULACIÓN Y LLENADO                                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YULEIDYS  PREGO  CLEGER",
+            "CI": "82041208415",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " PREPARACIÓN DE MATERIALES                                                      ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "AMARILIS DE LA CARIDAD  SANCHEZ  DELGADO",
+            "CI": "68110100756",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " PREPARACIÓN DE MATERIALES                                                      ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "NAYELIS  PLANCHET  LEON",
+            "CI": "78022308676",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": " PREPARACIÓN DE MATERIALES                                                      ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LEONARDO EDUARDO  ROQUE  PESQUERO",
+            "CI": "83101309946",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": " PREPARACIÓN DE MATERIALES                                                      ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "NATYELIS  MESA  HERNANDEZ",
+            "CI": "93022131779",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "MABEL  HERNANDEZ  IZQUIERDO",
+            "CI": "78051109936",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "GRUPO DE ORGANIZCIÓN DE LA PRODUCCIÓN Y VALIDACIÓN                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        }
+    ]
+}

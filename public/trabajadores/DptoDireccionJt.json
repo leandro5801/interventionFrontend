@@ -1,0 +1,285 @@
+{
+    "Unidad": "UEB JULIO TRIGO                                                                 ",
+    "Trabajadores": [
+        {
+            "Nombre": "ERNSTO  RODRIGUEZ  HORTALAZA",
+            "CI": "68120202005",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ALMACÉN DE PRODUCTOS TERMINADOS                                                 ",
+            "Cargo": "Técnico en Economía y Manipulación de Almacenes                                                     "
+        },
+        {
+            "Nombre": "ANDRES EDUARDO  TRETO  PEREZ",
+            "CI": "64121012708",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ALMACÉN DE PRODUCTOS TERMINADOS                                                 ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "LUIS  MUCHULI  BELTRAN",
+            "CI": "61031614067",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "EMIR  ESPINOSA  BLANCO",
+            "CI": "73050301205",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Jefe de Grupo de Seguridad Interna                                                                  "
+        },
+        {
+            "Nombre": "ARIEL  ESTREMERA  GALÁN",
+            "CI": "58082901145",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "ALEXIS  DÍAZ  LEZCANO",
+            "CI": "71020126384",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "FERNANDO ENRIQUE  RONDÓN  TORRES",
+            "CI": "81031922424",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Jefe de Turno ASP                                                                                   "
+        },
+        {
+            "Nombre": "MANUEL GREGORIO  PÉREZ  BARRIOS",
+            "CI": "48111701884",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "NELSON  VALDEZ  LEON",
+            "CI": "58073009504",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "WILFREDO  VEGA  MILÁN",
+            "CI": "61101215444",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "LUIS EDUARDO  MARTÍNEZ  NUÑEZ",
+            "CI": "62050319366",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "MAGALY MARIA  RODRIGUEZ  DRAKE",
+            "CI": "63110912475",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "FRANCISCO ANTONIO  HERNÁNDEZ  PÉREZ",
+            "CI": "65010619587",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "JUAN ANTONIO  ACOSTA  RODRIGUEZ",
+            "CI": "65082128421",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "AURELIO ENRIQUE  MARTÍNEZ  SÁNCHEZ",
+            "CI": "66052431908",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "LEONIL  PELIER  DURAN",
+            "CI": "67061509204",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "CARLOS ALBERTO  DANTIN  MARQUETI",
+            "CI": "68040710580",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "DANIEL  FERRER  PÉREZ",
+            "CI": "69112415481",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "FELIX  RIVAS  SOSA",
+            "CI": "70061707221",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "DAYSI  GÓMEZ  BARBÁN",
+            "CI": "71010919913",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ARIEL  LAMAS  MOJENA",
+            "CI": "71031404402",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "MARIA DE LAS MERCEDES  RODRIGUEZ  COLL",
+            "CI": "72113006858",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ALEXIS  SEMANAT  SEMANAT",
+            "CI": "73082900386",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "PEDRO LUIS  DORTICÓ  FERNÁNDEZ",
+            "CI": "76072603183",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "GREIDY  HERNÁNDEZ  SOSA",
+            "CI": "85071811619",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ERMAILIS  PAZ  CASTILLO",
+            "CI": "91031146911",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "YESENIA  ALDANA  MENESES",
+            "CI": "92012040090",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ROSMERY  VIGOA  SALAZAR",
+            "CI": "92021922592",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "YOSNIEL  BALART  SOTOLONGO",
+            "CI": "93091405462",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "GABRIELA  SÁNCHEZ  OCAMPO",
+            "CI": "98031006910",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA                                   ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "ZAIDA  MERIÑO  ACOSTA",
+            "CI": "65071007450",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN                                                                       ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "IRENE  BALDOMERO  RODRIGUEZ",
+            "CI": "80112207493",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN                                                                       ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        },
+        {
+            "Nombre": "IVÁN LÁZARO  ISA  REGUEIRO",
+            "CI": "92091329861",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DIRECCIÓN                                                                       ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        },
+        {
+            "Nombre": "ANA LEYDIS  GARCÍA  QUINTANA",
+            "CI": "72022534833",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO DE VENTAS                                                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "GUADALUPE  DELGADO  BALUJA",
+            "CI": "64040419374",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO DE VENTAS                                                                 ",
+            "Cargo": "Balancista Distribuidor                                                                             "
+        }
+    ]
+}

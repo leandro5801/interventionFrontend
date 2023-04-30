@@ -1,0 +1,173 @@
+{
+    "Unidad": "UEB LIORAD                                                                      ",
+    "Trabajadores": [
+        {
+            "Nombre": "LÁZARA DE LA CARIDAD  MILIAN   DÍAZ",
+            "CI": "74090406117",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "MARÍA DEL  CARMEN  VALDÉS RICO",
+            "CI": "64071726233",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YADIRA  HERNÁNDEZ  RIVALTA",
+            "CI": "71070803651",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DOCUMENTACIÓN                                                                   ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YAMILKA  HERRERA  LEDESMA",
+            "CI": "73042012397",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO DE TESTIGO, SUSTANCIAS DE REFERENCIA Y MUESTREO                           ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "MAIDELIN  GONZÁLEZ  ROSS",
+            "CI": "70112808110",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO DE TESTIGO, SUSTANCIAS DE REFERENCIA Y MUESTREO                           ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "ANAY  GARCIA  GARRIDO",
+            "CI": "83012216757",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO DE TESTIGO, SUSTANCIAS DE REFERENCIA Y MUESTREO                           ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "JAVIER  MORALES  ALFONSO",
+            "CI": "72122001140",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "MAYLIN  IGLESIAS  SÁNCHEZ",
+            "CI": "74111300872",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "FRANGER  CASTILLO  KINDELÁN",
+            "CI": "86032227084",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "LABORATORIO DE MICROBIOLOGIA                                                    ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "LAILA  GUTIÉRREZ  BORGES",
+            "CI": "85070508598",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGIA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "DAYANA  VALLINA  GARCIA",
+            "CI": "98011500318",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGIA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "YALINA  VÁZQUEZ  MARQUEZ",
+            "CI": "69123012296",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGIA                                                    ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "HASLEY  OTERO  SUÁREZ",
+            "CI": "82010408707",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "LABORATORIO DE MICROBIOLOGIA                                                    ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ELENA  MIRÓ  LINARES",
+            "CI": "80040912136",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO QUÍMICO                                                      ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "SANDRA  MARTÍNEZ  PÉREZ",
+            "CI": "78112508657",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "LISANDRO  HERNÁNDEZ  LÓPEZ",
+            "CI": "84073104881",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "LABORATORIO FÍSICO QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "YAHIMARA  ÁREAS  HERNÁNDEZ",
+            "CI": "72051809833",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "MARLEN  MARTÍN  POZO",
+            "CI": "73091401519",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "CLAUDIA  PORTAL  NOA",
+            "CI": "91081329098",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "SAELY  VERONA  HERNÁNDEZ",
+            "CI": "80021200253",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "LIBERACIÓN DE LOTES                                                             ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "LISBET  VILA  ORÚE",
+            "CI": "79010407714",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "REGISTRO                                                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        }
+    ]
+}

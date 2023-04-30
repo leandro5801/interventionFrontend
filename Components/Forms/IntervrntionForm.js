@@ -12,6 +12,7 @@ export default function FormUpdateIntervention({
   interventionUpdate,
   onCancel,
   onSave,
+  consultores,
 }) {
   const [name, setName] = useState(intervention ? intervention.name : null);
   const [description, setDescription] = useState(
@@ -34,7 +35,12 @@ export default function FormUpdateIntervention({
     intervention ? { label: intervention.area, value: intervention.area } : null
   );
   const [consultor, setConsultor] = useState(
-    intervention ? intervention.consultor : null
+    intervention
+      ? {
+          label: intervention.consultor,
+          value: intervention.consultor,
+        }
+      : null
   );
   const [worker, setWorker] = useState(
     intervention ? intervention.worker : null
@@ -53,7 +59,7 @@ export default function FormUpdateIntervention({
       ueb: selectedUeb.value,
       structure: selectedStructure.value,
       area: selectedArea.value,
-      consultor,
+      consultor: consultor.value,
       worker,
       start,
       end,
@@ -78,6 +84,16 @@ export default function FormUpdateIntervention({
       }
     );
   }, []);
+
+  const consultoresOptions =
+    consultores &&
+    consultores.map((item) => ({
+      value: item.name,
+      label: item.name,
+    }));
+  const handleConsultorChange = (newValue) => {
+    setConsultor({ label: newValue.value, value: newValue.value });
+  };
 
   //para poner dependencia entre los select estructuras
   const uebOptions = data.ueb.map((item) => ({
@@ -178,12 +194,11 @@ export default function FormUpdateIntervention({
 
         <div>
           <label htmlFor="consultor">Consultor:</label>
-          <input
-            className={styles.input}
-            type="text"
-            id="consultor"
+          <Select
             value={consultor}
-            onChange={(event) => setConsultor(event.target.value)}
+            onChange={handleConsultorChange}
+            options={consultoresOptions}
+            placeholder="Seleccione..."
           />
         </div>
 

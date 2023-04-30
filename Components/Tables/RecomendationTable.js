@@ -19,6 +19,8 @@ function RecomendationTable({
   recomendations,
   setRecomendations,
   selectedIntervention,
+  classifications,
+  consultores,
 }) {
   //Para abrir formulario de crear recomendacion
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
@@ -112,6 +114,7 @@ function RecomendationTable({
     // update state (if data on backend - make API request to update data)
   }
 
+  
   return (
     <>
       {tableRData.length === 0 && (
@@ -124,7 +127,7 @@ function RecomendationTable({
           />
           <Dialog open={dialogRecomendationOpen} onClose={toggleFormulario}>
             <RecomendationForm
-              recomendations={recomendations}
+              
               setTableRData={setTableRData}
               onCancel={() => {
                 setDialogRecomendationOpen(false);
@@ -134,6 +137,8 @@ function RecomendationTable({
               }}
               selectedIntervention={selectedIntervention}
               setRecomendations={setRecomendations}
+              classifications={classifications}
+              consultores={consultores}
             />
           </Dialog>
         </div>
@@ -163,6 +168,8 @@ function RecomendationTable({
               }}
               selectedIntervention={selectedIntervention}
               setRecomendations={setRecomendations}
+              classifications={classifications}
+              consultores={consultores}
             />
           </Dialog>
         </div>
@@ -257,6 +264,8 @@ function RecomendationTable({
             onSave={handleSaveR}
             onCancel={handleCancelR}
             selectedIntervention={selectedIntervention}
+            classifications={classifications}
+            consultores={consultores}
           />
         </Dialog>
       </>

@@ -1,0 +1,749 @@
+{
+    "Unidad": "UEB SH+                                                                         ",
+    "Trabajadores": [
+        {
+            "Nombre": "SUSANA  CHABAU  DURADES",
+            "CI": "69111512719",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": " ROLANDO  SANCHEZ  CALVO",
+            "CI": "70022211144",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "ALEJANDRO R.   FIGUEROA  VALLADARES",
+            "CI": "99022108186",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "LOURDES  LLANCER  ROMERO",
+            "CI": "65020228710",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BEATRIZ  PIORNO  DOMINICH",
+            "CI": "65102005212",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YAQUELIN  RUISANCHEZ  LEYVA",
+            "CI": "66030212312",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "NEREIDA  DIAZ  CECILA",
+            "CI": "66081314696",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ZOILA IRENE  CARVAJAL  OFARRILL",
+            "CI": "66120712230",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YAMILIA  MEDINA  TEJERA",
+            "CI": "67072809154",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "NURIA  OLIVARES  AQUILES",
+            "CI": "71052928974",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "IVETTE ZENAIDA  GARCÍA  PUPO",
+            "CI": "71091500250",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LEYANIS  ÁLVAREZ  GIL",
+            "CI": "80030907472",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SHEILA  QUINTANA  CADERNO",
+            "CI": "94101329016",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE HEMODIÁLISIS                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CAROLINA ERENAI  UGARTE  ALFONSO",
+            "CI": "01013068016",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "CLARIVEL  MARIN  MACHADO",
+            "CI": "72103134730",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YADIRA  CACERES  RODRÍGUEZ",
+            "CI": "79062806655",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "LÁZARO  CONDE   TRUJILLO",
+            "CI": "57071709882",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "JUAN C.  MARTÍNEZ  ROMERO",
+            "CI": "63091916786",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "LAZARO  VICTOR  TELLES   CHACON",
+            "CI": "70070712348",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "YAYNIEL   HERRERA  HERNANDEZ",
+            "CI": "86021608049",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "RAYBEL  FIDEL  SOSA  REYTOR",
+            "CI": "96030609521",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "LAURA ESTHER  VALDES  MORRIS",
+            "CI": "00032168258",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ADIS BELKIS   RUZO  GARCIA",
+            "CI": "01053167931",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANA GISELA  LICEA  IBAÑEZ",
+            "CI": "63042214632",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "TERESA DE LA CARIDAD  CASTILLO  RUIZ",
+            "CI": "64081904354",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LIDIA EUSEBIA  VALDES  INFANTE",
+            "CI": "66121504119",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MILDREY  LLAMO  MARTINEZ",
+            "CI": "70091518610",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CATALINA  FORTE  GIL",
+            "CI": "71061210215",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ODALIS  DIAZ  MORALES",
+            "CI": "71081518073",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SAHYLYS  MARIN  PLANCHE",
+            "CI": "72081300958",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YASY  SOLÍS  JIMENEZ",
+            "CI": "72102611030",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YAMILKA  DIAZ  MARTÍNEZ",
+            "CI": "72111201216",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ADA CARIDAD  ESCANDEL  ESTRADA",
+            "CI": "75101300374",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ILIANA  ESCOFET  SIERRA",
+            "CI": "76010902377",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DANIESKA  JAIME  ALVAREZ",
+            "CI": "77020107091",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GIPSY  BRIOSO  CEDEÑO",
+            "CI": "77122906599",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YAMILA  CONTRERAS  CARRACEO",
+            "CI": "80030607519",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SAYNA  BENAVIDES  SÁNCHEZ",
+            "CI": "85051304854",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAHADIS  BOLOY  FUENTES",
+            "CI": "86041926491",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SIREMMA FRANCIS  CASTILLO  CHAMIZO",
+            "CI": "87100809753",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SUIREL   ISABEL   GARCIA  VALDES",
+            "CI": "90052228892",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DIANNERIS  MADERA  ROMAGOZA",
+            "CI": "92071530654",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SUREIMY DE LA CARIDAD  ALVAREZ  LEAL",
+            "CI": "93072606570",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YELENA  RODRIGUEZ  FERNANDEZ",
+            "CI": "97032308099",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARTHA  RODRIGUEZ  BRITO",
+            "CI": "98052108175",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LEDIS  ARAÑO  COSME",
+            "CI": "68122000938",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE DE SUEROS                                                        ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "EDMANUEL  GARCIA   PIMIENTA",
+            "CI": "01090468467",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "NOSLEN  ORTEGA  VALDES",
+            "CI": "82042408424",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "CARLOS ANTONIO  LOPEZ  ORTEGA",
+            "CI": "88122335062",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "FABIAN  PINO  CRUZ",
+            "CI": "96071709461",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MERCELIS  DELGADO  PELEGRIN",
+            "CI": "68051309334",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO DE HEMODIÁLISIS                                                 ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MARIA E  RAMIREZ  MENA",
+            "CI": "69091430653",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO DE HEMODIÁLISIS                                                 ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "RAYDA  SUREN  HERNÁNDEZ",
+            "CI": "70092210859",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO DE HEMODIÁLISIS                                                 ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YOENDRIS  PEREZ  SILVA",
+            "CI": "83123124265",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE HEMODIÁLISIS                                                 ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ANYIN  AZAHARES  CUARTAS",
+            "CI": "86111905204",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE HEMODIÁLISIS                                                 ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ORLANDO  GUERRA  SILVA",
+            "CI": "84093008322",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "RIDEL MARCOS  REYNALDO  MELENDEZ",
+            "CI": "93092321700",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "AILEMY  LARRONDO  MESA",
+            "CI": "00052060111",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "DAYANA  DÍAZ  ORTEGA",
+            "CI": "97063008339",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "GERARDO  FORD  DELGADO",
+            "CI": "75112912621",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOHANDRY  HERNANDEZ  TAMAYO",
+            "CI": "89052723780",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ROLANDO  SUARES  MARTI",
+            "CI": "89092521160",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOEL  BACALLAO  RODRIGUEZ",
+            "CI": "93052604029",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GABRIEL  PERES  RIVAS",
+            "CI": "95111030943",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ALEJANDRO  RUISANCHEZ  GONZALEZ",
+            "CI": "04101566608",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RAIDEL ESTEBAN  PLANCH  QUESADA",
+            "CI": "71072226148",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARCOS A.  FONSECA  MORE",
+            "CI": "74071110781",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ABEL  GARCIA  ITURBIDES",
+            "CI": "75021726662",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LYUSNIL  LIMONTA  MEDEROS",
+            "CI": "80020606121",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LEORKIS  GÓMEZ  ROMERO",
+            "CI": "83121524825",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO DE SUEROS                                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "IRIS MARIELA  FERNANDEZ  ESPERON",
+            "CI": "69031700234",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO-PRODUCTIVO DE SUEROS                                       ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "MABEL  GONZALEZ  SOTO",
+            "CI": "71061300599",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO-PRODUCTIVO DE SUEROS                                       ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "NORVIEL CARIDAD  MARQUEZ  TRAVIESO",
+            "CI": "74111600044",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO TÉCNICO-PRODUCTIVO DE SUEROS                                       ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "ENIKA M.   MIRABAL  JIMENEZ",
+            "CI": "95070906095",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE ENVASE                                                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "RAUL  ECHARRI   IBAÑEZ",
+            "CI": "70050901723",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "NEOBANIS  ALPUDIN  ALARCON",
+            "CI": "70102801904",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOSBANI  GÁMEZ  GARCÍA",
+            "CI": "93100806626",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LUIS ARMANDO  ESPINOSA  HERNÁNDEZ",
+            "CI": "97092708225",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ALAIN  GUTIERREZ  MESA",
+            "CI": "79082402201",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YANET  CUERVO  PAGE",
+            "CI": "87121508891",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "DENISE  BEVERLY  RUENES",
+            "CI": "95061930956",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "DARINET  ROSELL  DE LA TORRE",
+            "CI": "95121604972",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "HECTOR MANUEL  MENGANA  DOMINGUEZ",
+            "CI": "92031530583",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FORMULACIÓN DE SUEROS Y HEMODIÁLISIS                                   ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ISMARA  THOMAS  BUENO",
+            "CI": "87062734832",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PRODUCCIÓN,RECEPCIÓN DE MATERIAS PRIMAS Y CUARENTENA                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LIUDMILA A.   PEREZ ORROTO  CAMACHO",
+            "CI": "85091802892",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PRODUCCIÓN,RECEPCIÓN DE MATERIAS PRIMAS Y CUARENTENA                   ",
+            "Cargo": "Técnico en Producción                                                                               "
+        },
+        {
+            "Nombre": "Graciela  Villarubia  Garcia",
+            "CI": "71040908293",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "BELINDA.M  REY  LIN",
+            "CI": "72090210136",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ADIANÉ  GARMENDÍA   ZAYAS",
+            "CI": "00033068419",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "GRETEL  MARTINEZ  BORRAJO",
+            "CI": "85062804875",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "LAURA  ISAAC  CASTILLO",
+            "CI": "92111028575",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "WENDY H.  SANCHEZ  PUENTE",
+            "CI": "94120930494",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "ROSAURA  VIVO  RODRIGUEZ",
+            "CI": "98050708173",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YANIBIS   ABASCAL  ROSADO",
+            "CI": "99121808019",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        }
+    ]
+}

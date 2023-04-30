@@ -1,0 +1,77 @@
+{
+    "Unidad": "UEB SH+                                                                         ",
+    "Trabajadores": [
+        {
+            "Nombre": "DAYSI  MARTINEZ  RANDICH",
+            "CI": "67071731332",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "CENTRO DE CONTROL                                                               ",
+            "Cargo": "ESPECIALISTA EN SUPERVICION Y CONTROL                                                               "
+        },
+        {
+            "Nombre": "RACHEL  FRAGELA  LOPEZ",
+            "CI": "97050614812",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "CENTRO DE CONTROL                                                               ",
+            "Cargo": "ESPECIALISTA EN SUPERVICION Y CONTROL                                                               "
+        },
+        {
+            "Nombre": "LISET  PEREZ  LAVIN",
+            "CI": "69030700671",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DIRECCIÒN                                                                       ",
+            "Cargo": "Director de UEB                                                                                     "
+        },
+        {
+            "Nombre": "EIME  SORIA  VASALLO",
+            "CI": "91102129771",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DIRECCIÒN                                                                       ",
+            "Cargo": "Especialista en Cuadros                                                                             "
+        },
+        {
+            "Nombre": "JAVIER RAFAEL  DE LA CRUZ  FERNANDEZ",
+            "CI": "77060506609",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "DIRECCIÒN                                                                       ",
+            "Cargo": "Chofer C                                                                                            "
+        },
+        {
+            "Nombre": "VENUS  PAEZ  FUENTES",
+            "CI": "70060934891",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INFORMÀTICA                                                            ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        },
+        {
+            "Nombre": "MAMLIU  DEL TORO  TELLEZ",
+            "CI": "76101111889",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE INFORMÀTICA                                                            ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        },
+        {
+            "Nombre": "GISELLE  CARRETE  CABRERA",
+            "CI": "90111028894",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INFORMÀTICA                                                            ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        },
+        {
+            "Nombre": "HEIVY  GONZÁLEZ  FURONES",
+            "CI": "84072108337",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INFORMÀTICA                                                            ",
+            "Cargo": "Técnico en Ciencias Informáticas                                                                    "
+        }
+    ]
+}

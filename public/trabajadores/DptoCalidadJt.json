@@ -1,0 +1,253 @@
+A{
+    "Unidad": "UEB JULIO TRIGO                                                                 ",
+    "Trabajadores": [
+        {
+            "Nombre": "YAIMA  BORRERO  VIAMONTE",
+            "CI": "81122022933",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "DIANET  CASTILLO  FONSECA",
+            "CI": "79081525755",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DOCUMENTACIÓN Y REGISTRO DE MEDICAMENTOS                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YAMILKA NATASHA  HERNÁNDEZ  FONSECA",
+            "CI": "83110720492",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DOCUMENTACIÓN Y REGISTRO DE MEDICAMENTOS                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "ROSMERY  JANJAQUE  DÍAZ",
+            "CI": "92060729313",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO DE ASEGURAMIENTO DE LA CALIDAD                                            ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YENISLEYDIS  GONZALEZ  VALDEZ",
+            "CI": "93011832354",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO DE ASEGURAMIENTO DE LA CALIDAD                                            ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YOANKA  RODRÍGUEZ  CHAVEZ",
+            "CI": "71022013951",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO DE CONTROL DE LA CALIDAD                                                  ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ELIANET  DESLIS  LÓPEZ",
+            "CI": "90121147894",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "INGENIERÍA DE LA CALIDAD                                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "SINDIA VALIA  MAURA  GRAVE DE PERALT",
+            "CI": "01091766339",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MARIA DE LA FÉ  DUARTE  TRUJILLO",
+            "CI": "68061600114",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MARISNELIS  MENDOZA  MAS",
+            "CI": "72072132819",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "SADIEL LÁZARO  JORRIN  ORDOÑEZ",
+            "CI": "95121700100",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MAYRA DE JESÚS  CASANOVA  RODRÍGUEZ",
+            "CI": "94052648014",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "INSPECCIÓN DE LA CALIDAD                                                        ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "LOLINA  QUESADA  CASTELLANO",
+            "CI": "81122900212",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "MERCEDES BEATRIZ  MESA  LAFFITA",
+            "CI": "64092405397",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "NOICEL  PÉREZ  OLIVA",
+            "CI": "85041208292",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "SULLY  BRAVO  PERIUT",
+            "CI": "90051027316",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "DIANA BEATRIZ  ORTEGA  MALLEA",
+            "CI": "93100511938",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "BEATRIZ  GONZÁLEZ  LEÓN",
+            "CI": "97020608734",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "EUSEBIO  QUINTERO  HERNÁNDEZ",
+            "CI": "83100105462",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YOANDRY  DÍAZ  ABREU",
+            "CI": "86080508565",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "LIUDMILA CARIDAD  CÁMARA  GARCÍA",
+            "CI": "74072540434",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE MICROBIOLOGÍA                                                    ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ARMANDO RAFAEL  ROMEU  CARBALLO",
+            "CI": "76121801446",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "Maribel  Rosquete  Rojas",
+            "CI": "67060311373",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "MARIA MERCED  QUIÑONES  PÉREZ",
+            "CI": "95111128194",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "CAMILA  GARCÍA  REINA",
+            "CI": "98090607773",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "ARIANNE  MANGANELLY  HERNÁNDEZ",
+            "CI": "99080305491",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "LEA  BENITEZ  MORA",
+            "CI": "02032668191",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "ALEJANDRA  FERRO  MURILLO",
+            "CI": "02121868195",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "MADYS  BACOT  SAVÓN",
+            "CI": "94101428917",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FÍSICO-QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YAMILA DELAC  MEDEROS  CABALLEROS",
+            "CI": "70100601879",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LIBERACIÓN DE LOTES                                                             ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "SULEIDA  GAMEZ  VAZQUEZ",
+            "CI": "76022300395",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "MEJORAMIENTO DE LA CALIDAD                                                      ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        }
+    ]
+}

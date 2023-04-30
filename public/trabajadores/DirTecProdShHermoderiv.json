@@ -1,0 +1,581 @@
+{
+    "Unidad": "UEB SH+                                                                         ",
+    "Trabajadores": [
+        {
+            "Nombre": "MIDELAYNE  PÉREZ   ALBA",
+            "CI": "77092422475",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE ENVASE Y EMBALAJE                                                    ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MELISSA  RODRIGUEZ  RONDON",
+            "CI": "01121168017",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE ENVASE Y EMBALAJE                                                    ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANA ROSA  NÚÑEZ  MENDEZ",
+            "CI": "67101027895",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE ENVASE Y EMBALAJE                                                    ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MASBEL  DÍAZ  MORA",
+            "CI": "73030212313",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE ENVASE Y EMBALAJE                                                    ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANELIS  GARCÌA  RAMOS",
+            "CI": "75071714453",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE ENVASE Y EMBALAJE                                                    ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MISLEIDYS  RODRÍGUEZ  ARTEAGA",
+            "CI": "91061925298",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE ENVASE Y EMBALAJE                                                    ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANET  CALDERON  ESPINOSA",
+            "CI": "78012810338",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "BRIGADA DE HIGIENIZACIÓN                                                        ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "YELENIA  CARMENATE  ECHEVARRIA",
+            "CI": "89120638015",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO-PRODUCTIVO DE HEMODERIVADOS                                ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "MARLEN  DE LOS REYES  RODRÍGUEZ",
+            "CI": "74112322576",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO-PRODUCTIVO DE HEMODERIVADOS                                ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YORDANKA  CASALES  CAPETILLO",
+            "CI": "92062729872",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "FORMULACIÓN                                                                     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "JORGE ARMANDO  FERRER  ORTEGA",
+            "CI": "67111702269",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "FORMULACIÓN                                                                     ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "EDUARDO  QUINTANA  VICHE",
+            "CI": "78071308144",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "FORMULACIÓN                                                                     ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "DANAY  OLIVA  SUAREZ",
+            "CI": "79082402112",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FORMULACIÓN,LIOFILIZACIÓN Y PURIFICACIÓN                               ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "JAVIER JESUS  ORIA  GENER",
+            "CI": "71122501426",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "TOMAS  PEREZ  FERNANDEZ",
+            "CI": "61122102703",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ARMANDO JOSE  ESTRADA  ANDINO",
+            "CI": "73121202467",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LORENA  MORRERA  LOBAINA",
+            "CI": "92012330738",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LAUDY  MOJENA  SARMIENTO",
+            "CI": "95032229459",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "GIANELA  GIL  GONZALEZ",
+            "CI": "95040329297",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "JESSICA  FORTE  RODRIGUEZ",
+            "CI": "95072427152",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "RONNIE  PEDROSO  PAUMIER",
+            "CI": "95122829428",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "JAVIER  GOMEZ  LEON",
+            "CI": "96020108028",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YOSAN  PEREZ  VAZQUEZ",
+            "CI": "97102607804",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "BARBARO TOMAS  TRIZAT  ZALDIVAR",
+            "CI": "60041813965",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CAMILO  ORTA  LUZARDO",
+            "CI": "65050914985",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MIGUEL  LÓPEZ  MARTÍNEZ",
+            "CI": "67050807348",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JUAN ALBERTO  MENDEZ  BORRERO",
+            "CI": "71092607283",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ALEXIS  DOMINGUEZ  HERNANDEZ",
+            "CI": "74082602424",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LIZARDO  RODRIGUEZ  NARANJO",
+            "CI": "76122902960",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARCOS  HERRERA  BROSSARD",
+            "CI": "77100207628",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORGE JUNIOR  GONZÁLEZ  RAMOS",
+            "CI": "82040508642",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ALAIN  RAMOS  VALDES",
+            "CI": "82050606824",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RICARDO RAMON  JIMENEZ  ALVAREZ",
+            "CI": "88082000163",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CAMILO  HARRISON  CORTINA",
+            "CI": "88102609564",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARIO EMILIO  GARCÍA  PÉREZ",
+            "CI": "99040807940",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ROBNIEL  LÓPEZ  BENCOMO",
+            "CI": "99043004680",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YUSLEYDI  NUÑEZ  FRANCO",
+            "CI": "85080307758",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "RANCES ARMANDO  JIMENEZ  DIAZ",
+            "CI": "92103130588",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE FRACCIONAMIENTO Y PROCESAMIENTO DE PLASMA                              ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "REGLA NAIVI  FUENTES  RODRIGUEZ",
+            "CI": "77021504254",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "CECILIA  GOMEZ  TORRES",
+            "CI": "68081000318",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RAMONA  CERVANTES  LEYVA",
+            "CI": "70112119731",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANNIA  RODRÍGUEZ  ZAYAS",
+            "CI": "73060521394",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARITZA ISABEL  MOREJON  RODRIGUEZ",
+            "CI": "84033008011",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARÍA DEL CARMEN  HERNÁNDEZ  FIGUEROA",
+            "CI": "66053129392",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "HERIBERTO  MARTINEZ   RODRIGUEZ",
+            "CI": "74091804601",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANELIS  ROMERO  AMADOR",
+            "CI": "75121205099",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EDDY ALIEN  VALDES  SAMUEL",
+            "CI": "82022407220",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOEL LORETO  TORRES  MORE",
+            "CI": "88073009142",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RAYMEL FRANCISCO  HERNÁNDEZ  ROSALES",
+            "CI": "97030306449",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "GRUPO DE PREPARACIÓN DE MATERIALES Y SOLUCIONES                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JESSICA   PEREZ REGALADO  FUENTES",
+            "CI": "93041632336",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "NORA  VILARO  PEDRO",
+            "CI": "62091924374",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ODALIS JUID  GUERRA  QUINTANA",
+            "CI": "63123029736",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YAMILA  RUÍZ  VIDAL",
+            "CI": "01041868018",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "HILLARY AMANDA  GARCIA  TORRES",
+            "CI": "01051068513",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "MARIA LUISA  VALERA  ACEA",
+            "CI": "63062114739",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "ARLEN   BORGES  ESCALONA",
+            "CI": "85071907779",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YELENNA DE LA CARIDAD  TORO  SANCHES",
+            "CI": "96082309575",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YANSAY DE LA CARIDAD  LOPEZ  TELLEZ",
+            "CI": "97091108139",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "MADELIN  ZAMORA  PINEDA",
+            "CI": "72112328794",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "RACHEL  GONZALEZ  PEREZ",
+            "CI": "97092310690",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESOS                                              ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "ANA IBIS  ORDAZ  DUANY",
+            "CI": "70021202192",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LIOFILIZACIÓN                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LEONARDO  LEYVA  FROMETA",
+            "CI": "70111011825",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "LIOFILIZACIÓN                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YAMILET  UGARTE  LEWIS",
+            "CI": "71042929114",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LIOFILIZACIÓN                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "KAREN  RODRIGIEZ   TEJIDO",
+            "CI": "95030830490",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "LIOFILIZACIÓN                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LIONEL LORENZO  CASTILLO  GARCIA",
+            "CI": "58090500806",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "OSCAR  CASTILLO  SÁNCHEZ",
+            "CI": "64122126500",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "ROBERTO  RIQUENES  ARÉCHAGA",
+            "CI": "68092813300",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "PURIFICACIÓN CROMATOGRÁFICA                                                     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LEONARDO  MONTERO  SANTANA",
+            "CI": "72011431268",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "PURIFICACIÓN CROMATOGRÁFICA                                                     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "SHEILA  VALDES  PEREZ",
+            "CI": "94120530731",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "PURIFICACIÓN CROMATOGRÁFICA                                                     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "GEMA  FERNANDEZ  GUERRA",
+            "CI": "96112910250",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "F",
+            "Area": "PURIFICACIÓN CROMATOGRÁFICA                                                     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "JULIO CESAR  VAZQUEZ  AYALA",
+            "CI": "70100400401",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "PURIFICACIÓN CROMATOGRÁFICA                                                     ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORDAN  DIAZ  REYES",
+            "CI": "99092207984",
+            "Unidad": "UEB SH+                                                                         ",
+            "Sexo": "M",
+            "Area": "PURIFICACIÓN CROMATOGRÁFICA                                                     ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        }
+    ]
+}

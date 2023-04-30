@@ -1,0 +1,125 @@
+{
+    "Unidad": "UEB CITOSTÁTICOS                                                                ",
+    "Trabajadores": [
+        {
+            "Nombre": "MARIA DEL CARMEN  AGUIAR  JACOB",
+            "CI": "65071611974",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN GENERAL                                                               ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "MARILYN  CRUZ  SAURA",
+            "CI": "69010930230",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN GENERAL                                                               ",
+            "Cargo": "Secretario Gestor de Archivo                                                                        "
+        },
+        {
+            "Nombre": "ERNESTO  GONZALEZ  MIRANDA",
+            "CI": "90072526749",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "DIRECCIÓN GENERAL                                                               ",
+            "Cargo": "Especialista en Ciencias Informáticas                                                               "
+        },
+        {
+            "Nombre": "Rodolfo Raunel  Perez  Oceguera",
+            "CI": "51010200504",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "DIRECCIÓN GENERAL                                                               ",
+            "Cargo": "Chofer D                                                                                            "
+        },
+        {
+            "Nombre": "JOSE EMILIO  HERNANDEZ  CASTILLO",
+            "CI": "61072413941",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "DIRECCIÓN GENERAL                                                               ",
+            "Cargo": "Chofer D                                                                                            "
+        },
+        {
+            "Nombre": "  DAMIAN RAUDEL  ROJO  HERNANDEZ",
+            "CI": "74070302987",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "DIRECCIÓN GENERAL                                                               ",
+            "Cargo": "Director de UEB                                                                                     "
+        },
+        {
+            "Nombre": "FELIX  CHACON  QUIALA",
+            "CI": "61112000307",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Jefe de Grupo de Seguridad Interna                                                                  "
+        },
+        {
+            "Nombre": "HECTOR JESUS  GONZALEZ  RODRIGUEZ",
+            "CI": "45040801867",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "JOSE MANUEL   HERNANDEZ  SOLAR",
+            "CI": "57010701821",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "JOSE LUIS  TABLADA  ALVAREZ",
+            "CI": "61082501403",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "RODOLFO   BETANCOURT  BETANCOURT",
+            "CI": "61102227402",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "DAMARIS  TORRES  IZNAGA",
+            "CI": "63021310813",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "Maricela  Torres  Martinez",
+            "CI": "65052326879",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "MARGARITA  RODRIGUE  PEREZ",
+            "CI": "65081530879",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        },
+        {
+            "Nombre": "LAZARO  GONZALEZ  MEDINA",
+            "CI": "92030546248",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "GRUPO DE SEGURIDAD INTERNO                                                      ",
+            "Cargo": "Agente de Seguridad y Protección                                                                    "
+        }
+    ]
+}

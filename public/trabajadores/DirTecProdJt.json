@@ -1,0 +1,581 @@
+{
+    "Unidad": "UEB JULIO TRIGO                                                                 ",
+    "Trabajadores": [
+        {
+            "Nombre": "MAYDELIS  ÁLVAREZ  TITO",
+            "CI": "84103108175",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": " GRUPO CONTROL DE PROCESO                                                       ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ANA HILDA  CALLIS  DÍAZ",
+            "CI": "68121729953",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": " GRUPO CONTROL DE PROCESO                                                       ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "ELQUIS CECILIA  VÁZQUEZ  GONZÁLEZ",
+            "CI": "69091602852",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": " GRUPO CONTROL DE PROCESO                                                       ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "JUAN MANUEL  PRIETO  BARRIOS",
+            "CI": "64052708145",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA CONCILIACION                                                               ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BORIS LUIS  GONZÁLEZ  FERNÁNDEZ",
+            "CI": "77013105745",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "AREA DE CONFORMACION Y LLENADO DE FRASCOS PLÁSTICOS                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ELVIS  PANTOJA  BARRIOS",
+            "CI": "92092029448",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "AREA DE CONFORMACION Y LLENADO DE FRASCOS PLÁSTICOS                             ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DAVID  PAZ  CASTILLO",
+            "CI": "95020948908",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "AREA DE CONFORMACION Y LLENADO DE FRASCOS PLÁSTICOS                             ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JAVIER  TRETO  CABRERA",
+            "CI": "97021406664",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "AREA DE CONFORMACION Y LLENADO DE FRASCOS PLÁSTICOS                             ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DANAYS  HERRERA  ORTEGA",
+            "CI": "76110802976",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MARIO MIGUEL  ALVAREZ  PANDO",
+            "CI": "92040930180",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JIOVER  VALDES  SOLER",
+            "CI": "89092620906",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO DE BULBOS                                                        ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "VERONICA  RODRIGUEZ  ESCOBAR",
+            "CI": "62070914291",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LAVANDERIA                                                              ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "YANAISY  DIAZ  CAIRO",
+            "CI": "77072006657",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LAVANDERIA                                                              ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "RICARDO  MANTILLA  JIMENEZ",
+            "CI": "70081712929",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZACION                                                           ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "RODNEY  MARIÑO  RAMÍREZ",
+            "CI": "93032206607",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZACION                                                           ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "YANKUIEL  FLORES  MORENO",
+            "CI": "94110628689",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZACION                                                           ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "REYNALDO A.  SOTO  BANCO",
+            "CI": "77112304363",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "HILARIO  ACOSTA  DÍAZ",
+            "CI": "88040906569",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "LEOVIDES  BARRUETO  QUESADA",
+            "CI": "68061407574",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "AREA DE LOTEO DE ESTUCHE                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación Y elaborac de Medicamentos                                    "
+        },
+        {
+            "Nombre": "BEATRIZ  GUERRA  CAPOTE",
+            "CI": "75101403774",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "AREA DE LOTEO DE ESTUCHE                                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación Y elaborac de Medicamentos                                    "
+        },
+        {
+            "Nombre": "ADRAIN  SERRANO  YERA",
+            "CI": "88090606321",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación Y elaborac de Medicamentos                                    "
+        },
+        {
+            "Nombre": "MIGUEL ANGEL  PEREZ  SALÉ",
+            "CI": "67100507826",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "OPERADOR INTEGRAL PARA LA PREPARACION Y ELABORACION DE MEDICAMENTOS                                 "
+        },
+        {
+            "Nombre": "ODALYS  NUVIOLA  RAMÍREZ",
+            "CI": "70052800931",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISADODE BULBOS                                                       ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MARIELYS  DIAZ  REYNA",
+            "CI": "73021616550",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISADODE BULBOS                                                       ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ROSALINDA  OQUENDO  DUARTE",
+            "CI": "87032210175",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISADODE BULBOS                                                       ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "SANDER  RAMOS  HIERREZUELO",
+            "CI": "98042806886",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "AREA DE TAPADO DE FRASCOS PLÁSTICOS                                             ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RAIZA  MONTEAGUDO  LICEA",
+            "CI": "70102901990",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "EDGAR DANIEL  FLEITES  YANES",
+            "CI": "78110808726",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "MARIO DANIEL  GONZALEZ  CEDRE",
+            "CI": "83051527543",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "YOLBIS  GARCIA  GUILARTE",
+            "CI": "84091007443",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "RAÚL ALEJANDRO  RUILOBAS  GARCÍA",
+            "CI": "91090627487",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "YANIELIS  VIRIENT  CHAVEZ",
+            "CI": "88112604914",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO TECNICO Y DE PLANIFICACIÓN DE LA PRODUCCIÓN                               ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ZENAIDA  VALIDO  BUCHILLÓN",
+            "CI": "66120308798",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO TECNICO Y DE PLANIFICACIÓN DE LA PRODUCCIÓN                               ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ODAIMYS  CONCEPCIÓN  GARCÍA",
+            "CI": "84031301138",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "GRUPO TECNICO Y DE PLANIFICACIÓN DE LA PRODUCCIÓN                               ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "DAISEL  CALDERON  PUPO",
+            "CI": "81100307456",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YESENIA  CARMONA  LUIS",
+            "CI": "94040604892",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ENRIQUE  FREIJO  SANCHEZ",
+            "CI": "65062601069",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "WILBER  PEREZ  ESTRADA",
+            "CI": "83101806427",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YUNISDAYSI  NUÑEZ  RODRIGUEZ",
+            "CI": "93111105538",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "RANDY  CAMPOS  ABREU",
+            "CI": "96110609625",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "AMARILYS  MEDINA  CASTILLO",
+            "CI": "60060600834",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GISELA  RODRIGUEZ  ORTALAZA",
+            "CI": "67090619476",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "VIRGEN OILDA  REYES  VAZQUEZ",
+            "CI": "70101829111",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARILIN  PEREZ  ZAMORA",
+            "CI": "74032121698",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAGDALENA  GUANCHE  VILLAMIL",
+            "CI": "85081708737",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAVIL DE LA C  RODRIGUEZ  MARTINEZ",
+            "CI": "93020807455",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ELOISA  LEÓN  LEÓN",
+            "CI": "67031504630",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE INYECTABLES                                       ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YORDY  SCULL  BARÓ",
+            "CI": "97062607067",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LINEA DE ENVASE AUTOMATICA DE INYECTABLES                                       ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CLARA MARIA  QUEROL  LINARES",
+            "CI": "67092204455",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ARELYS  OLIVA  GONZALEZ",
+            "CI": "74050902319",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "LISANDRA DE LA CARIDAD  GRANDALES  GRAVE DE PERALT",
+            "CI": "01122566331",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARYS  LEYVA  LONDRES",
+            "CI": "61051714219",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "IBIS  SORIA  RODRÍGUEZ",
+            "CI": "65060519753",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ELENA  CASTELLANOS  CRUZ",
+            "CI": "66080619271",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARIELA  ANDRADE  RUIZSECO",
+            "CI": "68031900518",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARLENE  ROSELLO  PEÑA",
+            "CI": "72120913294",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LUMEY  ROSABAL  VIVÓ",
+            "CI": "84030708117",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "IRENALDO  GONZALEZ  PADILLA",
+            "CI": "86052104866",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "AYLIN  REYES  IBAEZ",
+            "CI": "88051302134",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "REINIER  SOTOLONGO  ESTREMERA",
+            "CI": "96111908064",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "LINEA DE ENVASE MANUAL                                                          ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ISELGIS AILIN  MARTÍNEZ  SOCARRAZ",
+            "CI": "80122506310",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE ENVASE                                                                ",
+            "Cargo": "Jefe de Planta UEB                                                                                  "
+        },
+        {
+            "Nombre": "ROGELIA LUCIA  HERRERA  ARGUDIN",
+            "CI": "60091614913",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE ENVASE                                                                ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ABIGAIL  AGRAMONTE  PÉREZ",
+            "CI": "68090701010",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE ENVASE                                                                ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YULEYSIS  AMOROS  PALMERO",
+            "CI": "85020607130",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE ENVASE                                                                ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YAMILA  COMAS  CASTILLO",
+            "CI": "85091907032",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES                                  ",
+            "Cargo": "Jefe de Planta UEB                                                                                  "
+        },
+        {
+            "Nombre": "YUDILAY L.  PEÑA  ROCHE",
+            "CI": "73020109990",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES                                  ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "JESSICA  GRAVE DE PERALT  RODRIGUEZ",
+            "CI": "94011129611",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "JENIFFER  ORTEGA  MARTÍNEZ",
+            "CI": "99122008337",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "MABEL  CARRASCO  GONZÁLEZ ACUÑA",
+            "CI": "77103107916",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YANIRIS  RODRÍGUEZ  LINARES",
+            "CI": "91123127857",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES                                  ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ADONIS  CARBONEL  GILL",
+            "CI": "75041026642",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "PREPARACIÓN DE MEDICAMENTOS                                                     ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "JEANYS  TOLEDANO  PEÑALVER",
+            "CI": "80011407544",
+            "Unidad": "UEB JULIO TRIGO                                                                 ",
+            "Sexo": "M",
+            "Area": "PREPARACIÓN DE MEDICAMENTOS                                                     ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        }
+    ]
+}

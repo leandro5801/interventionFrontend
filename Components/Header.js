@@ -11,6 +11,7 @@ function Header({
   setTableVisible,
   interventions,
   setInterventions,
+  consultores,
 }) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
@@ -59,6 +60,7 @@ function Header({
             onCancel={() => {
               setDialogCreInteOpen(false);
             }}
+            consultores={consultores}
           />
         </Dialog>
 

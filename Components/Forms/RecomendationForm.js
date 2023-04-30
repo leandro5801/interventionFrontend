@@ -11,6 +11,8 @@ export default function RecomendationForm({
   onCancel,
   onSave,
   selectedIntervention,
+  classifications,
+  consultores,
 }) {
   //intervention ? intervention.name : null
   const [name, setName] = useState(recomendation ? recomendation.name : "");
@@ -18,13 +20,23 @@ export default function RecomendationForm({
     recomendation ? recomendation.description : ""
   );
   const [consultor, setConsultor] = useState(
-    recomendation ? recomendation.consultor : ""
+    recomendation
+      ? {
+          label: recomendation.consultor,
+          value: recomendation.consultor,
+        }
+      : null
   );
   const [follow, setFollow] = useState(
     recomendation ? recomendation.follow : ""
   );
   const [classification, setClassification] = useState(
-    recomendation ? recomendation.classification : ""
+    recomendation
+      ? {
+          label: recomendation.classification,
+          value: recomendation.classification,
+        }
+      : null
   );
 
   const handleSubmit = (event) => {
@@ -35,12 +47,13 @@ export default function RecomendationForm({
       idIntervention: selectedIntervention.id,
       name,
       description,
-      consultor,
+      consultor: consultor.value,
       follow,
-      classification,
+      classification: classification.value,
     };
-    setTableRData(recomendation ?
-      updatedRow : (prevData) => [...prevData, updatedRow]);
+    setTableRData(
+      recomendation ? updatedRow : (prevData) => [...prevData, updatedRow]
+    );
 
     onSave();
     if (!recomendation) {
@@ -49,6 +62,25 @@ export default function RecomendationForm({
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
   };
+  const handleClassificationChange = (newValue) => {
+    setClassification({ label: newValue.value, value: newValue.value });
+  };
+  const handleConsultorChange = (newValue) => {
+    setConsultor({ label: newValue.value, value: newValue.value });
+  };
+
+  const classificationsOptions =
+    classifications &&
+    classifications.map((item) => ({
+      value: item.name,
+      label: item.name,
+    }));
+  const consultoresOptions =
+    consultores &&
+    consultores.map((item) => ({
+      value: item.name,
+      label: item.name,
+    }));
 
   return (
     <form onSubmit={handleSubmit}>
@@ -78,33 +110,46 @@ export default function RecomendationForm({
 
         <div>
           <label htmlFor="consultor">Consultor:</label>
-          <input
-            className={styles.input}
-            type="text"
-            id="consultor"
+          <Select
             value={consultor}
-            onChange={(event) => setConsultor(event.target.value)}
+            onChange={handleConsultorChange}
+            options={consultoresOptions}
+            placeholder="Seleccione..."
           />
         </div>
 
         <div>
           <label htmlFor="follow">Seguimiento:</label>
-          <input
-            className={styles.input}
-            type="text"
-            id="follow"
-            value={follow}
-            onChange={(event) => setFollow(event.target.value)}
-          />
+          <label className={styles.label}>
+            <input
+              className={styles.input}
+              type="radio"
+              name="follow"
+              value="Sí"
+              checked={follow === "Sí"}
+              onChange={(event) => setFollow(event.target.value)}
+            />
+            Sí
+          </label>
+          <label className={styles.label}>
+            <input
+              className={styles.input}
+              type="radio"
+              name="follow"
+              value="No"
+              checked={follow === "No"}
+              onChange={(event) => setFollow(event.target.value)}
+            />
+            No
+          </label>
         </div>
         <div>
           <label htmlFor="classification">Clasificación:</label>
-          <input
-            className={styles.input}
-            type="text"
-            id="classification"
+          <Select
             value={classification}
-            onChange={(event) => setClassification(event.target.value)}
+            onChange={handleClassificationChange}
+            options={classificationsOptions}
+            placeholder="Seleccione..."
           />
         </div>
       </div>

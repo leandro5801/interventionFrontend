@@ -1,0 +1,293 @@
+{
+    "Unidad": "UEB LIORAD                                                                      ",
+    "Trabajadores": [
+        {
+            "Nombre": "JOSÉ FÉLIX  DE  LA BARTELEMI",
+            "CI": "69082223780",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": " AREA ESTERILIZACIÓN                                                            ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GLORIA MARÍA  MARTÍNEZ  ARAUJO",
+            "CI": "84112604853",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": " AREA ESTERILIZACIÓN                                                            ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOHANA DE LA CARIDAD  STUART  GONZALEZ",
+            "CI": "98061707318",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": " AREA ESTERILIZACIÓN                                                            ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "FRANCISCA YILIAN  FERNÁNDEZ  GARCÉS",
+            "CI": "61100413714",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOSÉ DIONISIO  VALDÉS  TORRES",
+            "CI": "77091206622",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DANIEL  GUERRA  GALINDO",
+            "CI": "94030529626",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOSÉ ANTONIO  HERNÁNDEZ  MÉNDEZ",
+            "CI": "65061926945",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZADO                                                             ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "OSNIEL  GARI  CURBELO",
+            "CI": "87101709485",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZADO                                                             ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "Pedro Rey   Montalvo  Paneque",
+            "CI": "81112606125",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RICHARD  RUIZ  DUBE",
+            "CI": "90101628862",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SANDY  SAVON  MARRERO",
+            "CI": "79102906145",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANEISIS  CASTILLO  MENDEZ",
+            "CI": "76101602995",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "MARIA DEL CARMEN  MUÑOZ  BÁEZ",
+            "CI": "67051702096",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "MAYILEY  ACEVEDO  PEREIRA",
+            "CI": "80101212435",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YURISNEIS  RENFORD  ÁLVAREZ",
+            "CI": "84062127224",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        ",
+            "Cargo": "OPERADOR A DE EQUIPOS DE PROD  DE MEDICAMENTOS                                                      "
+        },
+        {
+            "Nombre": "TERESA  PÉREZ  ARAUJO",
+            "CI": "73071101432",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "SURANIA  CARMARGO  CASTRILLO",
+            "CI": "81100206171",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YAIMA  SOTO  GARCÍA",
+            "CI": "80071207750",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "NIUBIS  CASTRO  RIVERO",
+            "CI": "72010608090",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LISANDRA  MESTRE  LAGO",
+            "CI": "92072230655",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOSE  ARMANDO  SOCARRAS",
+            "CI": "64112905669",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "GRUPO DE PREPARACION DE MEDICAMENTOS                                            ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ELAINE  LÓPEZ  DELGADO",
+            "CI": "77020406592",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "CLAUDIA  MELO  PÉREZ",
+            "CI": "97091907216",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "VANESA  LLANES  HERNÁNDEZ",
+            "CI": "99122307537",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LUZ DIVINA  RANCOL  LEGUEN",
+            "CI": "65122910534",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "HALLINEY DEL  VALLE  GONZÁLEZ",
+            "CI": "95011827137",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "PEDRO IGNACIO  RUANO  BRIZUELA",
+            "CI": "91020129786",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "GRUPO TÉCNICO                                                                   ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ELAINE  HEREDIA  DAZA",
+            "CI": "78120811894",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Planta UEB                                                                                  "
+        },
+        {
+            "Nombre": "JULIO ANTONIO  ROLDAN  ELIAS",
+            "CI": "67011700208",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "YENISLEY  LÓPEZ  LUGO",
+            "CI": "85122908012",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "IMIRSYS  MONTALVO  DEL TORO",
+            "CI": "79072606316",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ROXANA  HERNÁNDEZ  MUÑOZ",
+            "CI": "69061829458",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "REVISIÓN DE CARPULES Y BULBOS                                                   ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YARIANNY  GARCÉS  GARRIDO",
+            "CI": "82110607679",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "REVISIÓN DE CARPULES Y BULBOS                                                   ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "GLEDYS MARÍA  SÁNCHEZ  GUISADO",
+            "CI": "66112027370",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "REVISIÓN DE CARPULES Y BULBOS                                                   ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "AYMÉ  ESCOBAR  BENÍTEZ",
+            "CI": "77122704670",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "REVISIÓN DE CARPULES Y BULBOS                                                   ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "CLAUDIA  DE LA TORRE  VILLARREAL",
+            "CI": "96091009954",
+            "Unidad": "UEB LIORAD                                                                      ",
+            "Sexo": "F",
+            "Area": "REVISIÓN DE CARPULES Y BULBOS                                                   ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        }
+    ]
+}

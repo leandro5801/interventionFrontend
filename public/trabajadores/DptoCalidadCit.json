@@ -1,0 +1,109 @@
+{
+    "Unidad": "UEB CITOSTÁTICOS                                                                ",
+    "Trabajadores": [
+        {
+            "Nombre": "JUAN VICENTE  BAYOLO  GUANCH",
+            "CI": "69102802880",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "AZORYS  RAMOS  D LAZARO",
+            "CI": "72122901552",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ILEANA  CALDERON  RODRIGUEZ",
+            "CI": "73051600911",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YAREMY  MARCHANTE  CRUZ",
+            "CI": "96011509479",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "SAYURI  ORTEGA  MARZO",
+            "CI": "98092608335",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "GRUPO DE REGISTRO Y FARMACOVIGILANCIA                                           ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "YOHANA  DIAZ  ROQUE",
+            "CI": "71020104358",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL MICROBIOLÓGICO                                           ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "TANIA MARIA  ARGUELLES  BRAVO",
+            "CI": "70091306770",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL MICROBIOLÓGICO                                           ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "VIVIANY  DORTICOS  MORALES",
+            "CI": "96101210516",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL MICROBIOLÓGICO                                           ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "SANDRA  MORENO  GOMEZ",
+            "CI": "92020531796",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FISICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "RISSET  GONZALEZ  MILIAN",
+            "CI": "64092720315",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FISICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": " DANIEL  ENRIQUE   RUVIERT   HERRERA",
+            "CI": "92030329947",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "M",
+            "Area": "LABORATORIO FISICO-QUÍMICO                                                      ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "CAMELIA  MOJENA  GARCIA",
+            "CI": "03040478614",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FISICO-QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YURIMA  MARRERO  MORALES",
+            "CI": "82091809017",
+            "Unidad": "UEB CITOSTÁTICOS                                                                ",
+            "Sexo": "F",
+            "Area": "LABORATORIO FISICO-QUÍMICO                                                      ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        }
+    ]
+}
