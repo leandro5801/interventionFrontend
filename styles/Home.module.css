@@ -12,7 +12,7 @@
 }
 
 .wrapper {
-  padding: 10px;
+  padding: 0px;
   z-index: 1;
 }
 
@@ -26,14 +26,13 @@
 }
 
 .wrapper>ul {
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: left;
   padding-left: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 5px;
 }
 
 .wrapper>h2 {
@@ -51,10 +50,8 @@
 
 .wrapper>ul>li {
   list-style: none;
-  font-size: 20px;
+  font-size: 17px;
   text-decoration: none;
-
-  /* opacity: .6; */
 }
 
 .wrapper>ul>li>a {
@@ -63,27 +60,8 @@
 
 .wrapper>ul>li>a:hover {
   color: hsl(0, 0%, 100%);
-  font-size: 22px;
-
+  font-size: 20px;
   transition: 0.2;
-}
-
-/* ------------------------------------------------------------------------------------------------------ */
-/* Menu desplegable  */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-  animation-name: example;
-  animation-duration: 1s;
 }
 
 @keyframes example {
@@ -580,3 +558,27 @@
   outline: none;
   border-bottom-color: #0099CC;
 }
+
+/* ------------------------------------------------------------------------------------------------------ */
+/* Menu desplegable  */
+.selectFilter {
+  position: relative;
+  display: inline-block;
+}
+
+.selectFilter-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.selectFilter:hover .selectFilter-content {
+  animation-name: example;
+  animation-duration: 1s;
+}
+.selectFilter{
+  background-color: #0099CC;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+

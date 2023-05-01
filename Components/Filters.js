@@ -1,5 +1,8 @@
 import Dropdown from "react-dropdown";
 import data from "../public/structure.json";
+import styles from "../styles/Home.module.css";
+import Select from "react-select";
+import { useState } from "react";
 
 const uebOptions = data.ueb.map((item) => ({
   value: item.ueb,
@@ -14,7 +17,10 @@ const Filters = ({
   selectedArea,
   setSelectedArea,
 }) => {
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const handleUebSelect = (option) => {
+    setShowDropdown(true);
     setSelectedUeb(option.value);
     setSelectedStructure(null);
     setSelectedArea(null);
@@ -47,29 +53,37 @@ const Filters = ({
 
   return (
     <>
-      <Dropdown
-        menuClassName="custom-menu"
-        options={uebOptions}
-        onChange={handleUebSelect}
-        value={selectedUeb}
-        placeholder="Seleccione una UEB"
-      />
-      {selectedUeb && (
-        <Dropdown
-          options={structureOptions}
-          onChange={handleStructureSelect}
-          value={selectedStructure}
-          placeholder="Seleccione departamento o dirección"
-        />
-      )}
-      {selectedStructure && (
-        <Dropdown
-          options={areaOptions}
-          onChange={handleAreaSelect}
-          value={selectedArea}
-          placeholder="Seleccione un área"
-        />
-      )}
+      <div className={styles.wrapper}>
+        <ul>
+          {uebOptions.map((option) => (
+            <li key={option.value} value={selectedUeb}>
+              <a onClick={() => handleUebSelect(option)}>{option.value}</a>
+              {showDropdown && selectedUeb === option.value && (
+                <ul>
+                  {selectedUeb && (
+                    <Dropdown
+                      className={styles.selectFilter}
+                      options={structureOptions}
+                      onChange={handleStructureSelect}
+                      value={selectedStructure}
+                      placeholder="Departamento o Dirección"
+                    />
+                  )}
+                  {selectedStructure && (
+                    <Dropdown
+                      className={styles.selectFilter}
+                      options={areaOptions}
+                      onChange={handleAreaSelect}
+                      value={selectedArea}
+                      placeholder="Área"
+                    />
+                  )}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 };

@@ -14,7 +14,7 @@ export default function TimeRange({ timeRange, setTimeRange }) {
   }
 
   const yearsOptions = [];
-  for (let i = 2020; i <= 2050; i++) {
+  for (let i = 2018; i <= 2028; i++) {
     yearsOptions.push(
       <option key={i} value={i}>
         {i}
