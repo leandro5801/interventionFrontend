@@ -42,6 +42,7 @@ body {
 /* Estilo para el contenedor del menú desplegable */
 .Dropdown-root {
   position: relative;
+  width: 180px;
 }
 
 /* Estilo para el control del menú desplegable */
@@ -83,7 +84,6 @@ body {
   top: 18px;
   width: 0
 }
-
 
 .is-open .Dropdown-arrow {
   border-color: transparent transparent #fff;

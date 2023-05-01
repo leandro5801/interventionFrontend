@@ -28,6 +28,9 @@ function Content({
   classifications,
   consultores,
   process,
+  trabDirProdCit,
+  trabDirProdLior,
+  trabDireccionLior,
   dialogRecomendationOpen,
   setDialogRecomendationOpen,
 }) {
@@ -47,7 +50,7 @@ function Content({
   const [tableRData, setTableRData] = useState(null);
 
   //Para que se muestren las recomendaciones solo cuando se ha seleccionado la opcion
- 
+
   // Para editar una intervencion desde la tabla
   const [isIEditing, setIsIEditing] = useState(false);
 
@@ -179,7 +182,11 @@ function Content({
                 </tbody>
               </table> */}
 
-              <Dialog open={isIEditing} onClose={handleCancelI}>
+              <Dialog
+                className={styles.dialogContent}
+                open={isIEditing}
+                onClose={handleCancelI}
+              >
                 <IntervrntionForm
                   setInterventions={interventionUpdate}
                   intervention={selectedIntervention}
@@ -187,6 +194,9 @@ function Content({
                   onCancel={handleCancelI}
                   consultores={consultores}
                   process={process}
+                  trabDirProdCit={trabDirProdCit}
+                  trabDirProdLior={trabDirProdLior}
+                  trabDireccionLior={trabDireccionLior}
                 />
               </Dialog>
             </div>

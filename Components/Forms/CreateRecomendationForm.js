@@ -33,9 +33,8 @@ export default function CreateRecomendationForm({
     };
 
     onSave();
-    
-      setRecomendations([...recomendations, updatedRow]);
 
+    setRecomendations([...recomendations, updatedRow]);
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
   };
@@ -50,11 +49,11 @@ export default function CreateRecomendationForm({
   };
 
   const interventionsOptions =
-  interventions &&
-  interventions.map((item) => ({
-    value: item.id,
-    label: item.name,
-  }));
+    interventions &&
+    interventions.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
 
   const classificationsOptions =
     classifications &&
@@ -74,7 +73,7 @@ export default function CreateRecomendationForm({
       <div className={styles.formGrid}>
         <h2 className={styles.formTitle}>Recomendación</h2>
         <div></div>
-        <div>
+        <div className={styles.fullRow}>
           <label htmlFor="intervention">Intervención:</label>
           <Select
             onChange={handleInterventionChange}
@@ -82,7 +81,7 @@ export default function CreateRecomendationForm({
             placeholder="Seleccione..."
           />
         </div>
-        <div>
+        <div className={styles.fullRow}>
           <label htmlFor="name">Nombre:</label>
           <input
             className={styles.input}
@@ -92,7 +91,7 @@ export default function CreateRecomendationForm({
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.fullRow}>
           <label htmlFor="description">Descripción:</label>
           <input
             className={styles.input}
@@ -103,7 +102,7 @@ export default function CreateRecomendationForm({
           />
         </div>
 
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="consultor">Consultor:</label>
           <Select
             value={consultor}
@@ -112,8 +111,17 @@ export default function CreateRecomendationForm({
             placeholder="Seleccione..."
           />
         </div>
-
-        <div>
+        
+        <div className={styles.halfRow}>
+          <label htmlFor="classification">Clasificación:</label>
+          <Select
+            value={classification}
+            onChange={handleClassificationChange}
+            options={classificationsOptions}
+            placeholder="Seleccione..."
+          />
+        </div>
+        <div className={styles.halfRow}>
           <label htmlFor="follow">Seguimiento:</label>
           <label className={styles.label}>
             <input
@@ -138,23 +146,15 @@ export default function CreateRecomendationForm({
             No
           </label>
         </div>
-        <div>
-          <label htmlFor="classification">Clasificación:</label>
-          <Select
-            value={classification}
-            onChange={handleClassificationChange}
-            options={classificationsOptions}
-            placeholder="Seleccione..."
-          />
-        </div>
       </div>
-
-      <button className={styles.btn} type="submit">
-        Aceptar
-      </button>
-      <button className={styles.btn} type="button" onClick={onCancel}>
-        Cancelar
-      </button>
+      <div className={styles.formButtons}>
+        <button className={styles.btn} type="submit">
+          Aceptar
+        </button>
+        <button className={styles.btn} type="button" onClick={onCancel}>
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 }

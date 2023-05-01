@@ -15,11 +15,13 @@ function Header({
   setRecomendations,
   consultores,
   process,
+  trabDirProdCit,
+  trabDirProdLior,
+  trabDireccionLior,
   classifications,
 }) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
-
 
   const [ueb, setUeb] = useState(null);
   useEffect(() => {
@@ -41,6 +43,7 @@ function Header({
           setDialogRecomendationOpen={setDialogRecomendationOpen}
         />
         <Dialog
+          className={styles.dialogContent}
           open={dialogCreInteOpen}
           onClose={() => {
             setDialogCreInteOpen(false);
@@ -57,9 +60,13 @@ function Header({
             }}
             consultores={consultores}
             process={process}
+            trabDirProdCit={trabDirProdCit}
+            trabDirProdLior={trabDirProdLior}
+            trabDireccionLior={trabDireccionLior}
           />
         </Dialog>
         <Dialog
+         className={styles.dialogContentCR}
           open={dialogRecomendationOpen}
           onClose={() => {
             setDialogRecomendationOpen(false);
@@ -80,7 +87,6 @@ function Header({
             consultores={consultores}
           />
         </Dialog>
-
       </div>
     </div>
   );

@@ -115,7 +115,6 @@ function RecomendationTable({
     // update state (if data on backend - make API request to update data)
   }
 
-  
   return (
     <>
       {tableRData.length === 0 && (
@@ -126,9 +125,12 @@ function RecomendationTable({
             onClick={toggleFormulario}
             className={styles.faIcon}
           />
-          <Dialog open={dialogRecomendationOpen} onClose={toggleFormulario}>
+          <Dialog
+            className={styles.dialogContentR}
+            open={dialogRecomendationOpen}
+            onClose={toggleFormulario}
+          >
             <RecomendationForm
-              
               setTableRData={setTableRData}
               onCancel={() => {
                 setDialogRecomendationOpen(false);
@@ -157,7 +159,11 @@ function RecomendationTable({
             onClick={toggleFormulario}
             className={styles.faIcon}
           />
-          <Dialog open={dialogRecomendationOpen} onClose={toggleFormulario}>
+          <Dialog
+            className={styles.dialogContentR}
+            open={dialogRecomendationOpen}
+            onClose={toggleFormulario}
+          >
             <RecomendationForm
               recomendations={recomendations}
               setTableRData={setTableRData}
@@ -258,7 +264,11 @@ function RecomendationTable({
         </table>
 
         {/* Para editar  */}
-        <Dialog open={editRIdx !== -1} onClose={handleCancelR}>
+        <Dialog
+          className={styles.dialogContentR}
+          open={editRIdx !== -1}
+          onClose={handleCancelR}
+        >
           <RecomendationForm
             setTableRData={recomendationUpdate}
             recomendation={tableRData[editRIdx]}

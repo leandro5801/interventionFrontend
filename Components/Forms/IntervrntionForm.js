@@ -14,26 +14,34 @@ export default function FormUpdateIntervention({
   onSave,
   consultores,
   process,
+  trabDirProdCit,
+  trabDirProdLior,
+  trabDireccionLior,
 }) {
-  const [name, setName] = useState(intervention ? intervention.name : null);
+  const [name, setName] = useState(intervention ? intervention.name : "");
   const [description, setDescription] = useState(
-    intervention ? intervention.description : null
+    intervention ? intervention.description : ""
   );
   const [selectedProcess, setSelectedProcess] = useState(
     intervention
       ? { label: intervention.process, value: intervention.process }
-      : null
+      : ""
+  );
+  const [selectedTrabajador, setSelectedTrabajador] = useState(
+    intervention
+      ? { label: intervention.worker, value: intervention.worker }
+      : ""
   );
   const [selectedUeb, setSelectedUeb] = useState(
-    intervention ? { label: intervention.ueb, value: intervention.ueb } : null
+    intervention ? { label: intervention.ueb, value: intervention.ueb } : ""
   );
   const [selectedStructure, setSelectedStructure] = useState(
     intervention
       ? { label: intervention.structure, value: intervention.structure }
-      : null
+      : ""
   );
   const [selectedArea, setSelectedArea] = useState(
-    intervention ? { label: intervention.area, value: intervention.area } : null
+    intervention ? { label: intervention.area, value: intervention.area } : ""
   );
   const [consultor, setConsultor] = useState(
     intervention
@@ -41,13 +49,11 @@ export default function FormUpdateIntervention({
           label: intervention.consultor,
           value: intervention.consultor,
         }
-      : null
+      : ""
   );
-  const [worker, setWorker] = useState(
-    intervention ? intervention.worker : null
-  );
-  const [start, setStart] = useState(intervention ? intervention.start : null);
-  const [end, setEnd] = useState(intervention ? intervention.end : null);
+  const [worker, setWorker] = useState(intervention ? intervention.worker : "");
+  const [start, setStart] = useState(intervention ? intervention.start : "");
+  const [end, setEnd] = useState(intervention ? intervention.end : "");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -61,7 +67,7 @@ export default function FormUpdateIntervention({
       structure: selectedStructure.value,
       area: selectedArea.value,
       consultor: consultor.value,
-      worker,
+      worker: selectedTrabajador.value,
       start,
       end,
     };
@@ -113,12 +119,62 @@ export default function FormUpdateIntervention({
     setSelectedStructure(newValue);
     setSelectedArea(null);
   };
+  let trabajadoresOptions = [];
+  if (
+    selectedUeb &&
+    selectedUeb.value === "CITOSTÁTICOS" &&
+    selectedStructure &&
+    selectedStructure.value === "Dirección Técnico Productiva"
+  ) {
+    trabajadoresOptions =
+      trabDirProdCit &&
+      trabDirProdCit
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "LIORAD" &&
+    selectedStructure &&
+    selectedStructure.value === "Dirección Técnico Productiva"
+  ) {
+    trabajadoresOptions =
+      trabDirProdLior &&
+      trabDirProdLior
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "LIORAD" &&
+    selectedStructure &&
+    selectedStructure.value === "Departamento de Direción"
+  ) {
+    trabajadoresOptions =
+      trabDireccionLior &&
+      trabDireccionLior
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  }
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <div className={styles.formGrid}>
         <h2 className={styles.formTitle}>Intervención</h2>
-        <div>
+        <div className={styles.fullRow}>
           <label htmlFor="name">Intervención:</label>
           <input
             className={styles.input}
@@ -128,7 +184,7 @@ export default function FormUpdateIntervention({
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.fullRow}>
           <label htmlFor="description">Descripción:</label>
           <input
             className={styles.input}
@@ -139,27 +195,30 @@ export default function FormUpdateIntervention({
           />
         </div>
 
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="ueb">UEB:</label>
           <Select
+            className={styles.selectForm}
             value={selectedUeb}
             onChange={handleUebChange}
             options={uebOptions}
             placeholder="Seleccione..."
           />
         </div>
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="sructure">Departamento/Dirección:</label>
           <Select
+          className={styles.selectForm}
             value={selectedStructure}
             onChange={handleStructureChange}
             options={structureOptions}
             placeholder="Seleccione..."
           />
         </div>
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="area">Área:</label>
           <Select
+          className={styles.selectForm}
             value={selectedArea}
             onChange={setSelectedArea}
             options={areaOptions}
@@ -167,9 +226,10 @@ export default function FormUpdateIntervention({
           />
         </div>
 
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="process">Proceso:</label>
           <Select
+          className={styles.selectForm}
             value={selectedProcess}
             onChange={setSelectedProcess}
             options={
@@ -180,9 +240,10 @@ export default function FormUpdateIntervention({
           />
         </div>
 
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="consultor">Consultor:</label>
           <Select
+          className={styles.selectForm}
             value={consultor}
             onChange={handleConsultorChange}
             options={consultoresOptions}
@@ -190,30 +251,36 @@ export default function FormUpdateIntervention({
           />
         </div>
 
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="worker">Trabajador:</label>
-          <input
-            className={styles.input}
-            type="text"
-            id="worker"
-            value={worker}
-            onChange={(event) => setWorker(event.target.value)}
+          <Select
+          className={styles.selectForm}
+            value={selectedTrabajador}
+            onChange={setSelectedTrabajador}
+            options={
+              trabajadoresOptions &&
+              trabajadoresOptions.map((sup) => ({
+                label: sup.label,
+                value: sup.label,
+              }))
+            }
+            placeholder="Seleccione..."
           />
         </div>
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="start">Fecha de inicio:</label>
           <input
-            className={styles.input}
+            className={styles.inputFecha}
             type="date"
             id="start"
             value={start}
             onChange={(event) => setStart(event.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="end">Fecha de Fin:</label>
           <input
-            className={styles.input}
+            className={styles.inputFecha}
             type="date"
             id="end"
             value={end}
@@ -221,13 +288,15 @@ export default function FormUpdateIntervention({
           />
         </div>
       </div>
+      <div className={styles.formButtons }>
+        <button className={styles.btn } type="submit">
+          Aceptar
+        </button>
 
-      <button className={styles.btn} type="submit">
-        Aceptar
-      </button>
-      <button className={styles.btn} type="button" onClick={onCancel}>
-        Cancelar
-      </button>
+        <button className={styles.btn} type="button" onClick={onCancel}>
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 }

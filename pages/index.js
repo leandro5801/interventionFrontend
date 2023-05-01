@@ -21,11 +21,26 @@ const consultoress = [
 ];
 
 export default function Home() {
+  const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
+
+  const [tableVisible, setTableVisible] = useState(false);
+  const [interventions, setInterventions] = useState(null);
+  const [recomendations, setRecomendations] = useState(null);
+
   // para el filtrado
   const [selectedUeb, setSelectedUeb] = useState(null);
   const [selectedStructure, setSelectedStructure] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
+
+  const [classifications, setClassifications] = useState(clasificaciones);
+  const [consultores, setConsultores] = useState(consultoress);
   const [process, setProcess] = useState(null);
+
+  //trabajadores
+  const [trabDirProdCit, setTrabDirProdCit] = useState(null);
+  const [trabDirProdLior, setTrabDirProdLior] = useState(null);
+  const [trabDireccionLior, setTrabDireccionLior] = useState(null);
+
   // Cargando los datos de los procesos
   useEffect(() => {
     client("procesos.json").then(
@@ -38,14 +53,39 @@ export default function Home() {
     );
   }, []);
 
-  const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
+  //Cargando trabajadores
+  useEffect(() => {
+    client("DirTecProdCit.json").then(
+      (trabajador) => {
+        setTrabDirProdCit(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
 
-  const [tableVisible, setTableVisible] = useState(false);
-  const [interventions, setInterventions] = useState(null);
-  const [recomendations, setRecomendations] = useState(null);
+  useEffect(() => {
+    client("DirTecProdLior.json").then(
+      (trabajador) => {
+        setTrabDirProdLior(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
 
-  const [classifications, setClassifications] = useState(clasificaciones);
-  const [consultores, setConsultores] = useState(consultoress);
+  useEffect(() => {
+    client("DptoDireccionLior.json").then(
+      (trabajador) => {
+        setTrabDireccionLior(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
 
   //Para modificar una intervencion
 
@@ -61,6 +101,7 @@ export default function Home() {
     );
   }, []);
 
+// console.log(trabDireccionLior);
   return (
     <div className={styles.container}>
       <Head>
@@ -84,6 +125,9 @@ export default function Home() {
         setRecomendations={setRecomendations}
         consultores={consultores}
         process={process}
+        trabDirProdCit={trabDirProdCit}
+        trabDirProdLior={trabDirProdLior}
+        trabDireccionLior={trabDireccionLior}
         classifications={classifications}
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
@@ -101,15 +145,14 @@ export default function Home() {
         classifications={classifications}
         consultores={consultores}
         process={process}
+        trabDirProdCit={trabDirProdCit}
+        trabDirProdLior={trabDirProdLior}
+        trabDireccionLior={trabDireccionLior}
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
       />
 
-      {/* <footer className={styles.footer}>
-        <p>
-          Creado por Rebeca y Laura Kamila
-        </p>
-      </footer> */}
+      
     </div>
   );
 }

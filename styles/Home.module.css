@@ -301,11 +301,33 @@
   align-items: center;
   z-index: 9999;
 }
-
+/* Formulario de intervenciones */
 .dialogContent {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
+  width: 800px;
+  height: 520px;
+  max-width: 500px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+}
+/* formulario de recomendaciones */
+.dialogContentR {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  height: 340px;
+  max-width: 500px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
+}
+/* formulario de recomendaciones */
+.dialogContentCR {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  height: 400px;
   max-width: 500px;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 }
@@ -328,9 +350,22 @@
 /* form css started  */
 .formGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
 
+
+.formGrid .fullRow {
+  grid-column: 1 / span 2;
+}
+
+.formGrid .halfRow:nth-child(odd) {
+  grid-column: span 1;
+}
+
+.formGrid.halfRow:nth-child(even) {
+  grid-column: 2 / span 1;
 }
 
 .formTitle {
@@ -341,21 +376,54 @@
   color: #0099CC;
 }
 
-.input,
-.select {
+.input {
   padding: 7px;
   border: none;
   border-bottom: 2px solid #ddd;
   font-size: 14px;
+  width: 350px;
 }
 
-.input:focus,
+.inputFecha {
+  padding: 7px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 14px;
+  width: 150px;
+}
+
+.selectForm {
+  width: 230px;
+}
+
+.selectForm{
+  grid-column: 1 / -1;
+  /* Establece la columna de inicio y fin */
+}
+
+.formButtons {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+}
+
+
+.input:focus, 
 .select:focus {
   outline: none;
   border-bottom-color: #0099CC;
 }
 
+.inputFecha:focus{
+  outline: none;
+  border-bottom-color: #0099CC;
+}
+/* select de los filtrados en la tabla */
 .select {
+  padding: 7px;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  font-size: 14px;
+  width: 230px;
   appearance: none;
   background-color: white;
   background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
@@ -547,13 +615,14 @@
 }
 
 /* filtrado en el gantt --------------------------------------------------------------- */
-.selectReact{
+.selectReact {
   background-color: white;
   background-repeat: no-repeat;
   background-position: right 10px center;
   padding-right: 10px;
   z-index: 999;
 }
+
 .select:focus {
   outline: none;
   border-bottom-color: #0099CC;
@@ -576,9 +645,9 @@
   animation-name: example;
   animation-duration: 1s;
 }
-.selectFilter{
+
+.selectFilter {
   background-color: #0099CC;
   background-repeat: no-repeat;
   background-position: right 10px center;
 }
-

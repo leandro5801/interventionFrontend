@@ -87,8 +87,8 @@ export default function RecomendationForm({
       <div className={styles.formGrid}>
         <h2 className={styles.formTitle}>Recomendación</h2>
         <div></div>
-        <div>
-          <label htmlFor="name">Nombre:</label>
+        <div className={styles.fullRow}>
+          <label htmlFor="name">Nombre :</label>
           <input
             className={styles.input}
             type="text"
@@ -97,7 +97,7 @@ export default function RecomendationForm({
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-        <div>
+        <div className={styles.fullRow}>
           <label htmlFor="description">Descripción:</label>
           <input
             className={styles.input}
@@ -108,7 +108,7 @@ export default function RecomendationForm({
           />
         </div>
 
-        <div>
+        <div className={styles.halfRow}>
           <label htmlFor="consultor">Consultor:</label>
           <Select
             value={consultor}
@@ -117,8 +117,17 @@ export default function RecomendationForm({
             placeholder="Seleccione..."
           />
         </div>
-
-        <div>
+        <div className={styles.halfRow}>
+          <label htmlFor="classification">Clasificación:</label>
+          <Select
+            value={classification}
+            onChange={handleClassificationChange}
+            options={classificationsOptions}
+            placeholder="Seleccione..."
+          />
+        </div>
+        
+        <div className={styles.halfRow}>
           <label htmlFor="follow">Seguimiento:</label>
           <label className={styles.label}>
             <input
@@ -143,23 +152,15 @@ export default function RecomendationForm({
             No
           </label>
         </div>
-        <div>
-          <label htmlFor="classification">Clasificación:</label>
-          <Select
-            value={classification}
-            onChange={handleClassificationChange}
-            options={classificationsOptions}
-            placeholder="Seleccione..."
-          />
-        </div>
       </div>
-
-      <button className={styles.btn} type="submit">
-        Aceptar
-      </button>
-      <button className={styles.btn} type="button" onClick={onCancel}>
-        Cancelar
-      </button>
+      <div className={styles.formButtons}>
+        <button className={styles.btn} type="submit">
+          Aceptar
+        </button>
+        <button className={styles.btn} type="button" onClick={onCancel}>
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 }
