@@ -1,0 +1,2709 @@
+{
+    "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+    "Trabajadores": [
+        {
+            "Nombre": "LISET  GUERRA  MAHY",
+            "CI": "86110404255",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Cargo": "Secretario Gestor de Archivo                                                                        "
+        },
+        {
+            "Nombre": "LISET  CAÑET  IGLESIAS",
+            "CI": "74051524473",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "  DEPARTAMENTO DE ESTRATEGIA DE ORGANIZACION Y PLANIFICACION DE LA PRODUCCION   ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "LUCILEY  ABREU  HERNANDEZ",
+            "CI": "79060806112",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO ESTRATEGICO DE PLANIFICACION DE LA PROD AMPOLLETAS Y BULBOS (EMPRESA)     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "AYMEE  RODRIGUEZ  MORALES",
+            "CI": "73111501518",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO ESTRATEGICO DE PLANIFICACION DE LA PROD AMPOLLETAS Y BULBOS (EMPRESA)     ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "YANET  RODRIGUEZ  RIVERA",
+            "CI": "88072909412",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO ESTRATEGICO DE PLANIFICACION DE LA PROD AMPOLLETAS Y BULBOS (EMPRESA)     ",
+            "Cargo": "Técnico en Producción                                                                               "
+        },
+        {
+            "Nombre": "YARISLEYDIS  RODRIGUEZ  RIVERA",
+            "CI": "91011429616",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO OPERATIVO DE PLANIFICACIÓN DE LA PRODUCCIÓN DE AMPOLLETAS Y BULBOS(UEB)   ",
+            "Cargo": "Técnico en Producción                                                                               "
+        },
+        {
+            "Nombre": "ARLYN  FONSECA  NUÑEZ",
+            "CI": "78060508896",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO OPERATIVO DE PLANIFICACIÓN DE LA PRODUCCIÓN DE AMPOLLETAS Y BULBOS(UEB)   ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "MAILY  ESTEVEZ  LEYVA",
+            "CI": "74060406713",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE DESARROLLO TECNOLÓGICO                                          ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YEILIN  CARO  ROJAS",
+            "CI": "89112817710",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE DESARROLLO TECNOLÓGICO                                          ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ARLET  LORENZO  SEGUI",
+            "CI": "96050509555",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE DESARROLLO TECNOLÓGICO                                          ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YAMIRA  HERRERA  LEYVA",
+            "CI": "65041826858",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "DEPARTAMENTO DE DESARROLLO TECNOLÓGICO                                          ",
+            "Cargo": "Jefe de Departamento                                                                                "
+        },
+        {
+            "Nombre": "JOHN WILBERT  ARRAZCAETA  CASTRO",
+            "CI": "82032506644",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE VIGILANCIA TECNOLOGICA                                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ARMANDO FELIX  CADIZ  JAHENS",
+            "CI": "47022101063",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE VIGILANCIA TECNOLOGICA                                                 ",
+            "Cargo": "Consultor                                                                                           "
+        },
+        {
+            "Nombre": "JOSÉ LUIS  PÉREZ  QUIÑOY",
+            "CI": "63011512382",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE VIGILANCIA TECNOLOGICA                                                 ",
+            "Cargo": "Consultor                                                                                           "
+        },
+        {
+            "Nombre": "OSMEL  DUPUY  MUÑOZ",
+            "CI": "58092109363",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ALMACÉN DE CUARENTENA                                                           ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "YOARIS  DIME  ELIAS",
+            "CI": "81011822832",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ALMACÉN DE CUARENTENA                                                           ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "DAVID  ESCOBAR  SERRA",
+            "CI": "89110403947",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ALMACÉN DE CUARENTENA                                                           ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "AMANDA  LÓPEZ  ABELENDA",
+            "CI": "99020108033",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ALMACÉN DE CUARENTENA                                                           ",
+            "Cargo": "Manipulador Despachador en Almacenes de Medicamentos                                                "
+        },
+        {
+            "Nombre": "ANA  REGLA  ORTIZ  JARDINEZ",
+            "CI": "70033030593",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MARIA CRISTINA  RIVERO  SUAREZ",
+            "CI": "70112529415",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "JOANNA  PEDRERO  BORBON",
+            "CI": "78120708897",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "LORAINE  FONSECA  CRUZ",
+            "CI": "95031630576",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "SHEILA  CABRERA  BETANCOURT",
+            "CI": "00062268096",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RACHEL  CABRERA  BETANCOURT",
+            "CI": "00062268177",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ROSA  ALVARADO  ALVARADO",
+            "CI": "65122920610",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CARLOS RAFAEL  MOREJÓN  HERNÁNDEZ",
+            "CI": "66030900185",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANAYSA  MIRANDA  LEYVA",
+            "CI": "73062601239",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "AMANDA  PÉREZ  GÁMEZ",
+            "CI": "98052603311",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ODALYS MARIA  GONZALEZ  AGUILA",
+            "CI": "67110503955",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "AUXILIAR INTEGRAL PAAR LA PREPARACION Y ELABORACION DE MEDICAMENTOS (JEFE DE BRIGADA)               "
+        },
+        {
+            "Nombre": "ALINA DEL CARMEN  PEREZ CUBA  VALDES",
+            "CI": "71093002151",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YASSEL  ARGUELLES  HERNANDEZ",
+            "CI": "00110668021",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MAITE  CID  FERNANDEZ",
+            "CI": "73101212793",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "SUNILDA  GAMEZ  VASQUEZ",
+            "CI": "78050100832",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "DARWIN  DUCASSE  MARTIN",
+            "CI": "85031202901",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LAURA  DALYS  VALDÉS",
+            "CI": "96040309610",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JANDY  MARTINEZ  ROJAS",
+            "CI": "97121508140",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ADDIS ELCIS  HECHAVARRIA  ARIAS",
+            "CI": "62030412275",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARIA DE LOS ANGELES  ORTIZ  DEL PINO",
+            "CI": "63011215134",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANA BARBARA  CHONG  QUESADA",
+            "CI": "64050420018",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BARBARA  LUACES  ARJONA",
+            "CI": "64090502177",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RAISA  ENTRAGO  ORTEGA",
+            "CI": "65010604655",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "TANIA  MARIN  PINO",
+            "CI": "65032804051",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SERAFINA  SARRÍA  KESSEL",
+            "CI": "65111604374",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DIAMARA  JIMENEZ  DIAZ",
+            "CI": "68041103778",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "REGLA  FUENTES  ALFONSO",
+            "CI": "69051229795",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANA JULIA  ZAPATIN  CORDOVES",
+            "CI": "69091701614",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BERNYS  CASTILLO  CASTILLO",
+            "CI": "71052501950",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANET  TUDÓ  LUGO",
+            "CI": "71100102450",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARTHA  PEREZ  RAMIREZ",
+            "CI": "71122730790",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ARELIS  NUÑEZ  GUTIERREZ",
+            "CI": "72052310730",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "REBECA  SAEZ  GARCIA",
+            "CI": "72060604517",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAYELIN V  PEREZ  HERNANDEZ",
+            "CI": "73091901030",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANNIA  GONZALEZ  DE LEON",
+            "CI": "74061802352",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ADNAY  RODRIGUEZ  PRIETO",
+            "CI": "74082603666",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "NORAIMA  REYES  PIÑA",
+            "CI": "78101030031",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CARIDAD  OLIVERA  HERRERA",
+            "CI": "79102706676",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOLAIDY  LOYOLA  HERRERA",
+            "CI": "79110206614",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "OSLAYDA  DOMECH  FUNDORA",
+            "CI": "80080807135",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YUNEYSI  STIVEN  RODRIGUEZ",
+            "CI": "81031703676",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MILEIDIS  NUÑEZ  RAMIREZ",
+            "CI": "81091206139",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DANIESKA  STREET  PEREZ",
+            "CI": "81092224651",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YURISNEYDI  MORALES  QUEZADA",
+            "CI": "83022321211",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SUSEL  TORRES  HERNANDEZ",
+            "CI": "83061830419",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LISNODAINES  BETANCOURT  PONCE",
+            "CI": "83071930130",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANISER  VALLE  DIAZ",
+            "CI": "84121500650",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANNIA  GARAY  SUAREZ",
+            "CI": "85101301378",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SONIA  VEGA  LEYVA",
+            "CI": "86060525775",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CARLOS  POLO  GUEDES",
+            "CI": "86070202905",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LESLY  DE LA OSA  CASALLA",
+            "CI": "86080803054",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SARAI  GONZALEZ  ROCHE",
+            "CI": "87021509812",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARIANELA  VARELA  LOZANO",
+            "CI": "88101210257",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DAVID  DIAZ  GONZALES",
+            "CI": "90030623068",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "HAYDEE DE LA CARIDAD  BARÓ  YANIZ",
+            "CI": "90090728991",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DAILIN  GÉRAS  VAZQUEZ",
+            "CI": "76090933316",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ENVASE                                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "KEVIN  MONTES DE OCA  GÓMEZ",
+            "CI": "00112668085",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ELIO LUIS  CORDOVA  YANES",
+            "CI": "75050201827",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOSE ANTONIO  MEJÍCAS  MACEO",
+            "CI": "80111322428",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JAVIER  LARA  MORDOCHE",
+            "CI": "82022608460",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CARLOS  MARTIN  MORAN",
+            "CI": "84043007546",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOAO  HERNÁNDEZ  MÉNDEZ",
+            "CI": "84073106184",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JAVIER  MEJÍCA  ALFONSO",
+            "CI": "89011921303",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ISEL  CARABALLO  DRUYET",
+            "CI": "73062614795",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ESTERILIZACIÓN                                                          ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ANABEL CARIDAD  GONZALEZ  HERNÁNDEZ",
+            "CI": "73032809475",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "JOSÉ  RODRIGUEZ  PERÉZ",
+            "CI": "71061802004",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ROGELIO  LARA  FERIA",
+            "CI": "75111102265",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "DARIEN  VAILLANT  CABARROCA",
+            "CI": "82110108829",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LESTER  GARCIA  LUENGO",
+            "CI": "82121008846",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "DENNIS  MORENO  GUTIERREZ",
+            "CI": "83111330444",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YASSEL  DELGADO  GONZALEZ",
+            "CI": "86082007727",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JOSELEIDY  GONZÁLEZ  CESAR",
+            "CI": "87021904428",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "WILFREDO  TOIRAC  LlÁCER",
+            "CI": "90041248368",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ALEJANDRO GUILLERMO  PUMARIEGA  AYALA",
+            "CI": "92100930769",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LEANDRO  CONCEPCÍON  ORTEGA",
+            "CI": "93052002421",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ALEXANDER NORLAN  ITURRIÓN  HERNÁNDEZ",
+            "CI": "94121929145",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LAZARO  GUERRA  MAHY",
+            "CI": "83112005301",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ANDRES  ALMEIDA  DIAZ",
+            "CI": "94102605009",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YENISBEL  NEGRIN  ARAGON",
+            "CI": "84012215158",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ARELYS  AGUILARTE  PINEDA",
+            "CI": "85010704817",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YADIANNIS  RODRIGUEZ  AREAS",
+            "CI": "85021819934",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "JORDY  MAZÓN  SUÁREZ",
+            "CI": "88021709584",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE ETIQUETADO                                                              ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "RAUL  LOPEZ  MENDOZA",
+            "CI": "58091204160",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "FIDEL  PADILLA  RAVELO",
+            "CI": "66070431304",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ERNESTO  VILLAFUERTE  ROMERO",
+            "CI": "67120830469",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LAZARO J  CASTILLO  LORDEN",
+            "CI": "73052612408",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOAQUIN  OLIVERA  RUIZ",
+            "CI": "73071227961",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORGE LUIS  SEGUI  CAMPOS",
+            "CI": "75112426167",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ROLANDO  RAMIREZ  ACOSTA",
+            "CI": "82092904420",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RENE  VARGAS  ROSALES",
+            "CI": "83071728745",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "VICTOR  CONTRERAS  BLANCO",
+            "CI": "84020704828",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANDY  RODRIGUEZ  BOCOURT",
+            "CI": "84110208067",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EMILIO  TAMARIT  AROZARENA",
+            "CI": "85112507767",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MIGUEL ALEXIS  BELOT  CAMILO",
+            "CI": "87050609801",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YASEL  CASAS  MONTERO",
+            "CI": "89111339549",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ERLAYS  TORRES  PÉREZ",
+            "CI": "92110730608",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RANGEL  SUÁREZ  TREJO",
+            "CI": "96012509503",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ELIANY  URANGA  FUENTES",
+            "CI": "96080509454",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ERNESTO  LUNA  HERNANDEZ",
+            "CI": "68103026828",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos (Jefe de Brigada)               "
+        },
+        {
+            "Nombre": "LLAUNEL  POLO  OÑA",
+            "CI": "81030506128",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JAN LAZARO  GARCIA  TORRES",
+            "CI": "84050102828",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ARNALDO  GARCIA  PEREZ",
+            "CI": "90120203948",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "VICTOR M  ORTIZ  GONZALEZ",
+            "CI": "88081509562",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LAZARO  OLIVA  PALACIOS",
+            "CI": "89122015881",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JESSE  MACIAS  PUIG",
+            "CI": "90111727406",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "HANSER  MAYOR  TOLEDO",
+            "CI": "91112627909",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ALEJANDRO  GARCIA  VARONA",
+            "CI": "77061906789",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZADO Y SISTEMAS DE CARGA                                         ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "MIGUEL A  DIAZ  MARTINEZ",
+            "CI": "63080916325",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZADO Y SISTEMAS DE CARGA                                         ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOAN  CABRERA  GINEBRA",
+            "CI": "74031201924",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZADO Y SISTEMAS DE CARGA                                         ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ALEJANDRO  MALBOA  SÁNCHEZ",
+            "CI": "96052200741",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LIOFILIZADO Y SISTEMAS DE CARGA                                         ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SANDY  CRUZ  CASTILLO",
+            "CI": "88092909644",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANGEL ALBERTO  ANIDO  SAMÓN",
+            "CI": "92090230425",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ISIDRO  SUAREZ  GARCIA",
+            "CI": "78031908726",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos (Jefe de Brigada)               "
+        },
+        {
+            "Nombre": "HECTOR LUCAS  DÍAZ  BALAGUER",
+            "CI": "73112700246",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YOSVANY  CAPOTE  JAIME",
+            "CI": "74093000669",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORGE ALEXEI  GONZÁLEZ  SEDRÉS",
+            "CI": "74123124444",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GRABIEL  ALONSO  PADRON",
+            "CI": "94060329022",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EVANGELIO  DIAZ  NAPOLES",
+            "CI": "61092610385",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "OMAR  RAMIREZ  CHACON",
+            "CI": "68122012480",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "WILFREDO  RIVERA  MANCILLA",
+            "CI": "74121123989",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LIVÁN  PÉREZ  ALVAREZ",
+            "CI": "83111901944",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "KAREL  PERÉZ  GARCIA",
+            "CI": "84061206180",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CHELMI  MULGADO  GARCES",
+            "CI": "84112408663",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EZEQUIEL  GARCIA  VALDEZ",
+            "CI": "85071500187",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MANUEL  ALEMAN  RUIZ",
+            "CI": "87110909505",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ARIEL  HERNÁNDEZ  IBIS",
+            "CI": "88081300162",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORGE ALBERTO  TAMAYO  AGUILAR",
+            "CI": "89013103943",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JOSE RAMON  NUñEZ  SOTO",
+            "CI": "90012923062",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "PEDRO LUIS  GONZÁLEZ  MÁRQUEZ",
+            "CI": "90090428907",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YASIEL  CRUZ  DE LA CRUZ",
+            "CI": "91051629468",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DANIEL  MILÁN  DÍAZ",
+            "CI": "93102926202",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YULIET  PULIDO  PEREZ-CUBA",
+            "CI": "88092940496",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "CARISLEIDY  LEYVA  BORRELL",
+            "CI": "90091728994",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE LLENADO                                                                 ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "NADIA  ISAAC  WATTER",
+            "CI": "73081000418",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YOHANDRA  DOMINGUEZ  GALANO",
+            "CI": "79061318594",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ORLANDO  SOTO  FERREIRO",
+            "CI": "61111900106",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORGE LUIS  DELGADO  POZO",
+            "CI": "73070927720",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JORDAN  GARCIA  PEÑA",
+            "CI": "74091313600",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ADRIAN  IBAÑEZ  JUSTIZ",
+            "CI": "85103007027",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ADRIAN  PUPO  LISABETH",
+            "CI": "86051007702",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EDUARDO R  BUENO  ROMERO",
+            "CI": "88041735149",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ELIO  AMORES  PEREDA",
+            "CI": "89061921769",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YASIEL  CHÁVEZ  RUÍZ",
+            "CI": "89072729968",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EDUARDO  DURANT  SÁNCHEZ",
+            "CI": "90050628583",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YULEXEI  HERRERA  LAERA",
+            "CI": "91041929646",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CECILIA  LINARES  ALONSO",
+            "CI": "82030107614",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "SUSSETTE DELA C.  GIL  ARANGUREN",
+            "CI": "93121007554",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "GRISEL  FABRE  ESCOBAR",
+            "CI": "64102007833",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Auxiliar Integral para la Preparación Y elaborac de Medicamentos                                    "
+        },
+        {
+            "Nombre": "YASIRAKI  JIMENEZ  HONDAREZ",
+            "CI": "74041104996",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Auxiliar Integral para la Preparación Y elaborac de Medicamentos                                    "
+        },
+        {
+            "Nombre": "YAIMA  SANCHEZ  TILAN",
+            "CI": "81031802658",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MATERIALES                                               ",
+            "Cargo": "Auxiliar Integral para la Preparación Y elaborac de Medicamentos                                    "
+        },
+        {
+            "Nombre": "LEONARDO  SARMIENTO  LÓPEZ",
+            "CI": "87051709468",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "HUGO JOSÉ  AMELO  DEL TORO",
+            "CI": "90081846740",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "CLARITZA  TAMAYO  BETANCOURT",
+            "CI": "93100306676",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "DAIRON  ARADO  SERRANO",
+            "CI": "87060805069",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "IHOSVANY  MIRANDA  FONT",
+            "CI": "91071828901",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ARAEL  ALFONSO  CARDERO",
+            "CI": "94100129463",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "ALAIN  HERRADA  CESPEDES",
+            "CI": "80081824944",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "VICTOR  IRIARTE  DOCAMPO",
+            "CI": "91092730024",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "CARLOS E.  GARCIA  GUERRA",
+            "CI": "60022001321",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JUAN OSCAR  TAMAYO  SOTO",
+            "CI": "80012902149",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "AHMED  ALFONSO  ALTUNAGA",
+            "CI": "80112904126",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MICHEL  GALLARDO  SUAREZ",
+            "CI": "81101500502",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "CARLOS OSMEL  PRIETO  TAMAYO",
+            "CI": "88111449840",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ALBERTO  CARBONELL  CRUZ",
+            "CI": "89113000104",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "NODEL  PEREZ  CARDENTEY",
+            "CI": "76072502303",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "ADRIAN  ROJAS  ZAMORA",
+            "CI": "89072620180",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "YOSEL  OLIVA  BENITEZ",
+            "CI": "89092221168",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "LEANDRO  SOTO  PEREZ",
+            "CI": "90081726063",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "RONALD  RIVERO  ANAYA",
+            "CI": "95081130665",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "DANIEL ERNESTO  RODRIGUEZ  SÁEZ",
+            "CI": "97111006900",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "LESLIE  CLAVEL  BRAVET",
+            "CI": "77090311929",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                             ",
+            "Cargo": "Técnico en Elaboración y Formulación de Medicamentos                                                "
+        },
+        {
+            "Nombre": "ERNESTO RAMON  GARCIA  ESTEVÉZ",
+            "CI": "68100802089",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAICKEL  ORBAY  FERNÁNDEZ",
+            "CI": "79121305243",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LUIS ESTEBAN  BROWN  CABRERA",
+            "CI": "91011429624",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BORIS  FRANCEDA  FLEITAS",
+            "CI": "94090128985",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "Operador Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GERMÁN  ÁGUILA  PÉREZ",
+            "CI": "63070315608",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE RETAPE                                                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YANELIS  COSA  FIGUEROA",
+            "CI": "87122906652",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LAZARA LUISA  LUNA  LANDA",
+            "CI": "61071004155",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "AUXILIAR INTEGRAL PAAR LA PREPARACION Y ELABORACION DE MEDICAMENTOS (JEFE DE BRIGADA)               "
+        },
+        {
+            "Nombre": "MAYBEL  ARCE  DOMINGUEZ",
+            "CI": "85090908899",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "AUXILIAR INTEGRAL PAAR LA PREPARACION Y ELABORACION DE MEDICAMENTOS (JEFE DE BRIGADA)               "
+        },
+        {
+            "Nombre": "MAGALYS  DIAZ  VALDES",
+            "CI": "60071803851",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MERCEDES  VENEREO  REINOSO",
+            "CI": "62090204975",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LOURDES  RIGORES  PEREZ",
+            "CI": "62103101739",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DALGIS  PEÑA  VEGA",
+            "CI": "63091622955",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAGALYS  ORTÍZ  HIDALGO",
+            "CI": "63101520431",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BERTHA IVONNNE  TORTOLO  LEMES",
+            "CI": "64010413055",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "CARLOS ALBERTO  MUÑOZ  MOREJON",
+            "CI": "64052714162",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAITÉ  TORRES  DIAZ",
+            "CI": "64090230372",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "GRISELDA  PIMENTEL  RODRIGUEZ",
+            "CI": "67063013916",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "RAIZA  LEON  FERNANDEZ",
+            "CI": "67112314378",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "BLANCA  FERNANDEZ  RONDON",
+            "CI": "68090531114",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "TANIA  CASAMAYOR  VALDES",
+            "CI": "69010926558",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "OFELIA M.  ROJAS  OCHOA",
+            "CI": "69082706178",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "WILMA  NUÑES  SEGUI",
+            "CI": "73032533032",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YAMIRAQUI V  PEREZ  HERNANDEZ",
+            "CI": "73091901056",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YANET  CHACON  TORRES",
+            "CI": "75101726651",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "DAIMI  HERRERA  ROMERO",
+            "CI": "76021602257",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YUDANIA  COTE  MARTEN",
+            "CI": "78032830879",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "VIRGEN MAYELIN  OSES  HERNANDEZ",
+            "CI": "78041708673",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "ANIUSKA  HERRERA  SANTIESTEBAN",
+            "CI": "85051708016",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MAYRELIS  HERNANDEZ  GONZALEZ",
+            "CI": "85111208019",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "SAYLY  CHACON  TORRES",
+            "CI": "88060509793",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "EMILCE  CAMPOS  GUERRERO",
+            "CI": "90111328430",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "LOURDES  GONZÁLEZ  PÉREZ",
+            "CI": "64091315751",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "YAMILÉ  LIMENDÚ  LINCE",
+            "CI": "74070333352",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "MARIA DE LOS ANGELES  GONZALEZ  OLIVA",
+            "CI": "79011306652",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "JANAJIRSA  TRIMIÑO  ALVAREZ",
+            "CI": "79050206310",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "WILMER LÁZARO  VÁZQUEZ  JEREZ",
+            "CI": "86041206980",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Auxiliar Integral para la Preparación y Elaboración de Medicamentos                                 "
+        },
+        {
+            "Nombre": "FELICIA  VERDECIA  PEREZ",
+            "CI": "68042726016",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "VIVIAN  C.  SANCHEZ  GONZALEZ",
+            "CI": "71080829895",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "IRAN  PELAY  BORRELL",
+            "CI": "76021041087",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ENRIQUE  ARENCIBIA  CAPOTE",
+            "CI": "78030809288",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "DAYAMY  ALFONSO  POEY",
+            "CI": "79052806116",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "OSCAR A  CUETO  CHACÓN",
+            "CI": "83072927342",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LUIS  GÓMEZ  RODRIGUEZ",
+            "CI": "91101429649",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YANET  BELTRÁN  MOISÉS",
+            "CI": "95090240354",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE REVISIÓN                                                                ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "FRANCISCA  BOCOURT  SANTACRUZ",
+            "CI": "65100415437",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "AUXILIAR INTEGRAL PAAR LA PREPARACION Y ELABORACION DE MEDICAMENTOS (JEFE DE BRIGADA)               "
+        },
+        {
+            "Nombre": "GRENDA  DIGURNAY  DUMOY",
+            "CI": "77050625697",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "AUXILIAR INTEGRAL PAAR LA PREPARACION Y ELABORACION DE MEDICAMENTOS (JEFE DE BRIGADA)               "
+        },
+        {
+            "Nombre": "ALAIN FRANCISCO  NEGRIN  GARCIA",
+            "CI": "01071168082",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ALEXIS  RODRIGUEZ  SAN MARTIN",
+            "CI": "69080612488",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "RAFAEL  JAÉN  ORTEGA",
+            "CI": "71060901384",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JESSICA  AROCHA  COLLADO",
+            "CI": "71082514412",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "EVGUENI  RODRIGUEZ  PERÉZ",
+            "CI": "81040701869",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YASSER  FUENTES  FUENTES",
+            "CI": "81110606006",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JORGE  CABRALES  MURGADO",
+            "CI": "82071208665",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "FÉLIX GRABIEL  MESA  ESPINO",
+            "CI": "82082606622",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LEONARDO  AGUILERA  PEREZ",
+            "CI": "83090927544",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YUNIER  CUESTA  ARIAS",
+            "CI": "84080104884",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "ALVARO MIGUEL  ANIAS  GARCIA",
+            "CI": "90102840263",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "YUNIER  ARGUDIN  DEL PINO",
+            "CI": "91063022282",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "JORGE  SARMIENTO  MONTERO",
+            "CI": "91102024688",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "LUIS  GILIMAS  PADRON",
+            "CI": "95120830669",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "IDANIA  ROJO  TORRES",
+            "CI": "83092329776",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "ÁREA DE TRASVASO AUTOMÁTICO                                                     ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "AGUSTIN  ARANGO  RIVAS",
+            "CI": "73011309185",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "CONTADORA DE BULBOS                                                             ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "MAYKEL  ACOSTA  ROBAINA",
+            "CI": "76102701823",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "CONTADORES DE BULBOS                                                            ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "PAVEL  HECHAVARRIA  LÓPEZ",
+            "CI": "85072804885",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "CONTADORES DE BULBOS                                                            ",
+            "Cargo": "Operador de Equipo de Producción de Medicamentos                                                    "
+        },
+        {
+            "Nombre": "SURAY  ARRIBA  BOCALANDRO",
+            "CI": "74041102295",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DROGAS                                                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "LIDAME  RODRIGUEZ  QUINTERO",
+            "CI": "74102502394",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE DROGAS                                                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "NOEL  LÓPEZ  PEDROSO",
+            "CI": "70060205022",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE DROGAS                                                                 ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "RINIELA  MARTIN  LAGO",
+            "CI": "66080309258",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "MILAGROS IVONNE  FRANCIA  RODRIGUEZ",
+            "CI": "64090331136",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "SENAIDA  AZAHARES  RODRIGUEZ",
+            "CI": "67122830554",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "ELIZABETH  RODRIGUEZ  BALSINDE",
+            "CI": "68111201416",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "LUGMILA  ALMEIDA  VARGAS",
+            "CI": "76071911257",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": " YICELL  JAMES  LÓPEZ",
+            "CI": "77060306619",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "MEYBIS  GONZÁLEZ  ORDOVÁZ",
+            "CI": "88010809591",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "ELOINA  LOZANO  LABAÑINO",
+            "CI": "88041235131",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "DAIMARYS  ROBERT  DESPAIGNE",
+            "CI": "92050905713",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                        ",
+            "Cargo": "Auxiliar General de Servicios                                                                       "
+        },
+        {
+            "Nombre": "SOLANGE  CORDOVES  RODRIGUEZ",
+            "CI": "03052766918",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "LUZ DEIVIS  CARABALLO  DRUYET",
+            "CI": "71102316631",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YAUMARA  SANCHEZ  RIVAS",
+            "CI": "77121200217",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "GRETER  SANCHEZ  ISACC",
+            "CI": "83080706336",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MARIA DE JESUS  ARANZOLA  MACIAS",
+            "CI": "89021703951",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MISLEYDIS  LOPEZ  CHIVAS",
+            "CI": "89062045859",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "PATRICIA  MÍGUEZ  ARTEAGA",
+            "CI": "90021527556",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MILAGROS HUTZARO  GONZALEZ  GARCIA",
+            "CI": "90080129218",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "DAYANA LÁZARA  AMADOR  FERNÁNDEZ",
+            "CI": "94021304912",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "LISANDRA  CASTRILLO  SOTOMAYOR",
+            "CI": "95051305010",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MABEL THAYLIS  TORRES  ESCOBAR",
+            "CI": "98081207477",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ZUREIMI  ALVAREZ  CASTILLO",
+            "CI": "77082907910",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE INSPECTORES DE PROCESOS                                                ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "REBECA  GONZALEZ  MARRERO",
+            "CI": "63091402452",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE LIBERACIÓN INTERMEDIA                                                  ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YANET  MENENDEZ  VELASQUEZ",
+            "CI": "73122823957",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE LIBERACIÓN INTERMEDIA                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "ARISLEYSI  TORRES  SUAREZ",
+            "CI": "78010308652",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE LIBERACIÓN INTERMEDIA                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "YISELL  MARTINEZ  LÓPEZ",
+            "CI": "84051904972",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE LIBERACIÓN INTERMEDIA                                                  ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "OTTO  REYES  PINO",
+            "CI": "65091721545",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE VALIDACIÓN                                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "OSNIEL  MUCHULÍ  MORALES",
+            "CI": "85010504885",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE VALIDACIÓN                                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "YOSVANY  PEREZ  LAZO",
+            "CI": "88072509408",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "GRUPO DE VALIDACIÓN                                                             ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "IVON  CASTRO  RODRIGUEZ",
+            "CI": "79080900114",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "GRUPO DE VALIDACIÓN                                                             ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "NOELI  TARRAGO  SARDA",
+            "CI": "70091514438",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "YUSIMI  HERNANDEZ  VILLAVICENCIO",
+            "CI": "71010329215",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "DEYSI  VALDES  ORAMA",
+            "CI": "77091306595",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YUDELMIS  MUÑOZ  GARCES",
+            "CI": "80080806634",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "ZULEYMI  ALVAREZ  CASTILLO",
+            "CI": "80110507473",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "DAILYN  JIMENEZ  MONTES OCA",
+            "CI": "81051806614",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "GREIS MARGARITA  BETANCOURT  GIL",
+            "CI": "92123130574",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "DANAY lAZÁRA  AMADOR  FERNÁNDEZ",
+            "CI": "94021304938",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "GEORGINA D  BENITEZ  GUTIERREZ",
+            "CI": "94110129075",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                 ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "YURIEM  GOMEZ  PLAZAOLA",
+            "CI": "79010606130",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE BULBOS                                     ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "LETICIA  VALDES  TRIGUERO",
+            "CI": "70122701556",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE BULBOS                                     ",
+            "Cargo": "Especialista en Ensayos de Laboratorios                                                             "
+        },
+        {
+            "Nombre": "ROSMERY  RODRIGUEZ  GONZÁLEZ",
+            "CI": "92022443850",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE BULBOS                                     ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "JESSICA  DORIMON  CASTILLO",
+            "CI": "92030925955",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "LABORATORIO DE CONTROL DE PROCESO DE BULBOS                                     ",
+            "Cargo": "Técnico en Ensayos de Laboratorios                                                                  "
+        },
+        {
+            "Nombre": "LAURA  MARTINEZ  TORRES",
+            "CI": "98051908572",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTA DE BULBOS                                                                ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "EMILY  ROSABAL  FONSECA",
+            "CI": "03110368050",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTA DE BULBOS                                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "JESUS  SUAREZ  DIEGUEZ",
+            "CI": "83012630448",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTA DE BULBOS                                                                ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "MIGUEL ANGEL  ALONSO  BLANCO",
+            "CI": "70122511668",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Especialista Principal                                                                              "
+        },
+        {
+            "Nombre": "ALENIA  TORRES  MARTINEZ",
+            "CI": "81112806610",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Secretario Gestor de Archivo                                                                        "
+        },
+        {
+            "Nombre": "LILIAM  BENTAMI  LLANES",
+            "CI": "89031419295",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Especialista en Gestion de la Calidad                                                               "
+        },
+        {
+            "Nombre": "RAUMEL  RODRIGUEZ  VALDÉS",
+            "CI": "92013022100",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Planta                                                                                      "
+        },
+        {
+            "Nombre": "AIMARA  GUZMAN  GONZÁLEZ",
+            "CI": "72042501038",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "ARIEL  PIRES  GONZALEZ",
+            "CI": "76121602347",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "BEYKEL  LOPEZ  NOY",
+            "CI": "80050616342",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "GLENDA LIUVA  PEREZ  RODRIGUEZ",
+            "CI": "80111806317",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "JORGE RAMÓN  FERNÁNDEZ  DE LA FÉ",
+            "CI": "86122508049",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTA DE PRODUCCIÓN                                                            ",
+            "Cargo": "Jefe de Turno de Producción                                                                         "
+        },
+        {
+            "Nombre": "RODOLFO CATALINO  QUINTERO  JIMENEZ",
+            "CI": "59112500408",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTAS DE AMPOLLETAS                                                           ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "DANIELLYS  LÉON  MONTERO",
+            "CI": "82061308471",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTAS DE AMPOLLETAS                                                           ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "LISBET  ALVAREZ  MORALES",
+            "CI": "99060505699",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "PLANTAS DE AMPOLLETAS                                                           ",
+            "Cargo": "Tecnólogo de Procesos Industriales                                                                  "
+        },
+        {
+            "Nombre": "FRANCISCO RAFAEL  MARTI  ARREDONDO",
+            "CI": "88110934907",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "PLANTAS DE AMPOLLETAS                                                           ",
+            "Cargo": "Técnico de Procesos Industriales                                                                    "
+        },
+        {
+            "Nombre": "GLADYS  PUENTE  GATO",
+            "CI": "63111140699",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "JUAN CARLOS  CAMPOS  SEN",
+            "CI": "64121630687",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ELEIDA  MATOS  SÁNCHEZ",
+            "CI": "68040825898",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "MARIA LUISA  MOLINA  BOM",
+            "CI": "68082030552",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "VILMA  ACOSTA  GARCIA",
+            "CI": "73100328957",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "IVON  ALBA  CARRANDI",
+            "CI": "76031202318",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "MICHEL  JEREZ  GONZALEZ",
+            "CI": "77050702300",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "FRANQUI ALEXIS  GARCIA  ALFONSO",
+            "CI": "78011408748",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "FRANCIS YALEXIS  DUARTE  GARCIA",
+            "CI": "82102901912",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "YESENIA  JAIME  LOPEZ",
+            "CI": "84022822892",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "CARLOS ENRIQUE  ECHEVERRIA  HAUTRIVE",
+            "CI": "86090129062",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "LILIANA  RODRIGUEZ  MARTINEZ",
+            "CI": "91040529558",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ROSMERY DE LA CARIDAD  HERNÁNDEZ  CORREA",
+            "CI": "93090503055",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "YUNISLEIDY  SEMANAT  LÁZARO",
+            "CI": "94032728894",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "MARIA DEL CARMEN  OSUNA  MADERA",
+            "CI": "64053005079",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "NEREIDA  REYES  MARTINEZ",
+            "CI": "71072006954",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ANA IRIS  GARCIA  HECHAVARRIA",
+            "CI": "71102902238",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "LAYDI  MUJICA  PADRON",
+            "CI": "76092802278",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "YENISET  GONZALEZ  CORDOVA",
+            "CI": "79011802399",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "MAYELIN  FONSECA  RACERO",
+            "CI": "81101607037",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "LEIDIANA  ALONSO  SANTANA",
+            "CI": "85081301399",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "F",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "SIGNEY  CASTILLA  RIVERO",
+            "CI": "89011129943",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "YASMANY  PONCE  VALDES",
+            "CI": "91020627946",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        },
+        {
+            "Nombre": "ORLIS  GONZÁLEZ  REYES",
+            "CI": "95052218046",
+            "Unidad": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    ",
+            "Sexo": "M",
+            "Area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                               ",
+            "Cargo": "Auxiliar de Higienización de Salas Blancas                                                          "
+        }
+    ]
+}

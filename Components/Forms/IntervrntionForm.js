@@ -23,8 +23,15 @@ export default function FormUpdateIntervention({
   consultores,
   process,
   trabDirProdCit,
+  trabCalidadCit,
+  trabDireccionCit,
   trabDirProdLior,
   trabDireccionLior,
+  trabCalidadLior,
+  trabDirProdAica,
+  trabCalidadSh,
+  trabDireccionSh,
+  trabDirProdJt,
 }) {
   const [name, setName] = useState(intervention ? intervention.name : "");
   const [description, setDescription] = useState(
@@ -121,6 +128,38 @@ export default function FormUpdateIntervention({
         }));
   } else if (
     selectedUeb &&
+    selectedUeb.value === "CITOSTÁTICOS" &&
+    selectedStructure &&
+    selectedStructure.value === "Departamento de Calidad"
+  ) {
+    trabajadoresOptions =
+      trabCalidadCit &&
+      trabCalidadCit
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "CITOSTÁTICOS" &&
+    selectedStructure &&
+    selectedStructure.value === "Departamento de Direción"
+  ) {
+    trabajadoresOptions =
+      trabDireccionCit &&
+      trabDireccionCit
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
     selectedUeb.value === "LIORAD" &&
     selectedStructure &&
     selectedStructure.value === "Dirección Técnico Productiva"
@@ -144,6 +183,86 @@ export default function FormUpdateIntervention({
     trabajadoresOptions =
       trabDireccionLior &&
       trabDireccionLior
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "LIORAD" &&
+    selectedStructure &&
+    selectedStructure.value === "Departamento de Calidad"
+  ) {
+    trabajadoresOptions =
+      trabCalidadLior &&
+      trabCalidadLior
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "AICA" &&
+    selectedStructure &&
+    selectedStructure.value === "Dirección Técnico Productiva"
+  ) {
+    trabajadoresOptions =
+      trabDirProdAica &&
+      trabDirProdAica
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "SH+" &&
+    selectedStructure &&
+    selectedStructure.value === "Departamento de Calidad"
+  ) {
+    trabajadoresOptions =
+      trabCalidadSh &&
+      trabCalidadSh
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "SH+" &&
+    selectedStructure &&
+    selectedStructure.value === "Departamento de Direción"
+  ) {
+    trabajadoresOptions =
+      trabDireccionSh &&
+      trabDireccionSh
+        .filter((item) =>
+          selectedArea ? item.Area === selectedArea.value : false
+        )
+        .map((item) => ({
+          value: item.Nombre,
+          label: item.Nombre,
+        }));
+  } else if (
+    selectedUeb &&
+    selectedUeb.value === "JULIO TRIGO" &&
+    selectedStructure &&
+    selectedStructure.value === "Dirección Técnico Productiva"
+  ) {
+    trabajadoresOptions =
+      trabDirProdJt &&
+      trabDirProdJt
         .filter((item) =>
           selectedArea ? item.Area === selectedArea.value : false
         )

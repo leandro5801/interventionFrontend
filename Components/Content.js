@@ -29,8 +29,14 @@ function Content({
   consultores,
   process,
   trabDirProdCit,
+  trabCalidadCit,
+  trabDireccionCit,
   trabDirProdLior,
   trabDireccionLior,
+  trabCalidadLior,
+  trabCalidadSh,
+  trabDireccionSh,
+  trabDirProdJt,
   dialogRecomendationOpen,
   setDialogRecomendationOpen,
 }) {
@@ -195,8 +201,14 @@ function Content({
                   consultores={consultores}
                   process={process}
                   trabDirProdCit={trabDirProdCit}
+                  trabCalidadCit={trabCalidadCit}
+                  trabDireccionCit={trabDireccionCit}
                   trabDirProdLior={trabDirProdLior}
                   trabDireccionLior={trabDireccionLior}
+                  trabCalidadLior={trabCalidadLior}
+                  trabCalidadSh={trabCalidadSh}
+                  trabDireccionSh={trabDireccionSh}
+                  trabDirProdJt={trabDirProdJt}
                 />
               </Dialog>
             </div>

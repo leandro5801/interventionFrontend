@@ -16,8 +16,15 @@ function Header({
   consultores,
   process,
   trabDirProdCit,
+  trabCalidadCit,
+  trabDireccionCit,
   trabDirProdLior,
   trabDireccionLior,
+  trabCalidadLior,
+  trabDirProdAica,
+  trabCalidadSh,
+  trabDireccionSh,
+  trabDirProdJt,
   classifications,
 }) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
@@ -61,8 +68,15 @@ function Header({
             consultores={consultores}
             process={process}
             trabDirProdCit={trabDirProdCit}
+            trabCalidadCit={trabCalidadCit}
+            trabDireccionCit={trabDireccionCit}
             trabDirProdLior={trabDirProdLior}
             trabDireccionLior={trabDireccionLior}
+            trabCalidadLior={trabCalidadLior}
+            trabDirProdAica={trabDirProdAica}
+            trabCalidadSh={trabCalidadSh}
+            trabDireccionSh={trabDireccionSh}
+            trabDirProdJt={trabDirProdJt}
           />
         </Dialog>
         <Dialog

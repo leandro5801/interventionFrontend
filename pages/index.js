@@ -38,8 +38,16 @@ export default function Home() {
 
   //trabajadores
   const [trabDirProdCit, setTrabDirProdCit] = useState(null);
+  const [trabCalidadCit, setTrabCalidadCit] = useState(null);
+  const [trabDireccionCit, setTrabDireccionCit] = useState(null);
   const [trabDirProdLior, setTrabDirProdLior] = useState(null);
   const [trabDireccionLior, setTrabDireccionLior] = useState(null);
+  const [trabCalidadLior, setTrabCalidadLior] = useState(null);
+  const [trabDirProdAica, setTrabDirProdAica] = useState(null);
+  const [trabCalidadSh, setTrabCalidadSh] = useState(null);
+  const [trabDireccionSh, setDireccionSh] = useState(null);
+  const [trabDirProdJt, setTrabDirProdJt] = useState(null);
+  
 
   // Cargando los datos de los procesos
   useEffect(() => {
@@ -58,6 +66,27 @@ export default function Home() {
     client("DirTecProdCit.json").then(
       (trabajador) => {
         setTrabDirProdCit(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    client("DptoCalidadCit.json").then(
+      (trabajador) => {
+        setTrabCalidadCit(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+  useEffect(() => {
+    client("DptoDireccionCit.json").then(
+      (trabajador) => {
+        setTrabDireccionCit(trabajador?.Trabajadores);
       },
       (error) => {
         console.error("Error: ", error);
@@ -86,6 +115,70 @@ export default function Home() {
       }
     );
   }, []);
+  useEffect(() => {
+    client("DptoCalidadLior.json").then(
+      (trabajador) => {
+        setTrabCalidadLior(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    client("DirTecProdAica.json").then(
+      (trabajador) => {
+        setTrabDirProdAica(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+  useEffect(() => {
+    client("DptoCalidadSh.json").then(
+      (trabajador) => {
+        setTrabCalidadSh(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+
+  useEffect(() => {
+    client("DptoDireccionSh.json").then(
+      (trabajador) => {
+        setDireccionSh(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+  useEffect(() => {
+    client("DptoDireccionSh.json").then(
+      (trabajador) => {
+        setDireccionSh(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+  useEffect(() => {
+    client("DirTecProdJt.json").then(
+      (trabajador) => {
+        setTrabDirProdJt(trabajador?.Trabajadores);
+      },
+      (error) => {
+        console.error("Error: ", error);
+      }
+    );
+  }, []);
+
+// console.log(trabDireccionSh)
 
   //Para modificar una intervencion
 
@@ -101,7 +194,7 @@ export default function Home() {
     );
   }, []);
 
-// console.log(trabDireccionLior);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -126,8 +219,15 @@ export default function Home() {
         consultores={consultores}
         process={process}
         trabDirProdCit={trabDirProdCit}
+        trabCalidadCit={trabCalidadCit}
+        trabDireccionCit={trabDireccionCit}
         trabDirProdLior={trabDirProdLior}
         trabDireccionLior={trabDireccionLior}
+        trabCalidadLior={trabCalidadLior}
+        trabDirProdAica={trabDirProdAica}
+        trabDireccionSh={trabDireccionSh}
+        trabCalidadSh={trabCalidadSh}
+        trabDirProdJt={trabDirProdJt}
         classifications={classifications}
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
@@ -146,8 +246,15 @@ export default function Home() {
         consultores={consultores}
         process={process}
         trabDirProdCit={trabDirProdCit}
+        trabCalidadCit={trabCalidadCit}
+        trabDireccionCit={trabDireccionCit}
         trabDirProdLior={trabDirProdLior}
         trabDireccionLior={trabDireccionLior}
+        trabCalidadLior={trabCalidadLior}
+        trabDirProdAica={trabDirProdAica}
+        trabCalidadSh={trabCalidadSh}
+        trabDireccionSh={trabDireccionSh}
+        trabDirProdJt={trabDirProdJt}
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
       />
