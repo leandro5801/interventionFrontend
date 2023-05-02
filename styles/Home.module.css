@@ -306,9 +306,8 @@
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  width: 800px;
-  height: 520px;
-  max-width: 500px;
+  width: 550px;
+  height: 570px; 
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 }
 /* formulario de recomendaciones */
@@ -317,7 +316,7 @@
   padding: 20px;
   border-radius: 10px;
   width: 800px;
-  height: 340px;
+  height: 440px;
   max-width: 500px;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 }
@@ -326,9 +325,8 @@
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  width: 800px;
-  height: 400px;
-  max-width: 500px;
+  width: 510px;
+  height: 510px;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 }
 
@@ -352,12 +350,22 @@
   display: grid;
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 18px;
 }
 
 
 .formGrid .fullRow {
+  position: relative;
   grid-column: 1 / span 2;
+}
+.formGrid .halfRow{
+  position: relative;
+}
+.error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color:brown;
 }
 
 .formGrid .halfRow:nth-child(odd) {
@@ -381,7 +389,7 @@
   border: none;
   border-bottom: 2px solid #ddd;
   font-size: 14px;
-  width: 350px;
+  width: 400px;
 }
 
 .inputFecha {
@@ -403,7 +411,7 @@
 
 .formButtons {
   grid-column: 1 / -1;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 

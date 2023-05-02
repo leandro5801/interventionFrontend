@@ -3,6 +3,12 @@ import Select from "react-select";
 
 import { useState, useEffect } from "react";
 
+//validaciones
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useFormik } from "formik";
+import { validationSchema } from "../../validations/validationR";
+
 export default function RecomendationForm({
   recomendations,
   setTableRData,
@@ -39,29 +45,38 @@ export default function RecomendationForm({
       : null
   );
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Crea un objeto con los datos actualizados de la fila
+  // form validation rules
+  const formOptions = { resolver: yupResolver(validationSchema) };
+
+  // get functions to build form with useForm() hook
+  const { register, setValue, handleSubmit, reset, formState } =
+    useForm(formOptions);
+  const { errors } = formState;
+
+  function onSubmit(data) {
     const updatedRow = {
       id: recomendation ? recomendation.id : recomendations.length + 1,
       idIntervention: selectedIntervention.id,
-      name,
-      description,
-      consultor: consultor.value,
-      follow,
-      classification: classification.value,
+      name: data.name,
+      description: data.description,
+      consultor: data.consultor,
+      follow: follow,
+      classification: data.classification,
     };
     setTableRData(
       recomendation ? updatedRow : (prevData) => [...prevData, updatedRow]
     );
-
+    setTableRData(
+      recomendation ? updatedRow : (prevData) => [...prevData, updatedRow]
+    );
     onSave();
     if (!recomendation) {
       setRecomendations([...recomendations, updatedRow]);
     }
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
-  };
+  }
+
   const handleClassificationChange = (newValue) => {
     setClassification({ label: newValue.value, value: newValue.value });
   };
@@ -83,50 +98,74 @@ export default function RecomendationForm({
     }));
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className={styles.formGrid}>
         <h2 className={styles.formTitle}>Recomendación</h2>
         <div></div>
         <div className={styles.fullRow}>
-          <label htmlFor="name">Nombre :</label>
+          <label htmlFor="name">Recomendación:</label>
           <input
-            className={styles.input}
+            value={name}
+            className={`${styles.input}  ${errors.name ? "is-invalid" : ""}`}
             type="text"
             id="name"
-            value={name}
+            {...register("name")}
             onChange={(event) => setName(event.target.value)}
           />
+          <div className={styles.error}>{errors.name?.message}</div>
         </div>
         <div className={styles.fullRow}>
           <label htmlFor="description">Descripción:</label>
           <input
-            className={styles.input}
+            value={description}
+            className={`${styles.input}  ${
+              errors.description ? "is-invalid" : ""
+            }`}
             type="text"
             id="description"
-            value={description}
+            {...register("description")}
             onChange={(event) => setDescription(event.target.value)}
           />
+          <div className={styles.error}>{errors.description?.message}</div>
         </div>
 
         <div className={styles.halfRow}>
           <label htmlFor="consultor">Consultor:</label>
           <Select
             value={consultor}
-            onChange={handleConsultorChange}
+            id="consultor"
+            {...register("consultor")}
+            className={`${styles.selectForm}  ${
+              errors.consultor ? "is-invalid" : ""
+            }`}
+            onChange={(selectedOption) => {
+              handleConsultorChange(selectedOption);
+              setValue("consultor", selectedOption.label);
+            }}
             options={consultoresOptions}
             placeholder="Seleccione..."
           />
+          <div className={styles.error}>{errors.consultor?.message}</div>
         </div>
         <div className={styles.halfRow}>
           <label htmlFor="classification">Clasificación:</label>
           <Select
             value={classification}
-            onChange={handleClassificationChange}
+            id="classification"
+            {...register("classification")}
+            className={`${styles.selectForm}  ${
+              errors.classification ? "is-invalid" : ""
+            }`}
+            onChange={(selectedOption) => {
+              handleClassificationChange(selectedOption);
+              setValue("classification", selectedOption.label);
+            }}
             options={classificationsOptions}
             placeholder="Seleccione..."
           />
+          <div className={styles.error}>{errors.classification?.message}</div>
         </div>
-        
+
         <div className={styles.halfRow}>
           <label htmlFor="follow">Seguimiento:</label>
           <label className={styles.label}>
@@ -159,6 +198,9 @@ export default function RecomendationForm({
         </button>
         <button className={styles.btn} type="button" onClick={onCancel}>
           Cancelar
+        </button>
+        <button className={styles.btn} type="button" onClick={() => reset()}>
+          Reset
         </button>
       </div>
     </form>
