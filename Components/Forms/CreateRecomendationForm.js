@@ -48,7 +48,7 @@ export default function CreateRecomendationForm({
     setRecomendations([...recomendations, updatedRow]);
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
-  };
+  }
 
   const handleInterventionChange = (newValue) => {
     setIntervention({ label: newValue.value, value: newValue.value });
@@ -168,6 +168,7 @@ export default function CreateRecomendationForm({
               type="radio"
               name="follow"
               value="Sí"
+              {...register("follow")}
               checked={follow === "Sí"}
               onChange={(event) => setFollow(event.target.value)}
             />
@@ -179,12 +180,17 @@ export default function CreateRecomendationForm({
               type="radio"
               name="follow"
               value="No"
+              {...register("follow")}
               checked={follow === "No"}
               onChange={(event) => setFollow(event.target.value)}
             />
             No
           </label>
+          {errors.follow && (
+            <div className="invalid-feedback">{errors.follow.message}</div>
+          )}
         </div>
+        <div></div>
       </div>
       <div className={styles.formButtons}>
         <button className={styles.btn} type="submit">
@@ -193,9 +199,9 @@ export default function CreateRecomendationForm({
         <button className={styles.btn} type="button" onClick={onCancel}>
           Cancelar
         </button>
-        <button className={styles.btn} type="button" onClick={() => reset()}>
+        {/* <button className={styles.btn} type="button" onClick={() => reset()}>
           Reset
-        </button>
+        </button> */}
       </div>
     </form>
   );

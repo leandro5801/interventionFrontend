@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 //validaciones
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller } from "react-hook-form";
 import { useFormik } from "formik";
 import { validationSchema } from "../../validations/validationR";
 
@@ -45,11 +46,19 @@ export default function RecomendationForm({
       : null
   );
 
+  const defaultValues = {
+    consultor: consultor,
+    classification: classification,
+  };
+
   // form validation rules
-  const formOptions = { resolver: yupResolver(validationSchema) };
+  const formOptions = {
+    resolver: yupResolver(validationSchema),
+    defaultValues,
+  };
 
   // get functions to build form with useForm() hook
-  const { register, setValue, handleSubmit, reset, formState } =
+  const { register, control, setValue, handleSubmit, reset, formState } =
     useForm(formOptions);
   const { errors } = formState;
 
@@ -59,13 +68,10 @@ export default function RecomendationForm({
       idIntervention: selectedIntervention.id,
       name: data.name,
       description: data.description,
-      consultor: data.consultor,
+      consultor: data.consultor.value,
       follow: follow,
-      classification: data.classification,
+      classification: classification.value,
     };
-    setTableRData(
-      recomendation ? updatedRow : (prevData) => [...prevData, updatedRow]
-    );
     setTableRData(
       recomendation ? updatedRow : (prevData) => [...prevData, updatedRow]
     );
@@ -110,7 +116,9 @@ export default function RecomendationForm({
             type="text"
             id="name"
             {...register("name")}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
           />
           <div className={styles.error}>{errors.name?.message}</div>
         </div>
@@ -131,39 +139,55 @@ export default function RecomendationForm({
 
         <div className={styles.halfRow}>
           <label htmlFor="consultor">Consultor:</label>
-          <Select
-            value={consultor}
-            id="consultor"
-            {...register("consultor")}
-            className={`${styles.selectForm}  ${
-              errors.consultor ? "is-invalid" : ""
-            }`}
-            onChange={(selectedOption) => {
-              handleConsultorChange(selectedOption);
-              setValue("consultor", selectedOption.label);
-            }}
-            options={consultoresOptions}
-            placeholder="Seleccione..."
+          <Controller
+            name="consultor"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="consultor"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.consultor ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleConsultorChange(selectedOption);
+                  setValue("consultor", selectedOption);
+                  field.onChange(selectedOption);
+                }}
+                options={consultoresOptions}
+                placeholder="Seleccione..."
+              />
+            )}
           />
-          <div className={styles.error}>{errors.consultor?.message}</div>
+          {errors.consultor && (
+            <div className={styles.error}>Seleccione un consultor.</div>
+          )}
         </div>
         <div className={styles.halfRow}>
           <label htmlFor="classification">Clasificación:</label>
-          <Select
-            value={classification}
-            id="classification"
-            {...register("classification")}
-            className={`${styles.selectForm}  ${
-              errors.classification ? "is-invalid" : ""
-            }`}
-            onChange={(selectedOption) => {
-              handleClassificationChange(selectedOption);
-              setValue("classification", selectedOption.label);
-            }}
-            options={classificationsOptions}
-            placeholder="Seleccione..."
+          <Controller
+            name="classification"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="classification"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.classification ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleClassificationChange(selectedOption);
+                  setValue("classification", selectedOption);
+                  field.onChange(selectedOption);
+                }}
+                options={classificationsOptions}
+                placeholder="Seleccione..."
+              />
+            )}
           />
-          <div className={styles.error}>{errors.classification?.message}</div>
+          {errors.classification && (
+            <div className={styles.error}>Seleccione una clasificación.</div>
+          )}
         </div>
 
         <div className={styles.halfRow}>
@@ -174,6 +198,7 @@ export default function RecomendationForm({
               type="radio"
               name="follow"
               value="Sí"
+              {...register("follow")}
               checked={follow === "Sí"}
               onChange={(event) => setFollow(event.target.value)}
             />
@@ -185,11 +210,15 @@ export default function RecomendationForm({
               type="radio"
               name="follow"
               value="No"
+              {...register("follow")}
               checked={follow === "No"}
               onChange={(event) => setFollow(event.target.value)}
             />
             No
           </label>
+          {errors.follow && (
+            <div className="invalid-feedback">{errors.follow.message}</div>
+          )}
         </div>
       </div>
       <div className={styles.formButtons}>
@@ -199,9 +228,9 @@ export default function RecomendationForm({
         <button className={styles.btn} type="button" onClick={onCancel}>
           Cancelar
         </button>
-        <button className={styles.btn} type="button" onClick={() => reset()}>
+        {/* <button className={styles.btn} type="button" onClick={() => reset()}>
           Reset
-        </button>
+        </button> */}
       </div>
     </form>
   );

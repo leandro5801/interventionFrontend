@@ -131,6 +131,7 @@ function RecomendationTable({
             onClose={toggleFormulario}
           >
             <RecomendationForm
+              recomendations={recomendations}
               setTableRData={setTableRData}
               onCancel={() => {
                 setDialogRecomendationOpen(false);

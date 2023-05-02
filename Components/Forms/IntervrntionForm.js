@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 //validaciones
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Controller } from "react-hook-form";
 import { useFormik } from "formik";
 import { validationSchema } from "../../validations/validationI";
 import * as Yup from "yup";
@@ -40,7 +41,7 @@ export default function FormUpdateIntervention({
       : ""
   );
   const [selectedUeb, setSelectedUeb] = useState(
-    intervention ? { label: intervention.ueb , value:intervention.ueb}: ""
+    intervention ? { label: intervention.ueb, value: intervention.ueb } : ""
   );
   const [selectedStructure, setSelectedStructure] = useState(
     intervention
@@ -58,7 +59,6 @@ export default function FormUpdateIntervention({
         }
       : ""
   );
-  const [worker, setWorker] = useState(intervention ? intervention.worker : "");
   const [start, setStart] = useState(intervention ? intervention.start : "");
   const [end, setEnd] = useState(intervention ? intervention.end : "");
 
@@ -153,11 +153,23 @@ export default function FormUpdateIntervention({
         }));
   }
 
+  const defaultValues = {
+    ueb: selectedUeb,
+    structure: selectedStructure,
+    area: selectedArea,
+    consultor: consultor,
+    process: selectedProcess,
+    worker: selectedTrabajador,
+  };
+
   // form validation rules
-  const formOptions = { resolver: yupResolver(validationSchema) };
+  const formOptions = {
+    resolver: yupResolver(validationSchema),
+    defaultValues,
+  };
 
   // get functions to build form with useForm() hook
-  const { register, setValue, handleSubmit, reset, formState } =
+  const { register, control, setValue, handleSubmit, reset, formState } =
     useForm(formOptions);
   const { errors } = formState;
 
@@ -166,12 +178,12 @@ export default function FormUpdateIntervention({
       id: intervention ? intervention.id : interventions.length + 1,
       name: data.name,
       description: data.description,
-      process: data.process,
-      ueb: data.ueb,
-      structure: data.structure,
-      area: data.area,
-      consultor: data.consultor,
-      worker: data.worker,
+      process: data.process.value,
+      ueb: data.ueb.value,
+      structure: data.structure.value,
+      area: data.area.value,
+      consultor: data.consultor.value,
+      worker: data.worker.value,
       start: data.start,
       end: data.end,
     };
@@ -216,127 +228,179 @@ export default function FormUpdateIntervention({
 
         <div className={styles.halfRow}>
           <label htmlFor="ueb">UEB:</label>
-          <Select
-            id="ueb"
-            {...register("ueb")}
-            className={`${styles.selectForm}  ${
-              errors.ueb ? "is-invalid" : ""
-            }`}
-            value={selectedUeb}
-            getOptionValue={(option) => option.value}
-            defaultValue={selectedUeb}
-            onChange={(selectedOption) => {
-              handleUebChange(selectedOption);
-              setValue("ueb", selectedOption.label);
-            }}
-            options={uebOptions}
-            placeholder="Seleccione..."
+          <Controller
+            name="ueb"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="ueb"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.ueb ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleUebChange(selectedOption);
+                  setValue("ueb", selectedOption);
+                  setValue("structure", "");
+                  setValue("area", "");
+                  setValue("worker", "");
+                  field.onChange(selectedOption);
+                }}
+                options={uebOptions}
+                placeholder="Seleccione..."
+              />
+            )}
           />
+          {errors.ueb && (
+            <div className={styles.error}>Seleccione una UEB.</div>
+          )}
         </div>
-        <div className={styles.error}>{errors.ueb?.message}</div>
+
         <div className={styles.halfRow}>
-          <label htmlFor="sructure">Departamento/Dirección:</label>
-          <Select
-            id="sructure"
-            {...register("sructure")}
-            className={`${styles.selectForm}  ${
-              errors.structure ? "is-invalid" : ""
-            }`}
-            value={selectedStructure}
-            onChange={(selectedOption) => {
-              handleStructureChange(selectedOption);
-              setValue("structure", selectedOption.label);
-            }}
-            options={structureOptions}
-            placeholder="Seleccione..."
+          <label htmlFor="structure">Departamento/Dirección:</label>
+          <Controller
+            name="structure"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="structure"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.structure ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleStructureChange(selectedOption);
+                  setValue("structure", selectedOption);
+                  setValue("area", "");
+                  setValue("worker", "");
+                  field.onChange(selectedOption);
+                }}
+                options={structureOptions}
+                placeholder="Seleccione..."
+              />
+            )}
           />
-          <div className={styles.error}>{errors.structure?.message}</div>
+
+          {errors.structure && (
+            <div className={styles.error}>Seleccione una Dirección.</div>
+          )}
         </div>
         <div className={styles.halfRow}>
           <label htmlFor="area">Área:</label>
-          <Select
-            id="area"
-            {...register("area")}
-            className={`${styles.selectForm}  ${
-              errors.area ? "is-invalid" : ""
-            }`}
-            value={selectedArea}
-            onChange={(selectedOption) => {
-              setSelectedArea(selectedOption);
-              setValue("area", selectedOption.label);
-            }}
-            options={areaOptions}
-            placeholder="Seleccione..."
+          <Controller
+            name="area"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="area"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.area ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  setSelectedArea(selectedOption);
+                  setValue("area", selectedOption);
+                  setValue("worker", "");
+                  field.onChange(selectedOption);
+                }}
+                options={areaOptions}
+                placeholder="Seleccione..."
+              />
+            )}
           />
-          <div className={styles.error}>{errors.area?.message}</div>
+          {errors.area && (
+            <div className={styles.error}>Seleccione un Área.</div>
+          )}
         </div>
 
         <div className={styles.halfRow}>
           <label htmlFor="process">Proceso:</label>
-          <Select
-            id="process"
-            {...register("process")}
-            className={`${styles.selectForm}  ${
-              errors.process ? "is-invalid" : ""
-            }`}
-            value={selectedProcess}
-            onChange={(selectedOption) => {
-              setSelectedProcess(selectedOption);
-              setValue("process", selectedOption.label);
-            }}
-            options={
-              process &&
-              process.map((sup) => ({ label: sup.label, value: sup.label }))
-            }
-            placeholder="Seleccione..."
+          <Controller
+            name="process"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="process"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.process ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  setSelectedProcess(selectedOption);
+                  setValue("process", selectedOption);
+                  field.onChange(selectedOption);
+                }}
+                options={
+                  process &&
+                  process.map((sup) => ({ label: sup.label, value: sup.label }))
+                }
+                placeholder="Seleccione..."
+              />
+            )}
           />
           {errors.process && (
-            <div className={styles.error}>{errors.process.message}</div>
+            <div className={styles.error}>Seleccione un Proceso.</div>
           )}
         </div>
 
         <div className={styles.halfRow}>
           <label htmlFor="consultor">Consultor:</label>
-          <Select
-            id="consultor"
-            {...register("consultor")}
-            className={`${styles.selectForm}  ${
-              errors.consultor ? "is-invalid" : ""
-            }`}
-            value={consultor}
-            onChange={(selectedOption) => {
-              handleConsultorChange(selectedOption);
-              setValue("consultor", selectedOption.label);
-            }}
-            options={consultoresOptions}
-            placeholder="Seleccione..."
+          <Controller
+            name="consultor"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="consultor"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.consultor ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleConsultorChange(selectedOption);
+                  setValue("consultor", selectedOption);
+                  field.onChange(selectedOption);
+                }}
+                options={consultoresOptions}
+                placeholder="Seleccione..."
+              />
+            )}
           />
-          <div className={styles.error}>{errors.consultor?.message}</div>
+          {errors.consultor && (
+            <div className={styles.error}>Seleccione un Consultor.</div>
+          )}
         </div>
 
         <div className={styles.halfRow}>
           <label htmlFor="worker">Trabajador:</label>
-          <Select
-            id="worker"
-            {...register("worker")}
-            className={`${styles.selectForm}  ${
-              errors.worker ? "is-invalid" : ""
-            }`}
-            value={selectedTrabajador}
-            onChange={(selectedOption) => {
-              setSelectedTrabajador(selectedOption);
-              setValue("worker", selectedOption.label);
-            }}
-            options={
-              trabajadoresOptions &&
-              trabajadoresOptions.map((sup) => ({
-                label: sup.label,
-                value: sup.label,
-              }))
-            }
-            placeholder="Seleccione..."
+          <Controller
+            name="worker"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="worker"
+                {...field}
+                className={`${styles.selectForm}  ${
+                  errors.worker ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  setSelectedTrabajador(selectedOption);
+                  setValue("worker", selectedOption);
+                  field.onChange(selectedOption);
+                }}
+                options={
+                  trabajadoresOptions &&
+                  trabajadoresOptions.map((sup) => ({
+                    label: sup.label,
+                    value: sup.label,
+                  }))
+                }
+                placeholder="Seleccione..."
+              />
+            )}
           />
-          <div className={styles.error}>{errors.worker?.message}</div>
+          {errors.worker && (
+            <div className={styles.error}>Seleccione un Trabajador.</div>
+          )}
         </div>
         <div className={styles.halfRow}>
           <label htmlFor="start">Fecha de inicio:</label>
@@ -375,9 +439,9 @@ export default function FormUpdateIntervention({
         <button className={styles.btn} type="button" onClick={onCancel}>
           Cancelar
         </button>
-        <button className={styles.btn} type="button" onClick={() => reset()}>
+        {/* <button className={styles.btn} type="button" onClick={() => reset()}>
           Reset
-        </button>
+        </button> */}
       </div>
     </form>
   );

@@ -6,4 +6,5 @@ export const validationSchema = Yup.object().shape({
   consultor: Yup.string().required("Seleccione un consultor."),
   classification: Yup.string().required("Seleccione una clasificación."),
   intervention: Yup.string().required("Seleccione una intervención."),
+  follow: Yup.string().required("Seleccione una opción."),
 });
