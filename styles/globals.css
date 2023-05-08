@@ -255,3 +255,39 @@ button span {
   left: 0;
   color:brown;
 }
+
+
+.MuiDialog-root {
+  z-index: 9999;
+  box-shadow: none !important;
+}
+
+.MuiDialog-paper {
+  box-shadow: none !important;
+}
+.MuiBackdrop-root {
+  backdrop-filter: blur(0.8px);
+}
+
+.my-custom-dialog .MuiDialogTitle-root {
+  /* background-color: #0099CC; */
+  color: #0099CC;
+}
+
+.my-custom-dialog .MuiButton-root {
+  color: #0099CC;
+  padding: 5px 10px;
+  background-color: white;
+  border: 2px solid #0099CC;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  margin-right: 4px;
+}
+.my-custom-dialog .MuiButton-root:hover {
+  /* Cambiar el color del fondo */
+  background-color: #0099CC;
+  /* Cambiar el color del texto */
+  color: white;
+}

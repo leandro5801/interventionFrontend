@@ -1,14 +1,23 @@
 import styles from "../../styles/Home.module.css";
 import Select from "react-select";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 //validaciones
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller } from "react-hook-form";
-import { useFormik } from "formik";
 import { validationSchema } from "../../validations/validationR";
+
+//sms de confirmacion
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@material-ui/core";
 
 export default function RecomendationForm({
   recomendations,
@@ -62,7 +71,19 @@ export default function RecomendationForm({
     useForm(formOptions);
   const { errors } = formState;
 
+  //para el sms de confirmacion
+  const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState({});
+  const [type, setType] = useState("crear");
+
   function onSubmit(data) {
+    // event.preventDefault();
+    setOpen(true);
+    setFormData(data);
+    setType(recomendation ? "editar" : "crear");
+  }
+
+  const handleConfirm = (data) => {
     const updatedRow = {
       id: recomendation ? recomendation.id : recomendations.length + 1,
       idIntervention: selectedIntervention.id,
@@ -79,9 +100,13 @@ export default function RecomendationForm({
     if (!recomendation) {
       setRecomendations([...recomendations, updatedRow]);
     }
+    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
+    setOpen(true);
+  };
 
-    // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
-  }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleClassificationChange = (newValue) => {
     setClassification({ label: newValue.value, value: newValue.value });
@@ -232,6 +257,17 @@ export default function RecomendationForm({
           Reset
         </button> */}
       </div>
+
+      <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
+          <DialogTitle>{type === "crear" ? "Confirmar creación" : "Confirmar modificación"}</DialogTitle>
+          <DialogContent>
+            <p>{type === "crear" ? "¿Está seguro de crear esta recomendación?" : "¿Está seguro de modificar esta recomendación?"}</p>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
+          </DialogActions>
+        </Dialog>
     </form>
   );
 }

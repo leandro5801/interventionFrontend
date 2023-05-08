@@ -1,6 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../../styles/Home.module.css";
 
+//sms de confirmacion
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@material-ui/core";
+
 export default function Tasks({
   interventions,
   setInterventions,
@@ -18,6 +28,16 @@ export default function Tasks({
   const inputRef = useRef([]);
   const indexRef = useRef(null);
 
+  // sms de confirmacion
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState("");
+
+  function openConfirmation(data) {
+    // event.preventDefault();
+    setOpen(true);
+    setData(data);
+  }
+
   // Eliminar tarea
   function handleDelete(e) {
     const idNum = parseInt(e.target.getAttribute("data-task-id"));
@@ -29,7 +49,11 @@ export default function Tasks({
 
     // update state (if data on backend - make API request to update data)
     setInterventions(newTasks);
+    setOpen(false);
   }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   useEffect(() => {
     if (inputRef.current.length && indexRef.current >= 0) {
@@ -92,10 +116,25 @@ export default function Tasks({
               className={styles.btnTask}
               type="button"
               data-task-id={tsk?.id}
-              onClick={handleDelete}
+              onClick={openConfirmation}
             >
               x
             </button>
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              className="my-custom-dialog"
+              BackdropProps={{ invisible: true }}
+            >
+              <DialogTitle>Confirmar Eliminación</DialogTitle>
+              <DialogContent>
+                <p>¿Está seguro de eliminar esta intervención?</p>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose}>Cancelar</Button>
+                <Button onClick={() => handleDelete(data)}>Aceptar</Button>
+              </DialogActions>
+            </Dialog>
           </div>
         ))}
     </div>

@@ -2,7 +2,7 @@ import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 
 import Settings from "../GanttChart/Settings";
-import Dialog from "../Forms/Dialog";
+import DialogForm from "../Forms/Dialog";
 import RecomendationForm from "../Forms/RecomendationForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,16 @@ import {
   faEdit,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+
+//sms de confirmacion
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@material-ui/core";
 
 function RecomendationTable({
   tableRData,
@@ -102,6 +112,16 @@ function RecomendationTable({
     setClassificationFilterValue(null);
   };
 
+  // sms de confirmacion
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState("");
+
+  function openConfirmation(data) {
+    // event.preventDefault();
+    setOpen(true);
+    setData(data);
+  }
+
   function handleDelete(idNum) {
     const newRecomendation = tableRData.filter(
       (recomendacion) => recomendacion.id !== idNum
@@ -113,7 +133,12 @@ function RecomendationTable({
     );
     setRecomendations(newRecomendations);
     // update state (if data on backend - make API request to update data)
+
+    setOpen(false);
   }
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <>
@@ -125,7 +150,7 @@ function RecomendationTable({
             onClick={toggleFormulario}
             className={styles.faIcon}
           />
-          <Dialog
+          <DialogForm
             className={styles.dialogContentR}
             open={dialogRecomendationOpen}
             onClose={toggleFormulario}
@@ -144,7 +169,7 @@ function RecomendationTable({
               classifications={classifications}
               consultores={consultores}
             />
-          </Dialog>
+          </DialogForm>
         </div>
       )}
       {tableRData.length === 0 || (
@@ -160,7 +185,7 @@ function RecomendationTable({
             onClick={toggleFormulario}
             className={styles.faIcon}
           />
-          <Dialog
+          <DialogForm
             className={styles.dialogContentR}
             open={dialogRecomendationOpen}
             onClose={toggleFormulario}
@@ -179,7 +204,7 @@ function RecomendationTable({
               classifications={classifications}
               consultores={consultores}
             />
-          </Dialog>
+          </DialogForm>
         </div>
       )}
       {showFilters && (
@@ -254,10 +279,27 @@ function RecomendationTable({
                     />
                     <FontAwesomeIcon
                       icon={faTrash}
-                      onClick={() => handleDelete(recomendation?.id)}
+                      onClick={() => openConfirmation(recomendation?.id)}
                       data-task-id={recomendation?.id}
                       className={styles.faIcon}
                     />
+                    <Dialog
+                      open={open}
+                      onClose={handleClose}
+                      className="my-custom-dialog"
+                      BackdropProps={{ invisible: true }}
+                    >
+                      <DialogTitle>Confirmar Eliminación</DialogTitle>
+                      <DialogContent>
+                        <p>¿Está seguro de eliminar esta intervención?</p>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={handleClose}>Cancelar</Button>
+                        <Button onClick={() => handleDelete(data)}>
+                          Aceptar
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </td>
                 </tr>
               ))}
@@ -265,7 +307,7 @@ function RecomendationTable({
         </table>
 
         {/* Para editar  */}
-        <Dialog
+        <DialogForm
           className={styles.dialogContentR}
           open={editRIdx !== -1}
           onClose={handleCancelR}
@@ -279,7 +321,7 @@ function RecomendationTable({
             classifications={classifications}
             consultores={consultores}
           />
-        </Dialog>
+        </DialogForm>
       </>
     </>
   );

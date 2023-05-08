@@ -31,7 +31,7 @@ export const validationSchema = Yup.object().shape({
     .required("Seleccione una fecha de inicio.")
     .matches(
       /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]0[1-9]|1[012])$/,
-      "La fecha de inicio debe ser una fecha válida con el formato AAAA-MM-DD"
+      "La fecha debe tener el formato AAAA-MM-DD"
     ),
     end: Yup
     .string()
@@ -42,6 +42,6 @@ export const validationSchema = Yup.object().shape({
     })
     .matches(
       /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
-      "La fecha de inicio debe ser una fecha válida con el formato AAAA-MM-DD"
+      "La fecha debe tener el formato AAAA-MM-DD"
     ),
 });

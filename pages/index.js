@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import SideBar from "../Components/SideBar";
 import Header from "../Components/Header";
 import Content from "../Components/Content";
+import axios from 'axios';
 
 import { client } from "../utils/fetchWrapper";
 
@@ -47,7 +48,23 @@ export default function Home() {
   const [trabCalidadSh, setTrabCalidadSh] = useState(null);
   const [trabDireccionSh, setDireccionSh] = useState(null);
   const [trabDirProdJt, setTrabDirProdJt] = useState(null);
-  
+
+
+  const [error, setError] = useState(null);
+  //  Cargando intervenciones de BD
+  // useEffect(() => {
+  //   async function fetchIntervention(){
+  //     const response = await axios.get('http://localhost:3000/api/intervencion');
+  //     setInterventions(response.data);
+  //   }
+  //   fetchIntervention();
+  // }, []);
+
+  // async function getServerSideProps() {
+  //   const res = await axios.get('http://localhost:3000/api/intervencion');
+  //   const data = res.data;
+  //   setInterventions(data);
+  // }
 
   // Cargando los datos de los procesos
   useEffect(() => {
@@ -178,7 +195,7 @@ export default function Home() {
     );
   }, []);
 
-// console.log(trabDireccionSh)
+  // console.log(trabDireccionSh)
 
   //Para modificar una intervencion
 
@@ -193,7 +210,6 @@ export default function Home() {
       }
     );
   }, []);
-
 
   return (
     <div className={styles.container}>
@@ -258,8 +274,6 @@ export default function Home() {
         dialogRecomendationOpen={dialogRecomendationOpen}
         setDialogRecomendationOpen={setDialogRecomendationOpen}
       />
-
-      
     </div>
   );
 }
