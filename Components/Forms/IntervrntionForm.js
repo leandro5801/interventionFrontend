@@ -2,7 +2,7 @@ import styles from "../../styles/Home.module.css";
 import Select from "react-select";
 import data from "../../public/structure.json";
 
-import { useState} from "react";
+import { useState } from "react";
 
 //validaciones
 import { useForm } from "react-hook-form";
@@ -332,14 +332,11 @@ export default function FormUpdateIntervention({
     onSave();
     //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
-
   };
 
   const handleClose = () => {
     setOpen(false);
   };
-
-
 
   return (
     <>
@@ -595,13 +592,19 @@ export default function FormUpdateIntervention({
         </div>
 
         <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
-          <DialogTitle>{type === "crear" ? "Confirmar creación" : "Confirmar modificación"}</DialogTitle>
+          <DialogTitle>
+            {type === "crear" ? "Confirmar creación" : "Confirmar modificación"}
+          </DialogTitle>
           <DialogContent>
-            <p>{type === "crear" ? "¿Está seguro de crear esta intervención?" : "¿Está seguro de modificar esta intervención?"}</p>
+            <p>
+              {type === "crear"
+                ? "¿Está seguro de crear esta intervención?"
+                : "¿Está seguro de modificar esta intervención?"}
+            </p>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancelar</Button>
             <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
+            <Button onClick={handleClose}>Cancelar</Button>
           </DialogActions>
         </Dialog>
       </form>

@@ -6,8 +6,13 @@ import Dialog from "./Forms/Dialog";
 import IntervrntionForm from "./Forms/IntervrntionForm";
 import CreateRecomendationForm from "./Forms/CreateRecomendationForm";
 import { client } from "../utils/fetchWrapper";
+import Logout from "../pages/Home/Logout/Logout";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 function Header({
+  setIsAuthenticated,
   setTableVisible,
   interventions,
   setInterventions,
@@ -29,6 +34,7 @@ function Header({
 }) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
+  const [mostrarLogout, setMostrarLogout] = useState(false);
 
   const [ueb, setUeb] = useState(null);
   useEffect(() => {
@@ -41,6 +47,11 @@ function Header({
       }
     );
   }, []);
+
+  const manejarMostrarLogout = () => {
+    setMostrarLogout(true);
+  };
+
   return (
     <div className={styles.headcontainer}>
       <div className={styles.headwrapper}>
@@ -80,7 +91,7 @@ function Header({
           />
         </Dialog>
         <Dialog
-         className={styles.dialogContentCR}
+          className={styles.dialogContentCR}
           open={dialogRecomendationOpen}
           onClose={() => {
             setDialogRecomendationOpen(false);
@@ -101,6 +112,28 @@ function Header({
             consultores={consultores}
           />
         </Dialog>
+      </div>
+
+      <div
+        style={{
+          position: "absolute",
+          right: "10mm",
+          marginTop: "23px",
+          marginBottom: "18px",
+        }}
+      >
+        <FontAwesomeIcon
+          icon={faSignOutAlt}
+          onClick={() => setMostrarLogout(true)}
+          className={styles.faIcon}
+        />
+
+        {mostrarLogout && (
+          <Logout
+            setIsAuthenticated={setIsAuthenticated}
+            setMostrarLogout={setMostrarLogout}
+          />
+        )}
       </div>
     </div>
   );

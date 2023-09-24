@@ -291,13 +291,13 @@ function RecomendationTable({
                     >
                       <DialogTitle>Confirmar Eliminación</DialogTitle>
                       <DialogContent>
-                        <p>¿Está seguro de eliminar esta intervención?</p>
+                        <p>¿Está seguro de eliminar esta recomendación?</p>
                       </DialogContent>
                       <DialogActions>
-                        <Button onClick={handleClose}>Cancelar</Button>
                         <Button onClick={() => handleDelete(data)}>
                           Aceptar
                         </Button>
+                        <Button onClick={handleClose}>Cancelar</Button>
                       </DialogActions>
                     </Dialog>
                   </td>

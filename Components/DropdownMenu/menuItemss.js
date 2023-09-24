@@ -16,5 +16,5 @@ export const menuItems = [
         title: 'Crear Recomendación',
       },
     ],
-  },
+  }
 ];

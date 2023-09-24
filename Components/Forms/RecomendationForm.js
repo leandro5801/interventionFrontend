@@ -259,15 +259,21 @@ export default function RecomendationForm({
       </div>
 
       <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
-          <DialogTitle>{type === "crear" ? "Confirmar creación" : "Confirmar modificación"}</DialogTitle>
-          <DialogContent>
-            <p>{type === "crear" ? "¿Está seguro de crear esta recomendación?" : "¿Está seguro de modificar esta recomendación?"}</p>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancelar</Button>
-            <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
-          </DialogActions>
-        </Dialog>
+        <DialogTitle>
+          {type === "crear" ? "Confirmar creación" : "Confirmar modificación"}
+        </DialogTitle>
+        <DialogContent>
+          <p>
+            {type === "crear"
+              ? "¿Está seguro de crear esta recomendación?"
+              : "¿Está seguro de modificar esta recomendación?"}
+          </p>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
+          <Button onClick={handleClose}>Cancelar</Button>
+        </DialogActions>
+      </Dialog>
     </form>
   );
 }

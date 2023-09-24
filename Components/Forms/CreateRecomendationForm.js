@@ -234,8 +234,9 @@ export default function CreateRecomendationForm({
             <p>¿Está seguro de crear esta recomendación?</p>
           </DialogContent>
           <DialogActions>
+          <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
             <Button onClick={handleClose}>Cancelar</Button>
-            <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
+           
           </DialogActions>
         </Dialog>
     </form>

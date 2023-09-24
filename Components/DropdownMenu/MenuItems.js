@@ -22,6 +22,7 @@ const MenuItems = ({
             {items.title}{" "}
           </button>
           <Dropdown
+            items={items}
             submenus={items.submenu}
             dropdown={dropdown}
             setDropdown={setDropdown}

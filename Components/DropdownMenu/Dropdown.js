@@ -1,11 +1,16 @@
+
+import { useState, useEffect } from "react";
+
 const Dropdown = ({
-  submenus,
+  items,
   dropdown,
   setDialogCreInteOpen,
   setTableVisible,
   setDropdown,
   setDialogRecomendationOpen,
+
 }) => {
+
   const handleClick = (title) => {
     if (title === "Crear Intervención") {
       setDialogCreInteOpen(true);
@@ -13,17 +18,20 @@ const Dropdown = ({
       setTableVisible(true);
     } else if (title === "Crear Recomendación") {
       setDialogRecomendationOpen(true);
-    } 
+    }
+
     setDropdown(false);
   };
 
   return (
+    
     <ul className={`dropdown ${dropdown ? "show" : ""}`}>
-      {submenus.map((submenu, index) => (
+      {items.submenu.map((submenu, index) => (
         <li key={index} className="menu-items">
           <a onClick={() => handleClick(submenu.title)}>{submenu.title}</a>
         </li>
       ))}
+
     </ul>
   );
 };

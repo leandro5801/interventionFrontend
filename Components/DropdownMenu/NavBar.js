@@ -5,7 +5,6 @@ const Navbar = ({
   setDialogCreInteOpen,
   setTableVisible,
   setDialogRecomendationOpen,
-  
 }) => {
   return (
     <nav>

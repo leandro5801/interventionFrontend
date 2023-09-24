@@ -131,8 +131,8 @@ export default function Tasks({
                 <p>¿Está seguro de eliminar esta intervención?</p>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose}>Cancelar</Button>
                 <Button onClick={() => handleDelete(data)}>Aceptar</Button>
+                <Button onClick={handleClose}>Cancelar</Button>
               </DialogActions>
             </Dialog>
           </div>
