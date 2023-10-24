@@ -2,8 +2,6 @@ import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 
-import Settings from "../GanttChart/Settings";
-import DialogForm from "../Forms/Dialog";
 import FormDialog from "../Forms/FormDialog";
 import RecomendationForm from "../Forms/RecomendationForm";
 import CreateRecomendationForm from "../Forms/CreateRecomendationForm";
@@ -206,38 +204,8 @@ function RecomendationTable({
     <>
       <>
         <div className={styles.divIconH2}></div>
-        <TableContainer component={Paper} className={styles.table}>
+        <TableContainer component={Paper} className={styles.tableReport}>
           <div className={styles.btnNuevoContent}>
-            <Button
-              className={styles.btn}
-              onClick={() => {
-                setDialogRecOpen(true);
-              }}
-            >
-              Nuevo +
-            </Button>
-            <FormDialog
-              open={dialogCreRecOpen}
-              onClose={() => {
-                setDialogRecOpen(false);
-              }}
-              FormComponent={CreateRecomendationForm}
-              recomendations={tableRData}
-              classifications={clasificaciones}
-              setTableRData={setRecomendations}
-              setRecomendations={setRecomendations}
-              consultores={consultores}
-              interventions={interventions}
-              onSave={() => {
-                setDialogRecOpen(false);
-              }}
-              onCancel={() => {
-                setDialogRecOpen(false);
-              }}
-              
-            >
-             
-            </FormDialog>
             {/* SELECCIONAR PROYECTO ETC */}
 
             <Select
@@ -264,11 +232,11 @@ function RecomendationTable({
           <Table  stickyHeader>
             <TableHead>
               <TableRow>
-                <TableCell className={styles.spacing}>
+                <TableCell className={styles.spacingReport}>
                   Recomendación
                   {showFilters && (
                     <input
-                      className={styles.inputFilter}
+                      className={styles.inputFilterReport}
                       type="text"
                       value={nameFilter}
                       onChange={handleNameFilterChange}
@@ -276,11 +244,11 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>
+                <TableCell className={styles.spacingReport}>
                   Descripción
                   {showFilters && (
                     <input
-                      className={styles.inputFilter}
+                      className={styles.inputFilterReport}
                       type="text"
                       value={descriptionFilter}
                       onChange={handleDescriptionFilterChange}
@@ -288,32 +256,10 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>
-                  Consultor
-                  {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={consultorFilter}
-                      onChange={handleConsultorFilterChange}
-                      placeholder="Filtrar por consultor"
-                    />
-                  )}
-                </TableCell>
-                <TableCell className={styles.spacing}>Tipo
+                <TableCell className={styles.spacingReport}>Seguida
                 {showFilters && (
                     <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={classificationFilter}
-                      onChange={handleClassificationFilterChange}
-                      placeholder="Filtrar por clasificación"
-                    />
-                  )}</TableCell>
-                <TableCell className={styles.spacing}  >Seguida
-                {showFilters && (
-                    <input
-                      className={styles.inputFilter}
+                      className={styles.inputFilterReport}
                       type="text"
                       value={followFilter}
                       onChange={handleFollowFilterChange}
@@ -321,7 +267,7 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}></TableCell>
+                <TableCell className={styles.spacingReport}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -332,56 +278,13 @@ function RecomendationTable({
                     <TableCell className={styles.tdStyle}>
                       {recomendation.name}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell className={styles.tdStyleReport}>
                       {recomendation.description}
-                    </TableCell>
-                    <TableCell className={styles.tdStyle}>
-                      {recomendation.consultor}
-                    </TableCell>
-                    <TableCell className={styles.tdStyle}>
-                      {recomendation.classification}
                     </TableCell>
                     <TableCell className={styles.tdStyle}>
                       {recomendation.follow}
                     </TableCell>
-                    <TableCell  padding="5" width={50}
-                    //   padding: 5px; width: 210px;
-  >
-                      <FontAwesomeIcon
-                        icon={faEdit}
-                        onClick={() =>
-                          setEditRIdx(
-                            tableRData.findIndex(
-                              (item) => item.id === recomendation?.id
-                            )
-                          )
-                        }
-                        className={styles.faIcon}
-                      />
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        onClick={() => openConfirmation(recomendation?.id)}
-                        data-task-id={recomendation?.id}
-                        className={styles.faIcon}
-                      />
-                      <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        className="my-custom-dialog"
-                        BackdropProps={{ invisible: true }}
-                      >
-                        <DialogTitle>Confirmar Eliminación</DialogTitle>
-                        <DialogContent>
-                          <p>¿Está seguro de eliminar esta recomendación?</p>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={() => handleDelete(data)}>
-                            Aceptar
-                          </Button>
-                          <Button onClick={handleClose}>Cancelar</Button>
-                        </DialogActions>
-                      </Dialog>
-                    </TableCell>
+                     
                   </TableRow>
                 ))}
             </TableBody>

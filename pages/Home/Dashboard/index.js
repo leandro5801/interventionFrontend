@@ -9,6 +9,7 @@ import axios from "axios";
 
 import { client } from "../../../utils/fetchWrapper";
 
+
 const clasificaciones = [
   { id: 1, name: "Tipo 1" },
   { id: 2, name: "Tipo 2" },
@@ -210,6 +211,7 @@ export default function Home({ setIsAuthenticated }) {
   }, []);
 
   return (
+  
     <div className={styles.container}>
       <Head >
         <title>Intervenciones</title>
@@ -275,5 +277,6 @@ export default function Home({ setIsAuthenticated }) {
         setDialogRecomendationOpen={setDialogRecomendationOpen}
       />
     </div>
+
   );
 }

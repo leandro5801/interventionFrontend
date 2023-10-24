@@ -1,39 +1,171 @@
 import styles from "../styles/Home.module.css";
+import { useState } from "react";
 
-import Filters from "./Filters";
+import Image from "next/image";
 
-function SideBar({
-  selectedUeb,
-  setSelectedUeb,
-  selectedStructure,
-  setSelectedStructure,
-  selectedArea,
-  setSelectedArea,
-}) {
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
+import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
+import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
+import AttractionsOutlinedIcon from "@mui/icons-material/AttractionsOutlined";
+import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
+import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
+import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
+import DragIndicatorOutlinedIcon from "@mui/icons-material/DragIndicatorOutlined";
+import EngineeringOutlinedIcon from "@mui/icons-material/EngineeringOutlined";
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+
+import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
+import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
+
+import Link from "next/link";
+
+function SideBar({}) {
+  const [showEmpresaOptions, setShowEmpresaOptions] = useState(false);
   return (
     <div className={styles.sidebarcontainer}>
       <div className={styles.logo}>
-        <h2>Aica</h2>
+        <Image
+          className={styles.logo}
+          src="/images/aica-ico.jpg" // Ruta al icono de usuario
+          alt="User Icon"
+          width={90}
+          height={55}
+        />
       </div>
 
       <div className={styles.wrapper}>
-        <Filters
-          selectedUeb={selectedUeb}
-          setSelectedUeb={setSelectedUeb}
-          selectedStructure={selectedStructure}
-          setSelectedStructure={setSelectedStructure}
-          selectedArea={selectedArea}
-          setSelectedArea={setSelectedArea}
-        />
+        <ul>
+          <li>
+            {" "}
+            <Link href=" /Home/ganttPage">
+              <BarChartOutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle"}}
+              />{" "}
+              Gantt
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link href="/Home/proyectoPage">
+              <AttractionsOutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+                Proyectos
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link href="/Home/intervencionPage">
+              {" "}
+              <AssignmentOutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+                Intervenciones
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link href="/Home/recomendacionPage">
+              {" "}
+              <NoteAltOutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+               Recomendaciones
+            </Link>
+          </li>
+         
+          <li>
+            {" "}
+            <a onClick={() => setShowEmpresaOptions(!showEmpresaOptions)}>
+              <ManageSearchOutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+               Datos de la Empresa
+              {showEmpresaOptions ? (
+                <ExpandLessOutlinedIcon
+                  style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+                />
+              ) : (
+                <ExpandMoreOutlinedIcon
+                  style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+                />
+              )}
+            </a>
+          </li>
 
-        {/* <ul>
+          {showEmpresaOptions && (
+            <>
+            <li>
+                {" "}
+                <Link href="/Home/empresaPage">
+                  {" "}
+                  <CorporateFareOutlinedIcon
+                    style={{ width: "18px", cursor: "pointer",marginLeft:"10px", verticalAlign: "middle" }}
+                  /> {" "}
+                 Empresa
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/uebPage">
+                  {" "}
+                  <CorporateFareOutlinedIcon
+                    style={{ width: "18px", cursor: "pointer",marginLeft:"10px", verticalAlign: "middle" }}
+                  /> {" "}
+                  UEB
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/direccionPage">
+                  <BusinessOutlinedIcon
+                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
+                  /> {" "}
+                  Direcciones
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/areaPage">
+                  <DragIndicatorOutlinedIcon
+                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
+                  /> {" "}
+                  Áreas
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/trabajadorPage">
+                  {" "}
+                  <EngineeringOutlinedIcon
+                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
+                  /> {" "}
+                  Trabajadores
+                </Link>
+              </li>
+            </>
+          )}
           <li>
-            <a href="#">Intervenciones</a>
+            {" "}
+            <Link href="/Home/reportePage">
+              {" "}
+              <FeedOutlinedIcon style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }} />
+              {" "}
+              Reportes
+            </Link>
           </li>
           <li>
-            <a href="#">Recomendaciones</a>
+            {" "}
+            <Link href="/Home/usuarioPage">
+              {" "}
+              <ManageAccountsIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+              Usuarios
+            </Link>
           </li>
-        </ul> */}
+        </ul>
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 
 export default function RecomendationForm({
   recomendations,
@@ -26,7 +26,6 @@ export default function RecomendationForm({
   recomendation,
   onCancel,
   onSave,
-  selectedIntervention,
   classifications,
   consultores,
 }) {
@@ -86,7 +85,7 @@ export default function RecomendationForm({
   const handleConfirm = (data) => {
     const updatedRow = {
       id: recomendation ? recomendation.id : recomendations.length + 1,
-      idIntervention: selectedIntervention.id,
+      idIntervention: recomendation.idIntervention,
       name: data.name,
       description: data.description,
       consultor: data.consultor.value,
@@ -129,9 +128,11 @@ export default function RecomendationForm({
     }));
 
   return (
+    
     <form onSubmit={handleSubmit(onSubmit)}>
+      <DialogTitle>Recomendación</DialogTitle>
       <div className={styles.formGrid}>
-        <h2 className={styles.formTitle}>Recomendación</h2>
+      
         <div></div>
         <div className={styles.fullRow}>
           <label htmlFor="name">Recomendación:</label>
@@ -245,18 +246,18 @@ export default function RecomendationForm({
             <div className="invalid-feedback">{errors.follow.message}</div>
           )}
         </div>
+        <DialogActions>
+          <Button  type="submit">
+            Aceptar
+          </Button>
+
+          <Button  onClick={onCancel}>
+            Cancelar
+          </Button>
+          </DialogActions>
       </div>
-      <div className={styles.formButtons}>
-        <button className={styles.btn} type="submit">
-          Aceptar
-        </button>
-        <button className={styles.btn} type="button" onClick={onCancel}>
-          Cancelar
-        </button>
-        {/* <button className={styles.btn} type="button" onClick={() => reset()}>
-          Reset
-        </button> */}
-      </div>
+
+      
 
       <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
         <DialogTitle>

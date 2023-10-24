@@ -3,8 +3,7 @@
         {
             "id": 1,
             "name": "Intervencion 1",
-            "description": "Intervencion 1 ",
-            "process": "Gestión del Capital humano",
+            "description": "Intervencion 1 dddddddddddddddddd ",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "CENTRO DE CONTROL                                                               ",
@@ -16,9 +15,8 @@
         },
         {
             "id": 2,
-            "name": "Intervencion 2",
-            "description": "Intervencion 2 ",
-            "process": "Gestión de la Dirección",
+            "name": "Intervencion 2 ",
+            "description": "Intervencion 2 dxxxxxxdeeeeeeeeeeeee",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "DIRECCIÒN                                                                       ",
@@ -31,8 +29,7 @@
         {
             "id": 3,
             "name": "Intervencion 3",
-            "description": "Intervencion 3 ",
-            "process": "Gestión de Información y comunicación",
+            "description": "Intervencion 3  dsssssssssssssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "GRUPO DE INFORMÀTICA                                                            ",
@@ -45,8 +42,7 @@
         {
             "id": 4,
             "name": "Intervencion 4",
-            "description": "Intervencion 4 ",
-            "process": "Gestión de Información y comunicación",
+            "description": "Intervencion 4 sssssssssssssss",
             "ueb": "LIORAD",
             "structure": "Departamento de Direción",
             "area": "DIRECCIÓN                                                                       ",
@@ -59,8 +55,7 @@
         {
             "id": 5,
             "name": "Intervencion 5",
-            "description": "Intervencion 4 ",
-            "process": "Gestión de Información y comunicación",
+            "description": "Intervencion 4 ssssssssssssssssssssssssss",
             "ueb": "LIORAD",
             "structure": "Departamento de Direción",
             "area": "DIRECCIÓN                                                                       ",
@@ -73,8 +68,7 @@
         {
             "id": 6,
             "name": "Intervencion 6",
-            "description": "Intervencion 6 ",
-            "process": "Gestión del Capital humano",
+            "description": "Intervencion 6 sssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "CENTRO DE CONTROL                                                               ",
@@ -87,8 +81,7 @@
         {
             "id": 7,
             "name": "Intervencion 7",
-            "description": "Intervencion 7",
-            "process": "Gestión de Información y comunicación",
+            "description": "Intervencion 7 sssssssssssssssssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "CENTRO DE CONTROL                                                               ",
@@ -101,8 +94,7 @@
         {
             "id": 8,
             "name": "Intervencion 8",
-            "description": "Intervencion 8 ",
-            "process": "Gestión del Capital humano",
+            "description": "Intervencion 8 sssssssssssssssssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "CENTRO DE CONTROL                                                               ",
@@ -115,8 +107,7 @@
         {
             "id": 9,
             "name": "Intervencion 9",
-            "description": "Intervencion 9 ",
-            "process": "Gestión del Capital humano",
+            "description": "Intervencion 9 ssssssssssssssssssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "CENTRO DE CONTROL                                                               ",
@@ -129,8 +120,7 @@
         {
             "id": 10,
             "name": "Intervencion 10",
-            "description": "Intervencion 10 ",
-            "process": "Gestión del Capital humano",
+            "description": "Intervencion 10 ssssssssssssssssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "CENTRO DE CONTROL                                                               ",
@@ -143,8 +133,7 @@
         {
             "id": 11,
             "name": "Intervencion 11",
-            "description": "Intervencion 11 ",
-            "process": "Gestión de Inversiones",
+            "description": "Intervencion 11 ssssssssssssssssssss",
             "ueb": "SH+",
             "structure": "Departamento de Direción",
             "area": "DIRECCIÒN                                                                       ",

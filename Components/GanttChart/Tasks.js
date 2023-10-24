@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 
 export default function Tasks({
   interventions,
@@ -24,6 +24,7 @@ export default function Tasks({
   recomendations,
   setRecomendations,
   setTableRData,
+  setOpenDialog,
 }) {
   const inputRef = useRef([]);
   const indexRef = useRef(null);
@@ -79,12 +80,7 @@ export default function Tasks({
     const taskId = parseInt(e.target.getAttribute("data-task-id"));
     const task = filteredTasks.find((t) => t.id === taskId);
     setSelectedIntervention(task);
-    setTableRData(
-      recomendations.filter(
-        (recomendation) => recomendation.idIntervention === task.id
-      )
-    );
-    setRecomendations;
+    setOpenDialog(true);
   };
 
   return (

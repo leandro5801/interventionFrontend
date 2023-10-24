@@ -208,6 +208,12 @@ export default function TimeTable({
           display: "grid",
           gridTemplateColumns: `repeat(${numMonths}, 1fr)`,
           paddingLeft: "0.5px",
+          position: "sticky",
+          zIndex:"10",
+          top:"0",
+          
+  // top: "0",
+  // z-index: "10",
         }}
       >
         {taskRows}

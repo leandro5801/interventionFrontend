@@ -16,7 +16,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 
 export default function CreateRecomendationForm({
   recomendations,
@@ -214,19 +214,17 @@ export default function CreateRecomendationForm({
             <div className="invalid-feedback">{errors.follow.message}</div>
           )}
         </div>
-        <div></div>
+        
       </div>
-      <div className={styles.formButtons}>
-        <button className={styles.btn} type="submit">
-          Aceptar
-        </button>
-        <button className={styles.btn} type="button" onClick={onCancel}>
-          Cancelar
-        </button>
-        {/* <button className={styles.btn} type="button" onClick={() => reset()}>
-          Reset
-        </button> */}
-      </div>
+      <DialogActions>
+          <Button  type="submit">
+            Aceptar
+          </Button>
+
+          <Button  onClick={onCancel}>
+            Cancelar
+          </Button>
+          </DialogActions>
 
       <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
           <DialogTitle>Confirmar creación</DialogTitle>

@@ -5,7 +5,7 @@ import GanttChart from "../Components/GanttChart/GanttChart";
 import { useState} from "react";
 import InterventionTable from "./Tables/InterventionTable";
 import RecomendationTable from "./Tables/RecomendationTable";
-import IntervrntionForm from "./Forms/IntervrntionForm";
+import IntervrntionForm from "./Forms/InterventionForm";
 import Dialog from "./Forms/Dialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -40,14 +40,14 @@ function Content({
   // para el filtrado
   let filteredTasks = [];
 
-  if (interventions) {
-    filteredTasks = interventions.filter(
-      (task) =>
-        (!selectedUeb || task.ueb === selectedUeb) &&
-        (!selectedStructure || task.structure === selectedStructure) &&
-        (!selectedArea || task.area === selectedArea)
-    );
-  }
+  // if (interventions) {
+  //   filteredTasks = interventions.filter(
+  //     (task) =>
+  //       (!selectedUeb || task.ueb === selectedUeb) &&
+  //       (!selectedStructure || task.structure === selectedStructure) &&
+  //       (!selectedArea || task.area === selectedArea)
+  //   );
+  // }
   const [selectedIntervention, setSelectedIntervention] = useState(null);
 
   const [tableRData, setTableRData] = useState(null);

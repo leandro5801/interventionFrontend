@@ -4,20 +4,12 @@ import styles from "../styles/Home.module.css";
 import Select from "react-select";
 import { useState } from "react";
 
-const uebOptions = data.ueb.map((item) => ({
-  value: item.ueb,
-  label: item.ueb,
-}));
 
-const Filters = ({
-  selectedUeb,
-  setSelectedUeb,
-  selectedStructure,
-  setSelectedStructure,
-  selectedArea,
-  setSelectedArea,
-}) => {
+const Filters = ({ intervencions }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedUeb, setSelectedUeb] = useState(null);
+  const [selectedStructure, setSelectedStructure] = useState(null);
+  const [selectedArea, setSelectedArea] = useState(null);
 
   const handleUebSelect = (option) => {
     setShowDropdown(true);
@@ -34,7 +26,10 @@ const Filters = ({
   const handleAreaSelect = (option) => {
     setSelectedArea(option.value);
   };
-
+  const uebOptions = data.ueb.map((item) => ({
+    value: item.ueb,
+    label: item.ueb,
+  }));
   const structureOptions = data.structure
     .filter((item) => item.ueb === selectedUeb)
     .map((item) => ({
@@ -53,7 +48,24 @@ const Filters = ({
 
   return (
     <>
-      <div className={styles.wrapper}>
+      <div>
+      <select
+              className={styles.select}
+              // onChange={(e) => setConsultorFilterValue(e.target.value)}
+              value={selectedUeb || ""}
+            >
+              <option value="" hidden>
+                Selecciona un consultor
+              </option>
+              {uebOptions.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+      </div>
+
+      {/* <div className={styles.wrapper}>
         <ul>
           {uebOptions.map((option) => (
             <li key={option.value} value={selectedUeb}>
@@ -83,7 +95,7 @@ const Filters = ({
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };

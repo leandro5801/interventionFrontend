@@ -18,7 +18,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from "@material-ui/core";
+} from "@mui/material";
 
 export default function FormUpdateIntervention({
   setInterventions,
@@ -27,7 +27,6 @@ export default function FormUpdateIntervention({
   onCancel,
   onSave,
   consultores,
-  process,
   trabDirProdCit,
   trabCalidadCit,
   trabDireccionCit,
@@ -42,11 +41,6 @@ export default function FormUpdateIntervention({
   const [name, setName] = useState(intervention ? intervention.name : "");
   const [description, setDescription] = useState(
     intervention ? intervention.description : ""
-  );
-  const [selectedProcess, setSelectedProcess] = useState(
-    intervention
-      ? { label: intervention.process, value: intervention.process }
-      : ""
   );
   const [selectedTrabajador, setSelectedTrabajador] = useState(
     intervention
@@ -115,175 +109,177 @@ export default function FormUpdateIntervention({
     setSelectedStructure(newValue);
     setSelectedArea("");
   };
-  let trabajadoresOptions = [];
-  if (
-    selectedUeb &&
-    selectedUeb.value === "CITOSTÁTICOS" &&
-    selectedStructure &&
-    selectedStructure.value === "Dirección Técnico Productiva"
-  ) {
-    trabajadoresOptions =
-      trabDirProdCit &&
-      trabDirProdCit
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "CITOSTÁTICOS" &&
-    selectedStructure &&
-    selectedStructure.value === "Departamento de Calidad"
-  ) {
-    trabajadoresOptions =
-      trabCalidadCit &&
-      trabCalidadCit
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "CITOSTÁTICOS" &&
-    selectedStructure &&
-    selectedStructure.value === "Departamento de Direción"
-  ) {
-    trabajadoresOptions =
-      trabDireccionCit &&
-      trabDireccionCit
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "LIORAD" &&
-    selectedStructure &&
-    selectedStructure.value === "Dirección Técnico Productiva"
-  ) {
-    trabajadoresOptions =
-      trabDirProdLior &&
-      trabDirProdLior
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "LIORAD" &&
-    selectedStructure &&
-    selectedStructure.value === "Departamento de Direción"
-  ) {
-    trabajadoresOptions =
-      trabDireccionLior &&
-      trabDireccionLior
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "LIORAD" &&
-    selectedStructure &&
-    selectedStructure.value === "Departamento de Calidad"
-  ) {
-    trabajadoresOptions =
-      trabCalidadLior &&
-      trabCalidadLior
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "AICA" &&
-    selectedStructure &&
-    selectedStructure.value === "Dirección Técnico Productiva"
-  ) {
-    trabajadoresOptions =
-      trabDirProdAica &&
-      trabDirProdAica
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "SH+" &&
-    selectedStructure &&
-    selectedStructure.value === "Departamento de Calidad"
-  ) {
-    trabajadoresOptions =
-      trabCalidadSh &&
-      trabCalidadSh
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "SH+" &&
-    selectedStructure &&
-    selectedStructure.value === "Departamento de Direción"
-  ) {
-    trabajadoresOptions =
-      trabDireccionSh &&
-      trabDireccionSh
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  } else if (
-    selectedUeb &&
-    selectedUeb.value === "JULIO TRIGO" &&
-    selectedStructure &&
-    selectedStructure.value === "Dirección Técnico Productiva"
-  ) {
-    trabajadoresOptions =
-      trabDirProdJt &&
-      trabDirProdJt
-        .filter((item) =>
-          selectedArea ? item.Area === selectedArea.value : false
-        )
-        .map((item) => ({
-          value: item.Nombre,
-          label: item.Nombre,
-        }));
-  }
+  const trabajadoresOptions = trabDirProdCit.map((item)=>({
+    value: item.Nombre,
+    label: item.Nombre,
+  }));
+  // if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "CITOSTÁTICOS" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Dirección Técnico Productiva"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDirProdCit &&
+  //     trabDirProdCit
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "CITOSTÁTICOS" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Departamento de Calidad"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabCalidadCit &&
+  //     trabCalidadCit
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "CITOSTÁTICOS" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Departamento de Direción"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDireccionCit &&
+  //     trabDireccionCit
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "LIORAD" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Dirección Técnico Productiva"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDirProdLior &&
+  //     trabDirProdLior
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "LIORAD" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Departamento de Direción"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDireccionLior &&
+  //     trabDireccionLior
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "LIORAD" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Departamento de Calidad"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabCalidadLior &&
+  //     trabCalidadLior
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "AICA" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Dirección Técnico Productiva"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDirProdAica &&
+  //     trabDirProdAica
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "SH+" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Departamento de Calidad"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabCalidadSh &&
+  //     trabCalidadSh
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "SH+" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Departamento de Direción"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDireccionSh &&
+  //     trabDireccionSh
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // } else if (
+  //   selectedUeb &&
+  //   selectedUeb.value === "JULIO TRIGO" &&
+  //   selectedStructure &&
+  //   selectedStructure.value === "Dirección Técnico Productiva"
+  // ) {
+  //   trabajadoresOptions =
+  //     trabDirProdJt &&
+  //     trabDirProdJt
+  //       .filter((item) =>
+  //         selectedArea ? item.Area === selectedArea.value : false
+  //       )
+  //       .map((item) => ({
+  //         value: item.Nombre,
+  //         label: item.Nombre,
+  //       }));
+  // }
 
   const defaultValues = {
     ueb: selectedUeb,
     structure: selectedStructure,
     area: selectedArea,
     consultor: consultor,
-    process: selectedProcess,
     worker: selectedTrabajador,
   };
 
@@ -316,7 +312,6 @@ export default function FormUpdateIntervention({
       id: intervention ? intervention.id : interventions.length + 1,
       name: data.name,
       description: data.description,
-      process: data.process.value,
       ueb: data.ueb.value,
       structure: data.structure.value,
       area: data.area.value,
@@ -340,9 +335,10 @@ export default function FormUpdateIntervention({
 
   return (
     <>
+    <DialogTitle>Intervención</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formGrid}>
-          <h2 className={styles.formTitle}>Intervención</h2>
+        
           <div className={styles.fullRow}>
             <label htmlFor="name">Intervención:</label>
             <input
@@ -458,39 +454,6 @@ export default function FormUpdateIntervention({
           </div>
 
           <div className={styles.halfRow}>
-            <label htmlFor="process">Proceso:</label>
-            <Controller
-              name="process"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  id="process"
-                  {...field}
-                  className={`${styles.selectForm}  ${
-                    errors.process ? "is-invalid" : ""
-                  }`}
-                  onChange={(selectedOption) => {
-                    setSelectedProcess(selectedOption);
-                    setValue("process", selectedOption);
-                    field.onChange(selectedOption);
-                  }}
-                  options={
-                    process &&
-                    process.map((sup) => ({
-                      label: sup.label,
-                      value: sup.label,
-                    }))
-                  }
-                  placeholder="Seleccione..."
-                />
-              )}
-            />
-            {errors.process && (
-              <div className={styles.error}>Seleccione un Proceso.</div>
-            )}
-          </div>
-
-          <div className={styles.halfRow}>
             <label htmlFor="consultor">Consultor:</label>
             <Controller
               name="consultor"
@@ -570,26 +533,23 @@ export default function FormUpdateIntervention({
               id="end"
               {...register("end")}
               className={`${styles.inputFecha}  ${
-                errors.process ? "is-invalid" : ""
+                errors.end ? "is-invalid" : ""
               }`}
               value={end}
               onChange={(event) => setEnd(event.target.value)}
             />
             <div className={styles.error}>{errors.end?.message}</div>
           </div>
-        </div>
-        <div className={styles.formButtons}>
-          <button className={styles.btn} type="submit">
+          <DialogActions>
+          <Button  type="submit">
             Aceptar
-          </button>
+          </Button>
 
-          <button className={styles.btn} type="button" onClick={onCancel}>
+          <Button  onClick={onCancel}>
             Cancelar
-          </button>
-          {/* <button className={styles.btn} type="button" onClick={() => reset()}>
-          Reset
-        </button> */}
-        </div>
+          </Button>
+          </DialogActions>
+        </div>  
 
         <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
           <DialogTitle>

@@ -11,51 +11,39 @@ import Logout from "../pages/Home/Logout/Logout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+
 function Header({
   setIsAuthenticated,
-  setTableVisible,
-  interventions,
-  setInterventions,
-  recomendations,
-  setRecomendations,
-  consultores,
-  process,
-  trabDirProdCit,
-  trabCalidadCit,
-  trabDireccionCit,
-  trabDirProdLior,
-  trabDireccionLior,
-  trabCalidadLior,
-  trabDirProdAica,
-  trabCalidadSh,
-  trabDireccionSh,
-  trabDirProdJt,
-  classifications,
 }) {
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
   const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
   const [mostrarLogout, setMostrarLogout] = useState(false);
 
-  const [ueb, setUeb] = useState(null);
-  useEffect(() => {
-    client("list_UEBs.json").then(
-      (ueb) => {
-        setUeb(ueb);
-      },
-      (error) => {
-        console.error("Error: ", error);
-      }
-    );
-  }, []);
+  // const [ueb, setUeb] = useState(null);
+  // useEffect(() => {
+  //   client("list_UEBs.json").then(
+  //     (ueb) => {
+  //       setUeb(ueb);
+  //     },
+  //     (error) => {
+  //       console.error("Error: ", error);
+  //     }
+  //   );
+  // }, []);
 
   const manejarMostrarLogout = () => {
     setMostrarLogout(true);
   };
 
   return (
-    <div className={styles.headcontainer}>
-      <div className={styles.headwrapper}>
-        <Navbar
+    <div>
+      <div className={styles.headcontainer}>
+        <div className={styles.headwrapper}>
+          <div className={styles.title}>
+            <h2>Intervenciones</h2>
+          </div>
+          {/* <Navbar
           setDialogCreInteOpen={setDialogCreInteOpen}
           setTableVisible={setTableVisible}
           setDialogRecomendationOpen={setDialogRecomendationOpen}
@@ -111,29 +99,23 @@ function Header({
             classifications={classifications}
             consultores={consultores}
           />
-        </Dialog>
-      </div>
+        </Dialog> */}
+        </div>
 
-      <div
-        style={{
-          position: "absolute",
-          right: "10mm",
-          marginTop: "23px",
-          marginBottom: "18px",
-        }}
-      >
-        <FontAwesomeIcon
-          icon={faSignOutAlt}
-          onClick={() => setMostrarLogout(true)}
-          className={styles.faIcon}
-        />
-
-        {mostrarLogout && (
-          <Logout
-            setIsAuthenticated={setIsAuthenticated}
-            setMostrarLogout={setMostrarLogout}
+        <div
+        className={styles.faIconOutAltContent}
+        >
+          <LogoutOutlinedIcon
+            onClick={() => setMostrarLogout(true)}
+            className={styles.faIconOutAlt}
           />
-        )}
+          {mostrarLogout && (
+            <Logout
+              setIsAuthenticated={setIsAuthenticated}
+              setMostrarLogout={setMostrarLogout}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,38 @@
+{
+    "empresas": [
+        {
+            "id": 1,
+            "name": "Aica "
+        },
+        {
+            "id": 2,
+            "name": "Empresa 2"
+        },
+        {
+            "id": 3,
+            "name": "Empresa 3"
+        },
+        {
+            "id": 4,
+            "name": "Empresa 4"
+        }
+    ],
+    "roles": [
+        {
+            "id": 1,
+            "name_role": "Administrador"
+        },
+        {
+            "id": 2,
+            "name_role": "Consultor"
+        },
+        {
+            "id": 3,
+            "name_role": "Consultor Jefe"
+        },
+        {
+            "id": 4,
+            "name_role": "Cliente"
+        }
+    ]
+}
