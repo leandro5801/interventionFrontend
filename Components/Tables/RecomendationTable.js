@@ -19,7 +19,6 @@ import {
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
 
-//sms de confirmacion
 import {
   Table,
   TableBody,
@@ -55,8 +54,7 @@ const options = [
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
 function RecomendationTable({
-  tableRData,
-  recomendations,
+   recomendations,
   setRecomendations,
   interventions,
 }) {
@@ -96,7 +94,7 @@ function RecomendationTable({
 
   const recomendationUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedTableRData = [...tableRData];
+    const updatedTableRData = [...recomendations];
 
     // Actualiza los datos de la fila que se está editando
     updatedTableRData[editRIdx] = updatedRow;
@@ -162,7 +160,7 @@ function RecomendationTable({
   //    setWorkerFilter(event.target.value);
   //  };
 
-  const filteredData = tableRData.filter(
+  const filteredData = recomendations.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.description
@@ -189,7 +187,7 @@ function RecomendationTable({
   }
 
   function handleDelete(idNum) {
-    const newRecomendation = tableRData.filter(
+    const newRecomendation = recomendations.filter(
       (recomendacion) => recomendacion.id !== idNum
     );
 
@@ -222,7 +220,7 @@ function RecomendationTable({
                 setDialogRecOpen(false);
               }}
               FormComponent={CreateRecomendationForm}
-              recomendations={tableRData}
+              recomendations={recomendations}
               classifications={clasificaciones}
               setTableRData={setRecomendations}
               setRecomendations={setRecomendations}
@@ -264,7 +262,7 @@ function RecomendationTable({
           <Table  stickyHeader>
             <TableHead>
               <TableRow>
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Recomendación
                   {showFilters && (
                     <input
@@ -276,7 +274,7 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Descripción
                   {showFilters && (
                     <input
@@ -288,7 +286,7 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Consultor
                   {showFilters && (
                     <input
@@ -300,7 +298,7 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>Tipo
+                 <TableCell className={styles.letraEnNegrita}>Tipo
                 {showFilters && (
                     <input
                       className={styles.inputFilter}
@@ -310,7 +308,7 @@ function RecomendationTable({
                       placeholder="Filtrar por clasificación"
                     />
                   )}</TableCell>
-                <TableCell className={styles.spacing}  >Seguida
+                 <TableCell className={styles.letraEnNegrita}>Seguida
                 {showFilters && (
                     <input
                       className={styles.inputFilter}
@@ -321,27 +319,27 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}></TableCell>
+                 <TableCell className={styles.letraEnNegrita}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {filteredData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((recomendation) => (
-                  <TableRow key={recomendation.id} className={styles.trStyle}>
-                    <TableCell className={styles.tdStyle}>
+                  <TableRow key={recomendation.id} >
+                    <TableCell >
                       {recomendation.name}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell >
                       {recomendation.description}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell >
                       {recomendation.consultor}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell >
                       {recomendation.classification}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell >
                       {recomendation.follow}
                     </TableCell>
                     <TableCell  padding="5" width={50}
@@ -351,7 +349,7 @@ function RecomendationTable({
                         icon={faEdit}
                         onClick={() =>
                           setEditRIdx(
-                            tableRData.findIndex(
+                            recomendations.findIndex(
                               (item) => item.id === recomendation?.id
                             )
                           )
@@ -390,7 +388,7 @@ function RecomendationTable({
                 <TablePagination
                   className={styles.tablePagination}
                   rowsPerPageOptions={[4, 5, 10]}
-                  count={tableRData.length}
+                  count={recomendations.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onPageChange={handleChangePage}
@@ -407,7 +405,7 @@ function RecomendationTable({
           onClose={handleCancelR}
           FormComponent={RecomendationForm}
           setTableRData={recomendationUpdate}
-          recomendation={tableRData[editRIdx]}
+          recomendation={recomendations[editRIdx]}
           onSave={handleSaveR}
           onCancel={handleCancelR}
           consultores={consultores}

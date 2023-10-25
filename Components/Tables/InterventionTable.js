@@ -283,7 +283,7 @@ function InterventionTable({
           <Table stickyHeader>
             <TableHead>
               <TableRow>
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Intervención
                   {showFilters && (
                     <input
@@ -296,7 +296,7 @@ function InterventionTable({
                   )}
                 </TableCell>
 
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Descripción
                   {showFilters && (
                     <input
@@ -308,7 +308,7 @@ function InterventionTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Consultor
                   {showFilters && (
                     <input
@@ -320,7 +320,7 @@ function InterventionTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}>
+                 <TableCell className={styles.letraEnNegrita}>
                   Trabajador
                   {showFilters && (
                     <input
@@ -332,7 +332,7 @@ function InterventionTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacing}></TableCell>
+                 <TableCell className={styles.letraEnNegrita}></TableCell>
               </TableRow>
             </TableHead>
 
@@ -340,24 +340,24 @@ function InterventionTable({
               {filteredData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((tsk) => (
-                  <TableRow key={tsk.id} className={styles.trStyle}>
-                    <TableCell className={styles.tdStyle}>{tsk.name}</TableCell>
-                    <TableCell className={styles.tdStyle}>
+                  <TableRow key={tsk.id} >
+                    <TableCell >{tsk.name}</TableCell>
+                    <TableCell >
                       {tsk.description}
                     </TableCell>
 
-                    {/* <TableCell className={styles.tdStyle}>{tsk.ueb}</TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    {/* <TableCell >{tsk.ueb}</TableCell>
+                    <TableCell >
                       {tsk.structure}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>{tsk.area}</TableCell> */}
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell >{tsk.area}</TableCell> */}
+                    <TableCell >
                       {tsk.consultor}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
+                    <TableCell >
                       {tsk.worker}
                     </TableCell>
-                    <td className={styles.tdStyle}>
+                    <td >
                       <FontAwesomeIcon
                         icon={faEdit}
                         onClick={() =>

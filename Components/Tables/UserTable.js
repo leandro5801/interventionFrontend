@@ -235,6 +235,9 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                           {user.name}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
+                          {user.user_name}
+                        </TableCell>
+                        <TableCell className={styles.tdStyle}>
                           {user.idRole}
                         </TableCell>
                         <td className={styles.tdStyle}>

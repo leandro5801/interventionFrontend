@@ -52,12 +52,7 @@ const options = [
   { value: "Proyecto Aica", label: "Proyecto Aica" },
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
-function RecomendationTable({
-  tableRData,
-  recomendations,
-  setRecomendations,
-  interventions,
-}) {
+function ReportTable({ recomendations, setRecomendations, interventions }) {
   const [consultores, setConsultores] = useState(consultoress);
   const [clasificaciones, setClasificaciones] = useState(clasificacioness);
 
@@ -94,7 +89,7 @@ function RecomendationTable({
 
   const recomendationUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedTableRData = [...tableRData];
+    const updatedTableRData = [...recomendations];
 
     // Actualiza los datos de la fila que se está editando
     updatedTableRData[editRIdx] = updatedRow;
@@ -137,10 +132,10 @@ function RecomendationTable({
   };
   const handleClassificationFilterChange = (event) => {
     setClassificationFilter(event.target.value);
-  }; 
+  };
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
-  }; 
+  };
   //  const handleProcessFilterChange = (event) => {
   //    setProcessFilter(event.target.value);
   //  };
@@ -160,15 +155,17 @@ function RecomendationTable({
   //    setWorkerFilter(event.target.value);
   //  };
 
-  const filteredData = tableRData.filter(
+  const filteredData = recomendations.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.description
         .toLowerCase()
         .includes(descriptionFilter.toLowerCase()) &&
-      item.consultor.toLowerCase().includes(consultorFilter.toLowerCase())
-      && item.classification.toLowerCase().includes(classificationFilter.toLowerCase())
-      && item.follow.toLowerCase().includes(followFilter.toLowerCase())
+      item.consultor.toLowerCase().includes(consultorFilter.toLowerCase()) &&
+      item.classification
+        .toLowerCase()
+        .includes(classificationFilter.toLowerCase()) &&
+      item.follow.toLowerCase().includes(followFilter.toLowerCase())
     // item.ueb.toLowerCase().includes(uebFilter.toLowerCase())
     //  &&
     //  item.structure.toLowerCase().includes(structureFilter.toLowerCase()) &&
@@ -187,12 +184,12 @@ function RecomendationTable({
   }
 
   function handleDelete(idNum) {
-    const newRecomendation = tableRData.filter(
+    const newRecomendation = recomendations.filter(
       (recomendacion) => recomendacion.id !== idNum
     );
 
     setRecomendations(newRecomendation);
-   
+
     // update state (if data on backend - make API request to update data)
 
     setOpen(false);
@@ -229,7 +226,7 @@ function RecomendationTable({
               )}
             </div>
           </div>
-          <Table  stickyHeader>
+          <Table stickyHeader>
             <TableHead>
               <TableRow>
                 <TableCell className={styles.spacingReport}>
@@ -256,8 +253,9 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacingReport}>Seguida
-                {showFilters && (
+                <TableCell className={styles.spacingReport}>
+                  Seguida
+                  {showFilters && (
                     <input
                       className={styles.inputFilterReport}
                       type="text"
@@ -284,7 +282,6 @@ function RecomendationTable({
                     <TableCell className={styles.tdStyle}>
                       {recomendation.follow}
                     </TableCell>
-                     
                   </TableRow>
                 ))}
             </TableBody>
@@ -293,7 +290,7 @@ function RecomendationTable({
                 <TablePagination
                   className={styles.tablePagination}
                   rowsPerPageOptions={[4, 5, 10]}
-                  count={tableRData.length}
+                  count={recomendations.length}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   onPageChange={handleChangePage}
@@ -310,16 +307,14 @@ function RecomendationTable({
           onClose={handleCancelR}
           FormComponent={RecomendationForm}
           setTableRData={recomendationUpdate}
-          recomendation={tableRData[editRIdx]}
+          recomendation={recomendations[editRIdx]}
           onSave={handleSaveR}
           onCancel={handleCancelR}
           consultores={consultores}
           classifications={clasificaciones}
-        >
-          
-        </FormDialog>
+        ></FormDialog>
       </>
     </>
   );
 }
-export default RecomendationTable;
+export default ReportTable;

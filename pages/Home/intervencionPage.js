@@ -25,7 +25,7 @@ export default function IntervencionPage() {
   return (
     <Container>
       <div className={styles.title}>
-        <h3> Intervenciones</h3>
+        <h3 className={styles.tituloH3}> Intervenciones</h3>
         <InterventionTable
             interventions={interventions}
             setInterventions={setInterventions}

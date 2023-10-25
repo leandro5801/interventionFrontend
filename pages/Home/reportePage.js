@@ -21,7 +21,7 @@ export default function ReportePage() {
         <h3> Reportes</h3>
         <ReportTable
           interventions={interventions}
-          tableRData={recomendations}
+          recomendations={recomendations}
           setRecomendations={setRecomendations}
         />
       </div>

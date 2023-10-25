@@ -1,5 +1,6 @@
 /* Dashboard */
 .sidebarcontainer {
+  top: 0px;
   position: fixed;
   width: 200px;
   height: 100%;
@@ -97,11 +98,15 @@
 /* header css started */
 
 .headcontainer {
+  position: fixed;
+  width: 100%;
+  top: 0;
   display: flex;
   flex-wrap: wrap;
   height: 70px;
   background-color: #007e9e;
   margin-left: 200px;
+  z-index: 100;
 }
 
 .headwrapper {
@@ -173,16 +178,20 @@
 /* ------------------------------------------------------------------------------------------------------------ */
 /* Content Layout*/
 .contenetcontainerLayout {
-  position: fixed;
+  /* position: fixed; */
+  margin-top: 70px;
   width: 1165px;
   display: flex;
   flex-wrap: wrap;
   /* align-items: center; */
   /* justify-content:center; */
   background-color: #fff;
-  height: 540px;
+  /* height: 540px; */
+  min-height: 100vh; /* Altura mínima para cubrir toda la pantalla */
   margin-left: 200px;
 }
+
+
 /* position: fixed;
   width: 200px;
   height: 100%;
@@ -243,6 +252,19 @@
 
 .contentwrapper {
   display: flex;
+  padding: 20px;
+  gap: 40px;
+  border-radius: 30px;
+  background-color: #fff;
+  margin-left: 100px;
+  width: 1090px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.contentwrapperGantt {
+  /* display: flex; */
   padding: 20px;
   gap: 40px;
   border-radius: 30px;
@@ -318,7 +340,7 @@
 .table {
   position: fixed;
   /* overflow-x: initial; */
-    /* overflow: auto;  */
+  /* overflow: auto;  */
   /* display:flex; */
   /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
   /* grid-auto-rows: minmax(50px, auto); */
@@ -329,13 +351,15 @@
   /* ancho de la tabla  */
   max-width: 1058px;
 }
+
 .table thead th {
   position: sticky;
   top: 0;
   z-index: 10;
   background-color: #fff;
-  
+
 }
+
 .table tfoot td {
   position: sticky;
   bottom: 0;
@@ -353,6 +377,9 @@
   font-weight: bold;
   /* text-align: center; */
   width: 2100px;
+}
+.letraEnNegrita{
+  font-weight: bold;
 }
 
 .trStyle {
@@ -459,12 +486,14 @@
   /* ancho de la tabla  */
   max-width: 1000px;
 }
-.tableReport  thead th {
+
+.tableReport thead th {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #fff; 
+  background-color: #fff;
 }
+
 .tableReport tfoot td {
   position: sticky;
   bottom: 0;
@@ -472,16 +501,18 @@
   background-color: #ffff;
 }
 
-.tableReport  td {
+.tableReport td {
   border-bottom: 1px solid #ddd;
   /* white-space: nowrap; */
 }
+
 .spacingReport {
   /* padding: 20px; */
   font-weight: bold;
   text-align: center;
   width: 10px;
 }
+
 .inputFilterReport {
   padding: 8px;
   border: none;
@@ -489,11 +520,13 @@
   font-size: 14px;
   width: 180px;
 }
+
 .trStyleReport {
   padding: 20px;
   text-align: center;
   /* width: 2100px; */
 }
+
 .tdStyleReport {
   padding: 5px;
   width: 2300px;
@@ -784,7 +817,7 @@
 
 /* ganttGridContainer */
 .ganttGridContainer {
-  position: fixed;
+  /* position: fixed; */
   display: grid;
   grid-template-columns: 150px 1fr;
   outline: 2px solid var(--color-outline);

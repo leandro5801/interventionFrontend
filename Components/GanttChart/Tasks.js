@@ -80,6 +80,14 @@ export default function Tasks({
     const taskId = parseInt(e.target.getAttribute("data-task-id"));
     const task = filteredTasks.find((t) => t.id === taskId);
     setSelectedIntervention(task);
+    setTableRData(
+      recomendations.filter(
+        (recomendation) => recomendation.idIntervention === task.id
+      )
+    );
+    setRecomendations;
+    
+    
     setOpenDialog(true);
   };
 

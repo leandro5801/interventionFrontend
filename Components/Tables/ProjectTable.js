@@ -259,7 +259,7 @@ function ProjectTable({ projects, setProjects }) {
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell className={styles.spacing}>
+                     <TableCell className={styles.letraEnNegrita}>
                       Proyecto
                       {showFilters && (
                         <input
@@ -272,7 +272,7 @@ function ProjectTable({ projects, setProjects }) {
                       )}
                     </TableCell>
 
-                    <TableCell className={styles.spacing}>
+                     <TableCell className={styles.letraEnNegrita}>
                       Objetivo
                       {showFilters && (
                         <input
@@ -284,7 +284,7 @@ function ProjectTable({ projects, setProjects }) {
                         />
                       )}
                     </TableCell>
-                    <TableCell className={styles.spacing}>
+                     <TableCell className={styles.letraEnNegrita}>
                       Cliente
                       {showFilters && (
                         <input
@@ -296,7 +296,7 @@ function ProjectTable({ projects, setProjects }) {
                         />
                       )}
                     </TableCell>
-                    <TableCell className={styles.spacing}>
+                     <TableCell className={styles.letraEnNegrita}>
                       Consultor
                       {showFilters && (
                         <input
@@ -309,7 +309,7 @@ function ProjectTable({ projects, setProjects }) {
                       )}
                       
                     </TableCell>
-                    <TableCell className={styles.spacing}></TableCell>
+                     <TableCell className={styles.letraEnNegrita}></TableCell>
                   </TableRow>
                 </TableHead>
 

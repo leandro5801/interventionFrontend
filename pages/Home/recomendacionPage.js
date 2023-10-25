@@ -20,7 +20,7 @@ export default function RecomendacionPage() {
         <h3> Recomendaciones</h3>
         <RecomendationTable
           interventions={interventions}
-          tableRData={recomendations}
+          recomendations={recomendations}
           setRecomendations={setRecomendations}
         />
       </div>
