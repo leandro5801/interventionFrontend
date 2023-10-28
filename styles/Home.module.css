@@ -187,7 +187,8 @@
   /* justify-content:center; */
   background-color: #fff;
   /* height: 540px; */
-  min-height: 100vh; /* Altura mínima para cubrir toda la pantalla */
+  min-height: 100vh;
+  /* Altura mínima para cubrir toda la pantalla */
   margin-left: 200px;
 }
 
@@ -212,11 +213,9 @@
 /* ------------------------------------------------------------------------------------------------------------ */
 /* Botones */
 .btn {
-  /* Color del texto */
   color: #fff;
   padding: 5px 10px;
   background-color: #007e9e;
-  /* border: 2px solid #0099CC; */
   border-radius: 6px;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
@@ -378,7 +377,8 @@
   /* text-align: center; */
   width: 2100px;
 }
-.letraEnNegrita{
+
+.letraEnNegrita {
   font-weight: bold;
 }
 
@@ -560,155 +560,104 @@
 
 
 /* ------------------------------------------------------------------------------------------------------------ */
-
-/* dialog css started */
-.dialogOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-/* Formulario de intervenciones */
-.dialogContent {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 500px;
-  height: 200px;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* formulario de recomendaciones */
-.dialogContentR {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 800px;
-  height: 440px;
-  max-width: 500px;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* formulario de recomendaciones */
-.dialogContentCR {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 510px;
-  height: 510px;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
-}
-
-.dialogHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dialogCloseButton {
-  border: none;
-  background-color: transparent;
-}
-
 .dialogBody {
   margin-top: 20px;
 }
 
 /* form css started  */
+/* formulario de intervencion  */
+.inputGroup {
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 10px;
+  padding: 5px;
+}
+.paddingSelect {
+  gap: 10px;
+  padding: 5px;
+}
+.dateGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
 .formGrid {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 1px;
 }
 
 
-.formGrid .fullRow {
+.fullRow {
   position: relative;
   grid-column: 1 / span 2;
+  padding: 5px;
 }
 
-.formGrid .halfRow {
-  position: relative;
+.halfRow {
+  padding: 5px;
 }
 
 .error {
-  position: absolute;
-  top: 100%;
-  left: 0;
+  /* position: absolute; */
+  /* top: 100%;
+  left: 0; */
   color: brown;
 }
 
-.formGrid .halfRow:nth-child(odd) {
-  grid-column: span 1;
+.inputForm {
+  padding: 7px;
+  border: none;
+  border-bottom: 1px solid gray;
+  background-color: #ccc;
+  font-size: 14px;
+  color: black;
+  width: 400px;
+  height: 40px;
 }
 
-.formGrid.halfRow:nth-child(even) {
-  grid-column: 2 / span 1;
+.selectForm {
+  width: 250px;
+  grid-column: 1 / -1;
+  font-size: 14px;
+  border-bottom: 2px solid gray;
+  color: black;
+}
+.selectFormRecInt {
+  width: 810px;
+  font-size: 14px;
+  border-bottom: 2px solid gray;
+  color: black;
+}
+.selectFormRec {
+  width: 400px;
+  font-size: 14px;
+  border-bottom: 2px solid gray;
+  color: black;
 }
 
-.formTitle {
-  margin: 0;
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  color: #0099CC;
-}
+/*  className={styles.MenuItemSelectForm} */
+
+/* .formButtons {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+} */
 
 .input {
   padding: 7px;
   border: none;
-  border-bottom: 2px solid #ddd;
-  font-size: 14px;
-  width: 400px;
+  outline: none;
 }
-
-.inputFecha {
-  padding: 7px;
-  border: none;
-  border-bottom: 2px solid #ddd;
-  font-size: 14px;
-  width: 150px;
-}
-
-.selectForm {
-  width: 280px;
-  /* height: 25px; */
-  /* padding: 7px;
-      width: 150px; */
-
-}
-
-.selectForm {
-  grid-column: 1 / -1;
-  /* Establece la columna de inicio y fin */
-}
-
-.formButtons {
-  grid-column: 1 / -1;
-  margin-top: 2rem;
-}
-
 
 .input:focus,
 .select:focus {
   outline: none;
-  border-bottom-color: #0099CC;
+  border-bottom-color: #fff;
 }
 
-.inputFecha:focus {
-  outline: none;
-  border-bottom-color: #0099CC;
-}
 
-.select {
+/* .select {
   padding: 7px;
   border: none;
   border-bottom: 2px solid #ddd;
@@ -723,7 +672,7 @@
   font-family: Arial, sans-serif;
   color: #0099CC;
   font-weight: bold;
-}
+} */
 
 .input[type="radio"] {
   appearance: none;

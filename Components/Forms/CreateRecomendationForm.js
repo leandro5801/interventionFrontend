@@ -1,7 +1,8 @@
 import styles from "../../styles/Home.module.css";
+import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
 
-import { useState} from "react";
+import { useState } from "react";
 
 //validaciones
 import { useForm } from "react-hook-form";
@@ -16,6 +17,8 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
+  Input,
+  InputLabel,
 } from "@mui/material";
 
 export default function CreateRecomendationForm({
@@ -105,138 +108,149 @@ export default function CreateRecomendationForm({
     }));
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.formGrid}>
-        <h2 className={styles.formTitle}>Recomendación</h2>
-        <div></div>
-        <div className={styles.fullRow}>
-          <label htmlFor="intervention">Intervención:</label>
-          <Select
-            id="intervention"
-            {...register("intervention")}
-            className={`${errors.intervention ? "is-invalid" : ""}`}
-            onChange={(selectedOption) => {
-              handleInterventionChange(selectedOption);
-              setValue("intervention", selectedOption.label);
-            }}
-            options={interventionsOptions}
-            placeholder="Seleccione..."
-          />
-          <div className={styles.error}>{errors.intervention?.message}</div>
-        </div>
-        <div className={styles.fullRow}>
-          <label htmlFor="name">Recomendación:</label>
-          <input
-            className={`${styles.input}  ${errors.name ? "is-invalid" : ""}`}
-            type="text"
-            id="name"
-            {...register("name")}
-            onChange={(event) => setName(event.target.value)}
-          />
-          <div className={styles.error}>{errors.name?.message}</div>
-        </div>
-        <div className={styles.fullRow}>
-          <label htmlFor="description">Descripción:</label>
-          <input
-            className={`${styles.input}  ${
-              errors.description ? "is-invalid" : ""
-            }`}
-            type="text"
-            id="description"
-            {...register("description")}
-            onChange={(event) => setDescription(event.target.value)}
-          />
-          <div className={styles.error}>{errors.description?.message}</div>
+    <>
+      <DialogTitle>Recomendación</DialogTitle>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+       
+            <div className={styles.paddingSelect}>
+              <Select
+                styles={customStyles}
+                id="intervention"
+                {...register("intervention")}
+                className={`${styles.selectFormRecInt} ${
+                  errors.intervention ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleInterventionChange(selectedOption);
+                  setValue("intervention", selectedOption.label);
+                }}
+                options={interventionsOptions}
+                placeholder="Seleccione la intervención"
+              />
+              <div className={styles.error}>{errors.intervention?.message}</div>
+            </div>
+            <div className={styles.inputGroup}>
+              <div>
+                <Input
+                  className={`${styles.inputForm}  ${
+                    errors.name ? "is-invalid" : ""
+                  }`}
+                  type="text"
+                  id="name"
+                  {...register("name")}
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder="Nombre de la recomendación"
+                />
+                <div className={styles.error}>{errors.name?.message}</div>
+              </div>
+              <div>
+                <Input
+                  className={`${styles.inputForm}  ${
+                    errors.description ? "is-invalid" : ""
+                  }`}
+                  type="text"
+                  id="description"
+                  {...register("description")}
+                  onChange={(event) => setDescription(event.target.value)}
+                  placeholder="Descripción"
+                />
+                <div className={styles.error}>
+                  {errors.description?.message}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.inputGroup}>
+              <div>
+                <Select
+                  styles={customStyles}
+                  id="consultor"
+                  {...register("consultor")}
+                  className={`${styles.selectFormRec}  ${
+                    errors.consultor ? "is-invalid" : ""
+                  }`}
+                  onChange={(selectedOption) => {
+                    handleConsultorChange(selectedOption);
+                    setValue("consultor", selectedOption.label);
+                  }}
+                  options={consultoresOptions}
+                  placeholder="Consultor"
+                />
+                <div className={styles.error}>{errors.consultor?.message}</div>
+              </div>
+
+              <div>
+                <Select
+                  styles={customStyles}
+                  id="classification"
+                  {...register("classification")}
+                  className={`${styles.selectFormRec}  ${
+                    errors.classification ? "is-invalid" : ""
+                  }`}
+                  onChange={(selectedOption) => {
+                    handleClassificationChange(selectedOption);
+                    setValue("classification", selectedOption.label);
+                  }}
+                  options={classificationsOptions}
+                  placeholder="Clasificación"
+                />
+                <div className={styles.error}>
+                  {errors.classification?.message}
+                </div>
+              </div>
+            </div>
+            <InputLabel>¿Se le ha dado seguimiento?</InputLabel>
+            <div className={styles.inputGroup}>
+              
+              <InputLabel>
+                Sí{" "}
+                <Input
+                  className={styles.input}
+                  type="radio"
+                  name="follow"
+                  value="Sí"
+                  {...register("follow")}
+                  checked={follow === "Sí"}
+                  onChange={(event) => setFollow(event.target.value)}
+                />
+              </InputLabel>
+              <InputLabel>
+                No{" "}
+                <Input
+                  className={styles.input}
+                  type="radio"
+                  name="follow"
+                  value="No"
+                  {...register("follow")}
+                  checked={follow === "No"}
+                  onChange={(event) => setFollow(event.target.value)}
+                />
+              </InputLabel>
+             
+            </div>
+           {errors.follow && (
+                <div className="invalid-feedback">{errors.follow.message}</div>
+              )}
         </div>
 
-        <div className={styles.halfRow}>
-          <label htmlFor="consultor">Consultor:</label>
-          <Select
-            id="consultor"
-            {...register("consultor")}
-            className={`${styles.selectForm}  ${
-              errors.consultor ? "is-invalid" : ""
-            }`}
-            onChange={(selectedOption) => {
-              handleConsultorChange(selectedOption);
-              setValue("consultor", selectedOption.label);
-            }}
-            options={consultoresOptions}
-            placeholder="Seleccione..."
-          />
-          <div className={styles.error}>{errors.consultor?.message}</div>
-        </div>
+        <DialogActions>
+          <Button type="submit">Aceptar</Button>
 
-        <div className={styles.halfRow}>
-          <label htmlFor="classification">Clasificación:</label>
-          <Select
-            id="classification"
-            {...register("classification")}
-            className={`${styles.selectForm}  ${
-              errors.classification ? "is-invalid" : ""
-            }`}
-            onChange={(selectedOption) => {
-              handleClassificationChange(selectedOption);
-              setValue("classification", selectedOption.label);
-            }}
-            options={classificationsOptions}
-            placeholder="Seleccione..."
-          />
-          <div className={styles.error}>{errors.classification?.message}</div>
-        </div>
-        <div className={styles.halfRow}>
-          <label htmlFor="follow">Seguimiento:</label>
-          <label className={styles.label}>
-            <input
-              className={styles.input}
-              type="radio"
-              name="follow"
-              value="Sí"
-              {...register("follow")}
-              checked={follow === "Sí"}
-              onChange={(event) => setFollow(event.target.value)}
-            />
-            Sí
-          </label>
-          <label className={styles.label}>
-            <input
-              className={styles.input}
-              type="radio"
-              name="follow"
-              value="No"
-              {...register("follow")}
-              checked={follow === "No"}
-              onChange={(event) => setFollow(event.target.value)}
-            />
-            No
-          </label>
-          {errors.follow && (
-            <div className="invalid-feedback">{errors.follow.message}</div>
-          )}
-        </div>
-        
-      </div>
-      <DialogActions>
-          <Button  type="submit">
-            Aceptar
-          </Button>
+          <Button onClick={onCancel}>Cancelar</Button>
+        </DialogActions>
 
-          <Button  onClick={onCancel}>
-            Cancelar
-          </Button>
-          </DialogActions>
-
-      <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
+        <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
           <DialogTitle>Confirmar creación</DialogTitle>
           <DialogContent>
             <p>¿Está seguro de crear esta recomendación?</p>
           </DialogContent>
           <DialogActions>
-          <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
+            <Button onClick={() => handleConfirm(formData)}>Aceptar</Button>
             <Button onClick={handleClose}>Cancelar</Button>
-           
           </DialogActions>
         </Dialog>
-    </form>
+      </form>
+    </>
   );
 }

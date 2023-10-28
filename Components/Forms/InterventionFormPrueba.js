@@ -1,6 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
-import Select from "react-select";
+// import Select from "react-select";
 import data from "../../public/structure.json";
 
 import { useState } from "react";
@@ -20,7 +19,10 @@ import {
   DialogTitle,
   TextField,
   Input,
+  Select,
+  MenuItem,
   InputLabel,
+  FormControl
 } from "@mui/material";
 
 const empresaOptionss = [
@@ -357,11 +359,10 @@ export default function FormUpdateIntervention({
       <DialogTitle>Intervención</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          
           <div className={styles.inputGroup}>
             <div>
               <Input
-                className={`${styles.inputForm}  ${
+                className={`${styles.input}  ${
                   errors.name ? "is-invalid" : ""
                 }`}
                 type="text"
@@ -369,13 +370,13 @@ export default function FormUpdateIntervention({
                 {...register("name")}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                placeholder="Nombre de la intervención"
+                placeholder="Nombre de la Intervención"
               />
               <div className={styles.error}>{errors.name?.message}</div>
             </div>
             <div>
               <Input
-                className={`${styles.inputForm}  ${
+                className={`${styles.input}  ${
                   errors.description ? "is-invalid" : ""
                 }`}
                 type="text"
@@ -395,195 +396,67 @@ export default function FormUpdateIntervention({
                 name="empresa"
                 control={control}
                 render={({ field }) => (
+                  // <Select
+                  //   id="empresa"
+                  //   {...field}
+                  //   className={`${styles.selectForm}  ${
+                  //     errors.ueb ? "is-invalid" : ""
+                  //   }`}
+                  //   onChange={(selectedOption) => {
+                  //     handleUebChange(selectedOption);
+                  //     setValue("empresa", selectedOption);
+                  //     setValue("ueb", "");
+                  //     setValue("structure", "");
+                  //     setValue("area", "");
+                  //     setValue("worker", "");
+                  //     field.onChange(selectedOption);
+                  //   }}
+                  //   options={empresaOptions}
+                  //   maxMenuHeight={120}
+                  //   placeholder="Empresa"
+                  // />
+                  <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                     <InputLabel id="demo-simple-select-standard-label">Empresa</InputLabel>
                   <Select
-                    styles={customStyles}
+                    labelId="empresa-label"
                     id="empresa"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.ueb ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      handleUebChange(selectedOption);
-                      setValue("empresa", selectedOption);
+                    value={field.value}
+                    label="empresa"
+                    onChange={(event) => {
+                      handleUebChange(event.target.value);
+                      setValue("empresa", event.target.value);
                       setValue("ueb", "");
                       setValue("structure", "");
                       setValue("area", "");
                       setValue("worker", "");
-                      field.onChange(selectedOption);
+                      field.onChange(event.target.value);
                     }}
-                    options={empresaOptions}
-                    maxMenuHeight={120}
-                    placeholder="Empresa"
-                  />
+                    className={`${styles.selectForm} ${
+                      errors.ueb ? "is-invalid" : ""
+                    }`}
+                  >
+                    {empresaOptions.map((option, index) => (
+                      <MenuItem key={index} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                   </FormControl>
                 )}
               />
               {errors.ueb && (
                 <div className={styles.error}>Seleccione una Empresa.</div>
               )}
             </div>
-
-            <div className={styles.halfRow}>
-              <Controller
-                name="ueb"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="ueb"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.ueb ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      handleUebChange(selectedOption);
-                      setValue("ueb", selectedOption);
-                      setValue("structure", "");
-                      setValue("area", "");
-                      setValue("worker", "");
-                      field.onChange(selectedOption);
-                    }}
-                    options={uebOptions}
-                    maxMenuHeight={120}
-                    placeholder="UEB"
-                  />
-                )}
-              />
-              {errors.ueb && (
-                <div className={styles.error}>Seleccione una UEB.</div>
-              )}
-            </div>
-
-            <div className={styles.halfRow}>
-              <Controller
-                name="structure"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="structure"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.structure ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      handleStructureChange(selectedOption);
-                      setValue("structure", selectedOption);
-                      setValue("area", "");
-                      setValue("worker", "");
-                      field.onChange(selectedOption);
-                    }}
-                    options={structureOptions}
-                    maxMenuHeight={120}
-                    placeholder="Dirección"
-                  />
-                )}
-              />
-
-              {errors.structure && (
-                <div className={styles.error}>Seleccione una Dirección.</div>
-              )}
-            </div>
-            <div className={styles.halfRow}>
-              <Controller
-                name="area"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="area"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.area ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      setSelectedArea(selectedOption);
-                      setValue("area", selectedOption);
-                      setValue("worker", "");
-                      field.onChange(selectedOption);
-                    }}
-                    options={areaOptions}
-                    maxMenuHeight={120}
-                    placeholder="Área"
-                  />
-                )}
-              />
-              {errors.area && (
-                <div className={styles.error}>Seleccione un Área.</div>
-              )}
-            </div>
-
-            <div className={styles.halfRow}>
-              <Controller
-                name="consultor"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="consultor"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.consultor ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      handleConsultorChange(selectedOption);
-                      setValue("consultor", selectedOption);
-                      field.onChange(selectedOption);
-                    }}
-                    options={consultoresOptions}
-                    maxMenuHeight={120}
-                    placeholder="Consultor"
-                  />
-                )}
-              />
-              {errors.consultor && (
-                <div className={styles.error}>Seleccione un Consultor.</div>
-              )}
-            </div>
-
-            <div className={styles.halfRow}>
-              <Controller
-                name="worker"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="worker"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.worker ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      setSelectedTrabajador(selectedOption);
-                      setValue("worker", selectedOption);
-                      field.onChange(selectedOption);
-                    }}
-                    options={
-                      trabajadoresOptions &&
-                      trabajadoresOptions.map((sup) => ({
-                        label: sup.label,
-                        value: sup.label,
-                      }))
-                    }
-                    maxMenuHeight={120}
-                    placeholder="Trabajador"
-                  />
-                )}
-              />
-              {errors.worker && (
-                <div className={styles.error}>Seleccione un Trabajador.</div>
-              )}
-            </div>
           </div>
-          <div className={styles.inputGroup}>
-            <div>
-              <InputLabel id="demo-simple-select-standard-label">
-                Fecha de fin
-              </InputLabel>
+          {/* <div className={styles.dateGroup}>
+            <div className={styles.halfRow}>
+              <label htmlFor="start">Fecha de inicio:</label>
               <Input
                 type="date"
                 id="start"
                 {...register("start")}
-                className={`${styles.inputForm}  ${
+                className={`${styles.inputFecha}  ${
                   errors.start ? "is-invalid" : ""
                 }`}
                 value={start}
@@ -592,16 +465,13 @@ export default function FormUpdateIntervention({
               />
               <div className={styles.error}>{errors.start?.message}</div>
             </div>
-            <div>
-              <InputLabel id="demo-simple-select-standard-label">
-                Fecha de inicio
-              </InputLabel>
-              <Input
+            <div className={styles.halfRow}>
+              <label htmlFor="end">Fecha de Fin:</label>
+              <input
                 type="date"
                 id="end"
-                label="Fecha de fin"
                 {...register("end")}
-                className={`${styles.inputForm}  ${
+                className={`${styles.inputFecha}  ${
                   errors.end ? "is-invalid" : ""
                 }`}
                 value={end}
@@ -609,7 +479,7 @@ export default function FormUpdateIntervention({
               />
               <div className={styles.error}>{errors.end?.message}</div>
             </div>
-          </div>
+          </div> */}
         </div>
         <DialogActions>
           <Button type="submit">Aceptar</Button>

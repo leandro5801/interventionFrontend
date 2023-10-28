@@ -16,10 +16,15 @@ export default function FormDialog({ open, handleClose, FormComponent, ...formPr
     open={open}
     onClose={handleClose}
     PaperProps={{
+   
       style: {
-        width: 'fit-content',
+        display: 'flex',
+        flexDirection: 'column',
+        // alignItems: 'center',
+        maxWidth: '5000px', // Establece el ancho máximo que desees para el diálogo
         height: 'fit-content',
         padding: '16px',
+        overflowX: 'auto'
       },
     }}
   >
