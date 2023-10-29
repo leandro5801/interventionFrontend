@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import UebForm from "../Forms/UebForm";
 
 import {
   Table,
@@ -42,8 +42,7 @@ const options = [
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
 
-function UebTable({ uebs, setUebs }) {
-  const [consultores, setConsultores] = useState(consultoress);
+function UebTable({ uebs, setUebs, empresas }) {
 
   //para los select de proyecto etc
   const [selectedOption, setSelectedOption] = useState(null);
@@ -61,7 +60,7 @@ function UebTable({ uebs, setUebs }) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -96,7 +95,6 @@ function UebTable({ uebs, setUebs }) {
     setEmpresaFilter(event.target.value);
   };
 
-
   const filteredData = uebs.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
@@ -129,15 +127,15 @@ function UebTable({ uebs, setUebs }) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const UebUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...uebs];
+    const updatedUebsData = [...uebs];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedUebsData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setProjects(updatedInterventonsData);
+    setUebs(updatedUebsData);
   };
   return (
     <>
@@ -155,30 +153,27 @@ function UebTable({ uebs, setUebs }) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-              open={dialogCreInteOpen}
-              onClose={() => {
-                setDialogCreInteOpen(false);
-              }}
-              FormComponent={IntervrntionForm}
-              setInterventions={setProjects}
-                interventions={uebs}
-                onSave={() => {
-                  setDialogCreInteOpen(false);
-                }}
-                onCancel={() => {
-                  setDialogCreInteOpen(false);
-                }}
-                consultores={consultores}
-            
-            >
-             
-            </FormDialog> */}
+                <FormDialog
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={UebForm}
+                  setUebs={setUebs}
+                  uebs={uebs}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
@@ -194,49 +189,11 @@ function UebTable({ uebs, setUebs }) {
                   )}
                 </div>
               </div>
-              {/* <div className={styles.filtrosEstructuraContent}>
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={uebFilter}
-                onChange={handleUebFilterChange}
-                placeholder="Filtrar por UEB"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={structureFilter}
-                onChange={handleStructureFilterChange}
-                placeholder="Filtrar por dirección"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={areaFilter}
-                onChange={handleAreaFilterChange}
-                placeholder="Filtrar por área"
-              />
-            )}
-             {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="date"
-                value={startFilter}
-                onChange={handleStartFilterChange}
-                placeholder="Filtrar por fecha"
-              />
-            )}
-          </div> */}
 
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                  <TableCell className={styles.spacing}>
+                    <TableCell className={styles.spacing}>
                       Empresa
                       {showFilters && (
                         <input
@@ -270,10 +227,10 @@ function UebTable({ uebs, setUebs }) {
                     .map((ueb) => (
                       <TableRow key={ueb.id} className={styles.trStyle}>
                         <TableCell className={styles.tdStyle}>
-                          {ueb.name}
+                          {ueb.empresa}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {ueb.empresa}
+                          {ueb.name}
                         </TableCell>
 
                         <td className={styles.tdStyle}>
@@ -281,7 +238,9 @@ function UebTable({ uebs, setUebs }) {
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
-                                filteredData.findIndex((item) => item.id === ueb?.id)
+                                filteredData.findIndex(
+                                  (item) => item.id === ueb?.id
+                                )
                               )
                             }
                             className={styles.faIcon}
@@ -328,19 +287,17 @@ function UebTable({ uebs, setUebs }) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
-            className={styles.dialogContent}
+              <FormDialog
             open={editIIdx !== -1}
             onClose={handleCancelI}
-            FormComponent={IntervrntionForm}
-            setInterventions={interventionUpdate}
-            intervention={uebs[editIIdx]}
+            FormComponent={UebForm}
+            setUebs={UebUpdate}
+            ueb={uebs[editIIdx]}
             onSave={handleSaveI}
             onCancel={handleCancelI}
-            consultores={consultores}
-            trabDirProdCit={trabDirProdCit}
+            empresas={empresas}
           >
-             </FormDialog> */}
+             </FormDialog>
             </TableContainer>
           </div>
         )}

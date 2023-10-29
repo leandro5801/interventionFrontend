@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import EmpresaForm from "../Forms/EmpresaForm";
 
 import {
   Table,
@@ -44,7 +44,7 @@ function EmpresaTable({ empresas, setEmpresas}) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -118,15 +118,15 @@ function EmpresaTable({ empresas, setEmpresas}) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const empresaUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...empresas];
+    const updatedEmpresasData = [...empresas];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedEmpresasData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setInterventions(updatedInterventonsData);
+    setEmpresas(updatedEmpresasData);
   };
   return (
     <>
@@ -144,28 +144,27 @@ function EmpresaTable({ empresas, setEmpresas}) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-                  open={dialogCreInteOpen}
+                <FormDialog
+                  open={dialogOpen}
                   onClose={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogOpen(false);
                   }}
-                  FormComponent={IntervrntionForm}
-                  setInterventions={setInterventions}
-                  interventions={empresas}
+                  FormComponent={EmpresaForm}
+                  setEmpresas={setEmpresas}
+                  empresas={empresas}
                   onSave={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogOpen(false);
                   }}
                   onCancel={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogOpen(false);
                   }}
-                  consultores={consultores}
-                  trabDirProdCit={trabDirProdCit}
-                ></FormDialog> */}
+                 
+                ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
               </div>
@@ -249,18 +248,15 @@ function EmpresaTable({ empresas, setEmpresas}) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
-                className={styles.dialogContent}
+              <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
-                FormComponent={IntervrntionForm}
-                setInterventions={interventionUpdate}
-                intervention={empresas[editIIdx]}
+                FormComponent={EmpresaForm}
+                setEmpresas={empresaUpdate}
+                empresa={empresas[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
-                consultores={consultores}
-                trabDirProdCit={trabDirProdCit}
-              ></FormDialog> */}
+              ></FormDialog>
             </TableContainer>
           </div>
         )}

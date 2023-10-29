@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import TrabajadorForm from "../Forms/TrabajadorForm";
 
 import {
   Table,
@@ -30,23 +30,7 @@ import {
 
 import Select from "react-select";
 
-// Para probar con consultores y trabajadoresBORRAR DESPUES Y CARGAR DEL LISTADO DE CONSULTORES REAL
-const consultoress = [
-  { id: 1, name: "Carlos Ramón López Paz" },
-  { id: 2, name: "Laura Alfonzo Perez" },
-  { id: 3, name: "Alberto López Gónzalez" },
-  { id: 4, name: "Lazaro Días Alvares" },
-];
-const options = [
-  { value: "Proyecto Aica", label: "Proyecto Aica" },
-  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
-];
-
-function TrabajadorTable({trabajadores,setTrabajadores}) {
-  const [consultores, setConsultores] = useState(consultoress);
-
-  //para los select de proyecto etc
-  const [selectedOption, setSelectedOption] = useState(null);
+function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direcciones,areas}) {
 
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
@@ -61,7 +45,7 @@ function TrabajadorTable({trabajadores,setTrabajadores}) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -112,8 +96,9 @@ function TrabajadorTable({trabajadores,setTrabajadores}) {
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.empresa.toLowerCase().includes(empresaFilter.toLowerCase()) &&
       item.ueb.toLowerCase().includes(uebFilter.toLowerCase()) &&
-      item.direccion.toLowerCase().includes(direccionFilter.toLowerCase()) &&
-      item.area.toLowerCase().includes(areaFilter.toLowerCase())
+      item.direccion.toLowerCase().includes(direccionFilter.toLowerCase())
+      //  &&
+      // item.area.toLowerCase().includes(areaFilter.toLowerCase())
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -142,15 +127,15 @@ function TrabajadorTable({trabajadores,setTrabajadores}) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const trabajadorUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...areas];
+    const updatedTrabajadoresData = [...trabajadores];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedTrabajadoresData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setProjects(updatedInterventonsData);
+    setTrabajadores(updatedTrabajadoresData);
   };
   return (
     <>
@@ -168,30 +153,32 @@ function TrabajadorTable({trabajadores,setTrabajadores}) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-              open={dialogCreInteOpen}
+                <FormDialog
+              open={dialogOpen}
               onClose={() => {
-                setDialogCreInteOpen(false);
+                setDialogOpen(false);
               }}
-              FormComponent={IntervrntionForm}
-              setInterventions={setProjects}
-                interventions={uebs}
+              FormComponent={TrabajadorForm}
+              setTrabajadores={setTrabajadores}
+                trabajadores={trabajadores}
                 onSave={() => {
-                  setDialogCreInteOpen(false);
+                  setDialogOpen(false);
                 }}
                 onCancel={() => {
-                  setDialogCreInteOpen(false);
+                  setDialogOpen(false);
                 }}
-                consultores={consultores}
-            
+               empresas={empresas}
+               uebs={uebs}
+               direcciones={direcciones}
+               areas={areas}
             >
              
-            </FormDialog> */}
+            </FormDialog>
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
@@ -206,44 +193,6 @@ function TrabajadorTable({trabajadores,setTrabajadores}) {
                   )}
                 </div>
               </div>
-              {/* <div className={styles.filtrosEstructuraContent}>
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={uebFilter}
-                onChange={handleUebFilterChange}
-                placeholder="Filtrar por UEB"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={structureFilter}
-                onChange={handleStructureFilterChange}
-                placeholder="Filtrar por dirección"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={areaFilter}
-                onChange={handleAreaFilterChange}
-                placeholder="Filtrar por área"
-              />
-            )}
-             {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="date"
-                value={startFilter}
-                onChange={handleStartFilterChange}
-                placeholder="Filtrar por fecha"
-              />
-            )}
-          </div> */}
 
               <Table stickyHeader>
                 <TableHead>
@@ -384,19 +333,20 @@ function TrabajadorTable({trabajadores,setTrabajadores}) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
-            className={styles.dialogContent}
+              <FormDialog
             open={editIIdx !== -1}
             onClose={handleCancelI}
-            FormComponent={IntervrntionForm}
-            setInterventions={interventionUpdate}
-            intervention={uebs[editIIdx]}
+            FormComponent={TrabajadorForm}
+            setTrabajadores={trabajadorUpdate}
+            trabajador={trabajadores[editIIdx]}
             onSave={handleSaveI}
             onCancel={handleCancelI}
-            consultores={consultores}
-            trabDirProdCit={trabDirProdCit}
+            empresas={empresas}
+            uebs={uebs}
+            direcciones={direcciones}
+            areas={areas}
           >
-             </FormDialog> */}
+             </FormDialog>
             </TableContainer>
           </div>
         )}

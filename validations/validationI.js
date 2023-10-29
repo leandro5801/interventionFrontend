@@ -3,10 +3,10 @@ import * as Yup from "yup";
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required("Ingrese un nombre."),
   description: Yup.string().required("Ingrese una descripción."),
-  // process:  Yup.object().shape({
-  //   value: Yup.string().required("Seleccione un proceso."),
-  //   label: Yup.string().required("Seleccione un proceso."),
-  // }),
+  empresa:  Yup.object().shape({
+    value: Yup.string().required("Seleccione una empresa."),
+    label: Yup.string().required("Seleccione una empresa."),
+  }),
   ueb: Yup.object().shape({
     value: Yup.string().required("Seleccione una UEB."),
     label: Yup.string().required("Seleccione una UEB."),

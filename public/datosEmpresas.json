@@ -17,22 +17,90 @@
             "name": "Empresa 4"
         }
     ],
-    "roles": [
+    "ueb": [
         {
             "id": 1,
-            "name_role": "Administrador"
+            "name": "Aica", 
+            "empresa": "Aica"
         },
         {
             "id": 2,
-            "name_role": "Consultor"
+            "name": "ueb 2", 
+            "empresa": "Aica"
         },
         {
             "id": 3,
-            "name_role": "Consultor Jefe"
+            "name": "ueb 3", 
+            "empresa": "Aica"
+        }
+    ],
+    "direcciones": [
+        {
+            "id": 1,
+            "name": "direccion1", 
+            "ueb": "Aica", 
+            "empresa": "Aica"
         },
         {
-            "id": 4,
-            "name_role": "Cliente"
+            "id": 2,
+            "name": "direccion2",
+            "ueb": "ueb2",  
+            "empresa": "Aica"
+        },
+        {
+            "id": 3,
+            "name": "direccion3",
+            "ueb": "ueb3",  
+            "empresa": "Aica"
+        }
+    ],
+    "areas": [
+        {
+            "id": 1,
+            "name": "area1", 
+            "direccion": "direccion1",
+            "ueb": "Aica", 
+            "empresa": "Aica"
+        },
+        {
+            "id": 2,
+            "name": "area2",
+            "direccion": "direccion2",
+            "ueb": "ueb2",  
+            "empresa": "Aica"
+        },
+        {
+            "id": 3,
+            "name": "area3",
+            "direccion": "direccion3",
+            "ueb": "ueb3",  
+            "empresa": "Aica"
+        }
+    ],
+    "trabajadores": [
+        {
+            "id": 1,
+            "name": "Trabajador1", 
+            "area": "area1",
+            "direccion": "direccion1",
+            "ueb": "Aica1", 
+            "empresa": "Aica1"
+        },
+        {
+            "id": 2,
+            "name": "Trabajador2", 
+            "area": "area2",
+            "direccion": "direccion2",
+            "ueb": "Aica2", 
+            "empresa": "Aica2"
+        },
+        {
+            "id": 3,
+            "name": "Trabajador3", 
+            "area": "area3",
+            "direccion": "direccion3",
+            "ueb": "Aica3", 
+            "empresa": "Aica3"
         }
     ]
 }

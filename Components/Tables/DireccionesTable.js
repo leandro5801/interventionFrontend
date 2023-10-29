@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import DireccionForm from "../Forms/DireccionForm";
 
 import {
   Table,
@@ -42,7 +42,7 @@ const options = [
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
 
-function DireccionTable({direcciones,setDirecciones}) {
+function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
   const [consultores, setConsultores] = useState(consultoress);
 
   //para los select de proyecto etc
@@ -61,7 +61,7 @@ function DireccionTable({direcciones,setDirecciones}) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -134,15 +134,15 @@ function DireccionTable({direcciones,setDirecciones}) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const direccionUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...direcciones];
+    const updatedDireccionData = [...direcciones];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedDireccionData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setProjects(updatedInterventonsData);
+    setDirecciones(updatedDireccionData);
   };
   return (
     <>
@@ -160,30 +160,31 @@ function DireccionTable({direcciones,setDirecciones}) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-              open={dialogCreInteOpen}
+                <FormDialog
+              open={dialogOpen}
               onClose={() => {
-                setDialogCreInteOpen(false);
+                setDialogOpen(false);
               }}
-              FormComponent={IntervrntionForm}
-              setInterventions={setProjects}
-                interventions={uebs}
+              FormComponent={DireccionForm}
+              setDirecciones={setDirecciones}
+                direcciones={uebs}
                 onSave={() => {
-                  setDialogCreInteOpen(false);
+                  setDialogOpen(false);
                 }}
                 onCancel={() => {
-                  setDialogCreInteOpen(false);
+                  setDialogOpen(false);
                 }}
-                consultores={consultores}
+               empresas={empresas}
+               uebs={uebs}
             
             >
              
-            </FormDialog> */}
+            </FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
@@ -199,44 +200,6 @@ function DireccionTable({direcciones,setDirecciones}) {
                   )}
                 </div>
               </div>
-              {/* <div className={styles.filtrosEstructuraContent}>
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={uebFilter}
-                onChange={handleUebFilterChange}
-                placeholder="Filtrar por UEB"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={structureFilter}
-                onChange={handleStructureFilterChange}
-                placeholder="Filtrar por dirección"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={areaFilter}
-                onChange={handleAreaFilterChange}
-                placeholder="Filtrar por área"
-              />
-            )}
-             {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="date"
-                value={startFilter}
-                onChange={handleStartFilterChange}
-                placeholder="Filtrar por fecha"
-              />
-            )}
-          </div> */}
 
               <Table stickyHeader>
                 <TableHead>
@@ -348,19 +311,19 @@ function DireccionTable({direcciones,setDirecciones}) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
+              <FormDialog
             className={styles.dialogContent}
             open={editIIdx !== -1}
             onClose={handleCancelI}
-            FormComponent={IntervrntionForm}
-            setInterventions={interventionUpdate}
-            intervention={uebs[editIIdx]}
+            FormComponent={DireccionForm}
+            setDirecciones={direccionUpdate}
+            direccion={direcciones[editIIdx]}
             onSave={handleSaveI}
             onCancel={handleCancelI}
-            consultores={consultores}
-            trabDirProdCit={trabDirProdCit}
+            empresas={empresas}
+            uebs={uebs}
           >
-             </FormDialog> */}
+             </FormDialog>
             </TableContainer>
           </div>
         )}

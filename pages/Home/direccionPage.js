@@ -4,13 +4,19 @@ import { useState } from "react";
 import styles from "../../styles/Home.module.css";
 
 import Container from "../../Components/Container";
-import DireccionTable from "../../Components/Tables/DireccionTable";
+import DireccionTable from "../../Components/Tables/DireccionesTable";
 
-import datosUeb from "../../public/datosUeb.json"
+import datosUeb from "../../public/datosEmpresas.json"
 export default function DireccionPage() {
    // datos de las direcciones
    const [direcciones, setDirecciones] = useState(
     datosUeb?.direcciones
+  );
+  const [uebs, setUebs] = useState(
+    datosUeb?.ueb
+  );
+  const [empresas, setEmpresas] = useState(
+    datosUeb?.empresas
   );
   return (
     <Container>
@@ -19,6 +25,8 @@ export default function DireccionPage() {
         <DireccionTable
             direcciones={direcciones}
             setDirecciones={setDirecciones}
+            empresas={empresas}
+            uebs={uebs}
           />
       </div>
     </Container>

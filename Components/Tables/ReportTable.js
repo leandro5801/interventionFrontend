@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 
 import FormDialog from "../Forms/FormDialog";
-import RecomendationForm from "../Forms/RecomendationForm";
-import CreateRecomendationForm from "../Forms/CreateRecomendationForm";
+
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -302,17 +301,7 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
           </Table>
         </TableContainer>
         {/* Para editar  */}
-        <FormDialog
-          open={editRIdx !== -1}
-          onClose={handleCancelR}
-          FormComponent={RecomendationForm}
-          setTableRData={recomendationUpdate}
-          recomendation={recomendations[editRIdx]}
-          onSave={handleSaveR}
-          onCancel={handleCancelR}
-          consultores={consultores}
-          classifications={clasificaciones}
-        ></FormDialog>
+       
       </>
     </>
   );

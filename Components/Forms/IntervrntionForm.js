@@ -55,9 +55,12 @@ export default function FormUpdateIntervention({
       ? { label: intervention.worker, value: intervention.worker }
       : ""
   );
-  const [selectedEmpresa, setSelectedEmpresa] = useState(
+  const [empresa, setEmpresa] = useState(
     intervention
-      ? { label: intervention.empresa, value: intervention.empresa }
+      ? {
+          label: intervention.empresa,
+          value: intervention.empresa,
+        }
       : ""
   );
   const [selectedUeb, setSelectedUeb] = useState(
@@ -93,12 +96,16 @@ export default function FormUpdateIntervention({
   };
 
   //para poner dependencia entre los select estructuras
-  const empresaOptions =
+  const empresasOptions =
     empresaOptionss &&
     empresaOptionss.map((item) => ({
       value: item.value,
       label: item.value,
     }));
+  const handleEmpresaChange = (newValue) => {
+    setEmpresa({ label: newValue.value, value: newValue.value });
+  };
+
   const uebOptions = data.ueb.map((item) => ({
     value: item.ueb,
     label: item.ueb,
@@ -295,6 +302,7 @@ export default function FormUpdateIntervention({
   // }
 
   const defaultValues = {
+    empresa: empresa,
     ueb: selectedUeb,
     structure: selectedStructure,
     area: selectedArea,
@@ -331,6 +339,7 @@ export default function FormUpdateIntervention({
       id: intervention ? intervention.id : interventions.length + 1,
       name: data.name,
       description: data.description,
+      empresa: data.empresa.value,
       ueb: data.ueb.value,
       structure: data.structure.value,
       area: data.area.value,
@@ -357,7 +366,6 @@ export default function FormUpdateIntervention({
       <DialogTitle>Intervención</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          
           <div className={styles.inputGroup}>
             <div>
               <Input
@@ -391,7 +399,7 @@ export default function FormUpdateIntervention({
 
           <div className={styles.formGrid}>
             <div className={styles.halfRow}>
-              <Controller
+            <Controller
                 name="empresa"
                 control={control}
                 render={({ field }) => (
@@ -400,25 +408,21 @@ export default function FormUpdateIntervention({
                     id="empresa"
                     {...field}
                     className={`${styles.selectForm}  ${
-                      errors.ueb ? "is-invalid" : ""
+                      errors.empresa ? "is-invalid" : ""
                     }`}
                     onChange={(selectedOption) => {
-                      handleUebChange(selectedOption);
+                      handleEmpresaChange(selectedOption);
                       setValue("empresa", selectedOption);
-                      setValue("ueb", "");
-                      setValue("structure", "");
-                      setValue("area", "");
-                      setValue("worker", "");
                       field.onChange(selectedOption);
                     }}
-                    options={empresaOptions}
+                    options={empresasOptions}
                     maxMenuHeight={120}
                     placeholder="Empresa"
                   />
                 )}
               />
-              {errors.ueb && (
-                <div className={styles.error}>Seleccione una Empresa.</div>
+              {errors.empresa && (
+                <div className={styles.error}>Seleccione una empresa.</div>
               )}
             </div>
 

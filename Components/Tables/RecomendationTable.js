@@ -5,8 +5,8 @@ import Select from "react-select";
 import Settings from "../GanttChart/Settings";
 import DialogForm from "../Forms/Dialog";
 import FormDialog from "../Forms/FormDialog";
-import RecomendationForm from "../Forms/RecomendationForm";
-import CreateRecomendationForm from "../Forms/CreateRecomendationForm";
+import RecomendationEditForm from "../Forms/RecomendationEditForm";
+import CreateRecomendationForm from "../Forms/RecomendationCreateForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -403,7 +403,7 @@ function RecomendationTable({
         <FormDialog
           open={editRIdx !== -1}
           onClose={handleCancelR}
-          FormComponent={RecomendationForm}
+          FormComponent={RecomendationEditForm}
           setTableRData={recomendationUpdate}
           recomendation={recomendations[editRIdx]}
           onSave={handleSaveR}

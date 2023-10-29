@@ -412,7 +412,6 @@ function InterventionTable({
             </TableFooter>
           </Table>
           <FormDialog
-            className={styles.dialogContent}
             open={editIIdx !== -1}
             onClose={handleCancelI}
             FormComponent={IntervrntionForm}

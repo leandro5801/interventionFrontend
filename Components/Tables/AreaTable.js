@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import AreaForm from "../Forms/AreaForm";
 
 import {
   Table,
@@ -42,7 +42,7 @@ const options = [
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
 
-function AreaTable({areas,setAreas}) {
+function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
   const [consultores, setConsultores] = useState(consultoress);
 
   //para los select de proyecto etc
@@ -61,7 +61,7 @@ function AreaTable({areas,setAreas}) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -137,15 +137,15 @@ function AreaTable({areas,setAreas}) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const areaUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...areas];
+    const updatedAreasData = [...areas];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedAreasData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setProjects(updatedInterventonsData);
+    setAreas(updatedAreasData);
   };
   return (
     <>
@@ -163,30 +163,32 @@ function AreaTable({areas,setAreas}) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-              open={dialogCreInteOpen}
+                <FormDialog
+              open={dialogOpen}
               onClose={() => {
-                setDialogCreInteOpen(false);
+                setDialogOpen(false);
               }}
-              FormComponent={IntervrntionForm}
-              setInterventions={setProjects}
-                interventions={uebs}
+              FormComponent={AreaForm}
+              setAreas={setAreas}
+                areas={areas}
                 onSave={() => {
-                  setDialogCreInteOpen(false);
+                  setDialogOpen(false);
                 }}
                 onCancel={() => {
-                  setDialogCreInteOpen(false);
+                  setDialogOpen(false);
                 }}
-                consultores={consultores}
+                empresas={empresas}
+                uebs={uebs}
+                direcciones={direcciones}
             
             >
              
-            </FormDialog> */}
+            </FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
@@ -202,44 +204,6 @@ function AreaTable({areas,setAreas}) {
                   )}
                 </div>
               </div>
-              {/* <div className={styles.filtrosEstructuraContent}>
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={uebFilter}
-                onChange={handleUebFilterChange}
-                placeholder="Filtrar por UEB"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={structureFilter}
-                onChange={handleStructureFilterChange}
-                placeholder="Filtrar por dirección"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={areaFilter}
-                onChange={handleAreaFilterChange}
-                placeholder="Filtrar por área"
-              />
-            )}
-             {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="date"
-                value={startFilter}
-                onChange={handleStartFilterChange}
-                placeholder="Filtrar por fecha"
-              />
-            )}
-          </div> */}
 
               <Table stickyHeader>
                 <TableHead>
@@ -366,19 +330,19 @@ function AreaTable({areas,setAreas}) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
-            className={styles.dialogContent}
+              <FormDialog
             open={editIIdx !== -1}
             onClose={handleCancelI}
-            FormComponent={IntervrntionForm}
-            setInterventions={interventionUpdate}
-            intervention={uebs[editIIdx]}
+            FormComponent={AreaForm}
+            setAreas={areaUpdate}
+            area={areas[editIIdx]}
             onSave={handleSaveI}
             onCancel={handleCancelI}
-            consultores={consultores}
-            trabDirProdCit={trabDirProdCit}
+            empresas={empresas}
+            uebs={uebs}
+            direcciones={direcciones}
           >
-             </FormDialog> */}
+             </FormDialog>
             </TableContainer>
           </div>
         )}

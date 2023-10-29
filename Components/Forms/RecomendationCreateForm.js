@@ -205,7 +205,7 @@ export default function CreateRecomendationForm({
               
               <InputLabel>
                 Sí{" "}
-                <Input
+                <input
                   className={styles.input}
                   type="radio"
                   name="follow"
@@ -217,7 +217,7 @@ export default function CreateRecomendationForm({
               </InputLabel>
               <InputLabel>
                 No{" "}
-                <Input
+                <input
                   className={styles.input}
                   type="radio"
                   name="follow"

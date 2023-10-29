@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Navbar from "./DropdownMenu/NavBar";
 import Dialog from "./Forms/Dialog";
 import IntervrntionForm from "./Forms/IntervrntionForm";
-import CreateRecomendationForm from "./Forms/CreateRecomendationForm";
+import CreateRecomendationForm from "./Forms/RecomendationCreateForm";
 import { client } from "../utils/fetchWrapper";
 import Logout from "../pages/Home/Logout/Logout";
 

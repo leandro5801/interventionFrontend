@@ -616,6 +616,16 @@
   width: 400px;
   height: 40px;
 }
+.inputFormDirec{
+  padding: 7px;
+  border: none;
+  border-bottom: 1px solid gray;
+  background-color: #ccc;
+  font-size: 14px;
+  color: black;
+  width: 510px;
+  height: 40px;
+}
 
 .selectForm {
   width: 250px;
@@ -635,6 +645,10 @@
   font-size: 14px;
   border-bottom: 2px solid gray;
   color: black;
+}
+
+.selectFormRec .options{
+  max-height: 30%;
 }
 
 /*  className={styles.MenuItemSelectForm} */
