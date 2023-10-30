@@ -1,5 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import { useRouter } from 'next/router';
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -9,7 +10,8 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import UserForm from "../Forms/UserForm"
+
 
 import {
   Table,
@@ -44,7 +46,7 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -83,14 +85,21 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     setRoleFilter(event.target.value);
   };
 
-  const filteredData = users.filter(
+  //seleccionar rol
+  // const userRol =
+
+  const filteredData = users.map((item) => {
+    const role = roles.find((role) => (item.role_id === role.id ));
+    const roleName = role ? role.name_role : "Rol no encontrado";
+    console.log(roleName);
+    return { ...item, roleName };
+  }).filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.user_name.toLowerCase().includes(userNameFilter.toLowerCase()) &&
-      item.idRole.toLowerCase().includes(roleFilter.toLowerCase())
+      item.roleName.toLowerCase().includes(roleFilter.toLowerCase())
   );
-  // sms de confirmacion
-  const [data, setData] = useState("");
+  
 
   function openConfirmation(data) {
     // event.preventDefault();
@@ -99,9 +108,7 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
   }
 
   function handleDelete(idNum) {
-    const newUser = users.filter(
-      (user) => user.id !== idNum
-    );
+    const newUser = users.filter((user) => user.id !== idNum);
     setUsers(newUser);
     setOpen(false);
   }
@@ -118,15 +125,15 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const userUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...users];
+    const updatedUserData = [...users];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedUserData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setInterventions(updatedInterventonsData);
+    setUsers(updatedUserData);
   };
   return (
     <>
@@ -144,28 +151,28 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-                  open={dialogCreInteOpen}
+                <FormDialog
+                  open={dialogOpen}
                   onClose={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogOpen(false);
                   }}
-                  FormComponent={IntervrntionForm}
-                  setInterventions={setInterventions}
-                  interventions={users}
+                  FormComponent={UserForm}
+                  setUsers={setUsers}
+                  setRoles={setRoles}
+                  users={users}
                   onSave={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogOpen(false);
                   }}
                   onCancel={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogOpen(false);
                   }}
-                  consultores={consultores}
-                  trabDirProdCit={trabDirProdCit}
-                ></FormDialog> */}
+                  roles={roles}
+                ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
                 <div className={styles.filterListOffOutlinedContent}>
@@ -238,14 +245,16 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                           {user.user_name}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {user.idRole}
+                          {user.roleName}
                         </TableCell>
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
-                                filteredData.findIndex((item) => item.id === user?.id)
+                                filteredData.findIndex(
+                                  (item) => item.id === user?.id
+                                )
                               )
                             }
                             className={styles.faIcon}
@@ -292,18 +301,16 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
-                className={styles.dialogContent}
+              <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
-                FormComponent={IntervrntionForm}
-                setInterventions={interventionUpdate}
-                intervention={users[editIIdx]}
+                FormComponent={UserForm}
+                setUsers={userUpdate}
+                user={users[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
-                consultores={consultores}
-                trabDirProdCit={trabDirProdCit}
-              ></FormDialog> */}
+                roles={roles}
+              ></FormDialog>
             </TableContainer>
           </div>
         )}

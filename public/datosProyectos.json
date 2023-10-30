@@ -2,42 +2,48 @@
     "project": [
         {
             "id": 1,
-            "name": "Proyecto Aica", 
+            "name": "Proyecto Aica",
             "objetivo": "Objeytivo 1",
             "cliente": "aica",
-            "consultor": "consultor 1, consultor 2, consultor 3"
+            "consultores": [
+                {
+                    "name": "Rebeca Rodriguez"
+                },
+                {
+                    "name": "Juanito Juanon"
+                },
+                {
+                    "name": "Roman Gutierres"
+                }
+            ]
         },
         {
             "id": 2,
             "name": "Proyecto x",
             "objetivo": "Objeytivo 2",
-            "cliente": "lolo", 
-            "consultor": "consultor 1, consultor 2, consultor 3"
+            "cliente": "lolo",
+            "consultores": [
+                {
+                    "name": "Rebeca Rodriguez"
+                },
+                {
+                    "name": "Juanito Juanon"
+                }
+            ]
         },
         {
             "id": 3,
             "name": "Proyecto y",
             "objetivo": "Objeytivo 3",
             "cliente": "pepe",
-            "consultor": "consultor 1, consultor 2, consultor 3"
-        }
-    ],
-    "": [
-        {
-            "id": 1,
-            "name_role": "Administrador"
-        },
-        {
-            "id": 2,
-            "name_role": "Consultor"
-        },
-        {
-            "id": 3,
-            "name_role": "Consultor Jefe"
-        },
-        {
-            "id": 4,
-            "name_role": "Cliente"
+            "consultores": [
+                {
+                    "name": "Juanito Juanon"
+                },
+                {
+                    "name": "Roman Gutierres"
+                }
+            ]
         }
     ]
 }

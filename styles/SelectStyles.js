@@ -5,6 +5,7 @@ export const customStyles = {
   control: (base) => ({
     ...base,
     backgroundColor: "#ccc",
+    height: "10px",
   }),
   dropdownIndicator: (base) => ({
     ...base,
@@ -18,4 +19,17 @@ export const customStyles = {
    maxHeight: "100px",
    overflow: 'auto',
   }),
+    valueContainer: (base) => ({
+    ...base,
+    maxHeight: "30px",
+    overflow: 'auto',
+  }),
+    components: {
+    MultiValueContainer: ({ children, innerProps }) => (
+      <div style={{ display: "flex" }} {...innerProps}>
+        {children}
+      </div>
+    ),
+  },
+
 };

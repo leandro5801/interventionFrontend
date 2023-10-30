@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import IntervrntionForm from "../Forms/IntervrntionForm";
+import ProyectoForm from "../Forms/ProyectoForm";
 
 import {
   Table,
@@ -30,21 +30,12 @@ import {
 
 import Select from "react-select";
 
-// Para probar con consultores y trabajadoresBORRAR DESPUES Y CARGAR DEL LISTADO DE CONSULTORES REAL
-const consultoress = [
-  { id: 1, name: "Carlos Ramón López Paz" },
-  { id: 2, name: "Laura Alfonzo Perez" },
-  { id: 3, name: "Alberto López Gónzalez" },
-  { id: 4, name: "Lazaro Días Alvares" },
-];
 const options = [
   { value: "Proyecto Aica", label: "Proyecto Aica" },
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
 
-function ProjectTable({ projects, setProjects }) {
-  const [consultores, setConsultores] = useState(consultoress);
-
+function ProjectTable({ projects, setProjects, consultores }) {
   //para los select de proyecto etc
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -61,7 +52,7 @@ function ProjectTable({ projects, setProjects }) {
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -88,9 +79,8 @@ function ProjectTable({ projects, setProjects }) {
   const [nameFilter, setNameFilter] = useState("");
   const [objetivoFilter, setObjetivoFilter] = useState("");
   const [clienteFilter, setClienteFilter] = useState("");
-  const [consultorFilter, setConsultorFilter] = useState("");
-  const [workerFilter, setWorkerFilter] = useState("");
-  const [startFilter, setStartFilter] = useState("");
+  const [consultoresFilter, setConsultoresFilter] = useState([]);
+
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -102,25 +92,20 @@ function ProjectTable({ projects, setProjects }) {
   const handleClienteFilterChange = (event) => {
     setClienteFilter(event.target.value);
   };
-  const handleConsultorFilterChange = (event) => {
-    setConsultorFilter(event.target.value);
-  };
-
-  const handleWorkerFilterChange = (event) => {
-    setWorkerFilter(event.target.value);
-  };
-  const handleStartFilterChange = (event) => {
-    setStartFilter(event.target.value);
+  const handleConsultoresFilterChange = (event) => {
+    const newConsultor = event.target.value;
+    setConsultoresFilter([ newConsultor]);
   };
 
   const filteredData = projects.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.objetivo.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
-      item.cliente.toLowerCase().includes(clienteFilter.toLowerCase()) &&
-      item.consultor.toLowerCase().includes(consultorFilter.toLowerCase())
-    //   item.worker.toLowerCase().includes(workerFilter.toLowerCase())&&
-    //   item.start.toLowerCase().includes(startFilter.toLowerCase())
+      item.cliente.toLowerCase().includes(clienteFilter.toLowerCase())
+        &&
+        item.consultores.some((consultor) =>
+        consultor.name.toLowerCase().includes(consultoresFilter)
+    )
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -151,16 +136,18 @@ function ProjectTable({ projects, setProjects }) {
     setEditIIdx(-1);
   };
 
-  const interventionUpdate = (updatedRow) => {
+  const proyectoUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...projects];
+    const updatedProyectoData = [...projects];
 
     // Actualiza los datos de la fila que se está editando
-    updatedInterventonsData[editIIdx] = updatedRow;
+    updatedProyectoData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setProjects(updatedInterventonsData);
+    setProjects(updatedProyectoData);
   };
+
+
   return (
     <>
       <div className={styles.divTableInter}>
@@ -177,30 +164,27 @@ function ProjectTable({ projects, setProjects }) {
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogOpen(true);
                   }}
                 >
                   Nuevo +
                 </Button>
-                {/* <FormDialog
-              open={dialogCreInteOpen}
-              onClose={() => {
-                setDialogCreInteOpen(false);
-              }}
-              FormComponent={IntervrntionForm}
-              setInterventions={setProjects}
-                interventions={projects}
-                onSave={() => {
-                  setDialogCreInteOpen(false);
-                }}
-                onCancel={() => {
-                  setDialogCreInteOpen(false);
-                }}
-                consultores={consultores}
-            
-            >
-             
-            </FormDialog> */}
+                <FormDialog
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={ProyectoForm}
+                  setProjects={setProjects}
+                  projects={projects}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  consultoress={consultores}
+                ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
                 <div className={styles.filterListOffOutlinedContent}>
@@ -259,7 +243,7 @@ function ProjectTable({ projects, setProjects }) {
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                     <TableCell className={styles.letraEnNegrita}>
+                    <TableCell className={styles.letraEnNegrita}>
                       Proyecto
                       {showFilters && (
                         <input
@@ -272,7 +256,7 @@ function ProjectTable({ projects, setProjects }) {
                       )}
                     </TableCell>
 
-                     <TableCell className={styles.letraEnNegrita}>
+                    <TableCell className={styles.letraEnNegrita}>
                       Objetivo
                       {showFilters && (
                         <input
@@ -284,7 +268,7 @@ function ProjectTable({ projects, setProjects }) {
                         />
                       )}
                     </TableCell>
-                     <TableCell className={styles.letraEnNegrita}>
+                    <TableCell className={styles.letraEnNegrita}>
                       Cliente
                       {showFilters && (
                         <input
@@ -296,20 +280,19 @@ function ProjectTable({ projects, setProjects }) {
                         />
                       )}
                     </TableCell>
-                     <TableCell className={styles.letraEnNegrita}>
+                    <TableCell className={styles.letraEnNegrita}>
                       Consultor
                       {showFilters && (
                         <input
                           className={styles.inputFilter}
                           type="text"
-                          value={consultorFilter}
-                          onChange={handleConsultorFilterChange}
-                          placeholder="Filtrar por consultor"
+                          value={consultoresFilter}
+                          onChange={handleConsultoresFilterChange}
+                          placeholder="Filtrar por consultores"
                         />
                       )}
-                      
                     </TableCell>
-                     <TableCell className={styles.letraEnNegrita}></TableCell>
+                    <TableCell className={styles.letraEnNegrita}></TableCell>
                   </TableRow>
                 </TableHead>
 
@@ -328,7 +311,7 @@ function ProjectTable({ projects, setProjects }) {
                           {project.cliente}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {project.consultor}
+                        {project.consultores.map((consultor) => consultor.name).join(", ")}
                         </TableCell>
 
                         <td className={styles.tdStyle}>
@@ -385,19 +368,17 @@ function ProjectTable({ projects, setProjects }) {
                   </TableRow>
                 </TableFooter>
               </Table>
-              {/* <FormDialog
-            className={styles.dialogContent}
+              <FormDialog
             open={editIIdx !== -1}
             onClose={handleCancelI}
-            FormComponent={IntervrntionForm}
-            setInterventions={interventionUpdate}
-            intervention={projects[editIIdx]}
+            FormComponent={ProyectoForm}
+            setProjects={proyectoUpdate}
+            project={projects[editIIdx]}
             onSave={handleSaveI}
             onCancel={handleCancelI}
-            consultores={consultores}
-            trabDirProdCit={trabDirProdCit}
+            consultoress={consultores}
           >
-             </FormDialog> */}
+             </FormDialog>
             </TableContainer>
           </div>
         )}

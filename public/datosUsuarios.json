@@ -4,46 +4,80 @@
             "id": 1,
             "user_name": "laura",
             "name": "Laura Kamila", 
-            "idRole": "Administrador",
-            "password": "1234"
+            "role_id": "1",
+            "password": "123456"
         },
         {
             "id": 2,
             "user_name": "rebeca",
             "name": "Rebeca Rodriguez",
-            "idRole": "Consultor",
-            "password": "1234"
+            "role_id": "2",
+            "password": "123456"
         },
         {
             "id": 3,
             "user_name": "carlos",
             "name": "Carlos Ramon",
-            "idRole": "Consultor Jefe",
-            "password": "1234"
+            "role_id": "3",
+            "password": "123456"
         },
         {
             "id": 4,
             "user_name": "pedro",
             "name": "Pedris",
-            "idRole": "Cliente",
-            "password": "1234"
+            "role_id": "4",
+            "password": "123456"
+        }, {
+            "id": 5,
+            "user_name": "consultor 2",
+            "name": "Juanito Juanon",
+            "role_id": "2",
+            "password": "123456"
+        },
+        {
+            "id": 6,
+            "user_name": "consultor 3",
+            "name": "Roman Gutierres",
+            "role_id": "2",
+            "password": "123456"
+        }, 
+        {
+            "id": 7,
+            "user_name": "consultor 4",
+            "name": "LOLO",
+            "role_id": "2",
+            "password": "123456"
+        }, 
+        {
+            "id": 8,
+            "user_name": "consultor 4",
+            "name": "Germinio Lopez",
+            "role_id": "2",
+            "password": "123456"
+        },
+        {
+            "id": 8,
+            "user_name": "consultor 5",
+            "name": "Ramiro Martinez",
+            "role_id": "2",
+            "password": "123456"
         }
     ],
     "roles": [
         {
-            "id": 1,
+            "id": "1",
             "name_role": "Administrador"
         },
         {
-            "id": 2,
+            "id": "2",
             "name_role": "Consultor"
         },
         {
-            "id": 3,
+            "id": "3",
             "name_role": "Consultor Jefe"
         },
         {
-            "id": 4,
+            "id": "4",
             "name_role": "Cliente"
         }
     ]

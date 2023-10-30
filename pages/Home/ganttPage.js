@@ -78,12 +78,12 @@ export default function GanttPage() {
                 </div>
 
                 <Container key={selectedIntervention.id}>
-                  <Card style={{ width: "60rem" }}>
+                  <Card style={{ width: "50rem" }}>
                     <Card.Body>
                     <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                   <div>
                       <Card.Title>
-                        Intervención: {selectedIntervention.name}
+                        Nombre de la Intervención: {selectedIntervention.name}
                       </Card.Title>
                       <Card.Text>
                         Descripción: {selectedIntervention.description}

@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import Settings from "../GanttChart/Settings";
 import DialogForm from "../Forms/Dialog";
-import RecomendationForm from "../Forms/RecomendationForm";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

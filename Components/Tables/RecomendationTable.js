@@ -118,12 +118,6 @@ function RecomendationTable({
   const [consultorFilter, setConsultorFilter] = useState("");
   const [classificationFilter, setClassificationFilter] = useState("");
   const [followFilter, setFollowFilter] = useState("");
-  //  const [processFilter, setProcessFilter] = useState("");
-  //  const [uebFilter, setUebFilter] = useState("");
-  //  const [structureFilter, setStructureFilter] = useState("");
-  //  const [areaFilter, setAreaFilter] = useState("");
-
-  //  const [workerFilter, setWorkerFilter] = useState("");
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -141,24 +135,6 @@ function RecomendationTable({
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
   }; 
-  //  const handleProcessFilterChange = (event) => {
-  //    setProcessFilter(event.target.value);
-  //  };
-
-  //  const handleUebFilterChange = (event) => {
-  //    setUebFilter(event.target.value);
-  //  };
-  //  const handleStructureFilterChange = (event) => {
-  //    setStructureFilter(event.target.value);
-  //  };
-
-  //  const handleAreaFilterChange = (event) => {
-  //    setAreaFilter(event.target.value);
-  //  };
-
-  //  const handleWorkerFilterChange = (event) => {
-  //    setWorkerFilter(event.target.value);
-  //  };
 
   const filteredData = recomendations.filter(
     (item) =>
@@ -169,11 +145,6 @@ function RecomendationTable({
       item.consultor.toLowerCase().includes(consultorFilter.toLowerCase())
       && item.classification.toLowerCase().includes(classificationFilter.toLowerCase())
       && item.follow.toLowerCase().includes(followFilter.toLowerCase())
-    // item.ueb.toLowerCase().includes(uebFilter.toLowerCase())
-    //  &&
-    //  item.structure.toLowerCase().includes(structureFilter.toLowerCase()) &&
-    //  item.area.toLowerCase().includes(areaFilter.toLowerCase()) &&
-    //  item.worker.toLowerCase().includes(workerFilter.toLowerCase())
   );
 
   // sms de confirmacion
