@@ -1,5 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import { customStyles } from "../../styles/SelectFilterStyles";
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -9,7 +10,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import AreaForm from "../Forms/AreaForm";
+import TrabajadorForm from "../Forms/TrabajadorForm";
 
 import {
   Table,
@@ -30,24 +31,14 @@ import {
 
 import Select from "react-select";
 
-// Para probar con consultores y trabajadoresBORRAR DESPUES Y CARGAR DEL LISTADO DE CONSULTORES REAL
-const consultoress = [
-  { id: 1, name: "Carlos Ramón López Paz" },
-  { id: 2, name: "Laura Alfonzo Perez" },
-  { id: 3, name: "Alberto López Gónzalez" },
-  { id: 4, name: "Lazaro Días Alvares" },
-];
-const options = [
-  { value: "Proyecto Aica", label: "Proyecto Aica" },
-  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
-];
-
-function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
-  const [consultores, setConsultores] = useState(consultoress);
-
-  //para los select de proyecto etc
-  const [selectedOption, setSelectedOption] = useState(null);
-
+function TrabajadorTable({
+  trabajadores,
+  setTrabajadores,
+  empresas,
+  uebs,
+  direcciones,
+  areas,
+}) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -86,29 +77,79 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [empresaFilter, setEmpresaFilter] = useState("");
-  const [uebFilter, setUebFilter] = useState("");
-  const [direccionFilter, setDireccionFilter] = useState("");
+  const [empresaFilter, setEmpresaFilter] = useState([]);
+  const [uebFilter, setUebFilter] = useState([]);
+  const [structureFilter, setStructureFilter] = useState([]);
+  const [areaFilter, setAreaFilter] = useState([]);
+
+  const optionEmpresas =
+    empresas &&
+    empresas.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+
+  const optionUebs =
+    uebs &&
+    uebs
+      .filter((item) =>
+        empresaFilter && empresaFilter.value
+          ? item.empresaId === empresaFilter.value
+          : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+
+  const optionDirecciones =
+    direcciones &&
+    direcciones
+      .filter((item) =>
+        uebFilter && uebFilter.value ? item.ueb === uebFilter.label : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+
+      const optionAreas =
+      areas &&
+      areas
+        .filter((item) =>
+          structureFilter && structureFilter.value
+            ? item.direccion === structureFilter.label
+            : true
+        )
+        .map((item) => ({
+          value: item.id,
+          label: item.name,
+        }));
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleEmpresaFilterChange = (event) => {
-    setEmpresaFilter(event.target.value);
+  const handleEmpresaFilterChange = (data) => {
+    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
   };
-  const handleUebFilterChange = (event) => {
-    setUebFilter(event.target.value);
+  const handleUebFilterChange = (data) => {
+    data ? setUebFilter(data) : setUebFilter([]);
   };
-  const handleDireccionFilterChange = (event) => {
-    setDireccionFilter(event.target.value);
+
+  const handleStructureFilterChange = (data) => {
+    data ? setStructureFilter(data) : setStructureFilter([]);
   };
-  const filteredData = areas.filter(
+  const handleAreaFilterChange = (data) => {
+    data ? setAreaFilter(data) : setAreaFilter([]);
+  };
+  const filteredData = trabajadores.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.empresa.toLowerCase().includes(empresaFilter.toLowerCase()) &&
-      item.ueb.toLowerCase().includes(uebFilter.toLowerCase()) &&
-      item.direccion.toLowerCase().includes(direccionFilter.toLowerCase())
+      (empresaFilter.length === 0 || item.empresa === empresaFilter.label) &&
+      (uebFilter.length === 0 || item.ueb === uebFilter.label) &&
+      (structureFilter.length === 0 || item.direccion === structureFilter.label) &&
+      (areaFilter.length === 0 || item.area === areaFilter.label) 
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -120,8 +161,10 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
   }
 
   function handleDelete(idNum) {
-    const newArea = areas.filter((area) => area.id !== idNum);
-    setAreas(newArea);
+    const newTrabajador = trabajadores.filter(
+      (trabajador) => trabajador.id !== idNum
+    );
+    setTrabajadores(newTrabajador);
     setOpen(false);
   }
 
@@ -137,25 +180,25 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
     setEditIIdx(-1);
   };
 
-  const areaUpdate = (updatedRow) => {
+  const trabajadorUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedAreasData = [...areas];
+    const updatedTrabajadoresData = [...trabajadores];
 
     // Actualiza los datos de la fila que se está editando
-    updatedAreasData[editIIdx] = updatedRow;
+    updatedTrabajadoresData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setAreas(updatedAreasData);
+    setTrabajadores(updatedTrabajadoresData);
   };
   return (
     <>
       <div className={styles.divTableInter}>
-        {areas.length === 0 && (
+        {trabajadores.length === 0 && (
           <div className={styles.divIconH2}>
             <h2> No hay Intervenciones</h2>{" "}
           </div>
         )}
-        {areas.length === 0 || (
+        {trabajadores.length === 0 || (
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
@@ -169,27 +212,24 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
                   Nuevo +
                 </Button>
                 <FormDialog
-              open={dialogOpen}
-              onClose={() => {
-                setDialogOpen(false);
-              }}
-              FormComponent={AreaForm}
-              setAreas={setAreas}
-                areas={areas}
-                onSave={() => {
-                  setDialogOpen(false);
-                }}
-                onCancel={() => {
-                  setDialogOpen(false);
-                }}
-                empresas={empresas}
-                uebs={uebs}
-                direcciones={direcciones}
-            
-            >
-             
-            </FormDialog>
-                {/* SELECCIONAR PROYECTO ETC */}
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={TrabajadorForm}
+                  setTrabajadores={setTrabajadores}
+                  trabajadores={trabajadores}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                  uebs={uebs}
+                  direcciones={direcciones}
+                  areas={areas}
+                ></FormDialog>
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
@@ -208,51 +248,80 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                  <TableCell className={styles.spacing}>
+                    
+                    <TableCell className={styles.spacing}>
                       Empresa
                       {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={empresaFilter}
-                          onChange={handleEmpresaFilterChange}
-                          placeholder="Filtrar por empresa"
-                        />
+                        <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={empresaFilter}
+                        onChange={(empresaFilter) => {
+                          handleEmpresaFilterChange(empresaFilter);
+                        }}
+                        options={optionEmpresas}
+                        placeholder="Empresa"
+                        isClearable
+                      />
                       )}
                     </TableCell>
                     <TableCell className={styles.spacing}>
                       Ueb
                       {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={uebFilter}
-                          onChange={handleUebFilterChange}
-                          placeholder="Filtrar por ueb"
-                        />
+                        <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={uebFilter}
+                        onChange={(uebFilter) => {
+                          handleUebFilterChange(uebFilter);
+                        }}
+                        options={optionUebs}
+                        placeholder="Ueb"
+                        isClearable
+                      />
                       )}
                     </TableCell>
                     <TableCell className={styles.spacing}>
                       Dirección
                       {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={direccionFilter}
-                          onChange={handleDireccionFilterChange}
-                          placeholder="Filtrar por dirección"
-                        />
+                         <Select
+                         styles={customStyles}
+                         className={styles.selectGestionesGantt}
+                         defaultValue={structureFilter}
+                         onChange={(structureFilter) => {
+                           handleStructureFilterChange(structureFilter);
+                         }}
+                         options={optionDirecciones}
+                         placeholder="Dirección"
+                         isClearable
+                       />
                       )}
                     </TableCell>
                     <TableCell className={styles.spacing}>
-                      Area
+                      Área
+                      {showFilters && (
+                       <Select
+                       styles={customStyles}
+                       className={styles.selectGestionesGantt}
+                       defaultValue={areaFilter}
+                       onChange={(areaFilter) => {
+                         handleAreaFilterChange(areaFilter);
+                       }}
+                       options={optionAreas}
+                       placeholder="Área"
+                       isClearable
+                     />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
+                      Trabajador
                       {showFilters && (
                         <input
                           className={styles.inputFilter}
                           type="text"
                           value={nameFilter}
                           onChange={handleNameFilterChange}
-                          placeholder="Filtrar por areas"
+                          placeholder="Filtrar por trabajador"
                         />
                       )}
                     </TableCell>
@@ -263,35 +332,39 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
                 <TableBody>
                   {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((direccion) => (
-                      <TableRow key={direccion.id} className={styles.trStyle}>
-                        
+                    .map((trabajador) => (
+                      <TableRow key={trabajador.id} className={styles.trStyle}>
                         <TableCell className={styles.tdStyle}>
-                          {direccion.empresa}
+                          {trabajador.empresa}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {direccion.ueb}
+                          {trabajador.ueb}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {direccion.direccion}
+                          {trabajador.direccion}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {direccion.name}
+                          {trabajador.area}
+                        </TableCell>
+                        <TableCell className={styles.tdStyle}>
+                          {trabajador.name}
                         </TableCell>
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
-                                filteredData.findIndex((item) => item.id === direccion?.id)
+                                filteredData.findIndex(
+                                  (item) => item.id === trabajador?.id
+                                )
                               )
                             }
                             className={styles.faIcon}
                           />
                           <FontAwesomeIcon
                             icon={faTrash}
-                            onClick={() => openConfirmation(direccion?.id)}
-                            data-task-id={direccion?.id}
+                            onClick={() => openConfirmation(trabajador?.id)}
+                            data-task-id={trabajador?.id}
                             className={styles.faIcon}
                           />
                           <Dialog
@@ -301,7 +374,7 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
                           >
                             <DialogTitle>Confirmar Eliminación</DialogTitle>
                             <DialogContent>
-                              <p>¿Está seguro de eliminar esta area?</p>
+                              <p>¿Está seguro de eliminar este trabajador?</p>
                             </DialogContent>
                             <DialogActions>
                               <Button onClick={() => handleDelete(data)}>
@@ -331,18 +404,18 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
                 </TableFooter>
               </Table>
               <FormDialog
-            open={editIIdx !== -1}
-            onClose={handleCancelI}
-            FormComponent={AreaForm}
-            setAreas={areaUpdate}
-            area={areas[editIIdx]}
-            onSave={handleSaveI}
-            onCancel={handleCancelI}
-            empresas={empresas}
-            uebs={uebs}
-            direcciones={direcciones}
-          >
-             </FormDialog>
+                open={editIIdx !== -1}
+                onClose={handleCancelI}
+                FormComponent={TrabajadorForm}
+                setTrabajadores={trabajadorUpdate}
+                trabajador={trabajadores[editIIdx]}
+                onSave={handleSaveI}
+                onCancel={handleCancelI}
+                empresas={empresas}
+                uebs={uebs}
+                direcciones={direcciones}
+                areas={areas}
+              ></FormDialog>
             </TableContainer>
           </div>
         )}
@@ -351,4 +424,4 @@ function AreaTable({areas,setAreas, empresas,uebs,direcciones}) {
   );
 }
 
-export default AreaTable;
+export default TrabajadorTable;

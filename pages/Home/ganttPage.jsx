@@ -14,6 +14,8 @@ import { Container } from "react-grid-system";
 import { Card } from "react-bootstrap";
 
 import datosintervenciones from "../../public/datosintervenciones.json";
+import datosProyectos from "../../public/datosProyectos.json"
+import datosEmpresas from "../../public/datosEmpresas.json"
 
 export default function GanttPage() {
   // datos de las intervenciones
@@ -48,6 +50,25 @@ export default function GanttPage() {
 
   //Para que se muestren las recomendaciones de una intervencion seleccionada
   const [tableRData, setTableRData] = useState(null);
+
+  const [projects, setProjects] = useState(
+    datosProyectos?.project
+  );
+  const [empresas, setEmpresas] = useState(
+    datosEmpresas?.empresas
+  );
+  const [uebs, setUebs] = useState(
+    datosEmpresas?.ueb
+  );
+  const [direcciones, setDirecciones] = useState(
+    datosEmpresas?.direcciones
+  );
+  const [areas, setAreas] = useState(
+    datosEmpresas?.areas
+  );
+  const [trabajadores, setTrabajadores] = useState(
+    datosEmpresas?.trabajadores
+  );
   return (
     <ContainerLayout>
       <div className={styles.title}>
@@ -61,6 +82,12 @@ export default function GanttPage() {
           setOpen={setOpen}
           recomendations={recomendations}
           setTableRData={setTableRData}
+          projects={projects}
+          empresas={empresas}
+          uebs={uebs}
+          direcciones={direcciones}
+          areas={areas}
+          trabajadores={trabajadores}
         />
         
 </div>

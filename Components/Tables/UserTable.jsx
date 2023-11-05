@@ -1,5 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import { useRouter } from 'next/router';
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -9,7 +10,8 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import UebForm from "../Forms/UebForm";
+import UserForm from "../Forms/UserForm"
+
 
 import {
   Table,
@@ -30,23 +32,7 @@ import {
 
 import Select from "react-select";
 
-// Para probar con consultores y trabajadoresBORRAR DESPUES Y CARGAR DEL LISTADO DE CONSULTORES REAL
-const consultoress = [
-  { id: 1, name: "Carlos Ramón López Paz" },
-  { id: 2, name: "Laura Alfonzo Perez" },
-  { id: 3, name: "Alberto López Gónzalez" },
-  { id: 4, name: "Lazaro Días Alvares" },
-];
-const options = [
-  { value: "Proyecto Aica", label: "Proyecto Aica" },
-  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
-];
-
-function UebTable({ uebs, setUebs, empresas }) {
-
-  //para los select de proyecto etc
-  const [selectedOption, setSelectedOption] = useState(null);
-
+function InterventionTable({ users, setUsers, roles, setRoles }) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -85,23 +71,34 @@ function UebTable({ uebs, setUebs, empresas }) {
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [empresaFilter, setEmpresaFilter] = useState("");
+  const [userNameFilter, setUserNameFilter] = useState("");
+  const [roleFilter, setRoleFilter] = useState("");
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleEmpresaFilterChange = (event) => {
-    setEmpresaFilter(event.target.value);
+  const handleUserNameFilterChange = (event) => {
+    setUserNameFilter(event.target.value);
+  };
+  const handleRoleFilterChange = (event) => {
+    setRoleFilter(event.target.value);
   };
 
-  const filteredData = uebs.filter(
+  //seleccionar rol
+  // const userRol =
+
+  const filteredData = users.map((item) => {
+    const role = roles.find((role) => (item.role_id === role.id ));
+    const roleName = role ? role.name_role : "Rol no encontrado";
+    return { ...item, roleName };
+  }).filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.empresa.toLowerCase().includes(empresaFilter.toLowerCase())
+      item.user_name.toLowerCase().includes(userNameFilter.toLowerCase()) &&
+      item.roleName.toLowerCase().includes(roleFilter.toLowerCase())
   );
-  // sms de confirmacion
-  const [data, setData] = useState("");
+  
 
   function openConfirmation(data) {
     // event.preventDefault();
@@ -110,8 +107,8 @@ function UebTable({ uebs, setUebs, empresas }) {
   }
 
   function handleDelete(idNum) {
-    const newUeb = uebs.filter((ueb) => ueb.id !== idNum);
-    setUebs(newUeb);
+    const newUser = users.filter((user) => user.id !== idNum);
+    setUsers(newUser);
     setOpen(false);
   }
 
@@ -127,25 +124,25 @@ function UebTable({ uebs, setUebs, empresas }) {
     setEditIIdx(-1);
   };
 
-  const UebUpdate = (updatedRow) => {
+  const userUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedUebsData = [...uebs];
+    const updatedUserData = [...users];
 
     // Actualiza los datos de la fila que se está editando
-    updatedUebsData[editIIdx] = updatedRow;
+    updatedUserData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setUebs(updatedUebsData);
+    setUsers(updatedUserData);
   };
   return (
     <>
       <div className={styles.divTableInter}>
-        {uebs.length === 0 && (
+        {users.length === 0 && (
           <div className={styles.divIconH2}>
             <h2> No hay Intervenciones</h2>{" "}
           </div>
         )}
-        {uebs.length === 0 || (
+        {users.length === 0 || (
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
@@ -163,18 +160,20 @@ function UebTable({ uebs, setUebs, empresas }) {
                   onClose={() => {
                     setDialogOpen(false);
                   }}
-                  FormComponent={UebForm}
-                  setUebs={setUebs}
-                  uebs={uebs}
+                  FormComponent={UserForm}
+                  setUsers={setUsers}
+                  setRoles={setRoles}
+                  users={users}
                   onSave={() => {
                     setDialogOpen(false);
                   }}
                   onCancel={() => {
                     setDialogOpen(false);
                   }}
-                  empresas={empresas}
+                  roles={roles}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
+
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
@@ -189,31 +188,43 @@ function UebTable({ uebs, setUebs, empresas }) {
                   )}
                 </div>
               </div>
-
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
                     <TableCell className={styles.spacing}>
-                      Empresa
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={empresaFilter}
-                          onChange={handleEmpresaFilterChange}
-                          placeholder="Filtrar por empresa"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Ueb
+                      Nombre
                       {showFilters && (
                         <input
                           className={styles.inputFilter}
                           type="text"
                           value={nameFilter}
                           onChange={handleNameFilterChange}
-                          placeholder="Filtrar por ueb"
+                          placeholder="Filtrar por nombre"
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
+                      Usuario
+                      {showFilters && (
+                        <input
+                          className={styles.inputFilter}
+                          type="text"
+                          value={userNameFilter}
+                          onChange={handleUserNameFilterChange}
+                          placeholder="Filtrar por usuario"
+                        />
+                      )}
+                    </TableCell>
+
+                    <TableCell className={styles.spacing}>
+                      Rol
+                      {showFilters && (
+                        <input
+                          className={styles.inputFilter}
+                          type="text"
+                          value={roleFilter}
+                          onChange={handleRoleFilterChange}
+                          placeholder="Filtrar por rol"
                         />
                       )}
                     </TableCell>
@@ -224,22 +235,24 @@ function UebTable({ uebs, setUebs, empresas }) {
                 <TableBody>
                   {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((ueb) => (
-                      <TableRow key={ueb.id} className={styles.trStyle}>
+                    .map((user) => (
+                      <TableRow key={user.id} className={styles.trStyle}>
                         <TableCell className={styles.tdStyle}>
-                          {ueb.empresa}
+                          {user.name}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {ueb.name}
+                          {user.user_name}
                         </TableCell>
-
+                        <TableCell className={styles.tdStyle}>
+                          {user.roleName}
+                        </TableCell>
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
                                 filteredData.findIndex(
-                                  (item) => item.id === ueb?.id
+                                  (item) => item.id === user?.id
                                 )
                               )
                             }
@@ -247,8 +260,8 @@ function UebTable({ uebs, setUebs, empresas }) {
                           />
                           <FontAwesomeIcon
                             icon={faTrash}
-                            onClick={() => openConfirmation(ueb?.id)}
-                            data-task-id={ueb?.id}
+                            onClick={() => openConfirmation(user?.id)}
+                            data-task-id={user?.id}
                             className={styles.faIcon}
                           />
                           <Dialog
@@ -258,7 +271,7 @@ function UebTable({ uebs, setUebs, empresas }) {
                           >
                             <DialogTitle>Confirmar Eliminación</DialogTitle>
                             <DialogContent>
-                              <p>¿Está seguro de eliminar esta ueb?</p>
+                              <p>¿Está seguro de eliminar este usuario?</p>
                             </DialogContent>
                             <DialogActions>
                               <Button onClick={() => handleDelete(data)}>
@@ -288,16 +301,15 @@ function UebTable({ uebs, setUebs, empresas }) {
                 </TableFooter>
               </Table>
               <FormDialog
-            open={editIIdx !== -1}
-            onClose={handleCancelI}
-            FormComponent={UebForm}
-            setUebs={UebUpdate}
-            ueb={uebs[editIIdx]}
-            onSave={handleSaveI}
-            onCancel={handleCancelI}
-            empresas={empresas}
-          >
-             </FormDialog>
+                open={editIIdx !== -1}
+                onClose={handleCancelI}
+                FormComponent={UserForm}
+                setUsers={userUpdate}
+                user={users[editIIdx]}
+                onSave={handleSaveI}
+                onCancel={handleCancelI}
+                roles={roles}
+              ></FormDialog>
             </TableContainer>
           </div>
         )}
@@ -306,4 +318,4 @@ function UebTable({ uebs, setUebs, empresas }) {
   );
 }
 
-export default UebTable;
+export default InterventionTable;

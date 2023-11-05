@@ -14,6 +14,7 @@ import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import DragIndicatorOutlinedIcon from "@mui/icons-material/DragIndicatorOutlined";
 import EngineeringOutlinedIcon from "@mui/icons-material/EngineeringOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithChangesOutlined';
 
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
@@ -142,6 +143,16 @@ function SideBar({}) {
                     style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
                   /> {" "}
                   Trabajadores
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/cargarDatosPage">
+                  {" "}
+                  <PublishedWithChangesOutlinedIcon
+                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
+                  /> {" "}
+                  Cargar Datos
                 </Link>
               </li>
             </>

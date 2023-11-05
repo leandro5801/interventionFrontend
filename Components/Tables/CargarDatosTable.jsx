@@ -1,5 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import { customStyles } from "../../styles/SelectFilterStyles";
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -30,8 +31,14 @@ import {
 
 import Select from "react-select";
 
-function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direcciones,areas}) {
-
+function CargarDatosTable({
+  trabajadores,
+  setTrabajadores,
+  empresas,
+  uebs,
+  direcciones,
+  areas,
+}) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -70,35 +77,79 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [empresaFilter, setEmpresaFilter] = useState("");
-  const [uebFilter, setUebFilter] = useState("");
-  const [direccionFilter, setDireccionFilter] = useState("");
-  const [areaFilter, setAreaFilter] = useState("");
+  const [empresaFilter, setEmpresaFilter] = useState([]);
+  const [uebFilter, setUebFilter] = useState([]);
+  const [structureFilter, setStructureFilter] = useState([]);
+  const [areaFilter, setAreaFilter] = useState([]);
+
+  const optionEmpresas =
+    empresas &&
+    empresas.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+
+  const optionUebs =
+    uebs &&
+    uebs
+      .filter((item) =>
+        empresaFilter && empresaFilter.value
+          ? item.empresaId === empresaFilter.value
+          : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+
+  const optionDirecciones =
+    direcciones &&
+    direcciones
+      .filter((item) =>
+        uebFilter && uebFilter.value ? item.ueb === uebFilter.label : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+
+      const optionAreas =
+      areas &&
+      areas
+        .filter((item) =>
+          structureFilter && structureFilter.value
+            ? item.direccion === structureFilter.label
+            : true
+        )
+        .map((item) => ({
+          value: item.id,
+          label: item.name,
+        }));
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleEmpresaFilterChange = (event) => {
-    setEmpresaFilter(event.target.value);
+  const handleEmpresaFilterChange = (data) => {
+    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
   };
-  const handleUebFilterChange = (event) => {
-    setUebFilter(event.target.value);
+  const handleUebFilterChange = (data) => {
+    data ? setUebFilter(data) : setUebFilter([]);
   };
-  const handleDireccionFilterChange = (event) => {
-    setDireccionFilter(event.target.value);
+
+  const handleStructureFilterChange = (data) => {
+    data ? setStructureFilter(data) : setStructureFilter([]);
   };
-  const handleAreaFilterChange = (event) => {
-    setAreaFilter(event.target.value);
+  const handleAreaFilterChange = (data) => {
+    data ? setAreaFilter(data) : setAreaFilter([]);
   };
   const filteredData = trabajadores.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.empresa.toLowerCase().includes(empresaFilter.toLowerCase()) &&
-      item.ueb.toLowerCase().includes(uebFilter.toLowerCase()) &&
-      item.direccion.toLowerCase().includes(direccionFilter.toLowerCase())
-      //  &&
-      // item.area.toLowerCase().includes(areaFilter.toLowerCase())
+      (empresaFilter.length === 0 || item.empresa === empresaFilter.label) &&
+      (uebFilter.length === 0 || item.ueb === uebFilter.label) &&
+      (structureFilter.length === 0 || item.direccion === structureFilter.label) &&
+      (areaFilter.length === 0 || item.area === areaFilter.label) 
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -110,7 +161,9 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
   }
 
   function handleDelete(idNum) {
-    const newTrabajador = trabajadores.filter((trabajador) => trabajador.id !== idNum);
+    const newTrabajador = trabajadores.filter(
+      (trabajador) => trabajador.id !== idNum
+    );
     setTrabajadores(newTrabajador);
     setOpen(false);
   }
@@ -156,29 +209,27 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
                     setDialogOpen(true);
                   }}
                 >
-                  Nuevo +
+                  Cargar Datos
                 </Button>
                 <FormDialog
-              open={dialogOpen}
-              onClose={() => {
-                setDialogOpen(false);
-              }}
-              FormComponent={TrabajadorForm}
-              setTrabajadores={setTrabajadores}
-                trabajadores={trabajadores}
-                onSave={() => {
-                  setDialogOpen(false);
-                }}
-                onCancel={() => {
-                  setDialogOpen(false);
-                }}
-               empresas={empresas}
-               uebs={uebs}
-               direcciones={direcciones}
-               areas={areas}
-            >
-             
-            </FormDialog>
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={TrabajadorForm}
+                  setTrabajadores={setTrabajadores}
+                  trabajadores={trabajadores}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                  uebs={uebs}
+                  direcciones={direcciones}
+                  areas={areas}
+                ></FormDialog>
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
@@ -197,7 +248,72 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                  <TableCell className={styles.spacing}>
+                    
+                    <TableCell className={styles.spacing}>
+                      Empresa
+                      {showFilters && (
+                        <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={empresaFilter}
+                        onChange={(empresaFilter) => {
+                          handleEmpresaFilterChange(empresaFilter);
+                        }}
+                        options={optionEmpresas}
+                        placeholder="Empresa"
+                        isClearable
+                      />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
+                      Ueb
+                      {showFilters && (
+                        <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={uebFilter}
+                        onChange={(uebFilter) => {
+                          handleUebFilterChange(uebFilter);
+                        }}
+                        options={optionUebs}
+                        placeholder="Ueb"
+                        isClearable
+                      />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
+                      Dirección
+                      {showFilters && (
+                         <Select
+                         styles={customStyles}
+                         className={styles.selectGestionesGantt}
+                         defaultValue={structureFilter}
+                         onChange={(structureFilter) => {
+                           handleStructureFilterChange(structureFilter);
+                         }}
+                         options={optionDirecciones}
+                         placeholder="Dirección"
+                         isClearable
+                       />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
+                      Área
+                      {showFilters && (
+                       <Select
+                       styles={customStyles}
+                       className={styles.selectGestionesGantt}
+                       defaultValue={areaFilter}
+                       onChange={(areaFilter) => {
+                         handleAreaFilterChange(areaFilter);
+                       }}
+                       options={optionAreas}
+                       placeholder="Área"
+                       isClearable
+                     />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
                       Trabajador
                       {showFilters && (
                         <input
@@ -206,54 +322,6 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
                           value={nameFilter}
                           onChange={handleNameFilterChange}
                           placeholder="Filtrar por trabajador"
-                        />
-                      )}
-                    </TableCell>
-                  <TableCell className={styles.spacing}>
-                      Empresa
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={empresaFilter}
-                          onChange={handleEmpresaFilterChange}
-                          placeholder="Filtrar por empresa"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Ueb
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={uebFilter}
-                          onChange={handleUebFilterChange}
-                          placeholder="Filtrar por ueb"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Dirección
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={direccionFilter}
-                          onChange={handleDireccionFilterChange}
-                          placeholder="Filtrar por dirección"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Área
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={areaFilter}
-                          onChange={handleAreaFilterChange}
-                          placeholder="Filtrar por areas"
                         />
                       )}
                     </TableCell>
@@ -267,9 +335,6 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
                     .map((trabajador) => (
                       <TableRow key={trabajador.id} className={styles.trStyle}>
                         <TableCell className={styles.tdStyle}>
-                          {trabajador.name}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
                           {trabajador.empresa}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
@@ -281,12 +346,17 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
                         <TableCell className={styles.tdStyle}>
                           {trabajador.area}
                         </TableCell>
+                        <TableCell className={styles.tdStyle}>
+                          {trabajador.name}
+                        </TableCell>
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
-                                filteredData.findIndex((item) => item.id === trabajador?.id)
+                                filteredData.findIndex(
+                                  (item) => item.id === trabajador?.id
+                                )
                               )
                             }
                             className={styles.faIcon}
@@ -334,19 +404,18 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
                 </TableFooter>
               </Table>
               <FormDialog
-            open={editIIdx !== -1}
-            onClose={handleCancelI}
-            FormComponent={TrabajadorForm}
-            setTrabajadores={trabajadorUpdate}
-            trabajador={trabajadores[editIIdx]}
-            onSave={handleSaveI}
-            onCancel={handleCancelI}
-            empresas={empresas}
-            uebs={uebs}
-            direcciones={direcciones}
-            areas={areas}
-          >
-             </FormDialog>
+                open={editIIdx !== -1}
+                onClose={handleCancelI}
+                FormComponent={TrabajadorForm}
+                setTrabajadores={trabajadorUpdate}
+                trabajador={trabajadores[editIIdx]}
+                onSave={handleSaveI}
+                onCancel={handleCancelI}
+                empresas={empresas}
+                uebs={uebs}
+                direcciones={direcciones}
+                areas={areas}
+              ></FormDialog>
             </TableContainer>
           </div>
         )}
@@ -355,4 +424,4 @@ function TrabajadorTable({trabajadores,setTrabajadores, empresas,uebs,direccione
   );
 }
 
-export default TrabajadorTable;
+export default CargarDatosTable;

@@ -1,6 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import Select from "react-select";
+import { customStyles } from "../../styles/SelectFilterStyles";
 
 import Settings from "../GanttChart/Settings";
 import DialogForm from "../Forms/Dialog";
@@ -49,15 +50,18 @@ const clasificacioness = [
   { id: 3, name: "Tipo 3" },
   { id: 4, name: "Tipo 4" },
 ];
-const options = [
-  { value: "Proyecto Aica", label: "Proyecto Aica" },
-  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
-];
+
 function RecomendationTable({
-   recomendations,
+  recomendations,
   setRecomendations,
   interventions,
+  projects,
 }) {
+  //para retornar el nombre de la empresa y no el id
+  const interventionPorId = (interventionId) => {
+    const intervention = interventions.find((e) => e.id === interventionId);
+    return intervention;
+  };
   const [consultores, setConsultores] = useState(consultoress);
   const [clasificaciones, setClasificaciones] = useState(clasificacioness);
 
@@ -110,13 +114,50 @@ function RecomendationTable({
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
+  //para filtrar por proyecto e intervencion
+  const [projectFilter, setProjectFilter] = useState([]);
+  const optionProjects =
+    projects &&
+    projects.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  const [interventionFilter, setInterventionFilter] = useState([]);
+  const optioninterventions =
+    interventions &&
+    interventions.filter((item) =>
+    projectFilter && projectFilter.value
+      ? item.projectId === projectFilter.value
+      : true
+  )
+    .map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  const handleProjectFilterChange = (data) => {
+    data ? setProjectFilter(data) : setProjectFilter([]);
+  };
+  const handleInterventionFilterChange = (data) => {
+    data ? setInterventionFilter(data) : setInterventionFilter([]);
+  };
 
   //Para filtrar la tabla
-
+  const optionConsultores =
+    consultoress &&
+    consultoress.map((item) => ({
+      value: item.name,
+      label: item.name,
+    }));
+  const optionClasificaciones =
+    clasificacioness &&
+    clasificacioness.map((item) => ({
+      value: item.name,
+      label: item.name,
+    }));
   const [nameFilter, setNameFilter] = useState("");
   const [descriptionFilter, setDescriptionFilter] = useState("");
-  const [consultorFilter, setConsultorFilter] = useState("");
-  const [classificationFilter, setClassificationFilter] = useState("");
+  const [consultorFilter, setConsultorFilter] = useState([]);
+  const [classificationFilter, setClassificationFilter] = useState([]);
   const [followFilter, setFollowFilter] = useState("");
 
   const handleNameFilterChange = (event) => {
@@ -126,25 +167,32 @@ function RecomendationTable({
   const handleDescriptionFilterChange = (event) => {
     setDescriptionFilter(event.target.value);
   };
-  const handleConsultorFilterChange = (event) => {
-    setConsultorFilter(event.target.value);
+  const handleConsultorFilterChange = (data) => {
+    data ? setConsultorFilter(data) : setConsultorFilter([]);
   };
-  const handleClassificationFilterChange = (event) => {
-    setClassificationFilter(event.target.value);
-  }; 
+  const handleClassificationFilterChange = (data) => {
+    data ? setClassificationFilter(data) : setClassificationFilter([]);
+  };
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
-  }; 
+  };
 
   const filteredData = recomendations.filter(
     (item) =>
+      (projectFilter.length === 0 ||
+        interventionPorId(item.idIntervention).projectId ===
+          projectFilter.value) &&
+      (interventionFilter.length === 0 ||
+        item.idIntervention === interventionFilter.value) &&
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.description
         .toLowerCase()
         .includes(descriptionFilter.toLowerCase()) &&
-      item.consultor.toLowerCase().includes(consultorFilter.toLowerCase())
-      && item.classification.toLowerCase().includes(classificationFilter.toLowerCase())
-      && item.follow.toLowerCase().includes(followFilter.toLowerCase())
+      (consultorFilter.length === 0 ||
+        item.consultor === consultorFilter.value) &&
+      (classificationFilter.length === 0 ||
+        item.classification === classificationFilter.value) &&
+      item.follow.toLowerCase().includes(followFilter.toLowerCase())
   );
 
   // sms de confirmacion
@@ -163,7 +211,7 @@ function RecomendationTable({
     );
 
     setRecomendations(newRecomendation);
-   
+
     // update state (if data on backend - make API request to update data)
 
     setOpen(false);
@@ -203,19 +251,35 @@ function RecomendationTable({
               onCancel={() => {
                 setDialogRecOpen(false);
               }}
-              
-            >
-             
-            </FormDialog>
+            ></FormDialog>
             {/* SELECCIONAR PROYECTO ETC */}
 
-            <Select
-              className={styles.selectGestiones}
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              options={options}
-              placeholder="Proyecto"
-            />
+            {showFilters && (
+              <Select
+                styles={customStyles}
+                className={styles.selectGestiones}
+                defaultValue={projectFilter}
+                onChange={(projectFilter) => {
+                  handleProjectFilterChange(projectFilter);
+                }}
+                options={optionProjects}
+                placeholder="Proyecto"
+                isClearable
+              />
+            )}
+             {showFilters && (
+              <Select
+                styles={customStyles}
+                className={styles.selectGestiones}
+                defaultValue={interventionFilter}
+                onChange={(interventionFilter) => {
+                  handleInterventionFilterChange(interventionFilter);
+                }}
+                options={optioninterventions}
+                placeholder="Intervención"
+                isClearable
+              />
+            )}
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
@@ -230,10 +294,10 @@ function RecomendationTable({
               )}
             </div>
           </div>
-          <Table  stickyHeader>
+          <Table stickyHeader>
             <TableHead>
               <TableRow>
-                 <TableCell className={styles.letraEnNegrita}>
+                <TableCell className={styles.letraEnNegrita}>
                   Recomendación
                   {showFilters && (
                     <input
@@ -241,11 +305,11 @@ function RecomendationTable({
                       type="text"
                       value={nameFilter}
                       onChange={handleNameFilterChange}
-                      placeholder="Filtrar por recomendación"
+                      placeholder="filtrar por recomendación..."
                     />
                   )}
                 </TableCell>
-                 <TableCell className={styles.letraEnNegrita}>
+                <TableCell className={styles.letraEnNegrita}>
                   Descripción
                   {showFilters && (
                     <input
@@ -253,34 +317,45 @@ function RecomendationTable({
                       type="text"
                       value={descriptionFilter}
                       onChange={handleDescriptionFilterChange}
-                      placeholder="Filtrar por descripción"
+                      placeholder="filtrar por descripción"
                     />
                   )}
                 </TableCell>
-                 <TableCell className={styles.letraEnNegrita}>
+                <TableCell className={styles.letraEnNegrita}>
                   Consultor
                   {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={consultorFilter}
-                      onChange={handleConsultorFilterChange}
-                      placeholder="Filtrar por consultor"
+                    <Select
+                      styles={customStyles}
+                      className={styles.selectGestionesGantt}
+                      defaultValue={consultorFilter}
+                      onChange={(consultorFilter) => {
+                        handleConsultorFilterChange(consultorFilter);
+                      }}
+                      options={optionConsultores}
+                      placeholder="Consultor"
+                      isClearable
                     />
                   )}
                 </TableCell>
-                 <TableCell className={styles.letraEnNegrita}>Tipo
-                {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={classificationFilter}
-                      onChange={handleClassificationFilterChange}
-                      placeholder="Filtrar por clasificación"
+                <TableCell className={styles.letraEnNegrita}>
+                  Tipo
+                  {showFilters && (
+                    <Select
+                      styles={customStyles}
+                      className={styles.selectGestionesGantt}
+                      defaultValue={classificationFilter}
+                      onChange={(classificationFilter) => {
+                        handleClassificationFilterChange(classificationFilter);
+                      }}
+                      options={optionClasificaciones}
+                      placeholder="Tipo"
+                      isClearable
                     />
-                  )}</TableCell>
-                 <TableCell className={styles.letraEnNegrita}>Seguida
-                {showFilters && (
+                  )}
+                </TableCell>
+                <TableCell className={styles.letraEnNegrita}>
+                  Seguida
+                  {showFilters && (
                     <input
                       className={styles.inputFilter}
                       type="text"
@@ -290,32 +365,22 @@ function RecomendationTable({
                     />
                   )}
                 </TableCell>
-                 <TableCell className={styles.letraEnNegrita}></TableCell>
+                <TableCell className={styles.letraEnNegrita}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {filteredData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((recomendation) => (
-                  <TableRow key={recomendation.id} >
-                    <TableCell >
-                      {recomendation.name}
-                    </TableCell>
-                    <TableCell >
-                      {recomendation.description}
-                    </TableCell>
-                    <TableCell >
-                      {recomendation.consultor}
-                    </TableCell>
-                    <TableCell >
-                      {recomendation.classification}
-                    </TableCell>
-                    <TableCell >
-                      {recomendation.follow}
-                    </TableCell>
-                    <TableCell  padding="5" width={50}
-                    //   padding: 5px; width: 210px;
-  >
+                  <TableRow key={recomendation.id}>
+                    <TableCell>{recomendation.name}</TableCell>
+                    <TableCell>{recomendation.description}</TableCell>
+                    <TableCell>{recomendation.consultor}</TableCell>
+                    <TableCell>{recomendation.classification}</TableCell>
+                    <TableCell>{recomendation.follow}</TableCell>
+                    <TableCell
+                      
+                    >
                       <FontAwesomeIcon
                         icon={faEdit}
                         onClick={() =>
@@ -381,9 +446,7 @@ function RecomendationTable({
           onCancel={handleCancelR}
           consultores={consultores}
           classifications={clasificaciones}
-        >
-          
-        </FormDialog>
+        ></FormDialog>
       </>
     </>
   );

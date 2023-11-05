@@ -4,24 +4,30 @@ import { useState } from "react";
 import styles from "../../styles/Home.module.css";
 
 import Container from "../../Components/Container";
-import RecomendationTable from "../../Components/Tables/RecomendationTable";
+import ReportTable from "../../Components/Tables/ReportTable"
 
 import datosintervenciones from "../../public/datosintervenciones.json";
-export default function RecomendacionPage() {
+import datosProyectos from "../../public/datosProyectos.json"
+export default function ReportePage() {
   const [interventions, setInterventions] = useState(
     datosintervenciones?.tasks
   );
   const [recomendations, setRecomendations] = useState(
     datosintervenciones?.recomendations
   );
+  const [projects, setProjects] = useState(
+    datosProyectos?.project
+  );
   return (
+
     <Container>
       <div className={styles.title}>
-        <h3> Recomendaciones</h3>
-        <RecomendationTable
+        <h3> Reportes</h3>
+        <ReportTable
           interventions={interventions}
           recomendations={recomendations}
           setRecomendations={setRecomendations}
+          projects={projects}
         />
       </div>
     </Container>

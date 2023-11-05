@@ -116,29 +116,8 @@ export default function Tasks({
               onClick={handleClick}
               // ref={(el) => (inputRef.current[i] = el)}
             />
-            <button
-              className={styles.btnTask}
-              type="button"
-              data-task-id={tsk?.id}
-              onClick={openConfirmation}
-            >
-              x
-            </button>
-            <Dialog
-              open={open}
-              onClose={handleClose}
-              className="my-custom-dialog"
-              BackdropProps={{ invisible: true }}
-            >
-              <DialogTitle>Confirmar Eliminación</DialogTitle>
-              <DialogContent>
-                <p>¿Está seguro de eliminar esta intervención?</p>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={() => handleDelete(data)}>Aceptar</Button>
-                <Button onClick={handleClose}>Cancelar</Button>
-              </DialogActions>
-            </Dialog>
+           
+            
           </div>
         ))}
     </div>

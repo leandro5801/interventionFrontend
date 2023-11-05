@@ -31,25 +31,34 @@ export default function UebForm({
   onCancel,
   onSave,
 }) {
+  //para retornar el nombre de la empresa y no el id
+  const nombreEmpresa = (empresaId) => {
+    const empresa = empresas.find((e) => e.id === empresaId);
+    const name = empresa ? empresa.name : "no se encontro el nombre";
+    return name;
+  };
+
   const [name, setName] = useState(ueb ? ueb.name : "");
-  const [empresa, setEmpresa] = useState(
+  const [empresaId, setEmpresaId] = useState(
     ueb
-      ? {
-          label: ueb.empresa,
-          value: ueb.empresa,
-        }
+      ? ueb.empresaId
       : ""
   );
 
+  const [empresa, setEmpresa] = useState(
+    ueb
+      ? {
+          label: nombreEmpresa(ueb.empresaId),
+          value: nombreEmpresa(ueb.empresaId),
+        }
+      : ""
+  );
   const empresasOptions =
     empresas &&
     empresas.map((item) => ({
-      value: item.name,
+      value: item.id,
       label: item.name,
     }));
-  const handleEmpresaChange = (newValue) => {
-    setEmpresa({ label: newValue.value, value: newValue.value });
-  };
 
   const defaultValues = {
     empresa: empresa,
@@ -78,15 +87,16 @@ export default function UebForm({
     setType(ueb ? "editar" : "crear");
   }
 
+
   const handleConfirm = (data) => {
+    const nombre = nombreEmpresa(parseInt(data.empresa.value));
+    
     const updatedRow = {
       id: ueb ? ueb.id : uebs.length + 1,
       name: data.name,
-      empresa: data.empresa.value,
+      empresaId: parseInt(data.empresa.value),
     };
-
     setUebs(ueb ? updatedRow : (prevData) => [...prevData, updatedRow]);
-  
     onSave();
     //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
@@ -110,12 +120,13 @@ export default function UebForm({
                   styles={customStyles}
                   id="empresa"
                   {...field}
+                  
                   className={`${styles.selectForm}  ${
                     errors.empresa ? "is-invalid" : ""
                   }`}
                   onChange={(selectedOption) => {
-                    handleEmpresaChange(selectedOption);
-                    setValue("empresa", selectedOption);
+                    setEmpresaId(parseInt(selectedOption.value));
+                    // setValue("empresa", selectedOption.label);
                     field.onChange(selectedOption);
                   }}
                   options={empresasOptions}

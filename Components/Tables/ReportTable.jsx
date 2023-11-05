@@ -1,9 +1,9 @@
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import Select from "react-select";
+import { customStyles } from "../../styles/SelectFilterStyles";
 
 import FormDialog from "../Forms/FormDialog";
-
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -51,7 +51,13 @@ const options = [
   { value: "Proyecto Aica", label: "Proyecto Aica" },
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
-function ReportTable({ recomendations, setRecomendations, interventions }) {
+function ReportTable({ recomendations, setRecomendations, interventions, projects }) {
+  //para retornar el nombre de la empresa y no el id
+  const interventionPorId = (interventionId) => {
+    const intervention = interventions.find((e) => e.id === interventionId);
+    return intervention;
+  };
+
   const [consultores, setConsultores] = useState(consultoress);
   const [clasificaciones, setClasificaciones] = useState(clasificacioness);
 
@@ -105,6 +111,34 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
     setShowFilters(!showFilters);
   };
 
+  //para filtrar por proyecto e intervencion
+  const [projectFilter, setProjectFilter] = useState([]);
+  const optionProjects =
+    projects &&
+    projects.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  const [interventionFilter, setInterventionFilter] = useState([]);
+  const optioninterventions =
+    interventions &&
+    interventions
+      .filter((item) =>
+        projectFilter && projectFilter.value
+          ? item.projectId === projectFilter.value
+          : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
+  const handleProjectFilterChange = (data) => {
+    data ? setProjectFilter(data) : setProjectFilter([]);
+  };
+  const handleInterventionFilterChange = (data) => {
+    data ? setInterventionFilter(data) : setInterventionFilter([]);
+  };
+
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
@@ -112,12 +146,7 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
   const [consultorFilter, setConsultorFilter] = useState("");
   const [classificationFilter, setClassificationFilter] = useState("");
   const [followFilter, setFollowFilter] = useState("");
-  //  const [processFilter, setProcessFilter] = useState("");
-  //  const [uebFilter, setUebFilter] = useState("");
-  //  const [structureFilter, setStructureFilter] = useState("");
-  //  const [areaFilter, setAreaFilter] = useState("");
 
-  //  const [workerFilter, setWorkerFilter] = useState("");
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -135,27 +164,14 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
   };
-  //  const handleProcessFilterChange = (event) => {
-  //    setProcessFilter(event.target.value);
-  //  };
-
-  //  const handleUebFilterChange = (event) => {
-  //    setUebFilter(event.target.value);
-  //  };
-  //  const handleStructureFilterChange = (event) => {
-  //    setStructureFilter(event.target.value);
-  //  };
-
-  //  const handleAreaFilterChange = (event) => {
-  //    setAreaFilter(event.target.value);
-  //  };
-
-  //  const handleWorkerFilterChange = (event) => {
-  //    setWorkerFilter(event.target.value);
-  //  };
 
   const filteredData = recomendations.filter(
     (item) =>
+      (projectFilter.length === 0 ||
+        interventionPorId(item.idIntervention).projectId ===
+          projectFilter.value) &&
+      (interventionFilter.length === 0 ||
+        item.idIntervention === interventionFilter.value) &&
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.description
         .toLowerCase()
@@ -165,13 +181,7 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
         .toLowerCase()
         .includes(classificationFilter.toLowerCase()) &&
       item.follow.toLowerCase().includes(followFilter.toLowerCase())
-    // item.ueb.toLowerCase().includes(uebFilter.toLowerCase())
-    //  &&
-    //  item.structure.toLowerCase().includes(structureFilter.toLowerCase()) &&
-    //  item.area.toLowerCase().includes(areaFilter.toLowerCase()) &&
-    //  item.worker.toLowerCase().includes(workerFilter.toLowerCase())
   );
-
   // sms de confirmacion
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
@@ -204,13 +214,32 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
           <div className={styles.btnNuevoContent}>
             {/* SELECCIONAR PROYECTO ETC */}
 
-            <Select
-              className={styles.selectGestiones}
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
-              options={options}
-              placeholder="Proyecto"
-            />
+            {showFilters && (
+              <Select
+                styles={customStyles}
+                className={styles.selectGestiones}
+                defaultValue={projectFilter}
+                onChange={(projectFilter) => {
+                  handleProjectFilterChange(projectFilter);
+                }}
+                options={optionProjects}
+                placeholder="Proyecto"
+                isClearable
+              />
+            )}
+             {showFilters && (
+              <Select
+                styles={customStyles}
+                className={styles.selectGestiones}
+                defaultValue={interventionFilter}
+                onChange={(interventionFilter) => {
+                  handleInterventionFilterChange(interventionFilter);
+                }}
+                options={optioninterventions}
+                placeholder="Intervención"
+                isClearable
+              />
+            )}
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
@@ -301,7 +330,6 @@ function ReportTable({ recomendations, setRecomendations, interventions }) {
           </Table>
         </TableContainer>
         {/* Para editar  */}
-       
       </>
     </>
   );

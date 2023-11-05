@@ -1,5 +1,6 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import { customStyles } from "../../styles/SelectFilterStyles";
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -86,27 +87,49 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [empresaFilter, setEmpresaFilter] = useState("");
-  const [uebFilter, setUebFilter] = useState("");
+  const [empresaFilter, setEmpresaFilter] = useState([]);
+  const [uebFilter, setUebFilter] = useState([]);
 
+  const optionEmpresas =
+    empresas &&
+    empresas.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+
+  const optionUebs =
+    uebs &&
+    uebs
+      .filter((item) =>
+        empresaFilter && empresaFilter.value
+          ? item.empresaId === empresaFilter.value
+          : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleEmpresaFilterChange = (event) => {
-    setEmpresaFilter(event.target.value);
+  const handleEmpresaFilterChange = (data) => {
+    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
   };
-  const handleUebFilterChange = (event) => {
-    setUebFilter(event.target.value);
+  const handleUebFilterChange = (data) => {
+    data ? setUebFilter(data) : setUebFilter([]);
   };
-
 
   const filteredData = direcciones.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.empresa.toLowerCase().includes(empresaFilter.toLowerCase()) &&
-      item.ueb.toLowerCase().includes(uebFilter.toLowerCase())
+      (empresaFilter.length === 0 ||
+        item.empresa === empresaFilter.label ) 
+        &&
+      (uebFilter.length === 0 || item.ueb === uebFilter.label)
   );
+
+
   // sms de confirmacion
   const [data, setData] = useState("");
 
@@ -117,8 +140,8 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
   }
 
   function handleDelete(idNum) {
-    const newUeb = direcciones.filter((ueb) => ueb.id !== idNum);
-    setDirecciones(newUeb);
+    const newDireccion = direcciones.filter((direccion) => direccion.id !== idNum);
+    setDirecciones(newDireccion);
     setOpen(false);
   }
 
@@ -207,25 +230,33 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
                   <TableCell className={styles.spacing}>
                       Empresa
                       {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={empresaFilter}
-                          onChange={handleEmpresaFilterChange}
-                          placeholder="Filtrar por empresa"
-                        />
+                        <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={empresaFilter}
+                        onChange={(empresaFilter) => {
+                          handleEmpresaFilterChange(empresaFilter);
+                        }}
+                        options={optionEmpresas}
+                        placeholder="Empresa"
+                        isClearable
+                      />
                       )}
                     </TableCell>
                     <TableCell className={styles.spacing}>
                       Ueb
                       {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={uebFilter}
-                          onChange={handleUebFilterChange}
-                          placeholder="Filtrar por ueb"
-                        />
+                        <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={uebFilter}
+                        onChange={(uebFilter) => {
+                          handleUebFilterChange(uebFilter);
+                        }}
+                        options={optionUebs}
+                        placeholder="Ueb"
+                        isClearable
+                      />
                       )}
                     </TableCell>
                     <TableCell className={styles.spacing}>
@@ -247,32 +278,32 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
                 <TableBody>
                   {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((ueb) => (
-                      <TableRow key={ueb.id} className={styles.trStyle}>
+                    .map((direccion) => (
+                      <TableRow key={direccion.id} className={styles.trStyle}>
                         
                         <TableCell className={styles.tdStyle}>
-                          {ueb.empresa}
+                          {direccion.empresa}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {ueb.ueb}
+                          {direccion.ueb}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                          {ueb.name}
+                          {direccion.name}
                         </TableCell>
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
-                                filteredData.findIndex((item) => item.id === ueb?.id)
+                                filteredData.findIndex((item) => item.id === direccion?.id)
                               )
                             }
                             className={styles.faIcon}
                           />
                           <FontAwesomeIcon
                             icon={faTrash}
-                            onClick={() => openConfirmation(ueb?.id)}
-                            data-task-id={ueb?.id}
+                            onClick={() => openConfirmation(direccion?.id)}
+                            data-task-id={direccion?.id}
                             className={styles.faIcon}
                           />
                           <Dialog

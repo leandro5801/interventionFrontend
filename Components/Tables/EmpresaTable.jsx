@@ -1,6 +1,5 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
-import { useRouter } from 'next/router';
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -10,8 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import UserForm from "../Forms/UserForm"
-
+import EmpresaForm from "../Forms/EmpresaForm";
 
 import {
   Table,
@@ -32,7 +30,7 @@ import {
 
 import Select from "react-select";
 
-function InterventionTable({ users, setUsers, roles, setRoles }) {
+function EmpresaTable({ empresas, setEmpresas }) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -71,35 +69,15 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [userNameFilter, setUserNameFilter] = useState("");
-  const [roleFilter, setRoleFilter] = useState("");
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleUserNameFilterChange = (event) => {
-    setUserNameFilter(event.target.value);
-  };
-  const handleRoleFilterChange = (event) => {
-    setRoleFilter(event.target.value);
-  };
-
-  //seleccionar rol
-  // const userRol =
-
-  const filteredData = users.map((item) => {
-    const role = roles.find((role) => (item.role_id === role.id ));
-    const roleName = role ? role.name_role : "Rol no encontrado";
-    console.log(roleName);
-    return { ...item, roleName };
-  }).filter(
-    (item) =>
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.user_name.toLowerCase().includes(userNameFilter.toLowerCase()) &&
-      item.roleName.toLowerCase().includes(roleFilter.toLowerCase())
+  const filteredData = empresas.filter((item) =>
+    item.name.toLowerCase().includes(nameFilter.toLowerCase())
   );
-  
+  const [data, setData] = useState("");
 
   function openConfirmation(data) {
     // event.preventDefault();
@@ -108,12 +86,10 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
   }
 
   function handleDelete(idNum) {
-    const newUser = users.filter((user) => user.id !== idNum);
-    setUsers(newUser);
+    const newEmpresa = empresas.filter((empresa) => empresa.id !== idNum);
+    setEmpresas(newEmpresa);
     setOpen(false);
   }
-
-  // Para editar una recomendacion desde la tabla
 
   const [editIIdx, setEditIIdx] = useState(-1);
 
@@ -125,25 +101,25 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     setEditIIdx(-1);
   };
 
-  const userUpdate = (updatedRow) => {
+  const empresaUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedUserData = [...users];
+    const updatedEmpresasData = [...empresas];
 
     // Actualiza los datos de la fila que se está editando
-    updatedUserData[editIIdx] = updatedRow;
+    updatedEmpresasData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setUsers(updatedUserData);
+    setEmpresas(updatedEmpresasData);
   };
   return (
     <>
       <div className={styles.divTableInter}>
-        {users.length === 0 && (
+        {empresas.length === 0 && (
           <div className={styles.divIconH2}>
             <h2> No hay Intervenciones</h2>{" "}
           </div>
         )}
-        {users.length === 0 || (
+        {empresas.length === 0 || (
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
@@ -161,21 +137,17 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                   onClose={() => {
                     setDialogOpen(false);
                   }}
-                  FormComponent={UserForm}
-                  setUsers={setUsers}
-                  setRoles={setRoles}
-                  users={users}
+                  FormComponent={EmpresaForm}
+                  setEmpresas={setEmpresas}
+                  empresas={empresas}
                   onSave={() => {
                     setDialogOpen(false);
                   }}
                   onCancel={() => {
                     setDialogOpen(false);
                   }}
-                  roles={roles}
                 ></FormDialog>
-                {/* SELECCIONAR PROYECTO ETC */}
-
-                <div className={styles.filterListOffOutlinedContent}>
+                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
                       onClick={toggleFilters}
@@ -200,32 +172,7 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                           type="text"
                           value={nameFilter}
                           onChange={handleNameFilterChange}
-                          placeholder="Filtrar por nombre"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Usuario
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={userNameFilter}
-                          onChange={handleUserNameFilterChange}
-                          placeholder="Filtrar por usuario"
-                        />
-                      )}
-                    </TableCell>
-
-                    <TableCell className={styles.spacing}>
-                      Rol
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={roleFilter}
-                          onChange={handleRoleFilterChange}
-                          placeholder="Filtrar por rol"
+                          placeholder="Filtrar por empresa"
                         />
                       )}
                     </TableCell>
@@ -236,24 +183,19 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                 <TableBody>
                   {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((user) => (
-                      <TableRow key={user.id} className={styles.trStyle}>
+                    .map((empresa) => (
+                      <TableRow key={empresa.id} className={styles.trStyle}>
                         <TableCell className={styles.tdStyle}>
-                          {user.name}
+                          {empresa.name}
                         </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {user.user_name}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {user.roleName}
-                        </TableCell>
+
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
                                 filteredData.findIndex(
-                                  (item) => item.id === user?.id
+                                  (item) => item.id === empresa?.id
                                 )
                               )
                             }
@@ -261,8 +203,8 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                           />
                           <FontAwesomeIcon
                             icon={faTrash}
-                            onClick={() => openConfirmation(user?.id)}
-                            data-task-id={user?.id}
+                            onClick={() => openConfirmation(empresa?.id)}
+                            data-task-id={empresa?.id}
                             className={styles.faIcon}
                           />
                           <Dialog
@@ -272,7 +214,7 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                           >
                             <DialogTitle>Confirmar Eliminación</DialogTitle>
                             <DialogContent>
-                              <p>¿Está seguro de eliminar este usuario?</p>
+                              <p>¿Está seguro de eliminar esta empresa?</p>
                             </DialogContent>
                             <DialogActions>
                               <Button onClick={() => handleDelete(data)}>
@@ -304,12 +246,11 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
-                FormComponent={UserForm}
-                setUsers={userUpdate}
-                user={users[editIIdx]}
+                FormComponent={EmpresaForm}
+                setEmpresas={empresaUpdate}
+                empresa={empresas[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
-                roles={roles}
               ></FormDialog>
             </TableContainer>
           </div>
@@ -319,4 +260,4 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
   );
 }
 
-export default InterventionTable;
+export default EmpresaTable;

@@ -35,7 +35,9 @@ export default function FormUpdateIntervention({
   onCancel,
   onSave,
   consultores,
-  trabDirProdCit,
+  trabajadores,
+  direcciones,
+  areas,
   trabCalidadCit,
   trabDireccionCit,
   trabDirProdLior,
@@ -45,7 +47,22 @@ export default function FormUpdateIntervention({
   trabCalidadSh,
   trabDireccionSh,
   trabDirProdJt,
+  empresas,
+  uebs,
 }) {
+  //para retornar el nombre de la empresa y no el id
+  const nombreEmpresa = (empresaId) => {
+    const empresa = empresas.find((e) => e.id === empresaId);
+    const name = empresa ? empresa.name : "no se encontro el nombre";
+    return name;
+  };
+  //para retornar el nombre de la empresa y no el id
+  const nombreUeb = (uebId) => {
+    const ueb = uebs.find((e) => e.id === uebId);
+    const name = ueb ? ueb.name : "no se encontro el nombre";
+    return name;
+  };
+
   const [name, setName] = useState(intervention ? intervention.name : "");
   const [description, setDescription] = useState(
     intervention ? intervention.description : ""
@@ -55,16 +72,25 @@ export default function FormUpdateIntervention({
       ? { label: intervention.worker, value: intervention.worker }
       : ""
   );
+  const [empresaId, setEmpresaId] = useState(
+    intervention ? intervention.empresaId : ""
+  );
   const [empresa, setEmpresa] = useState(
     intervention
       ? {
-          label: intervention.empresa,
-          value: intervention.empresa,
+          label: nombreEmpresa(intervention.empresaId),
+          value: intervention.empresaId,
         }
       : ""
   );
-  const [selectedUeb, setSelectedUeb] = useState(
-    intervention ? { label: intervention.ueb, value: intervention.ueb } : ""
+  const [uebId, setUebId] = useState(intervention ? intervention.uebId : "");
+  const [ueb, setUeb] = useState(
+    intervention
+      ? {
+          label: nombreUeb(intervention.uebId),
+          value: intervention.uebId,
+        }
+      : ""
   );
   const [selectedStructure, setSelectedStructure] = useState(
     intervention
@@ -97,37 +123,40 @@ export default function FormUpdateIntervention({
 
   //para poner dependencia entre los select estructuras
   const empresasOptions =
-    empresaOptionss &&
-    empresaOptionss.map((item) => ({
-      value: item.value,
-      label: item.value,
+    empresas &&
+    empresas.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  const uebOptions =
+    uebs &&
+    uebs
+     .filter((item) => (empresaId ? item.empresaId === empresaId : false))
+     .map((item) => ({
+      value: item.id,
+      label: item.name,
     }));
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.value, value: newValue.value });
   };
 
-  const uebOptions = data.ueb.map((item) => ({
-    value: item.ueb,
-    label: item.ueb,
-  }));
-  const structureOptions = data.structure
-    .filter((item) => (selectedUeb ? item.ueb === selectedUeb.value : false))
+  const structureOptions = direcciones
+    // .filter((item) => (ueb ? item.ueb === ueb.value : false))
     .map((item) => ({
-      value: item.structure,
-      label: item.structure,
+      value: item.id,
+      label: item.name,
     }));
-  const areaOptions = data.area
-    .filter(
-      (item) =>
-        (selectedUeb ? item.ueb === selectedUeb.value : false) &&
-        (selectedStructure ? item.structure === selectedStructure.value : false)
-    )
+  const areaOptions = areas
+    // .filter((item) =>
+    //   // (ueb ? item.ueb === ueb.value : false) &&
+    //   selectedStructure ? item.structure === selectedStructure.value : false
+    // )
     .map((item) => ({
-      value: item.area,
-      label: item.area,
+      value: item.id,
+      label: item.name,
     }));
   const handleUebChange = (newValue) => {
-    setSelectedUeb(newValue);
+    setUeb(newValue);
     setSelectedStructure("");
     setSelectedArea("");
   };
@@ -135,9 +164,9 @@ export default function FormUpdateIntervention({
     setSelectedStructure(newValue);
     setSelectedArea("");
   };
-  const trabajadoresOptions = trabDirProdCit.map((item) => ({
-    value: item.Nombre,
-    label: item.Nombre,
+  const trabajadoresOptions = trabajadores.map((item) => ({
+    value: item.id,
+    label: item.name,
   }));
   // if (
   //   selectedUeb &&
@@ -303,7 +332,7 @@ export default function FormUpdateIntervention({
 
   const defaultValues = {
     empresa: empresa,
-    ueb: selectedUeb,
+    ueb: ueb,
     structure: selectedStructure,
     area: selectedArea,
     consultor: consultor,
@@ -335,20 +364,20 @@ export default function FormUpdateIntervention({
   }
 
   const handleConfirm = (data) => {
+    const nombre = nombreEmpresa(parseInt(data.empresa.value));
     const updatedRow = {
       id: intervention ? intervention.id : interventions.length + 1,
       name: data.name,
       description: data.description,
-      empresa: data.empresa.value,
-      ueb: data.ueb.value,
-      structure: data.structure.value,
-      area: data.area.value,
+      empresaId: parseInt(data.empresa.value),
+      uebId: parseInt(data.ueb.value),
+      structure: data.structure.label,
+      area: data.area.label,
       consultor: data.consultor.value,
-      worker: data.worker.value,
+      worker: data.worker.label,
       start: data.start,
       end: data.end,
     };
-
     setInterventions(
       intervention ? updatedRow : (prevData) => [...prevData, updatedRow]
     );
@@ -399,7 +428,7 @@ export default function FormUpdateIntervention({
 
           <div className={styles.formGrid}>
             <div className={styles.halfRow}>
-            <Controller
+              <Controller
                 name="empresa"
                 control={control}
                 render={({ field }) => (
@@ -411,8 +440,8 @@ export default function FormUpdateIntervention({
                       errors.empresa ? "is-invalid" : ""
                     }`}
                     onChange={(selectedOption) => {
-                      handleEmpresaChange(selectedOption);
-                      setValue("empresa", selectedOption);
+                      setEmpresaId(parseInt(selectedOption.value));
+                      // setValue("empresa", selectedOption);
                       field.onChange(selectedOption);
                     }}
                     options={empresasOptions}
@@ -439,11 +468,7 @@ export default function FormUpdateIntervention({
                       errors.ueb ? "is-invalid" : ""
                     }`}
                     onChange={(selectedOption) => {
-                      handleUebChange(selectedOption);
-                      setValue("ueb", selectedOption);
-                      setValue("structure", "");
-                      setValue("area", "");
-                      setValue("worker", "");
+                      setUebId(parseInt(selectedOption.value));
                       field.onChange(selectedOption);
                     }}
                     options={uebOptions}

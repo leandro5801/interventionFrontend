@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/Home.module.css";
-import GanttChart from "../Components/GanttChart/GanttChart";
+import GanttChart from "./GanttChart/GanttChart";
 
 import { useState} from "react";
 import InterventionTable from "./Tables/InterventionTable";

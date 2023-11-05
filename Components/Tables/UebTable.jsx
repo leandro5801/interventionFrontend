@@ -9,7 +9,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import EmpresaForm from "../Forms/EmpresaForm";
+import UebForm from "../Forms/UebForm";
 
 import {
   Table,
@@ -30,7 +30,22 @@ import {
 
 import Select from "react-select";
 
-function EmpresaTable({ empresas, setEmpresas}) {
+// Para probar con consultores y trabajadoresBORRAR DESPUES Y CARGAR DEL LISTADO DE CONSULTORES REAL
+const consultoress = [
+  { id: 1, name: "Carlos Ramón López Paz" },
+  { id: 2, name: "Laura Alfonzo Perez" },
+  { id: 3, name: "Alberto López Gónzalez" },
+  { id: 4, name: "Lazaro Días Alvares" },
+];
+const options = [
+  { value: "Proyecto Aica", label: "Proyecto Aica" },
+  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
+];
+
+function UebTable({ uebs, setUebs, empresas }) {
+  //para los select de proyecto etc
+  const [selectedOption, setSelectedOption] = useState(null);
+
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -69,26 +84,28 @@ function EmpresaTable({ empresas, setEmpresas}) {
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [userNameFilter, setUserNameFilter] = useState("");
-  const [roleFilter, setRoleFilter] = useState("");
+  const [empresaFilter, setEmpresaFilter] = useState([]);
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleUserNameFilterChange = (event) => {
-    setUserNameFilter(event.target.value);
+  const handleEmpresaFilterChange = (data) => {
+    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
   };
-  const handleRoleFilterChange = (event) => {
-    setRoleFilter(event.target.value);
-  };
-
-//   const filteredData = empresas.filter(
-//     (item) =>
-//       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-//       item.user_name.toLowerCase().includes(userNameFilter.toLowerCase()) &&
-//       item.idRole.toLowerCase().includes(roleFilter.toLowerCase())
-//   );
+  const optionEmpresas =
+    empresas &&
+    empresas.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }));
+  const filteredData = uebs.filter(
+    (item) =>
+      (empresaFilter.length === 0 ||
+        item.empresaId === empresaFilter.value ||
+        !item.empresaId) &&
+      item.name.toLowerCase().includes(nameFilter.toLowerCase())
+  );
   // sms de confirmacion
   const [data, setData] = useState("");
 
@@ -99,10 +116,8 @@ function EmpresaTable({ empresas, setEmpresas}) {
   }
 
   function handleDelete(idNum) {
-    const newEmpresa = empresas.filter(
-      (empresa) => empresa.id !== idNum
-    );
-    setEmpresas(newEmpresa);
+    const newUeb = uebs.filter((ueb) => ueb.id !== idNum);
+    setUebs(newUeb);
     setOpen(false);
   }
 
@@ -118,25 +133,33 @@ function EmpresaTable({ empresas, setEmpresas}) {
     setEditIIdx(-1);
   };
 
-  const empresaUpdate = (updatedRow) => {
+  const UebUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedEmpresasData = [...empresas];
+    const updatedUebsData = [...uebs];
 
     // Actualiza los datos de la fila que se está editando
-    updatedEmpresasData[editIIdx] = updatedRow;
+    updatedUebsData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setEmpresas(updatedEmpresasData);
+    setUebs(updatedUebsData);
   };
+
+  //para retornar el nombre de la empresa y no el id
+  const nombreEmpresa = (empresaId) => {
+    const empresa = empresas.find((e) => e.id === empresaId);
+    const name = empresa? empresa.name : "no se encontro el nombre";
+    return(name);
+  };
+
   return (
     <>
       <div className={styles.divTableInter}>
-        {empresas.length === 0 && (
+        {uebs.length === 0 && (
           <div className={styles.divIconH2}>
             <h2> No hay Intervenciones</h2>{" "}
           </div>
         )}
-        {empresas.length === 0 || (
+        {uebs.length === 0 || (
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
@@ -154,32 +177,60 @@ function EmpresaTable({ empresas, setEmpresas}) {
                   onClose={() => {
                     setDialogOpen(false);
                   }}
-                  FormComponent={EmpresaForm}
-                  setEmpresas={setEmpresas}
-                  empresas={empresas}
+                  FormComponent={UebForm}
+                  setUebs={setUebs}
+                  uebs={uebs}
                   onSave={() => {
                     setDialogOpen(false);
                   }}
                   onCancel={() => {
                     setDialogOpen(false);
                   }}
-                 
+                  empresas={empresas}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
-
+                <div className={styles.filterListOffOutlinedContent}>
+                  {showFilters ? (
+                    <FilterListOffOutlinedIcon
+                      onClick={toggleFilters}
+                      style={{ width: "18px", cursor: "pointer" }}
+                    />
+                  ) : (
+                    <FilterListOutlinedIcon
+                      onClick={toggleFilters}
+                      style={{ width: "18px", cursor: "pointer" }}
+                    />
+                  )}
+                </div>
               </div>
+
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
                     <TableCell className={styles.spacing}>
-                      Nombre
+                      Empresa
+                      {showFilters && (
+                        <Select
+                          className={styles.selectGestiones}
+                          defaultValue={empresaFilter}
+                          onChange={(empresaFilter) => {
+                            handleEmpresaFilterChange(empresaFilter);
+                          }}
+                          options={optionEmpresas}
+                          placeholder="Empresa"
+                          isClearable
+                        />
+                      )}
+                    </TableCell>
+                    <TableCell className={styles.spacing}>
+                      Ueb
                       {showFilters && (
                         <input
                           className={styles.inputFilter}
                           type="text"
                           value={nameFilter}
                           onChange={handleNameFilterChange}
-                          placeholder="Filtrar por nombre"
+                          placeholder="Filtrar por ueb"
                         />
                       )}
                     </TableCell>
@@ -188,28 +239,33 @@ function EmpresaTable({ empresas, setEmpresas}) {
                 </TableHead>
 
                 <TableBody>
-                  {empresas
+                  {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((empresa) => (
-                      <TableRow key={empresa.id} className={styles.trStyle}>
+                    .map((ueb) => (
+                      <TableRow key={ueb.id} className={styles.trStyle}>
                         <TableCell className={styles.tdStyle}>
-                          {empresa.name}
+                          {nombreEmpresa(ueb.empresaId)}
                         </TableCell>
-                       
+                        <TableCell className={styles.tdStyle}>
+                          {ueb.name}
+                        </TableCell>
+
                         <td className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
                               setEditIIdx(
-                                empresas.findIndex((item) => item.id === empresa?.id)
+                                filteredData.findIndex(
+                                  (item) => item.id === ueb?.id
+                                )
                               )
                             }
                             className={styles.faIcon}
                           />
                           <FontAwesomeIcon
                             icon={faTrash}
-                            onClick={() => openConfirmation(empresa?.id)}
-                            data-task-id={empresa?.id}
+                            onClick={() => openConfirmation(ueb?.id)}
+                            data-task-id={ueb?.id}
                             className={styles.faIcon}
                           />
                           <Dialog
@@ -219,7 +275,7 @@ function EmpresaTable({ empresas, setEmpresas}) {
                           >
                             <DialogTitle>Confirmar Eliminación</DialogTitle>
                             <DialogContent>
-                              <p>¿Está seguro de eliminar esta empresa?</p>
+                              <p>¿Está seguro de eliminar esta ueb?</p>
                             </DialogContent>
                             <DialogActions>
                               <Button onClick={() => handleDelete(data)}>
@@ -238,7 +294,7 @@ function EmpresaTable({ empresas, setEmpresas}) {
                     <TablePagination
                       className={styles.tablePagination}
                       rowsPerPageOptions={[4, 5, 10]}
-                      count={empresas.length}
+                      count={filteredData.length}
                       rowsPerPage={rowsPerPage}
                       page={page}
                       onPageChange={handleChangePage}
@@ -251,11 +307,12 @@ function EmpresaTable({ empresas, setEmpresas}) {
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
-                FormComponent={EmpresaForm}
-                setEmpresas={empresaUpdate}
-                empresa={empresas[editIIdx]}
+                FormComponent={UebForm}
+                setUebs={UebUpdate}
+                ueb={uebs[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
+                empresas={empresas}
               ></FormDialog>
             </TableContainer>
           </div>
@@ -265,4 +322,4 @@ function EmpresaTable({ empresas, setEmpresas}) {
   );
 }
 
-export default EmpresaTable;
+export default UebTable;

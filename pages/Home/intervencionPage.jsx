@@ -7,7 +7,10 @@ import Container from "../../Components/Container";
 import InterventionTable from "../../Components/Tables/InterventionTable";
 
 import datosintervenciones from "../../public/datosintervenciones.json";
-import trabDirProdCitt from "../../public/DirTecProdCit.json";
+import datosProyectos from "../../public/datosProyectos.json"
+import datosEmpresas from "../../public/datosEmpresas.json"
+
+
 export default function IntervencionPage() {
 
     // datos de las intervenciones
@@ -17,11 +20,24 @@ export default function IntervencionPage() {
     const [recomendations, setRecomendations] = useState(
       datosintervenciones?.recomendations
     );
-    //trabajadores
-  const [trabDirProdCit, setTrabDirProdCit] = useState(trabDirProdCitt?.Trabajadores);
- 
-
-
+    const [projects, setProjects] = useState(
+      datosProyectos?.project
+    );
+    const [empresas, setEmpresas] = useState(
+      datosEmpresas?.empresas
+    );
+    const [uebs, setUebs] = useState(
+      datosEmpresas?.ueb
+    );
+    const [direcciones, setDirecciones] = useState(
+      datosEmpresas?.direcciones
+    );
+    const [areas, setAreas] = useState(
+      datosEmpresas?.areas
+    );
+    const [trabajadores, setTrabajadores] = useState(
+      datosEmpresas?.trabajadores
+    );
   return (
     <Container>
       <div className={styles.title}>
@@ -29,7 +45,12 @@ export default function IntervencionPage() {
         <InterventionTable
             interventions={interventions}
             setInterventions={setInterventions}
-            trabDirProdCit={trabDirProdCit}
+            projects={projects}
+            empresas={empresas}
+            uebs={uebs}
+            direcciones={direcciones}
+            areas={areas}
+            trabajadores={trabajadores}
           />
       </div>
     </Container>

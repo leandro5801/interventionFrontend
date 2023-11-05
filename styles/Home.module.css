@@ -308,11 +308,17 @@
 }
 
 .filtrosEstructuraContent {
-  padding: 8px;
+  padding: 4px;
   display: flex;
   align-items: center;
   text-align: center;
   gap: 50px;
+}
+.filtrosEstructuraContentInt {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 .filterListOffOutlinedContent {
@@ -332,37 +338,38 @@
 
 .selectGestiones {
   padding: 7px;
-  width: 230px;
-  z-index: 200;
+  font-size: 14px;
+  width: 200px;
+  z-index: 15;
+  position: relative;
+}
+.selectGestionesGantt {
+  padding: 7px;
+  font-size: 14px;
+  width: 150px;
+  font-weight:lighter;
+}
+.divFechaFilter {
+  padding: 7px;
+  text-align: center;
 }
 
 .table {
   position: fixed;
-  /* overflow-x: initial; */
-  /* overflow: auto;  */
-  /* display:flex; */
-  /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
-  /* grid-auto-rows: minmax(50px, auto); */
-  /* grid-gap: 10px; */
-  /* table-layout: fixed; */
-  /* margin: 0 auto; */
   max-height: 410px;
-  /* ancho de la tabla  */
   max-width: 1058px;
 }
 
 .table thead th {
   position: sticky;
   top: 0;
-  z-index: 10;
+  /* z-index: 1; */
   background-color: #fff;
-
 }
 
 .table tfoot td {
   position: sticky;
   bottom: 0;
-  z-index: 10;
   background-color: #ffff;
 }
 
@@ -370,6 +377,10 @@
   border-bottom: 1px solid #ddd;
   /* white-space: nowrap; */
 }
+/* .tableCellIcon{
+  padding: 5px;
+  width: 50;
+} */
 
 .spacing {
   /* padding: 20px; */
@@ -395,18 +406,11 @@
 
 .tabs {
   display: flex;
-  /* justify-content: space-evenly; */
   align-items: center;
-  /* width: 250px; */
-  /* height: 100px; */
-  /* background-color: #fff; */
-  /* border-radius: 10px; */
-  /* cursor: pointer; */
-  /* box-shadow: 3px 0px 6px 0px rgb(246, 246, 246, 0.75); */
 }
 
 .btnNuevoContent {
-  padding: 8px;
+  padding: 20px;
   display: flex;
   align-items: center;
 }
@@ -462,7 +466,6 @@
   .selectGestiones {
     padding: 7px;
     width: 150px;
-    z-index: 200;
   }
 
   .divIconH2 {
@@ -490,14 +493,14 @@
 .tableReport thead th {
   position: sticky;
   top: 0;
-  z-index: 10;
+  /* z-index: 10; */
   background-color: #fff;
 }
 
 .tableReport tfoot td {
   position: sticky;
   bottom: 0;
-  z-index: 10;
+  /* z-index: 10; */
   background-color: #ffff;
 }
 
@@ -572,10 +575,12 @@
   gap: 10px;
   padding: 5px;
 }
+
 .paddingSelect {
   gap: 10px;
   padding: 5px;
 }
+
 .dateGroup {
   display: flex;
   justify-content: space-between;
@@ -616,7 +621,8 @@
   width: 400px;
   height: 40px;
 }
-.inputFormDirec{
+
+.inputFormDirec {
   padding: 7px;
   border: none;
   border-bottom: 1px solid gray;
@@ -634,12 +640,14 @@
   border-bottom: 2px solid gray;
   color: black;
 }
+
 .selectFormRecInt {
   width: 810px;
   font-size: 14px;
   border-bottom: 2px solid gray;
   color: black;
 }
+
 .selectFormRec {
   width: 400px;
   font-size: 14px;
@@ -647,7 +655,7 @@
   color: black;
 }
 
-.selectFormRec .options{
+.selectFormRec .options {
   max-height: 30%;
 }
 

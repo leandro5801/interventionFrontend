@@ -4,19 +4,19 @@ import { drawerClasses } from "@mui/material";
 export const customStyles = {
   control: (base) => ({
     ...base,
-    backgroundColor: "#ccc",
-    height: "10px",
+    height: "5px",
   }),
   dropdownIndicator: (base) => ({
     ...base,
-    color: "gray", // Custom colour
+    // color: "gray", // Custom colour
   }),
   dropdown: (base) => ({
     ...base,
-   
+
   }),
   menuList: (data) => ({
-   maxHeight: "60px",
+
+   maxHeight: "80px",
    overflow: 'auto',
   }),
     valueContainer: (base) => ({
@@ -24,12 +24,5 @@ export const customStyles = {
     maxHeight: "30px",
     overflow: 'auto',
   }),
-    components: {
-    MultiValueContainer: ({ children, innerProps }) => (
-      <div style={{ display: "flex" }} {...innerProps}>
-        {children}
-      </div>
-    ),
-  },
 
 };
