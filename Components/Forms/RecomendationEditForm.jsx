@@ -92,6 +92,7 @@ export default function RecomendationForm({
       name: data.name,
       description: data.description,
       consultor: data.consultor.value,
+      fecha: recomendation.fecha,
       follow: follow,
       classification: classification.value,
     };

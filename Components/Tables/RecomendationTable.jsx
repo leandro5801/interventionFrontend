@@ -125,15 +125,16 @@ function RecomendationTable({
   const [interventionFilter, setInterventionFilter] = useState([]);
   const optioninterventions =
     interventions &&
-    interventions.filter((item) =>
-    projectFilter && projectFilter.value
-      ? item.projectId === projectFilter.value
-      : true
-  )
-    .map((item) => ({
-      value: item.id,
-      label: item.name,
-    }));
+    interventions
+      .filter((item) =>
+        projectFilter && projectFilter.value
+          ? item.projectId === projectFilter.value
+          : true
+      )
+      .map((item) => ({
+        value: item.id,
+        label: item.name,
+      }));
   const handleProjectFilterChange = (data) => {
     data ? setProjectFilter(data) : setProjectFilter([]);
   };
@@ -157,6 +158,7 @@ function RecomendationTable({
   const [nameFilter, setNameFilter] = useState("");
   const [descriptionFilter, setDescriptionFilter] = useState("");
   const [consultorFilter, setConsultorFilter] = useState([]);
+  const [fechaFilter, setFechaFilter] = useState("");
   const [classificationFilter, setClassificationFilter] = useState([]);
   const [followFilter, setFollowFilter] = useState("");
 
@@ -169,6 +171,9 @@ function RecomendationTable({
   };
   const handleConsultorFilterChange = (data) => {
     data ? setConsultorFilter(data) : setConsultorFilter([]);
+  };
+  const handleFechaFilterChange = (event) => {
+    setFechaFilter(event.target.value);
   };
   const handleClassificationFilterChange = (data) => {
     data ? setClassificationFilter(data) : setClassificationFilter([]);
@@ -192,7 +197,8 @@ function RecomendationTable({
         item.consultor === consultorFilter.value) &&
       (classificationFilter.length === 0 ||
         item.classification === classificationFilter.value) &&
-      item.follow.toLowerCase().includes(followFilter.toLowerCase())
+      item.follow.toLowerCase().includes(followFilter.toLowerCase()) &&
+      item.fecha.toLowerCase().includes(fechaFilter.toLowerCase())
   );
 
   // sms de confirmacion
@@ -267,7 +273,7 @@ function RecomendationTable({
                 isClearable
               />
             )}
-             {showFilters && (
+            {showFilters && (
               <Select
                 styles={customStyles}
                 className={styles.selectGestiones}
@@ -338,6 +344,18 @@ function RecomendationTable({
                   )}
                 </TableCell>
                 <TableCell className={styles.letraEnNegrita}>
+                  Fecha
+                  {showFilters && (
+                    <input
+                      className={styles.inputFilter}
+                      type="date"
+                      value={fechaFilter}
+                      onChange={handleFechaFilterChange}
+                      placeholder="Filtrar por fecha"
+                    />
+                  )}
+                </TableCell>
+                <TableCell className={styles.letraEnNegrita}>
                   Tipo
                   {showFilters && (
                     <Select
@@ -376,11 +394,10 @@ function RecomendationTable({
                     <TableCell>{recomendation.name}</TableCell>
                     <TableCell>{recomendation.description}</TableCell>
                     <TableCell>{recomendation.consultor}</TableCell>
+                    <TableCell>{recomendation.fecha}</TableCell>
                     <TableCell>{recomendation.classification}</TableCell>
                     <TableCell>{recomendation.follow}</TableCell>
-                    <TableCell
-                      
-                    >
+                    <TableCell>
                       <FontAwesomeIcon
                         icon={faEdit}
                         onClick={() =>

@@ -372,7 +372,7 @@
   bottom: 0;
   background-color: #ffff;
 }
-
+weight
 .table td {
   border-bottom: 1px solid #ddd;
   /* white-space: nowrap; */
@@ -383,9 +383,7 @@
 } */
 
 .spacing {
-  /* padding: 20px; */
   font-weight: bold;
-  /* text-align: center; */
   width: 2100px;
 }
 
@@ -401,7 +399,7 @@
 }
 
 .tdStyle {
-  width: 210px;
+  width: 200px;
 }
 
 .tabs {
@@ -512,8 +510,8 @@
 .spacingReport {
   /* padding: 20px; */
   font-weight: bold;
-  text-align: center;
-  width: 10px;
+  /* text-align: center; */
+  width: 5px;
 }
 
 .inputFilterReport {
@@ -525,14 +523,14 @@
 }
 
 .trStyleReport {
-  padding: 20px;
+  font-weight: bold;
   text-align: center;
-  /* width: 2100px; */
+  width: 5px;
 }
 
 .tdStyleReport {
   padding: 5px;
-  width: 2300px;
+  width: 500px;
 }
 
 @media only screen and (max-width:768px) {

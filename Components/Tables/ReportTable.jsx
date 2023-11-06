@@ -143,8 +143,7 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
 
   const [nameFilter, setNameFilter] = useState("");
   const [descriptionFilter, setDescriptionFilter] = useState("");
-  const [consultorFilter, setConsultorFilter] = useState("");
-  const [classificationFilter, setClassificationFilter] = useState("");
+  const [fechaFilter, setFechaFilter] = useState("");
   const [followFilter, setFollowFilter] = useState("");
 
 
@@ -155,11 +154,8 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
   const handleDescriptionFilterChange = (event) => {
     setDescriptionFilter(event.target.value);
   };
-  const handleConsultorFilterChange = (event) => {
-    setConsultorFilter(event.target.value);
-  };
-  const handleClassificationFilterChange = (event) => {
-    setClassificationFilter(event.target.value);
+  const handleFechaFilterChange = (event) => {
+    setFechaFilter(event.target.value);
   };
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
@@ -176,11 +172,9 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
       item.description
         .toLowerCase()
         .includes(descriptionFilter.toLowerCase()) &&
-      item.consultor.toLowerCase().includes(consultorFilter.toLowerCase()) &&
-      item.classification
-        .toLowerCase()
-        .includes(classificationFilter.toLowerCase()) &&
       item.follow.toLowerCase().includes(followFilter.toLowerCase())
+      &&
+      item.fecha.toLowerCase().includes(fechaFilter.toLowerCase())
   );
   // sms de confirmacion
   const [open, setOpen] = useState(false);
@@ -269,7 +263,7 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacingReport}>
+                <TableCell className={styles.trStyleReport}>
                   Descripción
                   {showFilters && (
                     <input
@@ -278,6 +272,18 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                       value={descriptionFilter}
                       onChange={handleDescriptionFilterChange}
                       placeholder="Filtrar por descripción"
+                    />
+                  )}
+                </TableCell>
+                <TableCell className={styles.spacingReport}>
+                  Fecha
+                  {showFilters && (
+                    <input
+                      className={styles.inputFilter}
+                      type="date"
+                      value={fechaFilter}
+                      onChange={handleFechaFilterChange}
+                      placeholder="Filtrar por fecha"
                     />
                   )}
                 </TableCell>
@@ -293,7 +299,7 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacingReport}></TableCell>
+               
               </TableRow>
             </TableHead>
             <TableBody>
@@ -306,6 +312,9 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     </TableCell>
                     <TableCell className={styles.tdStyleReport}>
                       {recomendation.description}
+                    </TableCell>
+                    <TableCell className={styles.tdStyle}>
+                      {recomendation.fecha}
                     </TableCell>
                     <TableCell className={styles.tdStyle}>
                       {recomendation.follow}
