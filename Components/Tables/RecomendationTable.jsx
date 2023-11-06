@@ -181,7 +181,16 @@ function RecomendationTable({
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
   };
-
+  const limpiarFiltrados = () => {
+    setProjectFilter([]);
+    setInterventionFilter([]);
+    setConsultorFilter([]);
+    setClassificationFilter([]);
+    setNameFilter("");
+    setDescriptionFilter("");
+    setFechaFilter("");
+    setFollowFilter("");
+  };
   const filteredData = recomendations.filter(
     (item) =>
       (projectFilter.length === 0 ||
@@ -289,7 +298,10 @@ function RecomendationTable({
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
-                  onClick={toggleFilters}
+                onClick={() => {
+                  toggleFilters();
+                  limpiarFiltrados();
+                }}
                   style={{ width: "18px", cursor: "pointer" }}
                 />
               ) : (

@@ -135,6 +135,12 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones }) {
   const handleStructureFilterChange = (data) => {
     data ? setStructureFilter(data) : setStructureFilter([]);
   };
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+    setEmpresaFilter([]);
+    setUebFilter([]);
+    setStructureFilter([]);
+  };
   const filteredData = areas.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
@@ -222,7 +228,10 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones }) {
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -318,7 +327,7 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones }) {
                         <TableCell className={styles.tdStyle}>
                           {direccion.name}
                         </TableCell>
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -352,7 +361,7 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones }) {
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                          </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

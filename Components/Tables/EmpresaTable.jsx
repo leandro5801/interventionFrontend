@@ -73,7 +73,9 @@ function EmpresaTable({ empresas, setEmpresas }) {
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
-
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+  };
   const filteredData = empresas.filter((item) =>
     item.name.toLowerCase().includes(nameFilter.toLowerCase())
   );
@@ -150,7 +152,10 @@ function EmpresaTable({ empresas, setEmpresas }) {
                  <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -189,7 +194,7 @@ function EmpresaTable({ empresas, setEmpresas }) {
                           {empresa.name}
                         </TableCell>
 
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -223,7 +228,7 @@ function EmpresaTable({ empresas, setEmpresas }) {
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                          </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

@@ -160,6 +160,14 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
   const handleFollowFilterChange = (event) => {
     setFollowFilter(event.target.value);
   };
+  const limpiarFiltrados = () => {
+    setProjectFilter([]);
+    setInterventionFilter([]);
+    setNameFilter("");
+    setDescriptionFilter("");
+    setFechaFilter("");
+    setFollowFilter("");
+  };
 
   const filteredData = recomendations.filter(
     (item) =>
@@ -237,7 +245,10 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
-                  onClick={toggleFilters}
+                onClick={() => {
+                  toggleFilters();
+                  limpiarFiltrados();
+                }}
                   style={{ width: "18px", cursor: "pointer" }}
                 />
               ) : (

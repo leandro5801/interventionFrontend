@@ -143,6 +143,13 @@ function TrabajadorTable({
   const handleAreaFilterChange = (data) => {
     data ? setAreaFilter(data) : setAreaFilter([]);
   };
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+    setEmpresaFilter([]);
+    setUebFilter([]);
+    setStructureFilter([]);
+    setAreaFilter([]);
+  };
   const filteredData = trabajadores.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
@@ -233,7 +240,10 @@ function TrabajadorTable({
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -349,7 +359,7 @@ function TrabajadorTable({
                         <TableCell className={styles.tdStyle}>
                           {trabajador.name}
                         </TableCell>
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -383,7 +393,7 @@ function TrabajadorTable({
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                          </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

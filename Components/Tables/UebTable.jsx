@@ -93,6 +93,11 @@ function UebTable({ uebs, setUebs, empresas }) {
   const handleEmpresaFilterChange = (data) => {
     data ? setEmpresaFilter(data) : setEmpresaFilter([]);
   };
+
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+    setEmpresaFilter([]);
+  };
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
@@ -147,8 +152,8 @@ function UebTable({ uebs, setUebs, empresas }) {
   //para retornar el nombre de la empresa y no el id
   const nombreEmpresa = (empresaId) => {
     const empresa = empresas.find((e) => e.id === empresaId);
-    const name = empresa? empresa.name : "no se encontro el nombre";
-    return(name);
+    const name = empresa ? empresa.name : "no se encontro el nombre";
+    return name;
   };
 
   return (
@@ -192,7 +197,10 @@ function UebTable({ uebs, setUebs, empresas }) {
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                      onClick={() => {
+                        toggleFilters();
+                        limpiarFiltrados();
+                      }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -211,7 +219,7 @@ function UebTable({ uebs, setUebs, empresas }) {
                       Empresa
                       {showFilters && (
                         <Select
-                          className={styles.selectGestiones}
+                          className={styles.selectGestionesGantt}
                           defaultValue={empresaFilter}
                           onChange={(empresaFilter) => {
                             handleEmpresaFilterChange(empresaFilter);
@@ -250,7 +258,7 @@ function UebTable({ uebs, setUebs, empresas }) {
                           {ueb.name}
                         </TableCell>
 
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -284,7 +292,7 @@ function UebTable({ uebs, setUebs, empresas }) {
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                        </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

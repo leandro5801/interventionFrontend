@@ -110,17 +110,6 @@ function InterventionTable({
     setDescriptionFilter(event.target.value);
   };
 
-  const handleStructureFilterChange = (data) => {
-    data ? setStructureFilter(data) : setStructureFilter([]);
-  };
-
-  const handleAreaFilterChange = (data) => {
-    data ? setAreaFilter(data) : setAreaFilter([]);
-  };
-  const handleConsultorFilterChange = (data) => {
-    data ? setConsultorFilter(data) : setConsultorFilter([]);
-  };
-
   const handleWorkerFilterChange = (event) => {
     setWorkerFilter(event.target.value);
   };
@@ -135,6 +124,28 @@ function InterventionTable({
   };
   const handleUebFilterChange = (data) => {
     data ? setUebFilter(data) : setUebFilter([]);
+  };
+  const handleStructureFilterChange = (data) => {
+    data ? setStructureFilter(data) : setStructureFilter([]);
+  };
+  const handleAreaFilterChange = (data) => {
+    data ? setAreaFilter(data) : setAreaFilter([]);
+  };
+  const handleConsultorFilterChange = (data) => {
+    data ? setConsultorFilter(data) : setConsultorFilter([]);
+  };
+
+  const limpiarFiltrados = () => {
+    setProjectFilter([]);
+    setEmpresaFilter([]);
+    setUebFilter([]);
+    setStructureFilter([]);
+    setAreaFilter([]);
+    setConsultorFilter([]);
+    setStartFilter("");
+    setNameFilter("");
+    setDescriptionFilter("");
+    setWorkerFilter("");
   };
   //para los select de proyecto, empresa etc
   const [projectFilter, setProjectFilter] = useState([]);
@@ -298,7 +309,10 @@ function InterventionTable({
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                      onClick={() => {
+                        toggleFilters();
+                        limpiarFiltrados();
+                      }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -422,16 +436,16 @@ function InterventionTable({
                       Consultor
                       {showFilters && (
                         <Select
-                        styles={customStyles}
-                        className={styles.selectGestionesGantt}
-                        defaultValue={consultorFilter}
-                        onChange={(consultorFilter) => {
-                          handleConsultorFilterChange(consultorFilter);
-                        }}
-                        options={optionConsultores}
-                        placeholder="Consultor"
-                        isClearable
-                      />
+                          styles={customStyles}
+                          className={styles.selectGestionesGantt}
+                          defaultValue={consultorFilter}
+                          onChange={(consultorFilter) => {
+                            handleConsultorFilterChange(consultorFilter);
+                          }}
+                          options={optionConsultores}
+                          placeholder="Consultor"
+                          isClearable
+                        />
                       )}
                     </TableCell>
                     <TableCell className={styles.letraEnNegrita}>

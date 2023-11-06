@@ -85,9 +85,11 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     setRoleFilter(event.target.value);
   };
 
-  //seleccionar rol
-  // const userRol =
-
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+    setUserNameFilter("");
+    setRoleFilter("");
+  };
   const filteredData = users.map((item) => {
     const role = roles.find((role) => (item.role_id === role.id ));
     const roleName = role ? role.name_role : "Rol no encontrado";
@@ -177,7 +179,10 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -246,7 +251,7 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                         <TableCell className={styles.tdStyle}>
                           {user.roleName}
                         </TableCell>
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -280,7 +285,7 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                          </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

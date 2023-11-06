@@ -115,6 +115,19 @@ export default function GanttChart({
   const handleUebFilterChange = (data) => {
     data ? setUebFilter(data) : setUebFilter([]);
   };
+
+  const limpiarFiltrados = () => {
+    setProjectFilter([]);
+    setEmpresaFilter([]);
+    setUebFilter([]);
+    setStructureFilter([]);
+    setAreaFilter([]);
+    setConsultorFilter([]);
+    setStartFilter("");
+    setNameFilter("");
+    setDescriptionFilter("");
+    setWorkerFilter("");
+  };
   //para los select de proyecto, empresa etc
   const [projectFilter, setProjectFilter] = useState([]);
   const [empresaFilter, setEmpresaFilter] = useState([]);
@@ -200,7 +213,10 @@ export default function GanttChart({
           <div className={styles.filterListOffOutlinedContent}>
             {showFilters ? (
               <FilterListOffOutlinedIcon
-                onClick={toggleFilters}
+              onClick={() => {
+                toggleFilters();
+                limpiarFiltrados();
+              }}
                 style={{ width: "18px", cursor: "pointer" }}
               />
             ) : (

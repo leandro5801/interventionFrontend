@@ -119,7 +119,11 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
   const handleUebFilterChange = (data) => {
     data ? setUebFilter(data) : setUebFilter([]);
   };
-
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+    setEmpresaFilter([]);
+    setUebFilter([]);
+  };
   const filteredData = direcciones.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
@@ -212,7 +216,10 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -290,7 +297,7 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
                         <TableCell className={styles.tdStyle}>
                           {direccion.name}
                         </TableCell>
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -322,7 +329,7 @@ function DireccionTable({direcciones,setDirecciones, empresas,uebs}) {
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                          </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>

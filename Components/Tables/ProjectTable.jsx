@@ -96,7 +96,12 @@ function ProjectTable({ projects, setProjects, consultores }) {
     const newConsultor = event.target.value;
     setConsultoresFilter([ newConsultor]);
   };
-
+  const limpiarFiltrados = () => {
+    setNameFilter("");
+    setObjetivoFilter("");
+    setClienteFilter("");
+    setConsultoresFilter("");
+  };
   const filteredData = projects.filter(
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
@@ -190,7 +195,10 @@ function ProjectTable({ projects, setProjects, consultores }) {
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={toggleFilters}
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
