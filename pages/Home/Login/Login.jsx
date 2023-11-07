@@ -4,12 +4,17 @@ import Swal from "sweetalert2";
 import styles from "../../../styles/Home.module.css";
 import Image from "next/image";
 
+import PersonIcon from "@mui/icons-material/Person";
+import LockIcon from "@mui/icons-material/Lock";
+
+import { Input, InputAdornment, Button, TextField } from "@mui/material";
+
 const Login = ({ setIsAuthenticated }) => {
   const adminUser = "admin";
-  const adminPassword = "qwerty";
+  const adminPassword = "1234";
 
   const [user, setUser] = useState("admin");
-  const [password, setPassword] = useState("qwerty");
+  const [password, setPassword] = useState("1234");
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -58,35 +63,54 @@ const Login = ({ setIsAuthenticated }) => {
         <title>Inicio de sesión</title>
         <link rel="icon" href="/images/key-icon.png" />
       </Head>
-
-      <div className={styles.smallContainer}>
+      <div className={styles.iconContainer}>
         <Image
           className={styles.image}
-          src="/images/user-icon.jpg" // Ruta al icono de usuario
+          src="/images/aica-ico.jpg" // Ruta al icono de usuario
           alt="User Icon"
-          width={50}
-          height={50}
+          width={90}
+          height={55}
         />
+      </div>
+      <div className={styles.smallContainer}>
+        <h3>Sistema de autenticación</h3>
+
         <form onSubmit={handleLogin}>
-          <label htmlFor="user">Usuario</label>
-          <input
+          <TextField
+          className={styles.inputLoguin}
+          style={{ marginTop: "12px" }}
             id="user"
             type="text"
             name="user"
-            placeholder="admin"
-            value={user}
+            placeholder="Nombre del usuario"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <PersonIcon fontSize="small"/>
+                </InputAdornment>
+              ),
+            }}
+            // value={user}
             onChange={(e) => setUser(e.target.value)}
           />
-          <label htmlFor="password">Contraseña</label>
-          <input
+          <TextField
+          style={{ marginTop: "12px" }}
             id="password"
             type="password"
             name="password"
-            placeholder="qwerty"
-            value={password}
+            placeholder="Contraseña"
+            // value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <LockIcon fontSize="small"/>
+                </InputAdornment>
+              ),
+            }}
           />
-          <input style={{ marginTop: "12px" }} type="submit" value="Ingresar" />
+      
+          <input style={{ marginTop: "12px" }} type="submit" value="Continuar" />
         </form>
       </div>
     </div>

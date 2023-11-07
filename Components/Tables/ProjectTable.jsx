@@ -81,7 +81,6 @@ function ProjectTable({ projects, setProjects, consultores }) {
   const [clienteFilter, setClienteFilter] = useState("");
   const [consultoresFilter, setConsultoresFilter] = useState([]);
 
-
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
@@ -94,7 +93,7 @@ function ProjectTable({ projects, setProjects, consultores }) {
   };
   const handleConsultoresFilterChange = (event) => {
     const newConsultor = event.target.value;
-    setConsultoresFilter([ newConsultor]);
+    setConsultoresFilter([newConsultor]);
   };
   const limpiarFiltrados = () => {
     setNameFilter("");
@@ -106,11 +105,10 @@ function ProjectTable({ projects, setProjects, consultores }) {
     (item) =>
       item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.objetivo.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
-      item.cliente.toLowerCase().includes(clienteFilter.toLowerCase())
-        &&
-        item.consultores.some((consultor) =>
+      item.cliente.toLowerCase().includes(clienteFilter.toLowerCase()) &&
+      item.consultores.some((consultor) =>
         consultor.name.toLowerCase().includes(consultoresFilter)
-    )
+      )
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -151,7 +149,6 @@ function ProjectTable({ projects, setProjects, consultores }) {
     // Actualiza el estado de los datos en la tabla
     setProjects(updatedProyectoData);
   };
-
 
   return (
     <>
@@ -195,10 +192,10 @@ function ProjectTable({ projects, setProjects, consultores }) {
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                    onClick={() => {
-                      toggleFilters();
-                      limpiarFiltrados();
-                    }}
+                      onClick={() => {
+                        toggleFilters();
+                        limpiarFiltrados();
+                      }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -319,10 +316,12 @@ function ProjectTable({ projects, setProjects, consultores }) {
                           {project.cliente}
                         </TableCell>
                         <TableCell className={styles.tdStyle}>
-                        {project.consultores.map((consultor) => consultor.name).join(", ")}
+                          {project.consultores
+                            .map((consultor) => consultor.name)
+                            .join(", ")}
                         </TableCell>
 
-                        <td className={styles.tdStyle}>
+                        <TableCell className={styles.tdStyle}>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -356,7 +355,7 @@ function ProjectTable({ projects, setProjects, consultores }) {
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                        </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>
@@ -377,16 +376,15 @@ function ProjectTable({ projects, setProjects, consultores }) {
                 </TableFooter>
               </Table>
               <FormDialog
-            open={editIIdx !== -1}
-            onClose={handleCancelI}
-            FormComponent={ProyectoForm}
-            setProjects={proyectoUpdate}
-            project={projects[editIIdx]}
-            onSave={handleSaveI}
-            onCancel={handleCancelI}
-            consultoress={consultores}
-          >
-             </FormDialog>
+                open={editIIdx !== -1}
+                onClose={handleCancelI}
+                FormComponent={ProyectoForm}
+                setProjects={proyectoUpdate}
+                project={projects[editIIdx]}
+                onSave={handleSaveI}
+                onCancel={handleCancelI}
+                consultoress={consultores}
+              ></FormDialog>
             </TableContainer>
           </div>
         )}

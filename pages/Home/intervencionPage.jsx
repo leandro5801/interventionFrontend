@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 
 import styles from "../../styles/Home.module.css";
-
-import Container from "../../Components/Container";
 import InterventionTable from "../../Components/Tables/InterventionTable";
 
 import datosintervenciones from "../../public/datosintervenciones.json";
@@ -39,7 +37,6 @@ export default function IntervencionPage() {
       datosEmpresas?.trabajadores
     );
   return (
-    <Container>
       <div className={styles.title}>
         <h3 className={styles.tituloH3}> Intervenciones</h3>
         <InterventionTable
@@ -53,6 +50,5 @@ export default function IntervencionPage() {
             trabajadores={trabajadores}
           />
       </div>
-    </Container>
   );
 }

@@ -2,12 +2,10 @@ import React from "react";
 import { useState } from "react";
 
 import styles from "../../styles/Home.module.css";
-import ContainerLayout from "../../Components/Container";
 import GanttChart from "../../Components/GanttChart/GanttChart";
 import RecomendationTableGantt from "../../Components/Tables/RecomTableGantt";
 
 import Dialog from "../../Components/Forms/Dialog";
-import Burbuja from "../../Components/GanttChart/Burbuja";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-grid-system";
@@ -70,7 +68,7 @@ export default function GanttPage() {
     datosEmpresas?.trabajadores
   );
   return (
-    <ContainerLayout>
+  
       <div className={styles.title}>
         <h3 className={styles.tituloH3}>Diagrama de Gantt</h3>
         <div>
@@ -161,6 +159,6 @@ export default function GanttPage() {
           />
         </Dialog> */}
       </div>
-    </ContainerLayout>
+    
   );
 }

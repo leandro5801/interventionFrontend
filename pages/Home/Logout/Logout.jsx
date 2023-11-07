@@ -29,6 +29,7 @@ const Logout = ({ setIsAuthenticated, setMostrarLogout }) => {
           willClose: () => {
             localStorage.setItem('is_authenticated', false);
             setIsAuthenticated(false);
+            
           },
         });
       }

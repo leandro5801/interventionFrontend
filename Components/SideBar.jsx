@@ -9,6 +9,7 @@ import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 import AttractionsOutlinedIcon from "@mui/icons-material/AttractionsOutlined";
 import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
+import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
 import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import DragIndicatorOutlinedIcon from "@mui/icons-material/DragIndicatorOutlined";
@@ -101,7 +102,7 @@ function SideBar({}) {
                 {" "}
                 <Link href="/Home/empresaPage">
                   {" "}
-                  <CorporateFareOutlinedIcon
+                  <ApartmentOutlinedIcon
                     style={{ width: "18px", cursor: "pointer",marginLeft:"10px", verticalAlign: "middle" }}
                   /> {" "}
                  Empresa

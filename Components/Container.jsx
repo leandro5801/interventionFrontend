@@ -3,7 +3,8 @@ import SideBar from "./SideBar";
 import Header from "./Header";
 import styles from "../styles/Home.module.css";
 
-const Container = (props) => (
+const Container = (props) => ( 
+  
   <div>
      <Head >
         <title>Intervenciones</title>
@@ -12,7 +13,7 @@ const Container = (props) => (
         
       </Head>
     <SideBar />
-    <Header />
+    {/* <Header setIsAuthenticated={setIsAuthenticated}/> */}
     <div className={styles.contenetcontainerLayout}>
       <div>{props.children}</div>
     </div>

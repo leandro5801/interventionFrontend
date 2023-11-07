@@ -13,28 +13,8 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
-function Header({
-  setIsAuthenticated,
-}) {
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
-  const [dialogRecomendationOpen, setDialogRecomendationOpen] = useState(false);
+function Header({ setIsAuthenticated }) {
   const [mostrarLogout, setMostrarLogout] = useState(false);
-
-  // const [ueb, setUeb] = useState(null);
-  // useEffect(() => {
-  //   client("list_UEBs.json").then(
-  //     (ueb) => {
-  //       setUeb(ueb);
-  //     },
-  //     (error) => {
-  //       console.error("Error: ", error);
-  //     }
-  //   );
-  // }, []);
-
-  const manejarMostrarLogout = () => {
-    setMostrarLogout(true);
-  };
 
   return (
     <div>
@@ -43,68 +23,9 @@ function Header({
           <div className={styles.title}>
             <h2>Intervenciones</h2>
           </div>
-          {/* <Navbar
-          setDialogCreInteOpen={setDialogCreInteOpen}
-          setTableVisible={setTableVisible}
-          setDialogRecomendationOpen={setDialogRecomendationOpen}
-        />
-        <Dialog
-          className={styles.dialogContent}
-          open={dialogCreInteOpen}
-          onClose={() => {
-            setDialogCreInteOpen(false);
-          }}
-        >
-          <IntervrntionForm
-            setInterventions={setInterventions}
-            interventions={interventions}
-            onSave={() => {
-              setDialogCreInteOpen(false);
-            }}
-            onCancel={() => {
-              setDialogCreInteOpen(false);
-            }}
-            consultores={consultores}
-            process={process}
-            trabDirProdCit={trabDirProdCit}
-            trabCalidadCit={trabCalidadCit}
-            trabDireccionCit={trabDireccionCit}
-            trabDirProdLior={trabDirProdLior}
-            trabDireccionLior={trabDireccionLior}
-            trabCalidadLior={trabCalidadLior}
-            trabDirProdAica={trabDirProdAica}
-            trabCalidadSh={trabCalidadSh}
-            trabDireccionSh={trabDireccionSh}
-            trabDirProdJt={trabDirProdJt}
-          />
-        </Dialog>
-        <Dialog
-          className={styles.dialogContentCR}
-          open={dialogRecomendationOpen}
-          onClose={() => {
-            setDialogRecomendationOpen(false);
-          }}
-        >
-          <CreateRecomendationForm
-            setInterventions={setInterventions}
-            interventions={interventions}
-            recomendations={recomendations}
-            setRecomendations={setRecomendations}
-            onSave={() => {
-              setDialogRecomendationOpen(false);
-            }}
-            onCancel={() => {
-              setDialogRecomendationOpen(false);
-            }}
-            classifications={classifications}
-            consultores={consultores}
-          />
-        </Dialog> */}
         </div>
 
-        <div
-        className={styles.faIconOutAltContent}
-        >
+        <div className={styles.faIconOutAltContent}>
           <LogoutOutlinedIcon
             onClick={() => setMostrarLogout(true)}
             className={styles.faIconOutAlt}
