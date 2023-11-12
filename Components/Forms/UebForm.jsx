@@ -1,8 +1,8 @@
 import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
-import data from "../../public/structure.json";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -32,32 +32,32 @@ export default function UebForm({
   onSave,
 }) {
   //para retornar el nombre de la empresa y no el id
-  const nombreEmpresa = (empresaId) => {
-    const empresa = empresas.find((e) => e.id === empresaId);
-    const name = empresa ? empresa.name : "no se encontro el nombre";
+  const nombreEmpresa = (idEmpresa) => {
+    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
+    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
     return name;
   };
 
-  const [name, setName] = useState(ueb ? ueb.name : "");
+  const [name, setName] = useState(ueb ? ueb.nombreUeb : "");
   const [empresaId, setEmpresaId] = useState(
     ueb
-      ? ueb.empresaId
+      ? ueb.idEmpresa
       : ""
   );
 
   const [empresa, setEmpresa] = useState(
     ueb
       ? {
-          label: nombreEmpresa(ueb.empresaId),
-          value: nombreEmpresa(ueb.empresaId),
+          label: nombreEmpresa(ueb.idEmpresa),
+          value: ueb.idEmpresa,
         }
       : ""
   );
   const empresasOptions =
     empresas &&
     empresas.map((item) => ({
-      value: item.id,
-      label: item.name,
+      value: item.idEmpresa,
+      label: item.nombreEmpresa,
     }));
 
   const defaultValues = {
@@ -86,19 +86,64 @@ export default function UebForm({
     setFormData(data);
     setType(ueb ? "editar" : "crear");
   }
-
+  const [error, setError] = useState(null);
+  async function createUeb(updatedRow) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/ueb",
+        updatedRow
+      );
+      if (response.status === 201) {
+        setUebs([...uebs, response.data]);
+      } else {
+        throw new Error("Error al crear la ueb");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al crear la ueb. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+  async function editUeb(idUeb, uebData) {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/ueb/${idUeb}`,
+        uebData
+      );
+      if (response.status === 200) {
+        setUebs(
+          uebs.map((ueb) =>
+            ueb.idUeb === idUeb ? response.data : ueb
+          )
+        );
+      } else {
+        throw new Error("Error al editar la ueb");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al editar la ueb. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
 
   const handleConfirm = (data) => {
     const nombre = nombreEmpresa(parseInt(data.empresa.value));
     
     const updatedRow = {
-      id: ueb ? ueb.id : uebs.length + 1,
-      name: data.name,
-      empresaId: parseInt(data.empresa.value),
+      // id: ueb ? ueb.id : uebs.length + 1,
+      nombreUeb: data.name,
+      idEmpresa: parseInt(data.empresa.value),
     };
-    setUebs(ueb ? updatedRow : (prevData) => [...prevData, updatedRow]);
+    
+    ueb
+      ? editUeb(ueb.idUeb, updatedRow)
+      : createUeb(updatedRow);
+  
     onSave();
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
+    onSave();
+   
     setOpen(false);
   };
 

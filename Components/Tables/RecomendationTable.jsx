@@ -57,7 +57,7 @@ function RecomendationTable({
   interventions,
   projects,
 }) {
-  //para retornar el nombre de la empresa y no el id
+  //para retornar la intervencion
   const interventionPorId = (interventionId) => {
     const intervention = interventions.find((e) => e.id === interventionId);
     return intervention;

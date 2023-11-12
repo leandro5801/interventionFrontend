@@ -32,7 +32,7 @@ const Login = ({ setIsAuthenticated }) => {
 
           Swal.fire({
             icon: "success",
-            title: "¡Sesión iniciadaexitosamente!",
+            title: "¡Sesión iniciada exitosamente!",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -73,12 +73,14 @@ const Login = ({ setIsAuthenticated }) => {
         />
       </div>
       <div className={styles.smallContainer}>
-        <h3>Sistema de autenticación</h3>
+        <div className={styles.title}>
+          <h4>Sistema de autenticación</h4>
+        </div>
 
         <form onSubmit={handleLogin}>
           <TextField
-          className={styles.inputLoguin}
-          style={{ marginTop: "12px" }}
+            className={styles.inputLoguin}
+            style={{ marginTop: "12px" }}
             id="user"
             type="text"
             name="user"
@@ -86,7 +88,7 @@ const Login = ({ setIsAuthenticated }) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <PersonIcon fontSize="small"/>
+                  <PersonIcon fontSize="small" />
                 </InputAdornment>
               ),
             }}
@@ -94,7 +96,7 @@ const Login = ({ setIsAuthenticated }) => {
             onChange={(e) => setUser(e.target.value)}
           />
           <TextField
-          style={{ marginTop: "12px" }}
+            style={{ marginTop: "12px" }}
             id="password"
             type="password"
             name="password"
@@ -104,13 +106,17 @@ const Login = ({ setIsAuthenticated }) => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <LockIcon fontSize="small"/>
+                  <LockIcon fontSize="small" />
                 </InputAdornment>
               ),
             }}
           />
-      
-          <input style={{ marginTop: "12px" }} type="submit" value="Continuar" />
+
+          <input
+            style={{ marginTop: "12px" }}
+            type="submit"
+            value="Continuar"
+          />
         </form>
       </div>
     </div>

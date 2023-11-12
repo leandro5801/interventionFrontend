@@ -207,20 +207,26 @@ function InterventionTable({
     (item) =>
       (projectFilter.length === 0 || item.projectId === projectFilter.value) &&
       (empresaFilter.length === 0 ||
-        item.empresaId === empresaFilter.value ||
-        !item.empresaId) &&
-      (uebFilter.length === 0 || item.uebId === uebFilter.value) &&
+        item.empresaIntervencion === empresaFilter.value ||
+        !item.empresaIntervencion) &&
+      (uebFilter.length === 0 || item.uebIntervencion === uebFilter.value) &&
       (structureFilter.length === 0 ||
-        item.structure === structureFilter.label) &&
-      (areaFilter.length === 0 || item.area === areaFilter.label) &&
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.description
+        item.estructuraIntervencion === structureFilter.label) &&
+      (areaFilter.length === 0 || item.areaIntervencion === areaFilter.label) &&
+      item.nombreIntervencion
+        .toLowerCase()
+        .includes(nameFilter.toLowerCase()) &&
+      item.descripcionIntervencion
         .toLowerCase()
         .includes(descriptionFilter.toLowerCase()) &&
       (consultorFilter.length === 0 ||
-        item.consultor === consultorFilter.value) &&
-      item.worker.toLowerCase().includes(workerFilter.toLowerCase()) &&
-      item.start.toLowerCase().includes(startFilter.toLowerCase())
+        item.consultorIntervencion === consultorFilter.value) &&
+      item.trabajadorIntervencion
+        .toLowerCase()
+        .includes(workerFilter.toLowerCase()) &&
+      item.startDateIntervencion
+        .toLowerCase()
+        .includes(startFilter.toLowerCase())
   );
 
   // sms de confirmacion
@@ -266,144 +272,143 @@ function InterventionTable({
   return (
     <>
       <div className={styles.divTableInter}>
-        {interventions.length === 0 && (
-          <div className={styles.divIconH2}>
-            <h2> No hay Intervenciones</h2>{" "}
-          </div>
-        )}
-        {interventions.length === 0 || (
-          <div>
-            <div className={styles.divIconH2}></div>
-            <TableContainer component={Paper} className={styles.table}>
-              <div className={styles.btnNuevoContent}>
-                <Button
-                  className={styles.btn}
-                  onClick={() => {
-                    setDialogCreInteOpen(true);
-                  }}
-                >
-                  Nuevo +
-                </Button>
-                <FormDialog
-                  open={dialogCreInteOpen}
-                  onClose={() => {
-                    setDialogCreInteOpen(false);
-                  }}
-                  FormComponent={IntervrntionForm}
-                  setInterventions={setInterventions}
-                  interventions={interventions}
-                  onSave={() => {
-                    setDialogCreInteOpen(false);
-                  }}
-                  onCancel={() => {
-                    setDialogCreInteOpen(false);
-                  }}
-                  consultores={consultores}
-                  trabajadores={trabajadores}
-                  empresas={empresas}
-                  uebs={uebs}
-                  direcciones={direcciones}
-                  areas={areas}
-                ></FormDialog>
+        <div>
+          <div className={styles.divIconH2}></div>
+          <TableContainer component={Paper} className={styles.table}>
+            <div className={styles.btnNuevoContent}>
+              <Button
+                className={styles.btn}
+                onClick={() => {
+                  setDialogCreInteOpen(true);
+                }}
+              >
+                Nuevo +
+              </Button>
+              <FormDialog
+                open={dialogCreInteOpen}
+                onClose={() => {
+                  setDialogCreInteOpen(false);
+                }}
+                FormComponent={IntervrntionForm}
+                setInterventions={setInterventions}
+                interventions={interventions}
+                onSave={() => {
+                  setDialogCreInteOpen(false);
+                }}
+                onCancel={() => {
+                  setDialogCreInteOpen(false);
+                }}
+                consultores={consultores}
+                trabajadores={trabajadores}
+                empresas={empresas}
+                uebs={uebs}
+                direcciones={direcciones}
+                areas={areas}
+              ></FormDialog>
 
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
+              <div className={styles.filterListOffOutlinedContent}>
+                {showFilters ? (
+                  <FilterListOffOutlinedIcon
+                    onClick={() => {
+                      toggleFilters();
+                      limpiarFiltrados();
+                    }}
+                    style={{ width: "18px", cursor: "pointer" }}
+                  />
+                ) : (
+                  <FilterListOutlinedIcon
+                    onClick={toggleFilters}
+                    style={{ width: "18px", cursor: "pointer" }}
+                  />
+                )}
               </div>
-              <div className={styles.filtrosEstructuraContentInt}>
-                {/* SELECCIONAR PROYECTO ETC */}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={projectFilter}
-                    onChange={(projectFilter) => {
-                      handleProjectFilterChange(projectFilter);
-                    }}
-                    options={optionProjects}
-                    placeholder="Proyecto"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={empresaFilter}
-                    onChange={(empresaFilter) => {
-                      handleEmpresaFilterChange(empresaFilter);
-                    }}
-                    options={optionEmpresas}
-                    placeholder="Empresa"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={uebFilter}
-                    onChange={(uebFilter) => {
-                      handleUebFilterChange(uebFilter);
-                    }}
-                    options={optionUebs}
-                    placeholder="Ueb"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={structureFilter}
-                    onChange={(structureFilter) => {
-                      handleStructureFilterChange(structureFilter);
-                    }}
-                    options={optionDirecciones}
-                    placeholder="Dirección"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={areaFilter}
-                    onChange={(areaFilter) => {
-                      handleAreaFilterChange(areaFilter);
-                    }}
-                    options={optionAreas}
-                    placeholder="Área"
-                    isClearable
-                  />
-                )}
+            </div>
+            <div className={styles.filtrosEstructuraContentInt}>
+              {/* SELECCIONAR PROYECTO ETC */}
+              {showFilters && (
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestiones}
+                  defaultValue={projectFilter}
+                  onChange={(projectFilter) => {
+                    handleProjectFilterChange(projectFilter);
+                  }}
+                  options={optionProjects}
+                  placeholder="Proyecto"
+                  isClearable
+                />
+              )}
+              {showFilters && (
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestiones}
+                  defaultValue={empresaFilter}
+                  onChange={(empresaFilter) => {
+                    handleEmpresaFilterChange(empresaFilter);
+                  }}
+                  options={optionEmpresas}
+                  placeholder="Empresa"
+                  isClearable
+                />
+              )}
+              {showFilters && (
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestiones}
+                  defaultValue={uebFilter}
+                  onChange={(uebFilter) => {
+                    handleUebFilterChange(uebFilter);
+                  }}
+                  options={optionUebs}
+                  placeholder="Ueb"
+                  isClearable
+                />
+              )}
+              {showFilters && (
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestiones}
+                  defaultValue={structureFilter}
+                  onChange={(structureFilter) => {
+                    handleStructureFilterChange(structureFilter);
+                  }}
+                  options={optionDirecciones}
+                  placeholder="Dirección"
+                  isClearable
+                />
+              )}
+              {showFilters && (
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestiones}
+                  defaultValue={areaFilter}
+                  onChange={(areaFilter) => {
+                    handleAreaFilterChange(areaFilter);
+                  }}
+                  options={optionAreas}
+                  placeholder="Área"
+                  isClearable
+                />
+              )}
 
-                <div className={styles.divFechaFilter}>
-                  {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="date"
-                      value={startFilter}
-                      onChange={handleStartFilterChange}
-                      placeholder="Filtrar por fecha"
-                    />
-                  )}
-                </div>
+              <div className={styles.divFechaFilter}>
+                {showFilters && (
+                  <input
+                    className={styles.inputFilter}
+                    type="date"
+                    value={startFilter}
+                    onChange={handleStartFilterChange}
+                    placeholder="Filtrar por fecha"
+                  />
+                )}
               </div>
-
+            </div>
+            {interventions.length === 0 && (
+              <div className={styles.divIconH2}>
+                <h4> No hay Intervenciones</h4>{" "}
+              </div>
+            )}
+            {interventions.length === 0 || (
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
@@ -468,18 +473,18 @@ function InterventionTable({
                   {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((tsk) => (
-                      <TableRow key={tsk.id}>
-                        <TableCell>{tsk.name}</TableCell>
-                        <TableCell>{tsk.description}</TableCell>
+                      <TableRow key={tsk.idIntervencion}>
+                        <TableCell>{tsk.nombreIntervencion}</TableCell>
+                        <TableCell>{tsk.descripcionIntervencion}</TableCell>
 
                         {/* <TableCell >{tsk.ueb}</TableCell>
                     <TableCell >
                       {tsk.structure}
                     </TableCell>
                     <TableCell >{tsk.area}</TableCell> */}
-                        <TableCell>{tsk.consultor}</TableCell>
-                        <TableCell>{tsk.worker}</TableCell>
-                        <td>
+                        <TableCell>{tsk.consultorIntervencion}</TableCell>
+                        <TableCell>{tsk.trabajadorIntervencion}</TableCell>
+                        <TableCell>
                           <FontAwesomeIcon
                             icon={faEdit}
                             onClick={() =>
@@ -513,7 +518,7 @@ function InterventionTable({
                               <Button onClick={handleClose}>Cancelar</Button>
                             </DialogActions>
                           </Dialog>
-                        </td>
+                        </TableCell>
                       </TableRow>
                     ))}
                 </TableBody>
@@ -533,24 +538,24 @@ function InterventionTable({
                   </TableRow>
                 </TableFooter>
               </Table>
-              <FormDialog
-                open={editIIdx !== -1}
-                onClose={handleCancelI}
-                FormComponent={IntervrntionForm}
-                setInterventions={interventionUpdate}
-                intervention={interventions[editIIdx]}
-                onSave={handleSaveI}
-                onCancel={handleCancelI}
-                consultores={consultores}
-                trabajadores={trabajadores}
-                empresas={empresas}
-                uebs={uebs}
-                direcciones={direcciones}
-                areas={areas}
-              ></FormDialog>
-            </TableContainer>
-          </div>
-        )}
+            )}
+            <FormDialog
+              open={editIIdx !== -1}
+              onClose={handleCancelI}
+              FormComponent={IntervrntionForm}
+              setInterventions={interventionUpdate}
+              intervention={interventions[editIIdx]}
+              onSave={handleSaveI}
+              onCancel={handleCancelI}
+              consultores={consultores}
+              trabajadores={trabajadores}
+              empresas={empresas}
+              uebs={uebs}
+              direcciones={direcciones}
+              areas={areas}
+            ></FormDialog>
+          </TableContainer>
+        </div>
       </div>
     </>
   );

@@ -231,9 +231,9 @@
 }
 
 .btnConfirm {
-  margin-right: 20px;
-  /* Ajusta la separación entre los botones */
-  font-size: 18px;
+  margin-right: 10px;
+  font-size: 14px;
+  width: 50px;
   /* Ajusta el tamaño del texto del botón */
 }
 
@@ -314,6 +314,7 @@
   text-align: center;
   gap: 50px;
 }
+
 .filtrosEstructuraContentInt {
   padding: 8px;
   display: flex;
@@ -343,12 +344,14 @@
   z-index: 15;
   position: relative;
 }
+
 .selectGestionesGantt {
   padding: 7px;
   font-size: 14px;
   width: 150px;
-  font-weight:lighter;
+  font-weight: lighter;
 }
+
 .divFechaFilter {
   padding: 7px;
   text-align: center;
@@ -372,11 +375,12 @@
   bottom: 0;
   background-color: #ffff;
 }
-weight
-.table td {
+
+weight .table td {
   border-bottom: 1px solid #ddd;
   /* white-space: nowrap; */
 }
+
 /* .tableCellIcon{
   padding: 5px;
   width: 50;
@@ -1024,16 +1028,19 @@ weight
   align-items: center;
   width: 100%;
   height: 100vh;
-  background:#fff;
+  background: #fff;
   background-size: cover;
 }
+
 .iconContainer {
   position: absolute;
-  top: 100px;;
+  top: 100px;
+  ;
   left: 50%;
   transform: translateX(-50%);
   /* Resto de las propiedades */
 }
+
 .smallContainer {
   display: flex;
   flex-direction: column;
@@ -1063,7 +1070,7 @@ weight
 .smallContainer label {
   margin-bottom: 5px;
   margin-left: -130px;
-  
+
 }
 
 /* .inputForm {
@@ -1079,9 +1086,10 @@ weight
 
 .smallContainer input[type="text"],
 .smallContainer input[type="password"] {
-  height: 5px; 
+  height: 5px;
   width: 300px;
 }
+
 /* .smallContainer input[type="text"],
 .smallContainer input[type="password"] {
   padding: 20px;
@@ -1096,15 +1104,17 @@ weight
 } */
 
 .smallContainer input[type="submit"] {
-  
   padding: 10px;
   width: 100px;
-  border-radius: 4px;
+  border-radius: 6px;
   border: none;
   background-color: #007e9e;
-  color: white;
+  color: #fff;
   cursor: pointer;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  margin-right: 4px;
 }
 
 /* Estilos para pantallas con un ancho de 600px o menos */
@@ -1125,4 +1135,11 @@ weight
     margin-left: -130px;
     /* margin-left: 0; */
   }
+
+  /* .title>h4 {
+    color: #c90f0f;
+    font-size: 24px;
+    font-weight: bold;
+  } */
+
 }

@@ -1,8 +1,8 @@
 import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
-import data from "../../public/structure.json";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -28,24 +28,28 @@ export default function DireccionForm({
   direcciones,
   direccion,
   empresas,
+  uebPorId,
+  nombreEmpresa,
+  nombreUeb,
   uebs,
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(direccion ? direccion.name : "");
+
+  const [name, setName] = useState(direccion ? direccion.nombreDireccion : "");
   const [empresa, setEmpresa] = useState(
     direccion
       ? {
-          label: direccion.empresa,
-          value: direccion.empresa,
+          label: nombreEmpresa(uebPorId(direccion.idUeb).idEmpresa),
+          value: uebPorId(direccion.idUeb).idEmpresa,
         }
       : ""
   );
   const [ueb, setueb] = useState(
     direccion
       ? {
-          label: direccion.ueb,
-          value: direccion.ueb,
+          label: nombreUeb(direccion.idUeb),
+          value: direccion.idUeb,
         }
       : ""
   );
@@ -53,15 +57,21 @@ export default function DireccionForm({
   const empresasOptions =
     empresas &&
     empresas.map((item) => ({
-      value: item.name,
-      label: item.name,
+      value: item.idEmpresa,
+      label: item.nombreEmpresa,
     }));
     const uebsOptions =
     uebs &&
-    uebs.map((item) => ({
-      value: item.name,
-      label: item.name,
-    }));
+    uebs
+      .filter((item) =>
+        empresa && empresa.value
+          ? item.idEmpresa === empresa.value
+          : true
+      )
+      .map((item) => ({
+        value: item.idUeb,
+        label: item.nombreUeb,
+      }));
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.value, value: newValue.value });
   };
@@ -96,21 +106,59 @@ export default function DireccionForm({
     setFormData(data);
     setType(direccion ? "editar" : "crear");
   }
+  const [error, setError] = useState(null);
+  async function createDireccion(updatedRow) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/direccion",
+        updatedRow
+      );
+      if (response.status === 201) {
+        setDirecciones([...direcciones, response.data]);
+      } else {
+        throw new Error("Error al crear la dirección");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al crear la dirección. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+  async function editDireccion(idDireccion, direccionData) {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/direccion/${idDireccion}`,
+        direccionData
+      );
+      if (response.status === 200) {
+        setDirecciones(
+          direcciones.map((direccion) =>
+            direccion.idDireccion === idDireccion ? response.data : direccion
+          )
+        );
+      } else {
+        throw new Error("Error al editar la direccion");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al editar la direccion. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
 
   const handleConfirm = (data) => {
     const updatedRow = {
-      id: direccion ? direccion.id : direcciones.length + 1,
-      name: data.name,
-      empresa: data.empresa.value,
-      ueb: data.ueb.value
+      nombreDireccion: data.name,
+      idUeb: parseInt(data.ueb.value),
     };
-
-    setDirecciones(
-      direccion ? updatedRow : (prevData) => [...prevData, updatedRow]
-    );
+    direccion
+      ? editDireccion(direccion.idDireccion, updatedRow)
+      : createDireccion(updatedRow);
 
     onSave();
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
+    
     setOpen(false);
   };
 
@@ -177,22 +225,21 @@ export default function DireccionForm({
               <div className={styles.error}>Seleccione una UEB.</div>
             )}
           </div>
-          
         </div>
         <div className={styles.fullRow}>
-            <Input
-              className={`${styles.inputFormDirec}  ${
-                errors.name ? "is-invalid" : ""
-              }`}
-              type="text"
-              id="name"
-              {...register("name")}
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Nombre de la dirección"
-            />
-            <div className={styles.error}>{errors.name?.message}</div>
-          </div>
+          <Input
+            className={`${styles.inputFormDirec}  ${
+              errors.name ? "is-invalid" : ""
+            }`}
+            type="text"
+            id="name"
+            {...register("name")}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Nombre de la dirección"
+          />
+          <div className={styles.error}>{errors.name?.message}</div>
+        </div>
         <DialogActions>
           <Button type="submit">Aceptar</Button>
 

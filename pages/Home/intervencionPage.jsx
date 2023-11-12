@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
 import InterventionTable from "../../Components/Tables/InterventionTable";
@@ -36,6 +37,14 @@ export default function IntervencionPage() {
     const [trabajadores, setTrabajadores] = useState(
       datosEmpresas?.trabajadores
     );
+
+    // useEffect(() => {
+    //     async function fetchIntervention(){
+    //       const response = await axios.get('http://localhost:3000/api/intervencion');
+    //       setInterventions(response.data);
+    //     }
+    //     fetchIntervention();
+    //   }, []);
   return (
       <div className={styles.title}>
         <h3 className={styles.tituloH3}> Intervenciones</h3>

@@ -1,5 +1,10 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import axios from "axios";
+
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import { customStyles } from "../../styles/SelectFilterStyles";
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
@@ -38,7 +43,43 @@ function TrabajadorTable({
   uebs,
   direcciones,
   areas,
+  cargando,
 }) {
+  //para retornar el nombre de la empresa y no el id
+  const uebPorId = (idUeb) => {
+    const ueb = uebs.find((e) => e.idUeb === idUeb);
+    return ueb;
+  };
+  const direccionPorId = (idDireccion) => {
+    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+    return direccion;
+  };
+  const areaPorId = (idArea) => {
+    const area = areas.find((e) => e.idArea === idArea);
+    return area;
+  };
+  const nombreEmpresa = (idEmpresa) => {
+    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
+    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+    return name;
+  };
+  const nombreUeb = (idUeb) => {
+    const ueb = uebs.find((e) => e.idUeb === idUeb);
+    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
+    return name;
+  };
+  const nombreDireccion = (idDireccion) => {
+    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+    const name = direccion
+      ? direccion.nombreDireccion
+      : "no se encontro el nombre";
+    return name;
+  };
+  const nombreArea = (idArea) => {
+    const area = areas.find((e) => e.idArea === idArea);
+    const name = area ? area.nombreArea : "no se encontro el nombre";
+    return name;
+  };
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -85,8 +126,8 @@ function TrabajadorTable({
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
-      value: item.id,
-      label: item.name,
+      value: item.idEmpresa,
+      label: item.nombreEmpresa,
     }));
 
   const optionUebs =
@@ -94,37 +135,37 @@ function TrabajadorTable({
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.empresaId === empresaFilter.value
+          ? item.idEmpresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.id,
-        label: item.name,
+        value: item.idUeb,
+        label: item.nombreUeb,
       }));
 
   const optionDirecciones =
     direcciones &&
     direcciones
       .filter((item) =>
-        uebFilter && uebFilter.value ? item.ueb === uebFilter.label : true
+        uebFilter && uebFilter.value ? item.idUeb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.id,
-        label: item.name,
+        value: item.idDirecciones,
+        label: item.nombreDirecciones,
       }));
 
-      const optionAreas =
-      areas &&
-      areas
-        .filter((item) =>
-          structureFilter && structureFilter.value
-            ? item.direccion === structureFilter.label
-            : true
-        )
-        .map((item) => ({
-          value: item.id,
-          label: item.name,
-        }));
+  const optionAreas =
+    areas &&
+    areas
+      .filter((item) =>
+        structureFilter && structureFilter.value
+          ? item.idDireccion === structureFilter.value
+          : true
+      )
+      .map((item) => ({
+        value: item.idArea,
+        label: item.nombreArea,
+      }));
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -152,11 +193,16 @@ function TrabajadorTable({
   };
   const filteredData = trabajadores.filter(
     (item) =>
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      (empresaFilter.length === 0 || item.empresa === empresaFilter.label) &&
-      (uebFilter.length === 0 || item.ueb === uebFilter.label) &&
-      (structureFilter.length === 0 || item.direccion === structureFilter.label) &&
-      (areaFilter.length === 0 || item.area === areaFilter.label) 
+      item.nombreTrabajador.toLowerCase().includes(nameFilter.toLowerCase()) &&
+      (empresaFilter.length === 0 ||
+        uebPorId(direccionPorId(areaPorId(item.idArea).idDireccion).idUeb)
+          .idEmpresa === empresaFilter.value) &&
+      (uebFilter.length === 0 ||
+        direccionPorId(areaPorId(item.idArea).idDireccion).idUeb ===
+          uebFilter.value) &&
+      (structureFilter.length === 0 ||
+        areaPorId(item.idArea).idDireccion === structureFilter.value) &&
+      (areaFilter.length === 0 || item.idArea === areaFilter.value)
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -167,12 +213,33 @@ function TrabajadorTable({
     setData(data);
   }
 
-  function handleDelete(idNum) {
-    const newTrabajador = trabajadores.filter(
-      (trabajador) => trabajador.id !== idNum
-    );
-    setTrabajadores(newTrabajador);
-    setOpen(false);
+  // function handleDelete(idNum) {
+  //   const newTrabajador = trabajadores.filter(
+  //     (trabajador) => trabajador.id !== idNum
+  //   );
+  //   setTrabajadores(newTrabajador);
+  //   setOpen(false);
+  // }
+  const [error, setError] = useState(null);
+  async function handleDelete(id) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/trabajador/${id}`
+      );
+      if (response.status === 200) {
+        setAreas(
+          trabajadores.filter((trabajador) => trabajador.idTrabajador !== id)
+        );
+        setOpen(false);
+      } else {
+        throw new Error("Error al eliminar el trabajador");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al eliminar el trabajador. Por favor, inténtalo de nuevo."
+      );
+    }
   }
 
   // Para editar una recomendacion desde la tabla
@@ -197,241 +264,292 @@ function TrabajadorTable({
     // Actualiza el estado de los datos en la tabla
     setTrabajadores(updatedTrabajadoresData);
   };
-  return (
-    <>
-      <div className={styles.divTableInter}>
-        {trabajadores.length === 0 && (
-          <div className={styles.divIconH2}>
-            <h2> No hay Intervenciones</h2>{" "}
-          </div>
-        )}
-        {trabajadores.length === 0 || (
-          <div>
-            <div className={styles.divIconH2}></div>
-            <TableContainer component={Paper} className={styles.table}>
-              <div className={styles.btnNuevoContent}>
-                <Button
-                  className={styles.btn}
-                  onClick={() => {
-                    setDialogOpen(true);
-                  }}
-                >
-                  Nuevo +
-                </Button>
+  if (cargando) {
+    return (
+      <div>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={cargando}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        {/* Renderizar las empresas aquí */}
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <div className={styles.divTableInter}>
+          
+            <div>
+              <div className={styles.divIconH2}></div>
+              <TableContainer component={Paper} className={styles.table}>
+                <div className={styles.btnNuevoContent}>
+                  <Button
+                    className={styles.btn}
+                    onClick={() => {
+                      setDialogOpen(true);
+                    }}
+                  >
+                    Nuevo +
+                  </Button>
+                  <FormDialog
+                    open={dialogOpen}
+                    onClose={() => {
+                      setDialogOpen(false);
+                    }}
+                    FormComponent={TrabajadorForm}
+                    setTrabajadores={setTrabajadores}
+                    trabajadores={trabajadores}
+                    onSave={() => {
+                      setDialogOpen(false);
+                    }}
+                    onCancel={() => {
+                      setDialogOpen(false);
+                    }}
+                    empresas={empresas}
+                    uebs={uebs}
+                    direcciones={direcciones}
+                    areas={areas}
+                    uebPorId={uebPorId}
+                  direccionPorId={direccionPorId}
+                  areaPorId={areaPorId}
+                  nombreEmpresa={nombreEmpresa}
+                  nombreUeb={nombreUeb}
+                  nombreDireccion={nombreDireccion}
+                  nombreArea={nombreArea}
+                  ></FormDialog>
+                  <div className={styles.filterListOffOutlinedContent}>
+                    {showFilters ? (
+                      <FilterListOffOutlinedIcon
+                        onClick={() => {
+                          toggleFilters();
+                          limpiarFiltrados();
+                        }}
+                        style={{ width: "18px", cursor: "pointer" }}
+                      />
+                    ) : (
+                      <FilterListOutlinedIcon
+                        onClick={toggleFilters}
+                        style={{ width: "18px", cursor: "pointer" }}
+                      />
+                    )}
+                  </div>
+                </div>
+                {trabajadores.length === 0 && (
+                  <div className={styles.divIconH2}>
+                    <h5> No hay trabajadores</h5>{" "}
+                  </div>
+                )}
+                {trabajadores.length === 0 || (
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell className={styles.spacing}>
+                          Empresa
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={empresaFilter}
+                              onChange={(empresaFilter) => {
+                                handleEmpresaFilterChange(empresaFilter);
+                              }}
+                              options={optionEmpresas}
+                              placeholder="Empresa"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Ueb
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={uebFilter}
+                              onChange={(uebFilter) => {
+                                handleUebFilterChange(uebFilter);
+                              }}
+                              options={optionUebs}
+                              placeholder="Ueb"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Dirección
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={structureFilter}
+                              onChange={(structureFilter) => {
+                                handleStructureFilterChange(structureFilter);
+                              }}
+                              options={optionDirecciones}
+                              placeholder="Dirección"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Área
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={areaFilter}
+                              onChange={(areaFilter) => {
+                                handleAreaFilterChange(areaFilter);
+                              }}
+                              options={optionAreas}
+                              placeholder="Área"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Trabajador
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={nameFilter}
+                              onChange={handleNameFilterChange}
+                              placeholder="Filtrar por trabajador"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}></TableCell>
+                      </TableRow>
+                    </TableHead>
+
+                    <TableBody>
+                      {filteredData
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((trabajador) => (
+                          <TableRow
+                            key={trabajador.idTrabajador}
+                            className={styles.trStyle}
+                          >
+                            <TableCell className={styles.tdStyle}>
+                              {nombreEmpresa(
+                                uebPorId(
+                                  direccionPorId(
+                                    areaPorId(trabajador.idArea).idDireccion
+                                  ).idUeb
+                                ).idEmpresa
+                              )}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreUeb(
+                                direccionPorId(
+                                  areaPorId(trabajador.idArea).idDireccion
+                                ).idUeb
+                              )}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreDireccion(
+                                areaPorId(trabajador.idArea).idDireccion
+                              )}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreArea(trabajador.idArea)}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {trabajador.nombreTrabajador}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    filteredData.findIndex(
+                                      (item) => item.idTrabajador === trabajador?.idTrabajador
+                                    )
+                                  )
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() => openConfirmation(trabajador?.idTrabajador)}
+                                data-task-id={trabajador?.idTrabajador}
+                                className={styles.faIcon}
+                              />
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                BackdropProps={{ invisible: true }}
+                              >
+                                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                                <DialogContent>
+                                  <p>
+                                    ¿Está seguro de eliminar este trabajador?
+                                  </p>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={() => handleDelete(data)}>
+                                    Aceptar
+                                  </Button>
+                                  <Button onClick={handleClose}>
+                                    Cancelar
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          className={styles.tablePagination}
+                          rowsPerPageOptions={[4, 5, 10]}
+                          count={filteredData.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage="Filas por página:"
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                )}
                 <FormDialog
-                  open={dialogOpen}
-                  onClose={() => {
-                    setDialogOpen(false);
-                  }}
+                  open={editIIdx !== -1}
+                  onClose={handleCancelI}
                   FormComponent={TrabajadorForm}
                   setTrabajadores={setTrabajadores}
+                  trabajador={trabajadores[editIIdx]}
                   trabajadores={trabajadores}
-                  onSave={() => {
-                    setDialogOpen(false);
-                  }}
-                  onCancel={() => {
-                    setDialogOpen(false);
-                  }}
+                  onSave={handleSaveI}
+                  onCancel={handleCancelI}
                   empresas={empresas}
                   uebs={uebs}
                   direcciones={direcciones}
                   areas={areas}
+                  uebPorId={uebPorId}
+                  direccionPorId={direccionPorId}
+                  areaPorId={areaPorId}
+                  nombreEmpresa={nombreEmpresa}
+                  nombreUeb={nombreUeb}
+                  nombreDireccion={nombreDireccion}
+                  nombreArea={nombreArea}
                 ></FormDialog>
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                    onClick={() => {
-                      toggleFilters();
-                      limpiarFiltrados();
-                    }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
-              </div>
-
-              <Table stickyHeader>
-                <TableHead>
-                  <TableRow>
-                    
-                    <TableCell className={styles.spacing}>
-                      Empresa
-                      {showFilters && (
-                        <Select
-                        styles={customStyles}
-                        className={styles.selectGestionesGantt}
-                        defaultValue={empresaFilter}
-                        onChange={(empresaFilter) => {
-                          handleEmpresaFilterChange(empresaFilter);
-                        }}
-                        options={optionEmpresas}
-                        placeholder="Empresa"
-                        isClearable
-                      />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Ueb
-                      {showFilters && (
-                        <Select
-                        styles={customStyles}
-                        className={styles.selectGestionesGantt}
-                        defaultValue={uebFilter}
-                        onChange={(uebFilter) => {
-                          handleUebFilterChange(uebFilter);
-                        }}
-                        options={optionUebs}
-                        placeholder="Ueb"
-                        isClearable
-                      />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Dirección
-                      {showFilters && (
-                         <Select
-                         styles={customStyles}
-                         className={styles.selectGestionesGantt}
-                         defaultValue={structureFilter}
-                         onChange={(structureFilter) => {
-                           handleStructureFilterChange(structureFilter);
-                         }}
-                         options={optionDirecciones}
-                         placeholder="Dirección"
-                         isClearable
-                       />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Área
-                      {showFilters && (
-                       <Select
-                       styles={customStyles}
-                       className={styles.selectGestionesGantt}
-                       defaultValue={areaFilter}
-                       onChange={(areaFilter) => {
-                         handleAreaFilterChange(areaFilter);
-                       }}
-                       options={optionAreas}
-                       placeholder="Área"
-                       isClearable
-                     />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Trabajador
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={nameFilter}
-                          onChange={handleNameFilterChange}
-                          placeholder="Filtrar por trabajador"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}></TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {filteredData
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((trabajador) => (
-                      <TableRow key={trabajador.id} className={styles.trStyle}>
-                        <TableCell className={styles.tdStyle}>
-                          {trabajador.empresa}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {trabajador.ueb}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {trabajador.direccion}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {trabajador.area}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {trabajador.name}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          <FontAwesomeIcon
-                            icon={faEdit}
-                            onClick={() =>
-                              setEditIIdx(
-                                filteredData.findIndex(
-                                  (item) => item.id === trabajador?.id
-                                )
-                              )
-                            }
-                            className={styles.faIcon}
-                          />
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            onClick={() => openConfirmation(trabajador?.id)}
-                            data-task-id={trabajador?.id}
-                            className={styles.faIcon}
-                          />
-                          <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            BackdropProps={{ invisible: true }}
-                          >
-                            <DialogTitle>Confirmar Eliminación</DialogTitle>
-                            <DialogContent>
-                              <p>¿Está seguro de eliminar este trabajador?</p>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={() => handleDelete(data)}>
-                                Aceptar
-                              </Button>
-                              <Button onClick={handleClose}>Cancelar</Button>
-                            </DialogActions>
-                          </Dialog>
-                          </TableCell>
-                      </TableRow>
-                    ))}
-                </TableBody>
-
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      className={styles.tablePagination}
-                      rowsPerPageOptions={[4, 5, 10]}
-                      count={filteredData.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onPageChange={handleChangePage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
-                      labelRowsPerPage="Filas por página:"
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
-              <FormDialog
-                open={editIIdx !== -1}
-                onClose={handleCancelI}
-                FormComponent={TrabajadorForm}
-                setTrabajadores={trabajadorUpdate}
-                trabajador={trabajadores[editIIdx]}
-                onSave={handleSaveI}
-                onCancel={handleCancelI}
-                empresas={empresas}
-                uebs={uebs}
-                direcciones={direcciones}
-                areas={areas}
-              ></FormDialog>
-            </TableContainer>
-          </div>
-        )}
-      </div>
-    </>
-  );
+              </TableContainer>
+            </div>
+          
+        </div>
+      </>
+    );
+  }
 }
 
 export default TrabajadorTable;

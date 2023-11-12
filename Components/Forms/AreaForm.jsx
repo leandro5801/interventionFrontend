@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -29,31 +30,38 @@ export default function AreaForm({
   empresas,
   uebs,
   direcciones,
+  uebPorId,
+  direccionPorId,
+  nombreEmpresa,
+  nombreUeb,
+  nombreDireccion,
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(area ? area.name : "");
+  const [name, setName] = useState(area ? area.nombreArea : "");
   const [empresa, setEmpresa] = useState(
     area
       ? {
-          label: area.empresa,
-          value: area.empresa,
+          label: nombreEmpresa(
+            uebPorId(direccionPorId(area.idDireccion).idUeb).idEmpresa
+          ),
+          value: uebPorId(direccionPorId(area.idDireccion).idUeb).idEmpresa,
         }
       : ""
   );
   const [ueb, setueb] = useState(
     area
       ? {
-          label: area.ueb,
-          value: area.ueb,
+          label: nombreUeb(direccionPorId(area.idDireccion).idUeb),
+          value: direccionPorId(area.idDireccion).idUeb,
         }
       : ""
   );
-   const [direccion, setDireccion] = useState(
+  const [direccion, setDireccion] = useState(
     area
       ? {
-          label: area.direccion,
-          value: area.direccion,
+          label: nombreDireccion(area.idDireccion),
+          value: area.idDireccion,
         }
       : ""
   );
@@ -61,21 +69,30 @@ export default function AreaForm({
   const empresasOptions =
     empresas &&
     empresas.map((item) => ({
-      value: item.name,
-      label: item.name,
+      value: item.idEmpresa,
+      label: item.nombreEmpresa,
     }));
-    const uebsOptions =
+  const uebsOptions =
     uebs &&
-    uebs.map((item) => ({
-      value: item.name,
-      label: item.name,
-    }));
-    const direccionesOptions =
+    uebs
+      .filter((item) =>
+        empresa && empresa.value ? item.idEmpresa === empresa.value : true
+      )
+      .map((item) => ({
+        value: item.idUeb,
+        label: item.nombreUeb,
+      }));
+  const direccionesOptions =
     direcciones &&
-    direcciones.map((item) => ({
-      value: item.name,
-      label: item.name,
-    }));
+    direcciones
+      .filter((item) =>
+        ueb && ueb.value ? item.idUeb === ueb.value : true
+      )
+      .map((item) => ({
+        value: item.idDireccion,
+        label: item.nombreDireccion,
+      }));
+  
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.value, value: newValue.value });
   };
@@ -114,22 +131,57 @@ export default function AreaForm({
     setFormData(data);
     setType(area ? "editar" : "crear");
   }
+  const [error, setError] = useState(null);
+  async function createArea(updatedRow) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/area",
+        updatedRow
+      );
+      if (response.status === 201) {
+        setAreas([...areas, response.data]);
+      } else {
+        throw new Error("Error al crear el area");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al crear el area. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+  async function editArea(idArea, areaData) {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/area/${idArea}`,
+        areaData
+      );
+      if (response.status === 200) {
+        setAreas(
+          areas.map((area) => (area.idArea === idArea ? response.data : area))
+        );
+      } else {
+        throw new Error("Error al editar la area");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al editar la area. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
 
   const handleConfirm = (data) => {
     const updatedRow = {
-      id: area ? area.id : areas.length + 1,
-      name: data.name,
-      empresa: data.empresa.value,
-      ueb: data.ueb.value,
-      direccion: data.direccion.value
+      nombreArea: data.name,
+      idDireccion: parseInt(data.direccion.value),
     };
 
-    setAreas(
-      area ? updatedRow : (prevData) => [...prevData, updatedRow]
-    );
+    area
+    ? editArea(area.idArea, updatedRow)
+    : createArea(updatedRow);
 
     onSave();
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
   };
 
@@ -196,10 +248,9 @@ export default function AreaForm({
               <div className={styles.error}>Seleccione una UEB.</div>
             )}
           </div>
-          
         </div>
         <div className={styles.inputGroup}>
-        <div>
+          <div>
             <Controller
               name="direccion"
               control={control}
@@ -223,10 +274,10 @@ export default function AreaForm({
               )}
             />
             {errors.direccion && (
-              <div className={styles.error}>Seleccione un área.</div>
+              <div className={styles.error}>Seleccione una dirección.</div>
             )}
           </div>
-        <div >
+          <div>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -240,7 +291,7 @@ export default function AreaForm({
             />
             <div className={styles.error}>{errors.name?.message}</div>
           </div>
-          </div>
+        </div>
         <DialogActions>
           <Button type="submit">Aceptar</Button>
 

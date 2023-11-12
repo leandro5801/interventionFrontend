@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -32,7 +32,7 @@ export default function EmpresaForm({
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(empresa ? empresa.name : "");
+  const [name, setName] = useState(empresa ? empresa.nombreEmpresa : "");
 
   // form validation rules
   const formOptions = {
@@ -51,23 +51,66 @@ export default function EmpresaForm({
 
   function onSubmit(data) {
     // event.preventDefault();
-    console.log("entro");
     setOpen(true);
     setFormData(data);
     setType(empresa ? "editar" : "crear");
   }
 
+  const [error, setError] = useState(null);
+  async function createEmpresa(updatedRow) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/empresa",
+        updatedRow
+      );
+      if (response.status === 201) {
+        // Actualiza el estado para añadir la nueva empresa al frontend
+        setEmpresas([...empresas, response.data]);
+      } else {
+        throw new Error("Error al crear la empresa");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al crear la empresa. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+  async function editEmpresa(idEmpresa, empresaData) {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/empresa/${idEmpresa}`,
+        empresaData
+      );
+      if (response.status === 200) {
+        // Actualiza el estado para reflejar los cambios en el frontend
+        setEmpresas(
+          empresas.map((empresa) =>
+            empresa.idEmpresa === idEmpresa ? response.data : empresa
+          )
+        );
+      } else {
+        throw new Error("Error al editar la empresa");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al editar la empresa. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+
   const handleConfirm = (data) => {
     const updatedRow = {
-      id: empresa ? empresa.id : empresas.length + 1,
-      name: data.name,
+      // idEmpresa: 10,
+      nombreEmpresa: data.name,
     };
 
-    setEmpresas(
-      empresa ? updatedRow : (prevData) => [...prevData, updatedRow]
-    );
+    empresa
+      ? editEmpresa(empresa.idEmpresa, updatedRow)
+      : createEmpresa(updatedRow);
+  
     onSave();
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
   };
 
@@ -80,7 +123,6 @@ export default function EmpresaForm({
       <DialogTitle>Empresa</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          
           <div className={styles.inputGroup}>
             <div>
               <Input
@@ -92,19 +134,16 @@ export default function EmpresaForm({
                 {...register("name")}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                placeholder="Nombre de la intervención"
+                placeholder="Nombre de la empresa"
               />
               <div className={styles.error}>{errors.name?.message}</div>
             </div>
           </div>
-
-          
         </div>
         <DialogActions>
           <Button type="submit">Aceptar</Button>
 
           <Button onClick={onCancel}>Cancelar</Button>
-
         </DialogActions>
         <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
           <DialogTitle>

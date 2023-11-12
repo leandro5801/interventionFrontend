@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -30,39 +31,54 @@ export default function TrabajadorForm({
   uebs,
   direcciones,
   areas,
+  uebPorId,
+  direccionPorId,
+  areaPorId,
+  nombreEmpresa,
+  nombreUeb,
+  nombreDireccion,
+  nombreArea,
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(trabajador ? trabajador.name : "");
+  const [name, setName] = useState(trabajador ? trabajador.nombreTrabajador : "");
   const [empresa, setEmpresa] = useState(
     trabajador
       ? {
-          label: trabajador.empresa,
-          value: trabajador.empresa,
+          label: nombreEmpresa(
+            uebPorId(
+              direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb
+            ).idEmpresa
+          ),
+          value: uebPorId(
+            direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb
+          ).idEmpresa,
         }
       : ""
   );
   const [ueb, setueb] = useState(
     trabajador
       ? {
-          label: trabajador.ueb,
-          value: trabajador.ueb,
+          label: nombreUeb(
+            direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb
+          ),
+          value: direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb,
         }
       : ""
   );
   const [direccion, setDireccion] = useState(
     trabajador
       ? {
-          label: trabajador.direccion,
-          value: trabajador.direccion,
+          label: nombreDireccion(areaPorId(trabajador.idArea).idDireccion),
+          value: areaPorId(trabajador.idArea).idDireccion,
         }
       : ""
   );
   const [area, setArea] = useState(
     trabajador
       ? {
-          label: trabajador.area,
-          value: trabajador.area,
+          label: nombreArea(trabajador.idArea),
+          value: trabajador.idArea,
         }
       : ""
   );
@@ -70,27 +86,35 @@ export default function TrabajadorForm({
   const empresasOptions =
     empresas &&
     empresas.map((item) => ({
-      value: item.name,
-      label: item.name,
+      value: item.idEmpresa,
+      label: item.nombreEmpresa,
     }));
   const uebsOptions =
     uebs &&
-    uebs.map((item) => ({
-      value: item.name,
-      label: item.name,
-    }));
+    uebs
+      .filter((item) =>
+        empresa && empresa.value ? item.idEmpresa === empresa.value : true
+      )
+      .map((item) => ({
+        value: item.idUeb,
+        label: item.nombreUeb,
+      }));
   const direccionesOptions =
     direcciones &&
-    direcciones.map((item) => ({
-      value: item.name,
-      label: item.name,
-    }));
+    direcciones
+      .filter((item) => (ueb && ueb.value ? item.idUeb === ueb.value : true))
+      .map((item) => ({
+        value: item.idDireccion,
+        label: item.nombreDireccion,
+      }));
   const areasOptions =
     areas &&
-    areas.map((item) => ({
-      value: item.name,
-      label: item.name,
-    }));
+    areas
+      .filter((item) => (direccion && direccion.value ? item.idDireccion === direccion.value : true))
+      .map((item) => ({
+        value: item.idArea,
+        label: item.nombreArea,
+      }));
 
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.value, value: newValue.value });
@@ -134,22 +158,56 @@ export default function TrabajadorForm({
     setFormData(data);
     setType(trabajador ? "editar" : "crear");
   }
-
+  const [error, setError] = useState(null);
+  async function createTrabajador(updatedRow) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/trabajador",
+        updatedRow
+      );
+      if (response.status === 201) {
+        setTrabajadores([...trabajadores, response.data]);
+      } else {
+        throw new Error("Error al crear el trabajador");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al crear el trabajador. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+  async function editTrabajador(idTrabajador, trabajadorData) {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/api/trabajador/${idTrabajador}`,
+        trabajadorData
+      );
+      if (response.status === 200) {
+        setTrabajadores(
+          trabajadores.map((trabajador) => (trabajador.idTrabajador === idTrabajador ? response.data : trabajador))
+        );
+      } else {
+        throw new Error("Error al editar la trabajador");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al editar la trabajador. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
   const handleConfirm = (data) => {
     const updatedRow = {
-      id: trabajador ? trabajador.id : trabajadores.length + 1,
-      name: data.name,
-      empresa: data.empresa.value,
-      ueb: data.ueb.value,
-      direccion: data.direccion.value,
-      area: data.area.value,
+      nombreTrabajador: data.name,
+      idArea: parseInt(data.area.value),
     };
-    setTrabajadores(
-      trabajador ? updatedRow : (prevData) => [...prevData, updatedRow]
-    );
+    trabajador
+    ? editTrabajador(trabajador.idTrabajador, updatedRow)
+    : createTrabajador(updatedRow);
 
     onSave();
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
+
     setOpen(false);
   };
 
@@ -272,22 +330,23 @@ export default function TrabajadorForm({
               <div className={styles.error}>Seleccione un área.</div>
             )}
           </div>
-          
         </div>
+        <div className={styles.inputGroup}>
         <div>
-            <Input
-              className={`${styles.inputForm}  ${
-                errors.name ? "is-invalid" : ""
-              }`}
-              type="text"
-              id="name"
-              {...register("name")}
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Nombre del Trabajador"
-            />
-            <div className={styles.error}>{errors.name?.message}</div>
-          </div>
+          <Input
+            className={`${styles.inputForm}  ${
+              errors.name ? "is-invalid" : ""
+            }`}
+            type="text"
+            id="name"
+            {...register("name")}
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Nombre del Trabajador"
+          />
+          <div className={styles.error}>{errors.name?.message}</div>
+        </div>
+        </div>
         <DialogActions>
           <Button type="submit">Aceptar</Button>
 
