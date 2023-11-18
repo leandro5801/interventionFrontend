@@ -5,8 +5,6 @@ import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { customStyles } from "../../styles/SelectFilterStyles";
-
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
 
@@ -15,7 +13,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import DireccionForm from "../Forms/DireccionForm";
+import ClienteForm from "../Forms/ClienteForm";
 
 import {
   Table,
@@ -36,33 +34,7 @@ import {
 
 import Select from "react-select";
 
-function DireccionTable({
-  direcciones,
-  setDirecciones,
-  empresas,
-  uebs,
-  cargando,
-}) {
-  //para retornar el nombre de la empresa y no el id
-  const uebPorId = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    if (!ueb) {
-      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
-      return;
-    }
-    return ueb;
-  };
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
-    return name;
-  };
-  const nombreUeb = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
-    return name;
-  };
-
+function ClienteTable({ users, setUsers, clientes, setClientes, cargando }) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -101,51 +73,19 @@ function DireccionTable({
   //Para filtrar la tabla
 
   const [nameFilter, setNameFilter] = useState("");
-  const [empresaFilter, setEmpresaFilter] = useState([]);
-  const [uebFilter, setUebFilter] = useState([]);
 
-  const optionEmpresas =
-    empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
-
-  const optionUebs =
-    uebs &&
-    uebs
-      .filter((item) =>
-        empresaFilter && empresaFilter.value
-          ? item.idEmpresa === empresaFilter.value
-          : true
-      )
-      .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
-      }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
 
-  const handleEmpresaFilterChange = (data) => {
-    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
-  };
-  const handleUebFilterChange = (data) => {
-    data ? setUebFilter(data) : setUebFilter([]);
-  };
   const limpiarFiltrados = () => {
     setNameFilter("");
-    setEmpresaFilter([]);
-    setUebFilter([]);
   };
-  const filteredData = direcciones.filter(
+  const filteredData = clientes.filter(
     (item) =>
-      (empresaFilter.length === 0 ||
-        uebPorId(item.idUeb).idEmpresa === empresaFilter.value) &&
-      (uebFilter.length === 0 || item.idUeb === uebFilter.value) &&
-      item.nombreDireccion.toLowerCase().includes(nameFilter.toLowerCase())
+      item.nombre_cliente &&
+      item.nombre_cliente.toLowerCase().includes(nameFilter.toLowerCase())
   );
-
   // sms de confirmacion
   const [data, setData] = useState("");
 
@@ -156,35 +96,31 @@ function DireccionTable({
   }
 
   // function handleDelete(idNum) {
-  //   const newDireccion = direcciones.filter((direccion) => direccion.id !== idNum);
-  //   setDirecciones(newDireccion);
+  //   const newCliente = clientes.filter(
+  //     (cliente) => cliente.id_cliente !== idNum
+  //   );
+  //   setClientes(newCliente);
   //   setOpen(false);
   // }
-
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/api/direccion/${id}`
+        `http://localhost:3000/api/cliente/${id}`
       );
       if (response.status === 200) {
-        setDirecciones(
-          direcciones.filter((direccion) => direccion.idDireccion !== id)
-        );
+        setClientes(clientes.filter((cliente) => cliente.id_cliente !== id));
         setOpen(false);
       } else {
-        throw new Error("Error al eliminar la dirección");
+        throw new Error("Error al eliminar el cliente");
       }
     } catch (error) {
       console.error(error);
       setError(
-        "Hubo un problema al eliminar la dirección. Por favor, inténtalo de nuevo."
+        "Hubo un problema al eliminar el cliente. Por favor, inténtalo de nuevo."
       );
     }
   }
-
-  // Para editar una recomendacion desde la tabla
-
   const [editIIdx, setEditIIdx] = useState(-1);
 
   const handleSaveI = () => {
@@ -195,15 +131,15 @@ function DireccionTable({
     setEditIIdx(-1);
   };
 
-  const direccionUpdate = (updatedRow) => {
+  const clienteUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedDireccionData = [...direcciones];
+    const updatedClienteData = [...clientes];
 
     // Actualiza los datos de la fila que se está editando
-    updatedDireccionData[editIIdx] = updatedRow;
+    updatedClienteData[editIIdx] = updatedRow;
 
     // Actualiza el estado de los datos en la tabla
-    setDirecciones(updatedDireccionData);
+    setClientes(updatedClienteData);
   };
   if (cargando) {
     return (
@@ -214,7 +150,6 @@ function DireccionTable({
         >
           <CircularProgress color="inherit" />
         </Backdrop>
-        {/* Renderizar las empresas aquí */}
       </div>
     );
   } else {
@@ -223,7 +158,6 @@ function DireccionTable({
         <div className={styles.divTableInter}>
           <div>
             <div className={styles.divIconH2}></div>
-
             <TableContainer component={Paper} className={styles.table}>
               <div className={styles.btnNuevoContent}>
                 <Button
@@ -239,20 +173,20 @@ function DireccionTable({
                   onClose={() => {
                     setDialogOpen(false);
                   }}
-                  FormComponent={DireccionForm}
-                  setDirecciones={setDirecciones}
-                  direcciones={direcciones}
+                  FormComponent={ClienteForm}
+                  setClientes={setClientes}
+                  setUsuarios={setUsers}
+                  clientes={clientes}
                   onSave={() => {
                     setDialogOpen(false);
                   }}
                   onCancel={() => {
                     setDialogOpen(false);
                   }}
-                  empresas={empresas}
-                  uebPorId={uebPorId}
-                  uebs={uebs}
+                  users={users}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
+
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
@@ -271,59 +205,28 @@ function DireccionTable({
                 </div>
               </div>
               <>
-                {direcciones.length === 0 && (
+                {clientes.length === 0 && (
                   <div className={styles.divIconH2}>
-                    <h5> No hay direcciones</h5>{" "}
+                    <h5> No hay clientes</h5>{" "}
                   </div>
                 )}
-                {direcciones.length === 0 || (
+                {clientes.length === 0 || (
                   <Table stickyHeader>
                     <TableHead>
                       <TableRow>
                         <TableCell className={styles.spacing}>
-                          Empresa
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={empresaFilter}
-                              onChange={(empresaFilter) => {
-                                handleEmpresaFilterChange(empresaFilter);
-                              }}
-                              options={optionEmpresas}
-                              placeholder="Empresa"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Ueb
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={uebFilter}
-                              onChange={(uebFilter) => {
-                                handleUebFilterChange(uebFilter);
-                              }}
-                              options={optionUebs}
-                              placeholder="Ueb"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Dirección
+                          Cliente
                           {showFilters && (
                             <input
                               className={styles.inputFilter}
                               type="text"
                               value={nameFilter}
                               onChange={handleNameFilterChange}
-                              placeholder="Filtrar por dirección"
+                              placeholder="Filtrar por cliente"
                             />
                           )}
                         </TableCell>
+
                         <TableCell className={styles.spacing}></TableCell>
                       </TableRow>
                     </TableHead>
@@ -334,22 +237,15 @@ function DireccionTable({
                           page * rowsPerPage,
                           page * rowsPerPage + rowsPerPage
                         )
-                        .map((direccion) => (
+                        .map((cliente) => (
                           <TableRow
-                            key={direccion.idDireccion}
+                            key={cliente.id_cliente}
                             className={styles.trStyle}
                           >
                             <TableCell className={styles.tdStyle}>
-                              {nombreEmpresa(
-                                uebPorId(direccion.idUeb).idEmpresa
-                              )}
+                              {cliente.nombre_cliente}
                             </TableCell>
-                            <TableCell className={styles.tdStyle}>
-                              {nombreUeb(direccion.idUeb)}
-                            </TableCell>
-                            <TableCell className={styles.tdStyle}>
-                              {direccion.nombreDireccion}
-                            </TableCell>
+
                             <TableCell className={styles.tdStyle}>
                               <FontAwesomeIcon
                                 icon={faEdit}
@@ -357,8 +253,7 @@ function DireccionTable({
                                   setEditIIdx(
                                     filteredData.findIndex(
                                       (item) =>
-                                        item.idDireccion ===
-                                        direccion?.idDireccion
+                                        item.id_cliente === cliente?.id_cliente
                                     )
                                   )
                                 }
@@ -367,9 +262,9 @@ function DireccionTable({
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(direccion?.idDireccion)
+                                  openConfirmation(cliente?.id_cliente)
                                 }
-                                data-task-id={direccion?.idDireccion}
+                                data-task-id={cliente?.id_cliente}
                                 className={styles.faIcon}
                               />
                               <Dialog
@@ -379,9 +274,7 @@ function DireccionTable({
                               >
                                 <DialogTitle>Confirmar Eliminación</DialogTitle>
                                 <DialogContent>
-                                  <p>
-                                    ¿Está seguro de eliminar esta dirección?
-                                  </p>
+                                  <p>¿Está seguro de eliminar este cliente?</p>
                                 </DialogContent>
                                 <DialogActions>
                                   <Button onClick={() => handleDelete(data)}>
@@ -417,17 +310,13 @@ function DireccionTable({
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
-                FormComponent={DireccionForm}
-                setDirecciones={setDirecciones}
-                direcciones={direcciones}
-                direccion={direcciones[editIIdx]}
+                FormComponent={ClienteForm}
+                setClientes={setClientes}
+                cliente={clientes[editIIdx]}
+                clientes={clientes}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
-                empresas={empresas}
-                uebPorId={uebPorId}
-                uebs={uebs}
-                nombreEmpresa={nombreEmpresa}
-                nombreUeb={nombreUeb}
+                users={users}
               ></FormDialog>
             </TableContainer>
           </div>
@@ -437,4 +326,4 @@ function DireccionTable({
   }
 }
 
-export default DireccionTable;
+export default ClienteTable;

@@ -1,6 +1,9 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
-import { useRouter } from 'next/router';
+import axios from "axios";
+
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -10,8 +13,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import UserForm from "../Forms/UserForm"
-
+import UserForm from "../Forms/UserForm";
 
 import {
   Table,
@@ -31,8 +33,15 @@ import {
 } from "@mui/material";
 
 import Select from "react-select";
+import { RollerShades } from "@mui/icons-material";
 
-function InterventionTable({ users, setUsers, roles, setRoles }) {
+function UserTable({ users, setUsers, roles, setRoles, cargando }) {
+  const nombreRol = (id_rol) => {
+    const role = roles.find((rol) => rol.id_rol === id_rol);
+    const name = role ? role.nombre_rol : "no se encontro el nombre";
+    return name;
+  };
+
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -90,30 +99,53 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     setUserNameFilter("");
     setRoleFilter("");
   };
-  const filteredData = users.map((item) => {
-    const role = roles.find((role) => (item.role_id === role.id ));
-    const roleName = role ? role.name_role : "Rol no encontrado";
-    return { ...item, roleName };
-  }).filter(
-    (item) =>
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.user_name.toLowerCase().includes(userNameFilter.toLowerCase()) &&
-      item.roleName.toLowerCase().includes(roleFilter.toLowerCase())
-  );
-  
+  const filteredData = users
+    .map((item) => {
+      const role = roles.find((role) => item.id_rol === role.id_rol);
+      const roleName = role ? role.nombre_rol : "Rol no encontrado";
+      return { ...item, roleName };
+    })
+    .filter(
+      (item) =>
+        item.nombre_usuario
+          .toLowerCase()
+          .includes(userNameFilter.toLowerCase()) &&
+        nombreRol(item.id_rol).toLowerCase().includes(roleFilter.toLowerCase())
+    );
 
+  // sms de confirmacion
+  const [data, setData] = useState("");
   function openConfirmation(data) {
     // event.preventDefault();
     setOpen(true);
     setData(data);
   }
 
-  function handleDelete(idNum) {
-    const newUser = users.filter((user) => user.id !== idNum);
-    setUsers(newUser);
-    setOpen(false);
-  }
+  // function handleDelete(idNum) {
+  //   const newUser = users.filter((user) => user.id_usuario !== idNum);
+  //   setUsers(newUser);
+  //   setOpen(false);
+  // }
 
+  const [error, setError] = useState(null);
+  async function handleDelete(id) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/usuario/${id}`
+      );
+      if (response.status === 200) {
+        setUsers(users.filter((usuario) => usuario.id_usuario !== id));
+        setOpen(false);
+      } else {
+        throw new Error("Error al eliminar el usuario");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al eliminar el usuario. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
   // Para editar una recomendacion desde la tabla
 
   const [editIIdx, setEditIIdx] = useState(-1);
@@ -136,15 +168,22 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
     // Actualiza el estado de los datos en la tabla
     setUsers(updatedUserData);
   };
-  return (
-    <>
-      <div className={styles.divTableInter}>
-        {users.length === 0 && (
-          <div className={styles.divIconH2}>
-            <h2> No hay Intervenciones</h2>{" "}
-          </div>
-        )}
-        {users.length === 0 || (
+
+  if (cargando) {
+    return (
+      <div>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={cargando}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <div className={styles.divTableInter}>
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
@@ -173,16 +212,17 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                     setDialogOpen(false);
                   }}
                   roles={roles}
+                  nombreRol={nombreRol}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                    onClick={() => {
-                      toggleFilters();
-                      limpiarFiltrados();
-                    }}
+                      onClick={() => {
+                        toggleFilters();
+                        limpiarFiltrados();
+                      }}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -193,134 +233,141 @@ function InterventionTable({ users, setUsers, roles, setRoles }) {
                   )}
                 </div>
               </div>
-              <Table stickyHeader>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={styles.spacing}>
-                      Nombre
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={nameFilter}
-                          onChange={handleNameFilterChange}
-                          placeholder="Filtrar por nombre"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}>
-                      Usuario
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={userNameFilter}
-                          onChange={handleUserNameFilterChange}
-                          placeholder="Filtrar por usuario"
-                        />
-                      )}
-                    </TableCell>
+              <>
+                {users.length === 0 && (
+                  <div className={styles.divIconH2}>
+                    <h5> No hay usuarios</h5>{" "}
+                  </div>
+                )}
+                {users.length === 0 || (
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell className={styles.spacing}>
+                          Usuario
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={userNameFilter}
+                              onChange={handleUserNameFilterChange}
+                              placeholder="Filtrar por usuario"
+                            />
+                          )}
+                        </TableCell>
 
-                    <TableCell className={styles.spacing}>
-                      Rol
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={roleFilter}
-                          onChange={handleRoleFilterChange}
-                          placeholder="Filtrar por rol"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.spacing}></TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {filteredData
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((user) => (
-                      <TableRow key={user.id} className={styles.trStyle}>
-                        <TableCell className={styles.tdStyle}>
-                          {user.name}
+                        <TableCell className={styles.spacing}>
+                          Rol
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={roleFilter}
+                              onChange={handleRoleFilterChange}
+                              placeholder="Filtrar por rol"
+                            />
+                          )}
                         </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {user.user_name}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {user.roleName}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          <FontAwesomeIcon
-                            icon={faEdit}
-                            onClick={() =>
-                              setEditIIdx(
-                                filteredData.findIndex(
-                                  (item) => item.id === user?.id
-                                )
-                              )
-                            }
-                            className={styles.faIcon}
-                          />
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            onClick={() => openConfirmation(user?.id)}
-                            data-task-id={user?.id}
-                            className={styles.faIcon}
-                          />
-                          <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            BackdropProps={{ invisible: true }}
-                          >
-                            <DialogTitle>Confirmar Eliminación</DialogTitle>
-                            <DialogContent>
-                              <p>¿Está seguro de eliminar este usuario?</p>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={() => handleDelete(data)}>
-                                Aceptar
-                              </Button>
-                              <Button onClick={handleClose}>Cancelar</Button>
-                            </DialogActions>
-                          </Dialog>
-                          </TableCell>
+                        <TableCell className={styles.spacing}></TableCell>
                       </TableRow>
-                    ))}
-                </TableBody>
+                    </TableHead>
 
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      className={styles.tablePagination}
-                      rowsPerPageOptions={[4, 5, 10]}
-                      count={filteredData.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onPageChange={handleChangePage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
-                      labelRowsPerPage="Filas por página:"
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
+                    <TableBody>
+                      {filteredData
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((user) => (
+                          <TableRow
+                            key={user.id_usuario}
+                            className={styles.trStyle}
+                          >
+                            <TableCell className={styles.tdStyle}>
+                              {user.nombre_usuario}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreRol(user.id_rol)}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    filteredData.findIndex(
+                                      (item) =>
+                                        item.id_usuario === user?.id_usuario
+                                    )
+                                  )
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() =>
+                                  openConfirmation(user?.id_usuario)
+                                }
+                                data-task-id={user?.id_usuario}
+                                className={styles.faIcon}
+                              />
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                BackdropProps={{ invisible: true }}
+                              >
+                                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                                <DialogContent>
+                                  <p>¿Está seguro de eliminar este usuario?</p>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={() => handleDelete(data)}>
+                                    Aceptar
+                                  </Button>
+                                  <Button onClick={handleClose}>
+                                    Cancelar
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          className={styles.tablePagination}
+                          rowsPerPageOptions={[4, 5, 10]}
+                          count={filteredData.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage="Filas por página:"
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                )}
+              </>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
                 FormComponent={UserForm}
-                setUsers={userUpdate}
+                setUsers={setUsers}
+                users={users}
                 user={users[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
                 roles={roles}
+                nombreRol={nombreRol}
               ></FormDialog>
             </TableContainer>
           </div>
-        )}
-      </div>
-    </>
-  );
+        </div>
+      </>
+    );
+  }
 }
 
-export default InterventionTable;
+export default UserTable;

@@ -89,7 +89,6 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
         item.nombreEmpresa.toLowerCase().includes(nameFilter.toLowerCase())
     );
 
-
   const [data, setData] = useState("");
 
   function openConfirmation(data) {
@@ -99,7 +98,6 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
   }
 
   // function handleDelete(idNum) {
-  //   console.log(idNum);
   //   const newEmpresa = empresas.filter((empresa) => empresa.id !== idNum);
   //   setEmpresas(newEmpresa);
   //   setOpen(false);
@@ -206,104 +204,108 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
                   )}
                 </div>
               </div>
-              {empresas.length === 0 && (
-                <div className={styles.divIconH2}>
-                  <h5> No hay Empresas</h5>{" "}
-                </div>
-              )}
-              {empresas.length === 0 || (
-                <Table stickyHeader>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={styles.spacing}>
-                        Nombre
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="text"
-                            value={nameFilter}
-                            onChange={handleNameFilterChange}
-                            placeholder="Filtrar por empresa"
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}></TableCell>
-                    </TableRow>
-                  </TableHead>
+              <>
+                {empresas.length === 0 && (
+                  <div className={styles.divIconH2}>
+                    <h5> No hay Empresas</h5>{" "}
+                  </div>
+                )}
+                {empresas.length === 0 || (
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell className={styles.spacing}>
+                          Nombre
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={nameFilter}
+                              onChange={handleNameFilterChange}
+                              placeholder="Filtrar por empresa"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}></TableCell>
+                      </TableRow>
+                    </TableHead>
 
-                  <TableBody>
-                    {filteredData
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((empresa) => (
-                        <TableRow
-                          key={empresa.idEmpresa}
-                          className={styles.trStyle}
-                        >
-                          <TableCell className={styles.tdStyle}>
-                            {empresa.nombreEmpresa}
-                          </TableCell>
+                    <TableBody>
+                      {filteredData
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((empresa) => (
+                          <TableRow
+                            key={empresa.idEmpresa}
+                            className={styles.trStyle}
+                          >
+                            <TableCell className={styles.tdStyle}>
+                              {empresa.nombreEmpresa}
+                            </TableCell>
 
-                          <TableCell className={styles.tdStyle}>
-                            <FontAwesomeIcon
-                              icon={faEdit}
-                              onClick={() =>
-                                setEditIIdx(
-                                  empresas.findIndex(
-                                    (item) =>
-                                      item.idEmpresa === empresa?.idEmpresa
+                            <TableCell className={styles.tdStyle}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    empresas.findIndex(
+                                      (item) =>
+                                        item.idEmpresa === empresa?.idEmpresa
+                                    )
                                   )
-                                )
-                              }
-                              className={styles.faIcon}
-                            />
-                            <FontAwesomeIcon
-                              icon={faTrash}
-                              onClick={() =>
-                                openConfirmation(empresa?.idEmpresa)
-                              }
-                              data-task-id={empresa?.idEmpresa}
-                              className={styles.faIcon}
-                            />
-                            <Dialog
-                              open={open}
-                              onClose={handleClose}
-                              BackdropProps={{ invisible: true }}
-                            >
-                              <DialogTitle>Confirmar Eliminación</DialogTitle>
-                              <DialogContent>
-                                <p>¿Está seguro de eliminar esta empresa?</p>
-                              </DialogContent>
-                              <DialogActions>
-                                <Button onClick={() => handleDelete(data)}>
-                                  Aceptar
-                                </Button>
-                                <Button onClick={handleClose}>Cancelar</Button>
-                              </DialogActions>
-                            </Dialog>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                  </TableBody>
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() =>
+                                  openConfirmation(empresa?.idEmpresa)
+                                }
+                                data-task-id={empresa?.idEmpresa}
+                                className={styles.faIcon}
+                              />
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                BackdropProps={{ invisible: true }}
+                              >
+                                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                                <DialogContent>
+                                  <p>¿Está seguro de eliminar esta empresa?</p>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={() => handleDelete(data)}>
+                                    Aceptar
+                                  </Button>
+                                  <Button onClick={handleClose}>
+                                    Cancelar
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
 
-                  <TableFooter>
-                    <TableRow>
-                      <TablePagination
-                        className={styles.tablePagination}
-                        rowsPerPageOptions={[4, 5, 10]}
-                        count={filteredData.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                        labelRowsPerPage="Filas por página:"
-                      />
-                    </TableRow>
-                  </TableFooter>
-                </Table>
-              )}
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          className={styles.tablePagination}
+                          rowsPerPageOptions={[4, 5, 10]}
+                          count={filteredData.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage="Filas por página:"
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                )}
+              </>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

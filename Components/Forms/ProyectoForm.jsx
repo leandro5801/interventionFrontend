@@ -3,6 +3,7 @@ import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -29,10 +30,11 @@ export default function ProyectoForm({
   projects,
   project,
   consultoress,
+  clientes,
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(project ? project.name : "");
+  const [name, setName] = useState(project ? project.nombre_proyecto : "");
   const [objetivo, setObjetivo] = useState(project ? project.objetivo : "");
   const [cliente, setCliente] = useState(project ? project.cliente : "");
   const [consultores, setConsultores] = useState(
@@ -44,6 +46,12 @@ export default function ProyectoForm({
     consultoress.map((item) => ({
       value: item.name,
       label: item.name,
+    }));
+    const clientesOptions =
+    clientes &&
+    clientes.map((item) => ({
+      value: item.id_cliente,
+      label: item.nombre_cliente,
     }));
   const handleConsultoresChange = (newValue) => {
     const consultoresNuevos = newValue.map((consultor) => {
@@ -84,7 +92,7 @@ export default function ProyectoForm({
     const updatedRow = {
       id: project ? project.id : projects.length + 1,
       name: data.name,
-      objetivo: data.objetivo,
+      objetivos: data.objetivo,
       cliente: data.cliente,
       consultores: data.consultores,
     };

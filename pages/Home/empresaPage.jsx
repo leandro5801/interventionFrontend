@@ -4,8 +4,6 @@ import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
 
-import datosEmpresas from "../../public/datosEmpresas.json";
-import trabDirProdCitt from "../../public/DirTecProdCit.json";
 import EmpresaTable from "../../Components/Tables/EmpresaTable";
 export default function EmpresaPage() {
   // datos de las empresas
@@ -13,15 +11,17 @@ export default function EmpresaPage() {
   const [empresas, setEmpresas] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
-
+  
   useEffect(() => {
     async function fetchEmpresa() {
       setCargando(true);
       try {
-        const response = await axios.get('http://localhost:3000/api/empresa');
+        const response = await axios.get("http://localhost:3000/api/empresa");
         setEmpresas(response.data);
       } catch (error) {
-        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
         console.error(error);
       } finally {
         setCargando(false);
@@ -33,7 +33,12 @@ export default function EmpresaPage() {
   return (
     <div className={styles.title}>
       <h3>Empresas</h3>
-      <EmpresaTable empresas={empresas} setEmpresas={setEmpresas} error={error} cargando={cargando} />
+      <EmpresaTable
+        empresas={empresas}
+        setEmpresas={setEmpresas}
+        error={error}
+        cargando={cargando}
+      />
     </div>
   );
 }

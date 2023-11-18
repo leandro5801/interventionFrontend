@@ -227,9 +227,10 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
                   )}
                 </div>
               </div>
+              <>
               {uebs.length === 0 && (
                 <div className={styles.divIconH2}>
-                  <h5> No hay UEB</h5>{" "}
+                  <h6> No hay UEB</h6>{" "}
                 </div>
               )}
               {uebs.length === 0 || (
@@ -337,6 +338,7 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
                   </TableFooter>
                 </Table>
               )}
+              </>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

@@ -48,12 +48,24 @@ function TrabajadorTable({
   //para retornar el nombre de la empresa y no el id
   const uebPorId = (idUeb) => {
     const ueb = uebs.find((e) => e.idUeb === idUeb);
+    if (!ueb) {
+      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      return;
+    }
     return ueb;
   };
   const direccionPorId = (idDireccion) => {
     const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+    if (!direccion) {
+      console.error(`No se encontró ninguna direccion con idUeb: ${idDireccion}`);
+      return;
+    }
     return direccion;
   };
+  // const direccionPorId = (idDireccion) => {
+  //   const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  //   return direccion;
+  // };
   const areaPorId = (idArea) => {
     const area = areas.find((e) => e.idArea === idArea);
     return area;
@@ -280,62 +292,62 @@ function TrabajadorTable({
     return (
       <>
         <div className={styles.divTableInter}>
-          
-            <div>
-              <div className={styles.divIconH2}></div>
-              <TableContainer component={Paper} className={styles.table}>
-                <div className={styles.btnNuevoContent}>
-                  <Button
-                    className={styles.btn}
-                    onClick={() => {
-                      setDialogOpen(true);
-                    }}
-                  >
-                    Nuevo +
-                  </Button>
-                  <FormDialog
-                    open={dialogOpen}
-                    onClose={() => {
-                      setDialogOpen(false);
-                    }}
-                    FormComponent={TrabajadorForm}
-                    setTrabajadores={setTrabajadores}
-                    trabajadores={trabajadores}
-                    onSave={() => {
-                      setDialogOpen(false);
-                    }}
-                    onCancel={() => {
-                      setDialogOpen(false);
-                    }}
-                    empresas={empresas}
-                    uebs={uebs}
-                    direcciones={direcciones}
-                    areas={areas}
-                    uebPorId={uebPorId}
+          <div>
+            <div className={styles.divIconH2}></div>
+            <TableContainer component={Paper} className={styles.table}>
+              <div className={styles.btnNuevoContent}>
+                <Button
+                  className={styles.btn}
+                  onClick={() => {
+                    setDialogOpen(true);
+                  }}
+                >
+                  Nuevo +
+                </Button>
+                <FormDialog
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={TrabajadorForm}
+                  setTrabajadores={setTrabajadores}
+                  trabajadores={trabajadores}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                  uebs={uebs}
+                  direcciones={direcciones}
+                  areas={areas}
+                  uebPorId={uebPorId}
                   direccionPorId={direccionPorId}
                   areaPorId={areaPorId}
                   nombreEmpresa={nombreEmpresa}
                   nombreUeb={nombreUeb}
                   nombreDireccion={nombreDireccion}
                   nombreArea={nombreArea}
-                  ></FormDialog>
-                  <div className={styles.filterListOffOutlinedContent}>
-                    {showFilters ? (
-                      <FilterListOffOutlinedIcon
-                        onClick={() => {
-                          toggleFilters();
-                          limpiarFiltrados();
-                        }}
-                        style={{ width: "18px", cursor: "pointer" }}
-                      />
-                    ) : (
-                      <FilterListOutlinedIcon
-                        onClick={toggleFilters}
-                        style={{ width: "18px", cursor: "pointer" }}
-                      />
-                    )}
-                  </div>
+                ></FormDialog>
+                <div className={styles.filterListOffOutlinedContent}>
+                  {showFilters ? (
+                    <FilterListOffOutlinedIcon
+                      onClick={() => {
+                        toggleFilters();
+                        limpiarFiltrados();
+                      }}
+                      style={{ width: "18px", cursor: "pointer" }}
+                    />
+                  ) : (
+                    <FilterListOutlinedIcon
+                      onClick={toggleFilters}
+                      style={{ width: "18px", cursor: "pointer" }}
+                    />
+                  )}
                 </div>
+              </div>
+              <>
                 {trabajadores.length === 0 && (
                   <div className={styles.divIconH2}>
                     <h5> No hay trabajadores</h5>{" "}
@@ -469,7 +481,9 @@ function TrabajadorTable({
                                 onClick={() =>
                                   setEditIIdx(
                                     filteredData.findIndex(
-                                      (item) => item.idTrabajador === trabajador?.idTrabajador
+                                      (item) =>
+                                        item.idTrabajador ===
+                                        trabajador?.idTrabajador
                                     )
                                   )
                                 }
@@ -477,7 +491,9 @@ function TrabajadorTable({
                               />
                               <FontAwesomeIcon
                                 icon={faTrash}
-                                onClick={() => openConfirmation(trabajador?.idTrabajador)}
+                                onClick={() =>
+                                  openConfirmation(trabajador?.idTrabajador)
+                                }
                                 data-task-id={trabajador?.idTrabajador}
                                 className={styles.faIcon}
                               />
@@ -522,30 +538,30 @@ function TrabajadorTable({
                     </TableFooter>
                   </Table>
                 )}
-                <FormDialog
-                  open={editIIdx !== -1}
-                  onClose={handleCancelI}
-                  FormComponent={TrabajadorForm}
-                  setTrabajadores={setTrabajadores}
-                  trabajador={trabajadores[editIIdx]}
-                  trabajadores={trabajadores}
-                  onSave={handleSaveI}
-                  onCancel={handleCancelI}
-                  empresas={empresas}
-                  uebs={uebs}
-                  direcciones={direcciones}
-                  areas={areas}
-                  uebPorId={uebPorId}
-                  direccionPorId={direccionPorId}
-                  areaPorId={areaPorId}
-                  nombreEmpresa={nombreEmpresa}
-                  nombreUeb={nombreUeb}
-                  nombreDireccion={nombreDireccion}
-                  nombreArea={nombreArea}
-                ></FormDialog>
-              </TableContainer>
-            </div>
-          
+              </>
+              <FormDialog
+                open={editIIdx !== -1}
+                onClose={handleCancelI}
+                FormComponent={TrabajadorForm}
+                setTrabajadores={setTrabajadores}
+                trabajador={trabajadores[editIIdx]}
+                trabajadores={trabajadores}
+                onSave={handleSaveI}
+                onCancel={handleCancelI}
+                empresas={empresas}
+                uebs={uebs}
+                direcciones={direcciones}
+                areas={areas}
+                uebPorId={uebPorId}
+                direccionPorId={direccionPorId}
+                areaPorId={areaPorId}
+                nombreEmpresa={nombreEmpresa}
+                nombreUeb={nombreUeb}
+                nombreDireccion={nombreDireccion}
+                nombreArea={nombreArea}
+              ></FormDialog>
+            </TableContainer>
+          </div>
         </div>
       </>
     );

@@ -201,10 +201,10 @@ export default function GanttChart({
         item.structure === structureFilter.label) &&
       (areaFilter.length === 0 || item.area === areaFilter.label) &&
       (consultorFilter.length === 0 ||
-        item.consultor === consultorFilter.value) &&
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.worker.toLowerCase().includes(workerFilter.toLowerCase()) &&
-      item.start.toLowerCase().includes(startFilter.toLowerCase())
+        item.consultorIntervencion === consultorFilter.value) &&
+      item.nombreIntervencion.toLowerCase().includes(nameFilter.toLowerCase()) &&
+      item.trabajadorIntervencion.toLowerCase().includes(workerFilter.toLowerCase()) &&
+      item.startDateIntervencion.toLowerCase().includes(startFilter.toLowerCase())
   );
   return (
     <div className={styles.ganttContainer} id="gantt-container">

@@ -1,5 +1,9 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
+import axios from "axios";
+
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
@@ -35,7 +39,21 @@ const options = [
   { value: "Proyecto Liorad", label: "Proyecto Liorad" },
 ];
 
-function ProjectTable({ projects, setProjects, consultores }) {
+function ProjectTable({
+  projects,
+  setProjects,
+  consultores,
+  clientes,
+  cargando,
+}) {
+  const nombreCliente = (id_cliente) => {
+    const cliente = clientes.find(
+      (cliente) => cliente.id_cliente === id_cliente
+    );
+    const name = cliente ? cliente.nombre_cliente : "no se encontro el nombre";
+    return name;
+  };
+
   //para los select de proyecto etc
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -103,9 +121,11 @@ function ProjectTable({ projects, setProjects, consultores }) {
   };
   const filteredData = projects.filter(
     (item) =>
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.objetivo.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
-      item.cliente.toLowerCase().includes(clienteFilter.toLowerCase()) &&
+      item.nombre_proyecto.toLowerCase().includes(nameFilter.toLowerCase()) &&
+      item.objetivos.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
+      nombreCliente(item.id_cliente)
+        .toLowerCase()
+        .includes(clienteFilter.toLowerCase()) &&
       item.consultores.some((consultor) =>
         consultor.name.toLowerCase().includes(consultoresFilter)
       )
@@ -119,12 +139,31 @@ function ProjectTable({ projects, setProjects, consultores }) {
     setData(data);
   }
 
-  function handleDelete(idNum) {
-    const newIntervention = projects.filter(
-      (intervencion) => intervencion.id !== idNum
-    );
-    setProjects(newIntervention);
-    setOpen(false);
+  // function handleDelete(idNum) {
+  //   const newIntervention = projects.filter(
+  //     (intervencion) => intervencion.id !== idNum
+  //   );
+  //   setProjects(newIntervention);
+  //   setOpen(false);
+  // }
+  const [error, setError] = useState(null);
+  async function handleDelete(id) {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/api/proyecto/${id}`
+      );
+      if (response.status === 200) {
+        setProjects(projects.filter((proyecto) => proyecto.id_proyecto !== id));
+        setOpen(false);
+      } else {
+        throw new Error("Error al eliminar el proyecto");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al eliminar el usuario. Por favor, inténtalo de nuevo."
+      );
+    }
   }
 
   // Para editar una recomendacion desde la tabla
@@ -149,16 +188,21 @@ function ProjectTable({ projects, setProjects, consultores }) {
     // Actualiza el estado de los datos en la tabla
     setProjects(updatedProyectoData);
   };
-
-  return (
-    <>
-      <div className={styles.divTableInter}>
-        {projects.length === 0 && (
-          <div className={styles.divIconH2}>
-            <h2> No hay Intervenciones</h2>{" "}
-          </div>
-        )}
-        {projects.length === 0 || (
+  if (cargando) {
+    return (
+      <div>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={cargando}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    );
+  } else {
+    return (
+      <>
+        <div className={styles.divTableInter}>
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
@@ -186,6 +230,7 @@ function ProjectTable({ projects, setProjects, consultores }) {
                     setDialogOpen(false);
                   }}
                   consultoress={consultores}
+                  clientes={clientes}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
@@ -244,137 +289,152 @@ function ProjectTable({ projects, setProjects, consultores }) {
               />
             )}
           </div> */}
-
-              <Table stickyHeader>
-                <TableHead>
-                  <TableRow>
-                    <TableCell className={styles.letraEnNegrita}>
-                      Proyecto
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={nameFilter}
-                          onChange={handleNameFilterChange}
-                          placeholder="Filtrar por proyecto"
-                        />
-                      )}
-                    </TableCell>
-
-                    <TableCell className={styles.letraEnNegrita}>
-                      Objetivo
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={objetivoFilter}
-                          onChange={handleObjetivoFilterChange}
-                          placeholder="Filtrar por objetivo"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.letraEnNegrita}>
-                      Cliente
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={clienteFilter}
-                          onChange={handleClienteFilterChange}
-                          placeholder="Filtrar por cliente"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.letraEnNegrita}>
-                      Consultor
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={consultoresFilter}
-                          onChange={handleConsultoresFilterChange}
-                          placeholder="Filtrar por consultores"
-                        />
-                      )}
-                    </TableCell>
-                    <TableCell className={styles.letraEnNegrita}></TableCell>
-                  </TableRow>
-                </TableHead>
-
-                <TableBody>
-                  {filteredData
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((project) => (
-                      <TableRow key={project.id} className={styles.trStyle}>
-                        <TableCell className={styles.tdStyle}>
-                          {project.name}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {project.objetivo}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {project.cliente}
-                        </TableCell>
-                        <TableCell className={styles.tdStyle}>
-                          {project.consultores
-                            .map((consultor) => consultor.name)
-                            .join(", ")}
+              <>
+                {projects.length === 0 && (
+                  <div className={styles.divIconH2}>
+                    <h5> No hay proyectos</h5>{" "}
+                  </div>
+                )}
+                {projects.length === 0 || (
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell className={styles.letraEnNegrita}>
+                          Proyecto
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={nameFilter}
+                              onChange={handleNameFilterChange}
+                              placeholder="Filtrar por proyecto"
+                            />
+                          )}
                         </TableCell>
 
-                        <TableCell className={styles.tdStyle}>
-                          <FontAwesomeIcon
-                            icon={faEdit}
-                            onClick={() =>
-                              setEditIIdx(
-                                filteredData.findIndex(
-                                  (item) => item.id === project?.id
-                                )
-                              )
-                            }
-                            className={styles.faIcon}
-                          />
-                          <FontAwesomeIcon
-                            icon={faTrash}
-                            onClick={() => openConfirmation(project?.id)}
-                            data-task-id={project?.id}
-                            className={styles.faIcon}
-                          />
-                          <Dialog
-                            open={open}
-                            onClose={handleClose}
-                            BackdropProps={{ invisible: true }}
-                          >
-                            <DialogTitle>Confirmar Eliminación</DialogTitle>
-                            <DialogContent>
-                              <p>¿Está seguro de eliminar este proyecto?</p>
-                            </DialogContent>
-                            <DialogActions>
-                              <Button onClick={() => handleDelete(data)}>
-                                Aceptar
-                              </Button>
-                              <Button onClick={handleClose}>Cancelar</Button>
-                            </DialogActions>
-                          </Dialog>
+                        <TableCell className={styles.letraEnNegrita}>
+                          Objetivo
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={objetivoFilter}
+                              onChange={handleObjetivoFilterChange}
+                              placeholder="Filtrar por objetivo"
+                            />
+                          )}
                         </TableCell>
+                        <TableCell className={styles.letraEnNegrita}>
+                          Cliente
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={clienteFilter}
+                              onChange={handleClienteFilterChange}
+                              placeholder="Filtrar por cliente"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.letraEnNegrita}>
+                          Consultor
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={consultoresFilter}
+                              onChange={handleConsultoresFilterChange}
+                              placeholder="Filtrar por consultores"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell
+                          className={styles.letraEnNegrita}
+                        ></TableCell>
                       </TableRow>
-                    ))}
-                </TableBody>
+                    </TableHead>
 
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      className={styles.tablePagination}
-                      rowsPerPageOptions={[4, 5, 10]}
-                      count={filteredData.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onPageChange={handleChangePage}
-                      onRowsPerPageChange={handleChangeRowsPerPage}
-                      labelRowsPerPage="Filas por página:"
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
+                    <TableBody>
+                      {filteredData
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((project) => (
+                          <TableRow key={project.id_proyecto} className={styles.trStyle}>
+                            <TableCell className={styles.tdStyle}>
+                              {project.nombre_proyecto}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {project.objetivo}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {project.cliente}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {project.consultores
+                                .map((consultor) => consultor.name)
+                                .join(", ")}
+                            </TableCell>
+
+                            <TableCell className={styles.tdStyle}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    filteredData.findIndex(
+                                      (item) => item.id_proyecto === project?.id_proyecto
+                                    )
+                                  )
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() => openConfirmation(project?.id_proyecto)}
+                                data-task-id={project?.id_proyecto}
+                                className={styles.faIcon}
+                              />
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                BackdropProps={{ invisible: true }}
+                              >
+                                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                                <DialogContent>
+                                  <p>¿Está seguro de eliminar este proyecto?</p>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={() => handleDelete(data)}>
+                                    Aceptar
+                                  </Button>
+                                  <Button onClick={handleClose}>
+                                    Cancelar
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          className={styles.tablePagination}
+                          rowsPerPageOptions={[4, 5, 10]}
+                          count={filteredData.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage="Filas por página:"
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                )}
+              </>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
@@ -387,10 +447,10 @@ function ProjectTable({ projects, setProjects, consultores }) {
               ></FormDialog>
             </TableContainer>
           </div>
-        )}
-      </div>
-    </>
-  );
+        </div>
+      </>
+    );
+  }
 }
 
 export default ProjectTable;

@@ -63,8 +63,7 @@ export default function TimeTable({
         (!selectedUeb || task.ueb === selectedUeb) &&
         (!selectedStructure || task.structure === selectedStructure) &&
         (!selectedArea || task.area === selectedArea)&&
-        (!selectedConsultor || task.consultor === selectedConsultor)&&
-        (!selectedProcess || task.process === selectedProcess)
+        (!selectedConsultor || task.consultorIntervencion === selectedConsultor)
     );
   }
 
@@ -161,7 +160,7 @@ export default function TimeTable({
               data-date={formattedDate}
             >
               {filteredTasks.map((el, i) => {
-                if (el?.id === task?.id && el?.start === formattedDate) {
+                if (el?.id === task?.id && el?.startDateIntervencion === formattedDate) {
                   return (
                     <div
                       key={`${i}-${el?.id}`}
@@ -169,8 +168,8 @@ export default function TimeTable({
                       style={{
                         ...taskDuration,
                         width: `calc(${dayDiff(
-                          el?.start,
-                          el?.end
+                          el?.startDateIntervencion,
+                          el?.endDateIntervencion
                         )} * 100% - 1px)`,
                       }}
                     ></div>

@@ -1,84 +1,122 @@
 {
     "users": [
         {
-            "id": 1,
-            "user_name": "laura",
-            "name": "Laura Kamila", 
-            "role_id": "1",
+            "idUsuario": 1,
+            "nombreUsuario": "Laura Kamila",
+            "idRole": 1,
             "password": "123456"
         },
         {
-            "id": 2,
-            "user_name": "rebeca",
-            "name": "Rebeca Rodriguez",
-            "role_id": "2",
+            "idUsuario": 2,
+            "nombreUsuario": "Rebeca Rodriguez",
+            "idRole": 2,
             "password": "123456"
         },
         {
-            "id": 3,
-            "user_name": "carlos",
-            "name": "Carlos Ramon",
-            "role_id": "3",
+            "idUsuario": 3,
+            "nombreUsuario": "Carlos Ramon",
+            "idRole": 3,
             "password": "123456"
         },
         {
-            "id": 4,
-            "user_name": "pedro",
-            "name": "Pedris",
-            "role_id": "4",
-            "password": "123456"
-        }, {
-            "id": 5,
-            "user_name": "consultor 2",
-            "name": "Juanito Juanon",
-            "role_id": "2",
+            "idUsuario": 4,
+            "nombreUsuario": "Pedris",
+            "idRole": 4,
             "password": "123456"
         },
         {
-            "id": 6,
-            "user_name": "consultor 3",
-            "name": "Roman Gutierres",
-            "role_id": "2",
-            "password": "123456"
-        }, 
-        {
-            "id": 7,
-            "user_name": "consultor 4",
-            "name": "LOLO",
-            "role_id": "2",
-            "password": "123456"
-        }, 
-        {
-            "id": 8,
-            "user_name": "consultor 4",
-            "name": "Germinio Lopez",
-            "role_id": "2",
+            "idUsuario": 5,
+            "nombreUsuario": "Juanito Juanon",
+            "idRole": 2,
             "password": "123456"
         },
         {
-            "id": 8,
-            "user_name": "consultor 5",
-            "name": "Ramiro Martinez",
-            "role_id": "2",
+            "idUsuario": 6,
+            "nombreUsuario": "Roman Gutierres",
+            "idRole": 2,
+            "password": "123456"
+        },
+        {
+            "idUsuario": 7,
+            "nombreUsuario": "LOLO",
+            "idRole": 2,
+            "password": "123456"
+        },
+        {
+            "idUsuario": 8,
+            "nombreUsuario": "Germinio Lopez",
+            "idRole": 2,
+            "password": "123456"
+        },
+        {
+            "idUsuario": 8,
+            "nombreUsuario": "Ramiro Martinez",
+            "idRole": 2,
+            "password": "123456"
+        },
+        {
+            "idUsuario": 9,
+            "nombreUsuario": "lolo",
+            "idRole": 4,
+            "password": "123456"
+        },
+        {
+            "idUsuario": 10,
+            "nombreUsuario": "jj",
+            "idRole": 4,
             "password": "123456"
         }
     ],
     "roles": [
         {
-            "id": "1",
+            "idRole": 1,
             "name_role": "Administrador"
         },
         {
-            "id": "2",
+            "idRole": 2,
             "name_role": "Consultor"
         },
         {
-            "id": "3",
+            "idRole": 3,
             "name_role": "Consultor Jefe"
         },
         {
-            "id": "4",
+            "idRole": 4,
             "name_role": "Cliente"
+        }
+    ],
+    "consultores": [
+        {
+            "idConsultor": 1,
+            "idUsuario": 2,
+            "nombreConsultor": "Rebeca Rodriguez"
+        },
+        {
+            "idConsultor": 2,
+            "idUsuario": 5,
+            "nombreConsultor": "Juanito Juanon"
+        },
+        {
+            "idConsultor": 3,
+            "idUsuario": 6,
+            "nombreConsultor": "Roman Gutierres"
+        }
+    ],
+    "clientes": [
+        {
+            "idCliente": 1,
+            "idUsuario": 4,
+            "nombreCliente": "Pedris "
+        },
+        {
+            "idCliente": 2,
+            "idUsuario": 9,
+            "nombreCliente": "LOLO"
+        },
+        {
+            "idCliente": 3,
+            "idUsuario": 10,
+            "nombreCliente": "PEPE"
         }
     ]
 }

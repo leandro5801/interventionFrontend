@@ -1,6 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
+import data from "../../public/structure.json";
 
 import axios from "axios";
 import { useState } from "react";
@@ -9,7 +10,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller } from "react-hook-form";
-import { validationSchema } from "../../validations/validacionUsuario";
+import { validationSchema } from "../../validations/validacionConsultor";
 
 //sms de confirmacion
 import {
@@ -23,41 +24,44 @@ import {
   InputLabel,
 } from "@mui/material";
 
-export default function UserForm({
-  setUsers,
-  setRoles,
+export default function ClienteForm({
+  setClientes,
+  clientes,
+  cliente,
   users,
-  user,
-  roles,
-  nombreRol,
   onCancel,
   onSave,
 }) {
-  const [nombre_usuario, setUserName] = useState(user ? user.nombre_usuario : "");
-  const [contraseña, setcontraseña] = useState(user ? user.contraseña : "");
+  const nombreUsuario = (id_usuario) => {
+    const user = users.find((e) => e.id_usuario === id_usuario);
+    const name = user ? user.nombre_usuario : "no se encontro el nombre";
+    return name;
+  };
+  const [name, setName] = useState(cliente ? cliente.nombre_cliente : "");
 
-
-  const [role, setRole] = useState(
-    user
-      ? {  
-          label: nombreRol(user.id_rol),
-          value: user.id_rol,
+  const [usuario, setUsuario] = useState(
+    cliente
+      ? {
+          label: nombreUsuario(cliente.id_usuario),
+          value: cliente.id_usuario,
         }
       : ""
   );
 
-  const rolesOptions =
-    roles &&
-    roles.map((item) => ({
-      value: item.id_rol,
-      label: item.nombre_rol,
-    }));
+  const userOptions =
+    users &&
+    users
+      .filter((user) => user.id_rol === 4)
+      .map((item) => ({
+        value: item.id_usuario,
+        label: item.nombre_usuario,
+      }));
 
-  const handleRolesChange = (newValue) => {
-    setRole({ label: newValue.label, value: newValue.value });
+  const handleUsuariosChange = (newValue) => {
+    setUsuario({ label: newValue.label, value: newValue.value });
   };
   const defaultValues = {
-    role: role,
+    user: usuario,
   };
 
   // form validation rules
@@ -80,68 +84,66 @@ export default function UserForm({
     // event.preventDefault();
     setOpen(true);
     setFormData(data);
-    setType(user ? "editar" : "crear");
+    setType(cliente ? "editar" : "crear");
   }
 
   const [error, setError] = useState(null);
-  async function createUsuario(updatedRow) {
+  async function createCliente(updatedRow) {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/usuario",
+        "http://localhost:3000/api/cliente",
         updatedRow
       );
       if (response.status === 201) {
-        // Actualiza el estado para añadir la nueva usuario al frontend
-        setUsers([...users, response.data]);
+        // Actualiza el estado para añadir la nueva cliente al frontend
+        setClientes([...clientes, response.data]);
       } else {
-        throw new Error("Error al crear el usuario");
+        throw new Error("Error al crear el cliente");
       }
     } catch (error) {
       console.error(error);
       setError(
-        "Hubo un problema al crear el usuario. Por favor, inténtalo de nuevo."
+        "Hubo un problema al crear el cliente. Por favor, inténtalo de nuevo."
       );
     }
   }
-  async function editUsuario(id_usuario, usuarioData) {
+  async function editCliente(id_cliente, clienteData) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/usuario/${id_usuario}`,
-        usuarioData
+        `http://localhost:3000/api/cliente/${id_cliente}`,
+        clienteData
       );
       if (response.status === 200) {
         // Actualiza el estado para reflejar los cambios en el frontend
-        setUsers(
-          users.map((user) =>
-            user.id_usuario === id_usuario ? response.data : user
+        setClientes(
+          clientes.map((cliente) =>
+            cliente.id_cliente === id_cliente ? response.data : cliente
           )
         );
       } else {
-        throw new Error("Error al editar el usuario");
+        throw new Error("Error al editar el cliente");
       }
     } catch (error) {
       console.error(error);
       setError(
-        "Hubo un problema al editar el usuario. Por favor, inténtalo de nuevo."
+        "Hubo un problema al editar el cliente. Por favor, inténtalo de nuevo."
       );
     }
   }
 
   const handleConfirm = (data) => {
     const updatedRow = {
-      // id_usuario: user ? user.id : users.length + 1,
-      nombre_usuario: data.nombre_usuario,
-      id_rol: parseInt(data.role.value),
-      contraseña: data.contraseña,
+      // idCliente: cliente ? cliente.idCliente : clientes.length + 1,
+      nombre_cliente: data.name,
+      id_usuario: parseInt(data.user.value),
     };
 
-    user
-      ? editUsuario(user.id_usuario, updatedRow)
-      : createUsuario(updatedRow);
-
-
+    cliente
+    ? editCliente(cliente.id_cliente, updatedRow)
+    : createCliente(updatedRow);
+  
     onSave();
-
+    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
   };
 
@@ -151,67 +153,49 @@ export default function UserForm({
 
   return (
     <>
-      <DialogTitle>Usuario</DialogTitle>
+      <DialogTitle>cliente</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
             <Input
               className={`${styles.inputForm}  ${
-                errors.nombre_usuario ? "is-invalid" : ""
+                errors.name ? "is-invalid" : ""
               }`}
               type="text"
-              id="nombre_usuario"
-              {...register("nombre_usuario")}
-              value={nombre_usuario}
-              onChange={(event) => setUserName(event.target.value)}
-              placeholder="Usuario"
+              id="name"
+              {...register("name")}
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="Nombre del cliente"
             />
-            <div className={styles.error}>{errors.nombre_usuario?.message}</div>
+            <div className={styles.error}>{errors.name?.message}</div>
           </div>
           <div>
             <Controller
-              name="role"
+              name="user"
               control={control}
               render={({ field }) => (
                 <Select
                   styles={customStyles}
-                  id="role"
+                  id="user"
                   {...field}
                   className={`${styles.selectFormRec}  ${
-                    errors.role ? "is-invalid" : ""
+                    errors.user ? "is-invalid" : ""
                   }`}
                   onChange={(selectedOption) => {
-                    handleRolesChange(selectedOption);
-                    setValue("role", selectedOption);
+                    handleUsuariosChange(selectedOption);
+                    setValue("user", selectedOption);
                     field.onChange(selectedOption);
                   }}
-                  options={rolesOptions}
+                  options={userOptions}
                   maxMenuHeight={120}
-                  placeholder="Rol"
+                  placeholder="Usuario"
                 />
               )}
             />
-            {errors.role && (
-              <div className={styles.error}>Seleccione un rol.</div>
+            {errors.user && (
+              <div className={styles.error}>Seleccione un usuario.</div>
             )}
-          </div>
-        
-        </div>
-        <div className={styles.inputGroup}>
-        
-          <div>
-            <Input
-              className={`${styles.inputForm}  ${
-                errors.contraseña ? "is-invalid" : ""
-              }`}
-              type="password"
-              id="contraseña"
-              {...register("contraseña")}
-              value={contraseña}
-              onChange={(event) => setcontraseña(event.target.value)}
-              placeholder="Contraseña"
-            />
-            <div className={styles.error}>{errors.contraseña?.message}</div>
           </div>
         </div>
 

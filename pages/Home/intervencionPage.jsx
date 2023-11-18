@@ -9,7 +9,6 @@ import datosintervenciones from "../../public/datosintervenciones.json";
 import datosProyectos from "../../public/datosProyectos.json"
 import datosEmpresas from "../../public/datosEmpresas.json"
 
-
 export default function IntervencionPage() {
 
     // datos de las intervenciones

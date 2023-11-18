@@ -20,11 +20,6 @@ import {
   InputLabel,
 } from "@mui/material";
 
-const empresaOptionss = [
-  { value: "Aica", label: "Aica" },
-  { value: "Empresa 2", label: "empresa 2" },
-  { value: "Empresa 3", label: "empresa 3" },
-];
 export default function EmpresaForm({
   setEmpresas,
   empresas,

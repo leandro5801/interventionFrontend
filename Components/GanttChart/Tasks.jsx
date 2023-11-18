@@ -104,14 +104,14 @@ export default function Tasks({
       {filteredTasks &&
         filteredTasks.map((tsk, i) => (
           <div
-            key={`${i}-${tsk?.id}-${tsk.name}`}
+            key={`${i}-${tsk?.id}-${tsk.nombreIntervencion}`}
             className={styles.ganttTaskRow}
           >
             <input
               readOnly
               className={styles.inputTask}
               data-task-id={tsk?.id}
-              value={tsk?.name}
+              value={tsk?.nombreIntervencion}
               // onChange={(e) => onChange(e, i)}
               onClick={handleClick}
               // ref={(el) => (inputRef.current[i] = el)}

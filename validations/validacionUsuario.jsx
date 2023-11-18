@@ -1,9 +1,8 @@
 import * as Yup from "yup";
 
 export const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Ingrese un nombre."),
-  userName: Yup.string().required("Ingrese un usuario."),
-  password: Yup.string()
+  nombre_usuario: Yup.string().required("Ingrese un nombre."),
+  contraseña: Yup.string()
   .required("Ingrese una contraseña.")
   .min(6, "La contraseña debe tener al menos 6 caracteres."),
   // .matches(

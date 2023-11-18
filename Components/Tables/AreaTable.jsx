@@ -40,6 +40,10 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
   //para retornar el nombre de la empresa y no el id
   const uebPorId = (idUeb) => {
     const ueb = uebs.find((e) => e.idUeb === idUeb);
+    if (!ueb) {
+      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      return;
+    }
     return ueb;
   };
   const direccionPorId = (idDireccion) => {
@@ -47,7 +51,6 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
     return direccion;
   };
   const nombreEmpresa = (idEmpresa) => {
-    console.log(idEmpresa);
     const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
     const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
     return name;
@@ -246,211 +249,221 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
           <div>
             <div className={styles.divIconH2}></div>
             <TableContainer component={Paper} className={styles.table}>
-              <div className={styles.btnNuevoContent}>
-                <Button
-                  className={styles.btn}
-                  onClick={() => {
-                    setDialogOpen(true);
-                  }}
-                >
-                  Nuevo +
-                </Button>
-                <FormDialog
-                  open={dialogOpen}
-                  onClose={() => {
-                    setDialogOpen(false);
-                  }}
-                  FormComponent={AreaForm}
-                  setAreas={setAreas}
-                  areas={areas}
-                  onSave={() => {
-                    setDialogOpen(false);
-                  }}
-                  onCancel={() => {
-                    setDialogOpen(false);
-                  }}
-                  empresas={empresas}
-                  uebs={uebs}
-                  direcciones={direcciones}
-                  uebPorId={uebPorId}
-                  direccionPorId={direccionPorId}
-                  nombreEmpresa={nombreEmpresa}
-                  nombreUeb={nombreUeb}
-                  nombreDireccion={nombreDireccion}
-                ></FormDialog>
-                {/* SELECCIONAR PROYECTO ETC */}
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
+              <>
+                <div className={styles.btnNuevoContent}>
+                  <Button
+                    className={styles.btn}
+                    onClick={() => {
+                      setDialogOpen(true);
+                    }}
+                  >
+                    Nuevo +
+                  </Button>
+                  <FormDialog
+                    open={dialogOpen}
+                    onClose={() => {
+                      setDialogOpen(false);
+                    }}
+                    FormComponent={AreaForm}
+                    setAreas={setAreas}
+                    areas={areas}
+                    onSave={() => {
+                      setDialogOpen(false);
+                    }}
+                    onCancel={() => {
+                      setDialogOpen(false);
+                    }}
+                    empresas={empresas}
+                    uebs={uebs}
+                    direcciones={direcciones}
+                    uebPorId={uebPorId}
+                    direccionPorId={direccionPorId}
+                    nombreEmpresa={nombreEmpresa}
+                    nombreUeb={nombreUeb}
+                    nombreDireccion={nombreDireccion}
+                  ></FormDialog>
+                  {/* SELECCIONAR PROYECTO ETC */}
+                  <div className={styles.filterListOffOutlinedContent}>
+                    {showFilters ? (
+                      <FilterListOffOutlinedIcon
+                        onClick={() => {
+                          toggleFilters();
+                          limpiarFiltrados();
+                        }}
+                        style={{ width: "18px", cursor: "pointer" }}
+                      />
+                    ) : (
+                      <FilterListOutlinedIcon
+                        onClick={toggleFilters}
+                        style={{ width: "18px", cursor: "pointer" }}
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-              {areas.length === 0 && (
-                <div className={styles.divIconH2}>
-                  <h5> No hay areas</h5>{" "}
-                </div>
-              )}
-              {areas.length === 0 || (
-                <Table stickyHeader>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={styles.spacing}>
-                        Empresa
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={empresaFilter}
-                            onChange={(empresaFilter) => {
-                              handleEmpresaFilterChange(empresaFilter);
-                            }}
-                            options={optionEmpresas}
-                            placeholder="Empresa"
-                            isClearable
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}>
-                        Ueb
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={uebFilter}
-                            onChange={(uebFilter) => {
-                              handleUebFilterChange(uebFilter);
-                            }}
-                            options={optionUebs}
-                            placeholder="Ueb"
-                            isClearable
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}>
-                        Dirección
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={structureFilter}
-                            onChange={(structureFilter) => {
-                              handleStructureFilterChange(structureFilter);
-                            }}
-                            options={optionDirecciones}
-                            placeholder="Dirección"
-                            isClearable
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}>
-                        Area
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="text"
-                            value={nameFilter}
-                            onChange={handleNameFilterChange}
-                            placeholder="Filtrar por areas"
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}></TableCell>
-                    </TableRow>
-                  </TableHead>
+                {areas.length === 0 && (
+                  <div className={styles.divIconH2}>
+                    <h5> No hay areas</h5>{" "}
+                  </div>
+                )}
+                {areas.length === 0 || (
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell className={styles.spacing}>
+                          Empresa
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={empresaFilter}
+                              onChange={(empresaFilter) => {
+                                handleEmpresaFilterChange(empresaFilter);
+                              }}
+                              options={optionEmpresas}
+                              placeholder="Empresa"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Ueb
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={uebFilter}
+                              onChange={(uebFilter) => {
+                                handleUebFilterChange(uebFilter);
+                              }}
+                              options={optionUebs}
+                              placeholder="Ueb"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Dirección
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={structureFilter}
+                              onChange={(structureFilter) => {
+                                handleStructureFilterChange(structureFilter);
+                              }}
+                              options={optionDirecciones}
+                              placeholder="Dirección"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Area
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={nameFilter}
+                              onChange={handleNameFilterChange}
+                              placeholder="Filtrar por areas"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}></TableCell>
+                      </TableRow>
+                    </TableHead>
 
-                  <TableBody>
-                    {filteredData
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((area) => (
-                        <TableRow key={area.idArea} className={styles.trStyle}>
-                          <TableCell className={styles.tdStyle}>
-                            {/* {nombreEmpresa(
+                    <TableBody>
+                      {filteredData
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((area) => (
+                          <TableRow
+                            key={area.idArea}
+                            className={styles.trStyle}
+                          >
+                            <TableCell className={styles.tdStyle}>
+                              {/* {nombreEmpresa(
                               uebPorId(direccionPorId(area.idDireccion).idUeb)
                                 .idEmpresa
                             )} */}
 
-                            {nombreEmpresa(
-                              uebPorId(direccionPorId(area.idDireccion).idUeb).idEmpresa
-                            )}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {nombreUeb(direccionPorId(area.idDireccion).idUeb)}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {nombreDireccion(area.idDireccion)}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {area.nombreArea}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            <FontAwesomeIcon
-                              icon={faEdit}
-                              onClick={() =>
-                                setEditIIdx(
-                                  filteredData.findIndex(
-                                    (item) => item.idArea === area?.idArea
+                              {nombreEmpresa(
+                                uebPorId(direccionPorId(area.idDireccion).idUeb)
+                                  .idEmpresa
+                              )}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreUeb(
+                                direccionPorId(area.idDireccion).idUeb
+                              )}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreDireccion(area.idDireccion)}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {area.nombreArea}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    filteredData.findIndex(
+                                      (item) => item.idArea === area?.idArea
+                                    )
                                   )
-                                )
-                              }
-                              className={styles.faIcon}
-                            />
-                            <FontAwesomeIcon
-                              icon={faTrash}
-                              onClick={() => openConfirmation(area?.idArea)}
-                              data-task-id={area?.idArea}
-                              className={styles.faIcon}
-                            />
-                            <Dialog
-                              open={open}
-                              onClose={handleClose}
-                              BackdropProps={{ invisible: true }}
-                            >
-                              <DialogTitle>Confirmar Eliminación</DialogTitle>
-                              <DialogContent>
-                                <p>¿Está seguro de eliminar esta area?</p>
-                              </DialogContent>
-                              <DialogActions>
-                                <Button onClick={() => handleDelete(data)}>
-                                  Aceptar
-                                </Button>
-                                <Button onClick={handleClose}>Cancelar</Button>
-                              </DialogActions>
-                            </Dialog>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                  </TableBody>
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() => openConfirmation(area?.idArea)}
+                                data-task-id={area?.idArea}
+                                className={styles.faIcon}
+                              />
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                BackdropProps={{ invisible: true }}
+                              >
+                                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                                <DialogContent>
+                                  <p>¿Está seguro de eliminar esta area?</p>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={() => handleDelete(data)}>
+                                    Aceptar
+                                  </Button>
+                                  <Button onClick={handleClose}>
+                                    Cancelar
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
 
-                  <TableFooter>
-                    <TableRow>
-                      <TablePagination
-                        className={styles.tablePagination}
-                        rowsPerPageOptions={[4, 5, 10]}
-                        count={filteredData.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                        labelRowsPerPage="Filas por página:"
-                      />
-                    </TableRow>
-                  </TableFooter>
-                </Table>
-              )}
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          className={styles.tablePagination}
+                          rowsPerPageOptions={[4, 5, 10]}
+                          count={filteredData.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage="Filas por página:"
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                )}
+              </>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

@@ -16,6 +16,8 @@ import DragIndicatorOutlinedIcon from "@mui/icons-material/DragIndicatorOutlined
 import EngineeringOutlinedIcon from "@mui/icons-material/EngineeringOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
 import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithChangesOutlined';
+import Person3OutlinedIcon from '@mui/icons-material/Person3Outlined';
+import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
@@ -175,6 +177,26 @@ function SideBar({}) {
                 style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
               /> {" "}
               Usuarios
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link href="/Home/consultorPage">
+              {" "}
+              <PeopleAltOutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+              Consultores
+            </Link>
+          </li>
+          <li>
+            {" "}
+            <Link href="/Home/clientePage">
+              {" "}
+              <Person3OutlinedIcon
+                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
+              /> {" "}
+              Clientes
             </Link>
           </li>
         </ul>
