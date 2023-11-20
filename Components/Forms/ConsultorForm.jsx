@@ -48,9 +48,11 @@ export default function ConsultorForm({
       : ""
   );
 
+  const consultorIds = consultores.map(consultor => consultor.id_usuario);
+
   const userOptions =
     users &&
-    users.filter((user) => user.id_rol === 2).map((item) => ({
+    users.filter((user) => user.id_rol === 2 && !consultorIds.includes(user.id_usuario)).map((item) => ({
       value: item.id_usuario,
       label: item.nombre_usuario,
     }));
@@ -133,7 +135,6 @@ export default function ConsultorForm({
       nombre_consultor: data.name,
       id_usuario: parseInt(data.user.value),
     };
-    console.log(updatedRow)
 
     consultor
     ? editConsultor(consultor.id_consultor, updatedRow)

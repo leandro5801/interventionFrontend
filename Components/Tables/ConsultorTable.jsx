@@ -113,9 +113,7 @@ function ConsultorTable({
         `http://localhost:3000/api/consultor/${id}`
       );
       if (response.status === 200) {
-        setConsultores(
-          users.filter((consultor) => consultor.id_consultor !== id)
-        );
+        setConsultores(consultores.filter((consultor) => consultor.id_consultor !== id));
         setOpen(false);
       } else {
         throw new Error("Error al eliminar el consultor");
@@ -324,7 +322,7 @@ function ConsultorTable({
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
                 FormComponent={ConsultorForm}
-                setConsultores={consultorUpdate}
+                setConsultores={setConsultores}
                 consultor={consultores[editIIdx]}
                 consultores={consultores}
                 onSave={handleSaveI}

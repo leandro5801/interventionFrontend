@@ -1,6 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
 import axios from "axios";
+import { customStyles } from "../../styles/SelectFilterStyles";
 
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -53,7 +54,15 @@ function ProjectTable({
     const name = cliente ? cliente.nombre_cliente : "no se encontro el nombre";
     return name;
   };
-
+  const nombreConsultor = (id_consultor) => {
+    const consultor = consultores.find(
+      (consultor) => consultor.id_consultor === id_consultor
+    );
+    const name = consultor
+      ? consultor.nombre_consultor
+      : "no se encontro el nombre";
+    return name;
+  };
   //para los select de proyecto etc
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -96,9 +105,21 @@ function ProjectTable({
 
   const [nameFilter, setNameFilter] = useState("");
   const [objetivoFilter, setObjetivoFilter] = useState("");
-  const [clienteFilter, setClienteFilter] = useState("");
+  const [clienteFilter, setClienteFilter] = useState([]);
   const [consultoresFilter, setConsultoresFilter] = useState([]);
 
+  const consultoresOptions =
+    consultores &&
+    consultores.map((item) => ({
+      value: item.id_consultor,
+      label: item.nombre_consultor,
+    }));
+  const clienteOptions =
+    clientes &&
+    clientes.map((item) => ({
+      value: item.id_cliente,
+      label: item.nombre_cliente,
+    }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
   };
@@ -106,30 +127,32 @@ function ProjectTable({
   const handleObjetivoFilterChange = (event) => {
     setObjetivoFilter(event.target.value);
   };
-  const handleClienteFilterChange = (event) => {
-    setClienteFilter(event.target.value);
+  const handleConsultoresFilterChange = (data) => {
+    data ? setConsultoresFilter(data) : setConsultoresFilter([]);
   };
-  const handleConsultoresFilterChange = (event) => {
-    const newConsultor = event.target.value;
-    setConsultoresFilter([newConsultor]);
+  const handleClienteFilterChange = (data) => {
+    data ? setClienteFilter(data) : setClienteFilter([]);
   };
+
   const limpiarFiltrados = () => {
     setNameFilter("");
     setObjetivoFilter("");
-    setClienteFilter("");
-    setConsultoresFilter("");
+    setClienteFilter([]);
+    setConsultoresFilter([]);
   };
   const filteredData = projects.filter(
     (item) =>
       item.nombre_proyecto.toLowerCase().includes(nameFilter.toLowerCase()) &&
       item.objetivos.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
-      nombreCliente(item.id_cliente)
-        .toLowerCase()
-        .includes(clienteFilter.toLowerCase()) &&
-      item.consultores.some((consultor) =>
-        consultor.name.toLowerCase().includes(consultoresFilter)
-      )
+      (clienteFilter.length === 0 || item.id_cliente === clienteFilter.value) &&
+      (consultoresFilter.length === 0 ||
+        item.consultores_asignados_id.some(
+          (consultor) => consultor === consultoresFilter.value
+        ))
+    //  && consultoresFilter &&
+    //   item.consultores_asignados_id.some((consultor) => consultor === consultoresFilter)
   );
+
   // sms de confirmacion
   const [data, setData] = useState("");
 
@@ -230,7 +253,9 @@ function ProjectTable({
                     setDialogOpen(false);
                   }}
                   consultoress={consultores}
-                  clientes={clientes}
+                  clientess={clientes}
+                  nombreConsultor={nombreConsultor}
+                  nombreCliente={nombreCliente}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
@@ -327,24 +352,34 @@ function ProjectTable({
                         <TableCell className={styles.letraEnNegrita}>
                           Cliente
                           {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={clienteFilter}
-                              onChange={handleClienteFilterChange}
-                              placeholder="Filtrar por cliente"
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={clienteFilter}
+                              onChange={(clienteFilter) => {
+                                handleClienteFilterChange(clienteFilter);
+                              }}
+                              options={clienteOptions}
+                              placeholder="Clientes"
+                              isClearable
                             />
                           )}
                         </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Consultor
                           {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={consultoresFilter}
-                              onChange={handleConsultoresFilterChange}
-                              placeholder="Filtrar por consultores"
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={consultoresFilter}
+                              onChange={(consultoresFilter) => {
+                                handleConsultoresFilterChange(
+                                  consultoresFilter
+                                );
+                              }}
+                              options={consultoresOptions}
+                              placeholder="Consultor"
+                              isClearable
                             />
                           )}
                         </TableCell>
@@ -361,19 +396,22 @@ function ProjectTable({
                           page * rowsPerPage + rowsPerPage
                         )
                         .map((project) => (
-                          <TableRow key={project.id_proyecto} className={styles.trStyle}>
+                          <TableRow
+                            key={project.id_proyecto}
+                            className={styles.trStyle}
+                          >
                             <TableCell className={styles.tdStyle}>
                               {project.nombre_proyecto}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {project.objetivo}
+                              {project.objetivos}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {project.cliente}
+                              {nombreCliente(parseInt(project.id_cliente))}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {project.consultores
-                                .map((consultor) => consultor.name)
+                              {project.consultores_asignados_id
+                                .map((consultor) => nombreConsultor(consultor))
                                 .join(", ")}
                             </TableCell>
 
@@ -383,7 +421,9 @@ function ProjectTable({
                                 onClick={() =>
                                   setEditIIdx(
                                     filteredData.findIndex(
-                                      (item) => item.id_proyecto === project?.id_proyecto
+                                      (item) =>
+                                        item.id_proyecto ===
+                                        project?.id_proyecto
                                     )
                                   )
                                 }
@@ -391,7 +431,9 @@ function ProjectTable({
                               />
                               <FontAwesomeIcon
                                 icon={faTrash}
-                                onClick={() => openConfirmation(project?.id_proyecto)}
+                                onClick={() =>
+                                  openConfirmation(project?.id_proyecto)
+                                }
                                 data-task-id={project?.id_proyecto}
                                 className={styles.faIcon}
                               />
@@ -439,11 +481,15 @@ function ProjectTable({
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
                 FormComponent={ProyectoForm}
-                setProjects={proyectoUpdate}
+                setProjects={setProjects}
+                projects={projects}
                 project={projects[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
                 consultoress={consultores}
+                clientess={clientes}
+                nombreConsultor={nombreConsultor}
+                nombreCliente={nombreCliente}
               ></FormDialog>
             </TableContainer>
           </div>

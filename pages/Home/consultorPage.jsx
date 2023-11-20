@@ -42,7 +42,7 @@ export default function ConsultorPage() {
     fetchConsultor();
     fetchUsuario();
   }, []);
-console.log(consultores, users)
+
   return (
     <div className={styles.title}>
       <h3>Consultores</h3>
