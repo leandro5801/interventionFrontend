@@ -35,11 +35,6 @@ import {
 
 import Select from "react-select";
 
-const options = [
-  { value: "Proyecto Aica", label: "Proyecto Aica" },
-  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
-];
-
 function ProjectTable({
   projects,
   setProjects,

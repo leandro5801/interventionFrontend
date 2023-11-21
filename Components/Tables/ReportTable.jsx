@@ -34,32 +34,23 @@ import {
   Button,
 } from "@mui/material";
 
-// Para probar con consultores y trabajadoresBORRAR DESPUES Y CARGAR DEL LISTADO DE CONSULTORES REAL
-const consultoress = [
-  { id: 1, name: "Carlos Ramón López Paz" },
-  { id: 2, name: "Laura Alfonzo Perez" },
-  { id: 3, name: "Alberto López Gónzalez" },
-  { id: 4, name: "Lazaro Días Alvares" },
-];
-const clasificacioness = [
-  { id: 1, name: "Tipo 1" },
-  { id: 2, name: "Tipo 2" },
-  { id: 3, name: "Tipo 3" },
-  { id: 4, name: "Tipo 4" },
-];
-const options = [
-  { value: "Proyecto Aica", label: "Proyecto Aica" },
-  { value: "Proyecto Liorad", label: "Proyecto Liorad" },
-];
-function ReportTable({ recomendations, setRecomendations, interventions, projects }) {
+function ReportTable({
+  recomendations,
+  setRecomendations,
+  interventions,
+  projects,
+}) {
   //para retornar el nombre de la empresa y no el id
-  const interventionPorId = (interventionId) => {
-    const intervention = interventions.find((e) => e.id === interventionId);
+  const intervencionPorId = (id_intervencion) => {
+    const intervention = interventions.find(
+      (e) => e.id_intervencion === id_intervencion
+    );
     return intervention;
   };
-
-  const [consultores, setConsultores] = useState(consultoress);
-  const [clasificaciones, setClasificaciones] = useState(clasificacioness);
+  const isFollow = (follow) => {
+    const name = follow ? "Sí" : "No";
+    return name;
+  };
 
   //para los select de proyecto etc
   const [selectedOption, setSelectedOption] = useState(null);
@@ -92,17 +83,6 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
     setEditRIdx(-1);
   };
 
-  const recomendationUpdate = (updatedRow) => {
-    // Crea una copia de los datos de la tabla
-    const updatedTableRData = [...recomendations];
-
-    // Actualiza los datos de la fila que se está editando
-    updatedTableRData[editRIdx] = updatedRow;
-
-    // Actualiza el estado de los datos en la tabla
-    setRecomendations(updatedTableRData);
-  };
-
   //  Para el filtrado por criterios (consultor, trabajador)
   const [showFilters, setShowFilters] = useState(false);
 
@@ -116,8 +96,8 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
   const optionProjects =
     projects &&
     projects.map((item) => ({
-      value: item.id,
-      label: item.name,
+      value: item.id_proyecto,
+      label: item.nombre_proyecto,
     }));
   const [interventionFilter, setInterventionFilter] = useState([]);
   const optioninterventions =
@@ -125,12 +105,12 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
     interventions
       .filter((item) =>
         projectFilter && projectFilter.value
-          ? item.projectId === projectFilter.value
+          ? item.id_proyecto === projectFilter.value
           : true
       )
       .map((item) => ({
-        value: item.id,
-        label: item.name,
+        value: item.id_intervencion,
+        label: item.nombre_intervencion,
       }));
   const handleProjectFilterChange = (data) => {
     data ? setProjectFilter(data) : setProjectFilter([]);
@@ -145,7 +125,6 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
   const [descriptionFilter, setDescriptionFilter] = useState("");
   const [fechaFilter, setFechaFilter] = useState("");
   const [followFilter, setFollowFilter] = useState("");
-
 
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -172,17 +151,20 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
   const filteredData = recomendations.filter(
     (item) =>
       (projectFilter.length === 0 ||
-        interventionPorId(item.idIntervention).projectId ===
+        intervencionPorId(item.id_intervencion).id_proyecto ===
           projectFilter.value) &&
       (interventionFilter.length === 0 ||
-        item.idIntervention === interventionFilter.value) &&
-      item.name.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.description
+        item.id_intervencion === interventionFilter.value) &&
+      item.nombre_recomendacion
+        .toLowerCase()
+        .includes(nameFilter.toLowerCase()) &&
+      item.descripcion_recomendacion
         .toLowerCase()
         .includes(descriptionFilter.toLowerCase()) &&
-      item.follow.toLowerCase().includes(followFilter.toLowerCase())
-      &&
-      item.fecha.toLowerCase().includes(fechaFilter.toLowerCase())
+      isFollow(item.seguimiento)
+        .toLowerCase()
+        .includes(followFilter.toLowerCase()) &&
+      item.fecha_recomendacion.toLowerCase().includes(fechaFilter.toLowerCase())
   );
   // sms de confirmacion
   const [open, setOpen] = useState(false);
@@ -194,17 +176,7 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
     setData(data);
   }
 
-  function handleDelete(idNum) {
-    const newRecomendation = recomendations.filter(
-      (recomendacion) => recomendacion.id !== idNum
-    );
-
-    setRecomendations(newRecomendation);
-
-    // update state (if data on backend - make API request to update data)
-
-    setOpen(false);
-  }
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -229,7 +201,7 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                 isClearable
               />
             )}
-             {showFilters && (
+            {showFilters && (
               <Select
                 styles={customStyles}
                 className={styles.selectGestiones}
@@ -245,10 +217,10 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
-                onClick={() => {
-                  toggleFilters();
-                  limpiarFiltrados();
-                }}
+                  onClick={() => {
+                    toggleFilters();
+                    limpiarFiltrados();
+                  }}
                   style={{ width: "18px", cursor: "pointer" }}
                 />
               ) : (
@@ -262,11 +234,11 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
           <Table stickyHeader>
             <TableHead>
               <TableRow>
-                <TableCell className={styles.spacingReport}>
+                <TableCell className={styles.letraEnNegrita}>
                   Recomendación
                   {showFilters && (
                     <input
-                      className={styles.inputFilterReport}
+                      className={styles.inputFilter}
                       type="text"
                       value={nameFilter}
                       onChange={handleNameFilterChange}
@@ -274,11 +246,11 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.trStyleReport}>
+                <TableCell className={styles.letraEnNegrita}>
                   Descripción
                   {showFilters && (
                     <input
-                      className={styles.inputFilterReport}
+                      className={styles.inputFilter}
                       type="text"
                       value={descriptionFilter}
                       onChange={handleDescriptionFilterChange}
@@ -286,7 +258,7 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacingReport}>
+                <TableCell className={styles.letraEnNegrita}>
                   Fecha
                   {showFilters && (
                     <input
@@ -298,11 +270,11 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     />
                   )}
                 </TableCell>
-                <TableCell className={styles.spacingReport}>
+                <TableCell className={styles.letraEnNegrita}>
                   Seguida
                   {showFilters && (
                     <input
-                      className={styles.inputFilterReport}
+                      className={styles.inputFilter}
                       type="text"
                       value={followFilter}
                       onChange={handleFollowFilterChange}
@@ -310,25 +282,24 @@ function ReportTable({ recomendations, setRecomendations, interventions, project
                     />
                   )}
                 </TableCell>
-               
               </TableRow>
             </TableHead>
             <TableBody>
               {filteredData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((recomendation) => (
-                  <TableRow key={recomendation.id} className={styles.trStyle}>
-                    <TableCell className={styles.tdStyle}>
-                      {recomendation.name}
+                  <TableRow key={recomendation.id_recomendacion} >
+                    <TableCell >
+                      {recomendation.nombre_recomendacion}
                     </TableCell>
-                    <TableCell className={styles.tdStyleReport}>
-                      {recomendation.description}
+                    <TableCell >
+                      {recomendation.descripcion_recomendacion}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
-                      {recomendation.fecha}
+                    <TableCell >
+                      {recomendation.fecha_recomendacion}
                     </TableCell>
-                    <TableCell className={styles.tdStyle}>
-                      {recomendation.follow}
+                    <TableCell >
+                      {isFollow(recomendation.seguimiento)}
                     </TableCell>
                   </TableRow>
                 ))}

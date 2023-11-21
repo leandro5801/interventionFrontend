@@ -67,7 +67,6 @@ export default function ProyectoPage() {
     fetchConsultores();
   }, []);
 
-
   return (
     <div className={styles.title}>
       <h3> Proyectos</h3>

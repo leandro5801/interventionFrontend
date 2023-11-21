@@ -39,19 +39,19 @@ export default function Tasks({
     setData(data);
   }
 
-  // Eliminar tarea
-  function handleDelete(e) {
-    const idNum = parseInt(e.target.getAttribute("data-task-id"));
-    const newTasks = interventions.filter((task) => task.id !== idNum);
-    const newRecomendations = recomendations.filter(
-      (recomendation) => recomendation.idIntervention !== idNum
-    );
-    setRecomendations(newRecomendations);
+  // // Eliminar tarea
+  // function handleDelete(e) {
+  //   const idNum = parseInt(e.target.getAttribute("data-task-id"));
+  //   const newTasks = interventions.filter((task) => task.id !== idNum);
+  //   const newRecomendations = recomendations.filter(
+  //     (recomendation) => recomendation.idIntervention !== idNum
+  //   );
+  //   setRecomendations(newRecomendations);
 
-    // update state (if data on backend - make API request to update data)
-    setInterventions(newTasks);
-    setOpen(false);
-  }
+  //   // update state (if data on backend - make API request to update data)
+  //   setInterventions(newTasks);
+  //   setOpen(false);
+  // }
   const handleClose = () => {
     setOpen(false);
   };
@@ -62,32 +62,32 @@ export default function Tasks({
     }
   });
   // para el filtrado
-  let filteredTasks = [];
+  // let filteredTasks = [];
 
-  if (interventions) {
-    filteredTasks = interventions.filter(
-      (task) =>
-        (!selectedUeb || task.ueb === selectedUeb) &&
-        (!selectedStructure || task.structure === selectedStructure) &&
-        (!selectedArea || task.area === selectedArea) &&
-        (!selectedConsultor || task.consultor === selectedConsultor) &&
-        (!selectedProcess || task.process === selectedProcess)
-    );
-  }
+  // if (interventions) {
+  //   filteredTasks = interventions.filter(
+  //     (task) =>
+  //       (!selectedUeb || task.ueb === selectedUeb) &&
+  //       (!selectedStructure || task.structure === selectedStructure) &&
+  //       (!selectedArea || task.area === selectedArea) &&
+  //       (!selectedConsultor || task.consultor === selectedConsultor) &&
+  //       (!selectedProcess || task.process === selectedProcess)
+  //   );
+  // }
 
   // Para cuando presiono sobre un intput
   const handleClick = (e) => {
     const taskId = parseInt(e.target.getAttribute("data-task-id"));
-    const task = filteredTasks.find((t) => t.id === taskId);
+    const task = interventions.find((t) => t.id_intervencion === taskId); //cambiar interventions por filteredTasks
     setSelectedIntervention(task);
     setTableRData(
       recomendations.filter(
-        (recomendation) => recomendation.idIntervention === task.id
+        (recomendation) =>
+          recomendation.id_intervencion === task.id_intervencion
       )
     );
-    setRecomendations;
-    
-    
+    // setRecomendations;
+
     setOpenDialog(true);
   };
 
@@ -101,23 +101,21 @@ export default function Tasks({
       <div className={styles.ganttTaskRow}></div>
 
       {/* Creación de filas de tareas */}
-      {filteredTasks &&
-        filteredTasks.map((tsk, i) => (
+      {interventions &&
+        interventions.map((tsk, i) => (
           <div
-            key={`${i}-${tsk?.id}-${tsk.nombreIntervencion}`}
+            key={`${i}-${tsk?.id_intervencion}-${tsk.nombre_intervencion}`}
             className={styles.ganttTaskRow}
           >
             <input
               readOnly
               className={styles.inputTask}
-              data-task-id={tsk?.id}
-              value={tsk?.nombreIntervencion}
+              data-task-id={tsk?.id_intervencion}
+              value={tsk?.nombre_intervencion}
               // onChange={(e) => onChange(e, i)}
               onClick={handleClick}
               // ref={(el) => (inputRef.current[i] = el)}
             />
-           
-            
           </div>
         ))}
     </div>

@@ -45,7 +45,7 @@ function TrabajadorTable({
   areas,
   cargando,
 }) {
-  //para retornar el nombre de la empresa y no el id
+  //para retornar el nombre de y no el id
   const uebPorId = (idUeb) => {
     const ueb = uebs.find((e) => e.idUeb === idUeb);
     if (!ueb) {
@@ -62,10 +62,6 @@ function TrabajadorTable({
     }
     return direccion;
   };
-  // const direccionPorId = (idDireccion) => {
-  //   const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
-  //   return direccion;
-  // };
   const areaPorId = (idArea) => {
     const area = areas.find((e) => e.idArea === idArea);
     return area;

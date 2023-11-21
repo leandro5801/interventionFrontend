@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -29,6 +30,9 @@ export default function CreateRecomendationForm({
   interventions,
   classifications,
   consultores,
+  nombreConsultor,
+  nombreClasificacion,
+  isFollow,
 }) {
   const [intervention, setIntervention] = useState("");
   const [name, setName] = useState("");
@@ -56,20 +60,43 @@ export default function CreateRecomendationForm({
     setFormData(data);
   }
 
+  const [error, setError] = useState(null);
+  async function createRecomendacion(updatedRow) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/recomendacion",
+        updatedRow
+      );
+      if (response.status === 201) {
+        // Actualiza el estado para añadir la nueva empresa al frontend
+        setRecomendations([...recomendations, response.data]);
+      } else {
+        throw new Error("Error al crear la recomendacion");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al crear la recomendacion. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+
   const handleConfirm = (data) => {
     const updatedRow = {
-      id: recomendations.length + 1,
-      idIntervention: intervention.value,
-      name: data.name,
-      description: data.description,
-      consultor: data.consultor,
-      fecha: data.fecha,
-      follow: follow,
-      classification: data.classification,
+      // id_recomendacion: recomendations.length + 1,
+      id_intervencion: parseInt(data.intervention),
+      nombre_recomendacion: data.name,
+      id_consultor: parseInt(data.consultor),
+      id_clasificacion: parseInt(data.classification),
+      descripcion_recomendacion: data.description,
+      fecha_recomendacion: data.fecha,
+      seguimiento: follow === "Sí"? true : false,
+      
     };
+
     onSave();
 
-    setRecomendations([...recomendations, updatedRow]);
+    createRecomendacion(updatedRow)
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(true);
@@ -92,21 +119,21 @@ export default function CreateRecomendationForm({
   const interventionsOptions =
     interventions &&
     interventions.map((item) => ({
-      value: item.id,
-      label: item.name,
+      value: item.id_intervencion,
+      label: item.nombre_intervencion,
     }));
 
   const classificationsOptions =
     classifications &&
     classifications.map((item) => ({
-      value: item.name,
-      label: item.name,
+      value: item.id_clasificacion,
+      label: item.nombre_clasificacion,
     }));
   const consultoresOptions =
     consultores &&
     consultores.map((item) => ({
-      value: item.name,
-      label: item.name,
+      value: item.id_consultor,
+      label: item.nombre_consultor,
     }));
 
   return (
@@ -124,7 +151,7 @@ export default function CreateRecomendationForm({
               }`}
               onChange={(selectedOption) => {
                 handleInterventionChange(selectedOption);
-                setValue("intervention", selectedOption.label);
+                setValue("intervention", selectedOption.value);
               }}
               options={interventionsOptions}
               placeholder="Seleccione la intervención"
@@ -171,7 +198,7 @@ export default function CreateRecomendationForm({
                 }`}
                 onChange={(selectedOption) => {
                   handleConsultorChange(selectedOption);
-                  setValue("consultor", selectedOption.label);
+                  setValue("consultor", selectedOption.value);
                 }}
                 options={consultoresOptions}
                 placeholder="Consultor"
@@ -189,7 +216,7 @@ export default function CreateRecomendationForm({
                 }`}
                 onChange={(selectedOption) => {
                   handleClassificationChange(selectedOption);
-                  setValue("classification", selectedOption.label);
+                  setValue("classification", selectedOption.value);
                 }}
                 options={classificationsOptions}
                 placeholder="Clasificación"

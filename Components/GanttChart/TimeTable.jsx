@@ -55,17 +55,17 @@ export default function TimeTable({
   };
 
   // para el filtrado
-  let filteredTasks = [];
+  // let filteredTasks = [];
 
-  if (interventions) {
-    filteredTasks = interventions.filter(
-      (task) =>
-        (!selectedUeb || task.ueb === selectedUeb) &&
-        (!selectedStructure || task.structure === selectedStructure) &&
-        (!selectedArea || task.area === selectedArea)&&
-        (!selectedConsultor || task.consultorIntervencion === selectedConsultor)
-    );
-  }
+  // if (interventions) {
+  //   filteredTasks = interventions.filter(
+  //     (task) =>
+  //       (!selectedUeb || task.ueb === selectedUeb) &&
+  //       (!selectedStructure || task.structure === selectedStructure) &&
+  //       (!selectedArea || task.area === selectedArea)&&
+  //       (!selectedConsultor || task.consultorIntervencion === selectedConsultor)
+  //   );
+  // }
 
   // creating rows
   const startMonth = new Date(
@@ -129,8 +129,8 @@ export default function TimeTable({
     month.setMonth(month.getMonth() + 1);
   }
   // create task rows
-  if (filteredTasks) {
-    filteredTasks.map((task) => {
+  if (interventions) {
+    interventions.map((task) => {
       let mnth = new Date(startMonth);
       for (let i = 0; i < numMonths; i++) {
         const curYear = mnth.getFullYear();
@@ -150,26 +150,26 @@ export default function TimeTable({
 
           taskRow.push(
             <div
-              key={`${task.id}-${j}`}
+              key={`${task.id_intervencion}-${j}`}
               style={{
                 ...ganttTimePeriodCell,
                 backgroundColor:
                   dayOfTheWeek === "S" ? "var(--color-tertiary)" : "#fff",
               }}
-              data-task={task?.id}
+              data-task={task?.id_intervencion}
               data-date={formattedDate}
             >
-              {filteredTasks.map((el, i) => {
-                if (el?.id === task?.id && el?.startDateIntervencion === formattedDate) {
+              {interventions.map((el, i) => {
+                if (el?.id_intervencion === task?.id_intervencion && el?.start_date === formattedDate) {
                   return (
                     <div
-                      key={`${i}-${el?.id}`}
+                      key={`${i}-${el?.id_intervencion}`}
                       tabIndex="0"
                       style={{
                         ...taskDuration,
                         width: `calc(${dayDiff(
-                          el?.startDateIntervencion,
-                          el?.endDateIntervencion
+                          el?.start_date,
+                          el?.end_date
                         )} * 100% - 1px)`,
                       }}
                     ></div>
@@ -181,7 +181,7 @@ export default function TimeTable({
         }
 
         taskRows.push(
-          <div key={`${i}-${task?.id}`} style={ganttTimePeriod}>
+          <div key={`${i}-${task?.id_intervencion}`} style={ganttTimePeriod}>
             {taskRow}
           </div>
         );

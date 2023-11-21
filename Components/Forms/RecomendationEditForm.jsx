@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import { customStyles } from "../../styles/SelectStyles";
 import Select from "react-select";
 
+import axios from "axios";
 import { useState } from "react";
 
 //validaciones
@@ -31,28 +32,37 @@ export default function RecomendationForm({
   onSave,
   classifications,
   consultores,
+  nombreConsultor,
+  nombreClasificacion,
+  isFollow,
 }) {
   //intervention ? intervention.name : null
-  const [name, setName] = useState(recomendation ? recomendation.name : "");
+  const [name, setName] = useState(
+    recomendation ? recomendation.nombre_recomendacion : ""
+  );
   const [description, setDescription] = useState(
-    recomendation ? recomendation.description : ""
+    recomendation ? recomendation.descripcion_recomendacion : ""
   );
   const [consultor, setConsultor] = useState(
     recomendation
       ? {
-          label: recomendation.consultor,
-          value: recomendation.consultor,
+          label: nombreConsultor(recomendation.id_consultor),
+          value: recomendation.id_consultor,
         }
       : null
   );
-  const [follow, setFollow] = useState(
-    recomendation ? recomendation.follow : ""
+  const [fecha, setFecha] = useState(
+    recomendation ? recomendation.fecha_recomendacion : ""
   );
+  const [follow, setFollow] = useState(
+    recomendation ? (recomendation.seguimiento===true ? "Sí" : "No" ) : ""
+  );
+  
   const [classification, setClassification] = useState(
     recomendation
       ? {
-          label: recomendation.classification,
-          value: recomendation.classification,
+          label: nombreClasificacion(recomendation.id_clasificacion),
+          value: recomendation.id_clasificacion,
         }
       : null
   );
@@ -85,25 +95,46 @@ export default function RecomendationForm({
     setType(recomendation ? "editar" : "crear");
   }
 
+  const [error, setError] = useState(null);
+  async function editRecomendacion(id_recomendacion, recomendacionData) {
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/recomendacion/${id_recomendacion}`,
+        recomendacionData
+      );
+      if (response.status === 200) {
+        // Actualiza el estado para reflejar los cambios en el frontend
+        setRecomendations(
+          recomendations.map((recomendacion) =>
+            recomendacion.id_recomendacion === id_recomendacion
+              ? response.data
+              : recomendacion
+          )
+        );
+      } else {
+        throw new Error("Error al editar la recomendacion");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al editar la recomendacion. Por favor, inténtalo de nuevo."
+      );
+    }
+  }
+
   const handleConfirm = (data) => {
     const updatedRow = {
-      id: recomendation ? recomendation.id : recomendations.length + 1,
-      idIntervention: recomendation.idIntervention,
-      name: data.name,
-      description: data.description,
-      consultor: data.consultor.value,
-      fecha: recomendation.fecha,
-      follow: follow,
-      classification: classification.value,
+      id_intervencion: recomendation.id_intervencion,
+      nombre_recomendacion: data.name,
+      id_consultor: parseInt(data.consultor.value),
+      id_clasificacion: parseInt(data.classification.value),
+      descripcion_recomendacion: data.description,
+      fecha_recomendacion: data.fecha,
+      seguimiento: follow === "Sí"? true : false,
     };
-    setTableRData(
-      recomendation ? updatedRow : (prevData) => [...prevData, updatedRow]
-    );
+    editRecomendacion(recomendation.id_recomendacion, updatedRow);
     onSave();
-    if (!recomendation) {
-      setRecomendations([...recomendations, updatedRow]);
-    }
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
+   
     setOpen(true);
   };
 
@@ -121,8 +152,8 @@ export default function RecomendationForm({
   const classificationsOptions =
     classifications &&
     classifications.map((item) => ({
-      value: item.name,
-      label: item.name,
+      value: item.id_clasificacion,
+      label: item.nombre_clasificacion,
     }));
   const consultoresOptions =
     consultores &&
@@ -139,7 +170,6 @@ export default function RecomendationForm({
         <div>
           <div className={styles.inputGroup}>
             <div>
-
               <Input
                 className={`${styles.inputForm}  ${
                   errors.name ? "is-invalid" : ""
@@ -223,38 +253,58 @@ export default function RecomendationForm({
               </div>
             </div>
           </div>
-          <InputLabel>¿Se le ha dado seguimiento?</InputLabel>
+
           <div className={styles.inputGroup}>
-          <InputLabel>
-          Sí{" "}
-            <input
-              className={styles.input}
-              type="radio"
-              name="follow"
-              value="Sí"
-              {...register("follow")}
-              checked={follow === "Sí"}
-              onChange={(event) => setFollow(event.target.value)}
-            />
-           
-          </InputLabel>
-          <InputLabel >
-          No{" "}
-            <input
-              className={styles.input}
-              type="radio"
-              name="follow"
-              value="No"
-              {...register("follow")}
-              checked={follow === "No"}
-              onChange={(event) => setFollow(event.target.value)}
-            />
-            
-          </InputLabel>
+            <div>
+              <InputLabel id="demo-simple-select-standard-label">
+                Fecha
+              </InputLabel>
+              <Input
+                type="date"
+                id="fecha"
+                label="Fecha"
+                {...register("fecha")}
+                className={`${styles.inputForm}  ${
+                  errors.fecha ? "is-invalid" : ""
+                }`}
+                value={fecha}
+                onChange={(event) => setFecha(event.target.value)}
+              />
+              <div className={styles.error}>{errors.fecha?.message}</div>
+            </div>
+            <div>
+              <InputLabel>¿Se le ha dado seguimiento?</InputLabel>
+              <div className={styles.inputGroup}>
+                <InputLabel>
+                  Sí{" "}
+                  <input
+                    className={styles.input}
+                    type="radio"
+                    name="follow"
+                    value="Sí"
+                    {...register("follow")}
+                    checked={follow === "Sí"}
+                    onChange={(event) => setFollow(event.target.value)}
+                  />
+                </InputLabel>
+                <InputLabel>
+                  No{" "}
+                  <input
+                    className={styles.input}
+                    type="radio"
+                    name="follow"
+                    value="No"
+                    {...register("follow")}
+                    checked={follow === "No"}
+                    onChange={(event) => setFollow(event.target.value)}
+                  />
+                </InputLabel>
+              </div>
+              {errors.follow && (
+                <div className="invalid-feedback">{errors.follow.message}</div>
+              )}
+            </div>
           </div>
-          {errors.follow && (
-            <div className="invalid-feedback">{errors.follow.message}</div>
-          )}
           <DialogActions>
             <Button type="submit">Aceptar</Button>
 

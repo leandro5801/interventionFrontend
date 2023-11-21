@@ -1,6 +1,10 @@
 import * as Yup from "yup";
 
 export const validationSchema = Yup.object().shape({
+  proyecto: Yup.object().shape({
+    value: Yup.string().required("Seleccione un proyecto."),
+    label: Yup.string().required("Seleccione un proyecto."),
+  }),
   name: Yup.string().required("Ingrese un nombre."),
   description: Yup.string().required("Ingrese una descripción."),
   empresa:  Yup.object().shape({

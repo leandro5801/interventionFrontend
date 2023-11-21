@@ -16,13 +16,6 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
 
-const consultoress = [
-  { id: 1, name: "Carlos Ramón López Paz" },
-  { id: 2, name: "Laura Alfonzo Perez" },
-  { id: 3, name: "Alberto López Gónzalez" },
-  { id: 4, name: "Lazaro Días Alvares" },
-];
-
 export default function GanttChart({
   interventions,
   setInterventions,
@@ -40,7 +33,12 @@ export default function GanttChart({
   direcciones,
   areas,
   trabajadores,
+  consultores,
   setOpen,
+  nombreTrabajador,
+  areaPorId,
+  direccionPorId,
+  uebPorId,
 }) {
   const [timeRange, setTimeRange] = useState({
     fromSelectMonth: 0,
@@ -134,22 +132,22 @@ export default function GanttChart({
   const [uebFilter, setUebFilter] = useState([]);
 
   const optionConsultores =
-    consultoress &&
-    consultoress.map((item) => ({
-      value: item.name,
-      label: item.name,
+    consultores &&
+    consultores.map((item) => ({
+      value: item.id_consultor,
+      label: item.nombre_consultor,
     }));
   const optionProjects =
     projects &&
     projects.map((item) => ({
-      value: item.id,
-      label: item.name,
+      value: item.id_proyecto,
+      label: item.nombre_proyecto,
     }));
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
-      value: item.id,
-      label: item.name,
+      value: item.idEmpresa,
+      label: item.nombreEmpresa,
     }));
 
   const optionUebs =
@@ -157,23 +155,23 @@ export default function GanttChart({
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.empresaId === empresaFilter.value
+          ? item.idEmpresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.id,
-        label: item.name,
+        value: item.idUeb,
+        label: item.nombreUeb,
       }));
 
   const optionDirecciones =
     direcciones &&
     direcciones
       .filter((item) =>
-        uebFilter && uebFilter.value ? item.ueb === uebFilter.label : true
+        uebFilter && uebFilter.value ? item.idUeb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.id,
-        label: item.name,
+        value: item.idDireccion,
+        label: item.nombreDireccion,
       }));
 
   const optionAreas =
@@ -181,30 +179,40 @@ export default function GanttChart({
     areas
       .filter((item) =>
         structureFilter && structureFilter.value
-          ? item.direccion === structureFilter.label
+          ? item.idDireccion === structureFilter.value
           : true
       )
       .map((item) => ({
-        value: item.id,
-        label: item.name,
+        value: item.idArea,
+        label: item.nombreArea,
       }));
   //-----------------------------------------------
 
   const filteredData = interventions.filter(
     (item) =>
-      (projectFilter.length === 0 || item.projectId === projectFilter.value) &&
+      (projectFilter.length === 0 ||
+        item.id_proyecto === projectFilter.value) &&
       (empresaFilter.length === 0 ||
-        item.empresaId === empresaFilter.value ||
-        !item.empresaId) &&
-      (uebFilter.length === 0 || item.uebId === uebFilter.value) &&
+        uebPorId(direccionPorId(areaPorId(item.id_area).idDireccion).idUeb)
+          .idEmpresa === empresaFilter.value) &&
+      (uebFilter.length === 0 ||
+        direccionPorId(areaPorId(item.id_area).idDireccion).idUeb ===
+          uebFilter.value) &&
       (structureFilter.length === 0 ||
-        item.structure === structureFilter.label) &&
-      (areaFilter.length === 0 || item.area === areaFilter.label) &&
+        areaPorId(item.id_area).idDireccion === structureFilter.value) &&
+      (areaFilter.length === 0 || item.id_area === areaFilter.value) &&
+      item.nombre_intervencion
+        .toLowerCase()
+        .includes(nameFilter.toLowerCase()) &&
+      item.descripcion
+        .toLowerCase()
+        .includes(descriptionFilter.toLowerCase()) &&
       (consultorFilter.length === 0 ||
-        item.consultorIntervencion === consultorFilter.value) &&
-      item.nombreIntervencion.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.trabajadorIntervencion.toLowerCase().includes(workerFilter.toLowerCase()) &&
-      item.startDateIntervencion.toLowerCase().includes(startFilter.toLowerCase())
+        item.id_consultor === consultorFilter.value) &&
+      nombreTrabajador(item.id_trabajador)
+        .toLowerCase()
+        .includes(workerFilter.toLowerCase()) &&
+      item.start_date.toLowerCase().includes(startFilter.toLowerCase())
   );
   return (
     <div className={styles.ganttContainer} id="gantt-container">
@@ -213,10 +221,10 @@ export default function GanttChart({
           <div className={styles.filterListOffOutlinedContent}>
             {showFilters ? (
               <FilterListOffOutlinedIcon
-              onClick={() => {
-                toggleFilters();
-                limpiarFiltrados();
-              }}
+                onClick={() => {
+                  toggleFilters();
+                  limpiarFiltrados();
+                }}
                 style={{ width: "18px", cursor: "pointer" }}
               />
             ) : (

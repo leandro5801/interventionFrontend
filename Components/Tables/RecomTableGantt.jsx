@@ -34,12 +34,24 @@ function RecomendationTable({
   setTableRData,
   recomendations,
   setRecomendations,
-  selectedIntervention,
-  classifications,
-  consultores,
+  nombreConsultor,
+  clasificaciones,
   dialogRecomendationOpen,
   setDialogRecomendationOpen,
 }) {
+  const isFollow = (follow) => {
+    const name = follow ? "Sí" : "No";
+    return name;
+  };
+  const nombreClasificacion = (id_clasificacion) => {
+    const clasificacion = clasificaciones.find(
+      (clasificacion) => clasificacion.id_clasificacion === id_clasificacion
+    );
+    const name = clasificacion
+      ? clasificacion.nombre_clasificacion
+      : "no se encontro el nombre";
+    return name;
+  };
   //Para abrir formulario de crear recomendacion
   function toggleFormulario() {
     setDialogRecomendationOpen(!dialogRecomendationOpen);
@@ -72,44 +84,6 @@ function RecomendationTable({
   const [consultorFilterValue, setConsultorFilterValue] = useState(null);
   const [classificationFilterValue, setClassificationFilterValue] =
     useState(null);
-
-  //  Filtrar los datos de la tabla
-  //   const filtredData = tableRData.filter((row) => {
-  //     let consultorMatch = true;
-  //     let classificationMatch = true;
-
-  //     if (consultorFilterValue) {
-  //       consultorMatch = row.consultor === consultorFilterValue;
-  //     }
-  //     if (classificationFilterValue) {
-  //       classificationMatch = row.classification === classificationFilterValue;
-  //     }
-
-  //     return consultorMatch && classificationMatch;
-  //   });
-
-  // Obtener los valores únicos para cada columna después de aplicar cada filtro individualmente
-  //   const uniqueConsultors = [
-  //     ...new Set(
-  //       tableRData
-  //         .filter(
-  //           (row) =>
-  //             !classificationFilterValue ||
-  //             row.classification === classificationFilterValue
-  //         )
-  //         .map((row) => row.consultor)
-  //     ),
-  //   ];
-  //   const uniqueClassification = [
-  //     ...new Set(
-  //       tableRData
-  //         .filter(
-  //           (row) =>
-  //             !consultorFilterValue || row.consultor === consultorFilterValue
-  //         )
-  //         .map((row) => row.classification)
-  //     ),
-  //   ];
 
   // Alternar la visibilidad de las opciones de filtrado y restablecer los valores de filtrado
   const toggleFilters = () => {
@@ -162,7 +136,7 @@ function RecomendationTable({
     <>
       {tableRData.length === 0 && (
         <div className={styles.divIconH2}>
-          <h4> No hay Recomendaciones</h4>{" "}
+          <h5> No hay Recomendaciones</h5>{" "}
         </div>
       )}
       {tableRData.length === 0 || (
@@ -179,29 +153,33 @@ function RecomendationTable({
                   </TableCell>
                   <TableCell className={styles.letraEnNegrita}>Descripción</TableCell>
                   <TableCell className={styles.letraEnNegrita}>Consultor</TableCell>
+                  <TableCell className={styles.letraEnNegrita}>Fecha</TableCell>
                   <TableCell className={styles.letraEnNegrita}>Tipo</TableCell>
-                  <TableCell className={styles.letraEnNegrita}>Seguimiento</TableCell>
+                  <TableCell className={styles.letraEnNegrita}>Seguida</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                   {tableRData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((recomendation) => (
-                    <TableRow key={recomendation.id} className={styles.trStyle}>
+                    <TableRow key={recomendation.id_recomendacion} className={styles.trStyle}>
                       <TableCell >
-                        {recomendation.name}
+                        {recomendation.nombre_recomendacion}
                       </TableCell>
                       <TableCell >
-                        {recomendation.description}
+                        {recomendation.descripcion_recomendacion}
                       </TableCell>
                       <TableCell >
-                        {recomendation.consultor}
+                        {nombreConsultor(recomendation.id_consultor)}
                       </TableCell>
                       <TableCell >
-                        {recomendation.classification}
+                        {recomendation.fecha_recomendacion}
                       </TableCell>
                       <TableCell >
-                        {recomendation.follow}
+                        {nombreClasificacion(recomendation.id_clasificacion)}
+                      </TableCell>
+                      <TableCell >
+                        {isFollow(recomendation.seguimiento)}
                       </TableCell>
                     </TableRow>
                   ))}
