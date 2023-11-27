@@ -1,13 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import styles from "../../styles/Home.module.css";
 import InterventionTable from "../../Components/Tables/InterventionTable";
-
-import datosintervenciones from "../../public/datosintervenciones.json";
-import datosProyectos from "../../public/datosProyectos.json";
-import datosEmpresas from "../../public/datosEmpresas.json";
 
 export default function IntervencionPage() {
   // datos de las intervenciones
@@ -18,11 +15,16 @@ export default function IntervencionPage() {
   const [direcciones, setDirecciones] = useState([]);
   const [areas, setAreas] = useState([]);
   const [trabajadores, setTrabajadores] = useState([]);
-
   const [consultores, setConsultores] = useState([]);
 
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
+
+  //usuario autenticado
+  const [user, setUser] = useState(null);
+  let consultorAutenticado = {};
+  //intervenciones filtradas
+  let filtredInterventions = [];
 
   useEffect(() => {
     async function fetchIntervention() {
@@ -38,7 +40,7 @@ export default function IntervencionPage() {
         setProjects(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos de proyectos. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
@@ -52,7 +54,7 @@ export default function IntervencionPage() {
         setEmpresas(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos de empresa. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
@@ -66,7 +68,7 @@ export default function IntervencionPage() {
         setUebs(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos de ueb. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
@@ -80,7 +82,7 @@ export default function IntervencionPage() {
         setDirecciones(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos de direcciones. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
@@ -94,7 +96,7 @@ export default function IntervencionPage() {
         setAreas(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos del area. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
@@ -110,7 +112,7 @@ export default function IntervencionPage() {
         setTrabajadores(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos del trabajador. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
@@ -124,13 +126,32 @@ export default function IntervencionPage() {
         setConsultores(response.data);
       } catch (error) {
         setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+          "Hubo un problema al obtener los datos de los consultores. Por favor, inténtalo de nuevo."
         );
         console.error(error);
       } finally {
         setCargando(false);
       }
     }
+    //cargando usuario autenticado
+    async function getProfile() {
+      try {
+        const token = Cookies.get("access_token");
+        const response = await axios.get(
+          "http://localhost:3000/api/autenticacion/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error: en getProfile", error);
+      }
+    }
+    getProfile();
+
     fetchEmpresa();
     fetchUeb();
     fetchDireccion();
@@ -140,11 +161,24 @@ export default function IntervencionPage() {
     fetchProyecto();
     fetchConsultor();
   }, []);
+
+  consultorAutenticado = consultores.find(
+    (i) => i.id_usuario === user.id_usuario
+  );
+
+  if (user && user.id_rol === 2) {
+    filtredInterventions = interventions.filter(
+      (i) => i.id_consultor === consultorAutenticado.id_consultor
+    );
+  } else if(user && user.id_rol === 3) {
+    filtredInterventions=interventions;
+  }
+
   return (
     <div className={styles.title}>
       <h3 className={styles.tituloH3}> Intervenciones</h3>
       <InterventionTable
-        interventions={interventions}
+        interventions={filtredInterventions}
         setInterventions={setInterventions}
         projects={projects}
         empresas={empresas}
@@ -153,6 +187,7 @@ export default function IntervencionPage() {
         areas={areas}
         trabajadores={trabajadores}
         consultores={consultores}
+        consultor={consultorAutenticado}
       />
     </div>
   );

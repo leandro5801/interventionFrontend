@@ -23,10 +23,10 @@ export const validationSchema = Yup.object().shape({
     value: Yup.string().required("Seleccione un área."),
     label: Yup.string().required("Seleccione un área."),
   }),
-  consultor: Yup.object().shape({
-    value: Yup.string().required("Seleccione un consultor."),
-    label: Yup.string().required("Seleccione un consultor."),
-  }),
+  // consultor: Yup.object().shape({
+  //   value: Yup.string().required("Seleccione un consultor."),
+  //   label: Yup.string().required("Seleccione un consultor."),
+  // }),
   worker: Yup.object().shape({
     value: Yup.string().required("Seleccione un trabajador."),
     label: Yup.string().required("Seleccione un trabajador."),

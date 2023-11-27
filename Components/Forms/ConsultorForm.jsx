@@ -52,7 +52,7 @@ export default function ConsultorForm({
 
   const userOptions =
     users &&
-    users.filter((user) => user.id_rol === 2 && !consultorIds.includes(user.id_usuario)).map((item) => ({
+    users.filter((user) => (user.id_rol === 2 || user.id_rol === 3)&& !consultorIds.includes(user.id_usuario)).map((item) => ({
       value: item.id_usuario,
       label: item.nombre_usuario,
     }));

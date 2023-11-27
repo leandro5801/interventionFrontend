@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import styles from "../../styles/Home.module.css";
 import RecomendationTable from "../../Components/Tables/RecomendationTable";
@@ -16,6 +17,12 @@ export default function RecomendacionPage() {
   
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
+
+    //usuario autenticado
+    const [user, setUser] = useState(null);
+    let consultorAutenticado = {};
+    //recomendaciones filtradas
+    let filtredRecomendations = [];
 
   useEffect(() => {
     async function fetchIntervention() {
@@ -74,6 +81,24 @@ export default function RecomendacionPage() {
         setCargando(false);
       }
     }
+    //cargando usuario autenticado
+    async function getProfile() {
+      try {
+        const token = Cookies.get("access_token");
+        const response = await axios.get(
+          "http://localhost:3000/api/autenticacion/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error: en getProfile", error);
+      }
+    }
+    getProfile();
 
     fetchIntervention();
     fetchRecomendacion();
@@ -81,15 +106,29 @@ export default function RecomendacionPage() {
     fetchConsultor();
     fetchClasificacion();
   }, []);
+
+  consultorAutenticado = consultores.find(
+    (i) => i.id_usuario === user.id_usuario
+  );
+
+  if (user && user.id_rol === 2) {
+    filtredRecomendations = recomendations.filter(
+      (i) => i.id_consultor === consultorAutenticado.id_consultor
+    );
+  } else if(user && user.id_rol === 3){
+    filtredRecomendations=recomendations;
+  }
+
   return (
     <div className={styles.title}>
       <h3> Recomendaciones</h3>
       <RecomendationTable
         interventions={interventions}
-        recomendations={recomendations}
+        recomendations={filtredRecomendations}
         setRecomendations={setRecomendations}
         projects={projects}
         consultores={consultores}
+        consultor={consultorAutenticado}
         clasificaciones={clasificaciones}
         cargando={cargando}
       />

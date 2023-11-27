@@ -30,6 +30,7 @@ export default function CreateRecomendationForm({
   interventions,
   classifications,
   consultores,
+  consultor,
   nombreConsultor,
   nombreClasificacion,
   isFollow,
@@ -37,7 +38,7 @@ export default function CreateRecomendationForm({
   const [intervention, setIntervention] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [consultor, setConsultor] = useState(null);
+  // const [consultor, setConsultor] = useState(null);
   const [fecha, setFecha] = useState("");
   const [follow, setFollow] = useState("");
   const [classification, setClassification] = useState(null);
@@ -86,17 +87,17 @@ export default function CreateRecomendationForm({
       // id_recomendacion: recomendations.length + 1,
       id_intervencion: parseInt(data.intervention),
       nombre_recomendacion: data.name,
-      id_consultor: parseInt(data.consultor),
+      // id_consultor: parseInt(data.consultor),
+      id_consultor: consultor.id_consultor,
       id_clasificacion: parseInt(data.classification),
       descripcion_recomendacion: data.description,
       fecha_recomendacion: data.fecha,
-      seguimiento: follow === "Sí"? true : false,
-      
+      seguimiento: follow === "Sí" ? true : false,
     };
 
     onSave();
 
-    createRecomendacion(updatedRow)
+    createRecomendacion(updatedRow);
 
     // Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(true);
@@ -187,45 +188,7 @@ export default function CreateRecomendationForm({
             </div>
           </div>
 
-          <div className={styles.inputGroup}>
-            <div>
-              <Select
-                styles={customStyles}
-                id="consultor"
-                {...register("consultor")}
-                className={`${styles.selectFormRec}  ${
-                  errors.consultor ? "is-invalid" : ""
-                }`}
-                onChange={(selectedOption) => {
-                  handleConsultorChange(selectedOption);
-                  setValue("consultor", selectedOption.value);
-                }}
-                options={consultoresOptions}
-                placeholder="Consultor"
-              />
-              <div className={styles.error}>{errors.consultor?.message}</div>
-            </div>
-
-            <div>
-              <Select
-                styles={customStyles}
-                id="classification"
-                {...register("classification")}
-                className={`${styles.selectFormRec}  ${
-                  errors.classification ? "is-invalid" : ""
-                }`}
-                onChange={(selectedOption) => {
-                  handleClassificationChange(selectedOption);
-                  setValue("classification", selectedOption.value);
-                }}
-                options={classificationsOptions}
-                placeholder="Clasificación"
-              />
-              <div className={styles.error}>
-                {errors.classification?.message}
-              </div>
-            </div>
-          </div>
+        
 
           <div className={styles.inputGroup}>
             <div>
@@ -274,12 +237,49 @@ export default function CreateRecomendationForm({
                 </InputLabel>
               </div>
               {errors.follow && (
-            <div className="invalid-feedback">{errors.follow.message}</div>
-          )}
+                <div className="invalid-feedback">{errors.follow.message}</div>
+              )}
             </div>
           </div>
+          <div className={styles.inputGroup}>
+            {/* <div>
+              <Select
+                styles={customStyles}
+                id="consultor"
+                {...register("consultor")}
+                className={`${styles.selectFormRec}  ${
+                  errors.consultor ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleConsultorChange(selectedOption);
+                  setValue("consultor", selectedOption.value);
+                }}
+                options={consultoresOptions}
+                placeholder="Consultor"
+              />
+              <div className={styles.error}>{errors.consultor?.message}</div>
+            </div> */}
 
-         
+            <div>
+              <Select
+                styles={customStyles}
+                id="classification"
+                {...register("classification")}
+                className={`${styles.selectFormRec}  ${
+                  errors.classification ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleClassificationChange(selectedOption);
+                  setValue("classification", selectedOption.value);
+                }}
+                options={classificationsOptions}
+                placeholder="Clasificación"
+              />
+              <div className={styles.error}>
+                {errors.classification?.message}
+              </div>
+            </div>
+          </div>
         </div>
 
         <DialogActions>

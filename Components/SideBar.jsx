@@ -1,5 +1,7 @@
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 import Image from "next/image";
 
@@ -9,15 +11,15 @@ import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 import AttractionsOutlinedIcon from "@mui/icons-material/AttractionsOutlined";
 import ManageSearchOutlinedIcon from "@mui/icons-material/ManageSearchOutlined";
-import ApartmentOutlinedIcon from '@mui/icons-material/ApartmentOutlined';
+import ApartmentOutlinedIcon from "@mui/icons-material/ApartmentOutlined";
 import CorporateFareOutlinedIcon from "@mui/icons-material/CorporateFareOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import DragIndicatorOutlinedIcon from "@mui/icons-material/DragIndicatorOutlined";
 import EngineeringOutlinedIcon from "@mui/icons-material/EngineeringOutlined";
 import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
-import PublishedWithChangesOutlinedIcon from '@mui/icons-material/PublishedWithChangesOutlined';
-import Person3OutlinedIcon from '@mui/icons-material/Person3Outlined';
-import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
+import PublishedWithChangesOutlinedIcon from "@mui/icons-material/PublishedWithChangesOutlined";
+import Person3OutlinedIcon from "@mui/icons-material/Person3Outlined";
+import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
@@ -26,6 +28,29 @@ import Link from "next/link";
 
 function SideBar({}) {
   const [showEmpresaOptions, setShowEmpresaOptions] = useState(false);
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function getProfile() {
+      try {
+        const token = Cookies.get("access_token");
+        const response = await axios.get(
+          "http://localhost:3000/api/autenticacion/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+    getProfile();
+  }, []);
+
   return (
     <div className={styles.sidebarcontainer}>
       <div className={styles.logo}>
@@ -40,74 +65,125 @@ function SideBar({}) {
 
       <div className={styles.wrapper}>
         <ul>
-          <li>
-            {" "}
-            <Link href=" /Home/ganttPage">
-              <BarChartOutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle"}}
-              />{" "}
-              Gantt
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <Link href="/Home/proyectoPage">
-              <AttractionsOutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
+          {user && (user.id_rol === 3 || user.id_rol === 2) ? (
+            <li>
+              {" "}
+              <Link href=" /Home/ganttPage">
+                <BarChartOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Gantt
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && user.id_rol === 3 ? (
+            <li>
+              {" "}
+              <Link href="/Home/proyectoPage">
+                <AttractionsOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
                 Proyectos
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <Link href="/Home/intervencionPage">
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && (user.id_rol === 3 || user.id_rol === 2) ? (
+            <li>
               {" "}
-              <AssignmentOutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
+              <Link href="/Home/intervencionPage">
+                {" "}
+                <AssignmentOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
                 Intervenciones
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <Link href="/Home/recomendacionPage">
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && (user.id_rol === 3 || user.id_rol === 2) ? (
+            <li>
               {" "}
-              <NoteAltOutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
-               Recomendaciones
-            </Link>
-          </li>
-         
-          <li>
-            {" "}
-            <a onClick={() => setShowEmpresaOptions(!showEmpresaOptions)}>
-              <ManageSearchOutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
-               Datos de la Empresa
-              {showEmpresaOptions ? (
-                <ExpandLessOutlinedIcon
-                  style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-                />
-              ) : (
-                <ExpandMoreOutlinedIcon
-                  style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-                />
-              )}
-            </a>
-          </li>
-
+              <Link href="/Home/recomendacionPage">
+                {" "}
+                <NoteAltOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Recomendaciones
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && user.id_rol === 1 ? (
+            <li>
+              {" "}
+              <a onClick={() => setShowEmpresaOptions(!showEmpresaOptions)}>
+                <ManageSearchOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Datos de la Empresa
+                {showEmpresaOptions ? (
+                  <ExpandLessOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />
+                ) : (
+                  <ExpandMoreOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />
+                )}
+              </a>
+            </li>
+          ) : (
+            false
+          )}
           {showEmpresaOptions && (
             <>
-            <li>
+              <li>
                 {" "}
                 <Link href="/Home/empresaPage">
                   {" "}
                   <ApartmentOutlinedIcon
-                    style={{ width: "18px", cursor: "pointer",marginLeft:"10px", verticalAlign: "middle" }}
-                  /> {" "}
-                 Empresa
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Empresa
                 </Link>
               </li>
               <li>
@@ -115,8 +191,13 @@ function SideBar({}) {
                 <Link href="/Home/uebPage">
                   {" "}
                   <CorporateFareOutlinedIcon
-                    style={{ width: "18px", cursor: "pointer",marginLeft:"10px", verticalAlign: "middle" }}
-                  /> {" "}
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
                   UEB
                 </Link>
               </li>
@@ -124,8 +205,13 @@ function SideBar({}) {
                 {" "}
                 <Link href="/Home/direccionPage">
                   <BusinessOutlinedIcon
-                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
-                  /> {" "}
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
                   Direcciones
                 </Link>
               </li>
@@ -133,8 +219,13 @@ function SideBar({}) {
                 {" "}
                 <Link href="/Home/areaPage">
                   <DragIndicatorOutlinedIcon
-                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
-                  /> {" "}
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
                   Áreas
                 </Link>
               </li>
@@ -143,8 +234,13 @@ function SideBar({}) {
                 <Link href="/Home/trabajadorPage">
                   {" "}
                   <EngineeringOutlinedIcon
-                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
-                  /> {" "}
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
                   Trabajadores
                 </Link>
               </li>
@@ -153,52 +249,89 @@ function SideBar({}) {
                 <Link href="/Home/cargarDatosPage">
                   {" "}
                   <PublishedWithChangesOutlinedIcon
-                    style={{ width: "18px", cursor: "pointer", marginLeft:"10px", verticalAlign: "middle" }}
-                  /> {" "}
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
                   Cargar Datos
                 </Link>
               </li>
             </>
           )}
-          <li>
-            {" "}
-            <Link href="/Home/reportePage">
+          {user &&
+          (user.id_rol === 4 || user.id_rol === 2 || user.id_rol === 3) ? (
+            <li>
               {" "}
-              <FeedOutlinedIcon style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }} />
+              <Link href="/Home/reportePage">
+                {" "}
+                <FeedOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Reportes
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && user.id_rol === 1 ? (
+            <li>
               {" "}
-              Reportes
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <Link href="/Home/usuarioPage">
-              {" "}
-              <ManageAccountsIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
-              Usuarios
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <Link href="/Home/consultorPage">
-              {" "}
-              <PeopleAltOutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
-              Consultores
-            </Link>
-          </li>
-          <li>
-            {" "}
-            <Link href="/Home/clientePage">
-              {" "}
-              <Person3OutlinedIcon
-                style={{ width: "18px", cursor: "pointer", verticalAlign: "middle" }}
-              /> {" "}
-              Clientes
-            </Link>
-          </li>
+              <Link href="/Home/usuarioPage">
+                {" "}
+                <ManageAccountsIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Usuarios
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && user.id_rol === 3 ? (
+            <>
+              <li>
+                {" "}
+                <Link href="/Home/consultorPage">
+                  {" "}
+                  <PeopleAltOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Consultores
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/clientePage">
+                  {" "}
+                  <Person3OutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Clientes
+                </Link>
+              </li>
+            </>
+          ) : (
+            false
+          )}
         </ul>
       </div>
     </div>

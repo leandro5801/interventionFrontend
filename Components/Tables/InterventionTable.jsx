@@ -45,6 +45,7 @@ function InterventionTable({
   areas,
   trabajadores,
   consultores,
+  consultor,
   cargando,
 }) {
   //para retornar el nombre de y no el id
@@ -416,6 +417,7 @@ function InterventionTable({
                   areaPorId={areaPorId}
                   direccionPorId={direccionPorId}
                   uebPorId={uebPorId}
+                  consultor={consultor}
                 ></FormDialog>
 
                 <div className={styles.filterListOffOutlinedContent}>
@@ -675,6 +677,7 @@ function InterventionTable({
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
                 consultores={consultores}
+                consultor={consultor}
                 trabajadores={trabajadores}
                 empresas={empresas}
                 uebs={uebs}

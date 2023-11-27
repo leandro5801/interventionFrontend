@@ -47,6 +47,7 @@ function RecomendationTable({
   interventions,
   projects,
   consultores,
+  consultor,
   clasificaciones,
   cargando,
 }) {
@@ -317,6 +318,7 @@ function RecomendationTable({
                 setTableRData={setRecomendations}
                 setRecomendations={setRecomendations}
                 consultores={consultores}
+                consultor={consultor}
                 interventions={interventions}
                 onSave={() => {
                   setDialogRecOpen(false);
@@ -572,6 +574,7 @@ function RecomendationTable({
             onSave={handleSaveR}
             onCancel={handleCancelR}
             consultores={consultores}
+            consultor={consultor}
             classifications={clasificaciones}
             nombreConsultor={nombreConsultor}
             nombreClasificacion={nombreClasificacion}

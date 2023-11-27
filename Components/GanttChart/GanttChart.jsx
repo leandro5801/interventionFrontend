@@ -41,9 +41,9 @@ export default function GanttChart({
   uebPorId,
 }) {
   const [timeRange, setTimeRange] = useState({
-    fromSelectMonth: 0,
+    fromSelectMonth: 10,
     fromSelectYear: "2023",
-    toSelectMonth: 1,
+    toSelectMonth: 11,
     toSelectYear: "2023",
   });
 

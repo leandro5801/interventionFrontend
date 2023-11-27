@@ -31,6 +31,7 @@ export default function FormUpdateIntervention({
   onCancel,
   onSave,
   consultores,
+  consultor,
   trabajadores,
   direcciones,
   areas,
@@ -111,6 +112,9 @@ export default function FormUpdateIntervention({
         }
       : ""
   );
+  const [direccionId, setDireccionId] = useState(
+    intervention ? areaPorId(intervention.id_area).idDireccion : ""
+  );
   const [selectedStructure, setSelectedStructure] = useState(
     intervention
       ? {
@@ -119,33 +123,36 @@ export default function FormUpdateIntervention({
         }
       : ""
   );
+  const [areaId, setAreaId] = useState(
+    intervention ? intervention.id_area : ""
+  );
   const [selectedArea, setSelectedArea] = useState(
     intervention
       ? { label: nombreArea(intervention.id_area), value: intervention.id_area }
       : ""
   );
-  const [consultor, setConsultor] = useState(
-    intervention
-      ? {
-          label: nombreConsultor(intervention.id_consultor),
-          value: intervention.id_consultor,
-        }
-      : ""
-  );
+  // const [consultor, setConsultor] = useState(
+  //   intervention
+  //     ? {
+  //         label: nombreConsultor(intervention.id_consultor),
+  //         value: intervention.id_consultor,
+  //       }
+  //     : ""
+  // );
   const [start, setStart] = useState(
     intervention ? intervention.start_date : ""
   );
   const [end, setEnd] = useState(intervention ? intervention.end_date : "");
 
-  const consultoresOptions =
-    consultores &&
-    consultores.map((item) => ({
-      value: item.id_consultor,
-      label: item.nombre_consultor,
-    }));
-  const handleConsultorChange = (newValue) => {
-    setConsultor({ label: newValue.label, value: newValue.value });
-  };
+  // const consultoresOptions =
+  //   consultores &&
+  //   consultores.map((item) => ({
+  //     value: item.id_consultor,
+  //     label: item.nombre_consultor,
+  //   }));
+  // const handleConsultorChange = (newValue) => {
+  //   setConsultor({ label: newValue.label, value: newValue.value });
+  // };
 
   //para poner dependencia entre los select estructuras
   const empresasOptions =
@@ -176,10 +183,7 @@ export default function FormUpdateIntervention({
       label: item.nombreDireccion,
     }));
   const areaOptions = areas
-    // .filter((item) =>
-    //   // (ueb ? item.ueb === ueb.value : false) &&
-    //   selectedStructure ? item.structure === selectedStructure.value : false
-    // )
+    .filter((item) => (direccionId ? item.idDireccion === direccionId : false))
     .map((item) => ({
       value: item.idArea,
       label: item.nombreArea,
@@ -193,10 +197,12 @@ export default function FormUpdateIntervention({
     setSelectedStructure(newValue);
     setSelectedArea("");
   };
-  const trabajadoresOptions = trabajadores.map((item) => ({
-    value: item.idTrabajador,
-    label: item.nombreTrabajador,
-  }));
+  const trabajadoresOptions = trabajadores
+    .filter((item) => (areaId ? item.idArea === areaId : false))
+    .map((item) => ({
+      value: item.idTrabajador,
+      label: item.nombreTrabajador,
+    }));
 
   const proyectosOptions = projects.map((item) => ({
     value: item.id_proyecto,
@@ -209,7 +215,7 @@ export default function FormUpdateIntervention({
     ueb: ueb,
     structure: selectedStructure,
     area: selectedArea,
-    consultor: consultor,
+    // consultor: consultor,
     worker: selectedTrabajador,
   };
 
@@ -267,10 +273,11 @@ export default function FormUpdateIntervention({
         // Actualiza el estado para reflejar los cambios en el frontend
         setInterventions(
           interventions.map((intervencion) =>
-            intervencion.id_intervencion === id_intervencion ? response.data : intervencion
-          ),
+            intervencion.id_intervencion === id_intervencion
+              ? response.data
+              : intervencion
+          )
         );
-        
       } else {
         throw new Error("Error al editar la intervencion");
       }
@@ -288,7 +295,8 @@ export default function FormUpdateIntervention({
       descripcion: data.description,
       id_proyecto: parseInt(data.proyecto.value),
       id_area: parseInt(data.area.value),
-      id_consultor: parseInt(data.consultor.value),
+      // id_consultor: parseInt(data.consultor.value),
+      id_consultor: consultor.id_consultor,
       id_trabajador: parseInt(data.worker.value),
       start_date: data.start,
       end_date: data.end,
@@ -385,7 +393,10 @@ export default function FormUpdateIntervention({
                     }`}
                     onChange={(selectedOption) => {
                       setEmpresaId(parseInt(selectedOption.value));
-                      // setValue("empresa", selectedOption);
+                      setValue("ueb", "");
+                      setValue("structure", "");
+                      setValue("area", "");
+                      setValue("worker", "");
                       field.onChange(selectedOption);
                     }}
                     options={empresasOptions}
@@ -413,6 +424,9 @@ export default function FormUpdateIntervention({
                     }`}
                     onChange={(selectedOption) => {
                       setUebId(parseInt(selectedOption.value));
+                      setValue("structure", "");
+                      setValue("area", "");
+                      setValue("worker", "");
                       field.onChange(selectedOption);
                     }}
                     options={uebOptions}
@@ -440,8 +454,10 @@ export default function FormUpdateIntervention({
                     }`}
                     onChange={(selectedOption) => {
                       handleStructureChange(selectedOption);
+                      setDireccionId(parseInt(selectedOption.value));
                       setValue("structure", selectedOption);
                       setValue("area", "");
+                      setValue("worker", "");
                       field.onChange(selectedOption);
                     }}
                     options={structureOptions}
@@ -455,35 +471,40 @@ export default function FormUpdateIntervention({
                 <div className={styles.error}>Seleccione una Dirección.</div>
               )}
             </div>
-            <div className={styles.halfRow}>
-              <Controller
-                name="area"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="area"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.area ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      setSelectedArea(selectedOption);
-                      setValue("area", selectedOption);
-                      field.onChange(selectedOption);
-                    }}
-                    options={areaOptions}
-                    maxMenuHeight={120}
-                    placeholder="Área"
-                  />
+            
+          </div>
+          <div className={styles.inputGroup}>
+              <div className={styles.halfRow}>
+                <Controller
+                  name="area"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      styles={customStyles}
+                      id="area"
+                      {...field}
+                      className={`${styles.selectFormRec}  ${
+                        errors.area ? "is-invalid" : ""
+                      }`}
+                      onChange={(selectedOption) => {
+                        setSelectedArea(selectedOption);
+                        setAreaId(parseInt(selectedOption.value));
+                        setValue("area", selectedOption);
+                        setValue("worker", "");
+                        field.onChange(selectedOption);
+                      }}
+                      options={areaOptions}
+                      maxMenuHeight={120}
+                      placeholder="Área"
+                    />
+                  )}
+                />
+                {errors.area && (
+                  <div className={styles.error}>Seleccione un Área.</div>
                 )}
-              />
-              {errors.area && (
-                <div className={styles.error}>Seleccione un Área.</div>
-              )}
-            </div>
+              </div>
 
-            <div className={styles.halfRow}>
+              {/* <div className={styles.halfRow}>
               <Controller
                 name="consultor"
                 control={control}
@@ -509,36 +530,36 @@ export default function FormUpdateIntervention({
               {errors.consultor && (
                 <div className={styles.error}>Seleccione un Consultor.</div>
               )}
-            </div>
+            </div> */}
 
-            <div className={styles.halfRow}>
-              <Controller
-                name="worker"
-                control={control}
-                render={({ field }) => (
-                  <Select
-                    styles={customStyles}
-                    id="worker"
-                    {...field}
-                    className={`${styles.selectForm}  ${
-                      errors.worker ? "is-invalid" : ""
-                    }`}
-                    onChange={(selectedOption) => {
-                      setSelectedTrabajador(selectedOption);
-                      setValue("worker", selectedOption);
-                      field.onChange(selectedOption);
-                    }}
-                    options={trabajadoresOptions}
-                    maxMenuHeight={120}
-                    placeholder="Trabajador"
-                  />
+              <div className={styles.halfRow}>
+                <Controller
+                  name="worker"
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      styles={customStyles}
+                      id="worker"
+                      {...field}
+                      className={`${styles.selectFormRec}  ${
+                        errors.worker ? "is-invalid" : ""
+                      }`}
+                      onChange={(selectedOption) => {
+                        setSelectedTrabajador(selectedOption);
+                        setValue("worker", selectedOption);
+                        field.onChange(selectedOption);
+                      }}
+                      options={trabajadoresOptions}
+                      maxMenuHeight={120}
+                      placeholder="Trabajador"
+                    />
+                  )}
+                />
+                {errors.worker && (
+                  <div className={styles.error}>Seleccione un Trabajador.</div>
                 )}
-              />
-              {errors.worker && (
-                <div className={styles.error}>Seleccione un Trabajador.</div>
-              )}
+              </div>
             </div>
-          </div>
           <div className={styles.inputGroup}>
             <div>
               <InputLabel id="demo-simple-select-standard-label">

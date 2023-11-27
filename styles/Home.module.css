@@ -138,6 +138,19 @@
   margin-right: -5px;
 }
 
+.nombreUsuarioContent {
+  position: absolute;
+  right: 68mm;
+  margin-top: 20px;
+  margin-bottom: 18px;
+  margin-right: -5px;
+}
+.nombreUsuarioContent>h2 {
+  color: #fff;
+  font-size: 14px;
+  font-weight:lighter;
+}
+
 .faIconOutAlt {
   width: 16px;
   color: white;

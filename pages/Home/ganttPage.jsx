@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import styles from "../../styles/Home.module.css";
 import GanttChart from "../../Components/GanttChart/GanttChart";
@@ -125,6 +126,12 @@ export default function GanttPage() {
 
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
+
+  //usuario autenticado
+  const [user, setUser] = useState(null);
+  let consultorAutenticado = {};
+  //intervenciones filtradas
+  let filtredInterventions = [];
 
   useEffect(() => {
     async function fetchIntervention() {
@@ -255,6 +262,25 @@ export default function GanttPage() {
         setCargando(false);
       }
     }
+    //cargando usuario autenticado
+    async function getProfile() {
+      try {
+        const token = Cookies.get("access_token");
+        const response = await axios.get(
+          "http://localhost:3000/api/autenticacion/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error: en getProfile", error);
+      }
+    }
+    getProfile();
+
     fetchEmpresa();
     fetchUeb();
     fetchDireccion();
@@ -266,6 +292,21 @@ export default function GanttPage() {
     fetchProyecto();
     fetchConsultor();
   }, []);
+
+  if (user) {
+    consultorAutenticado = consultores.find(
+      (i) => i.id_usuario === user.id_usuario
+    );
+
+    if (user.id_rol === 2) {
+      filtredInterventions = interventions.filter(
+        (i) => i.id_consultor === consultorAutenticado.id_consultor
+      );
+    } else if(user && user.id_rol === 3){
+      filtredInterventions = interventions;
+    }
+  }
+
   return (
     <div className={styles.title}>
       <h3 className={styles.tituloH3}>Diagrama de Gantt</h3>
@@ -273,7 +314,7 @@ export default function GanttPage() {
         <GanttChart
           selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
-          interventions={interventions}
+          interventions={filtredInterventions}
           setInterventions={setInterventions}
           setOpen={setOpen}
           recomendations={recomendations}
