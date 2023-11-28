@@ -146,7 +146,7 @@ function RecomendationTable({
     interventions
       .filter((item) =>
         projectFilter && projectFilter.value
-          ? item.project_id === projectFilter.value
+          ? item.id_proyecto === projectFilter.value
           : true
       )
       .map((item) => ({

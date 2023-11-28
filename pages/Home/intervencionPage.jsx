@@ -163,19 +163,23 @@ export default function IntervencionPage() {
     fetchConsultor();
   }, []);
 
-  consultorAutenticado = consultores.find(
-    (i) => i.id_usuario === user.id_usuario
-  );
-
-  if (user && user.id_rol === 2) {
-    filtredInterventions = interventions.filter(
-      (i) => i.id_consultor === consultorAutenticado.id_consultor
+  if (user && consultores) {
+    consultorAutenticado = consultores.find(
+      (i) => i.id_usuario === user.id_usuario
     );
-    filtredProjects = projects.filter(
-      (i) => i.id_consultor === consultorAutenticado.id_consultor
-    );
-  } else if(user && user.id_rol === 3) {
-    filtredInterventions=projects;
+    if (consultorAutenticado) {
+      if (user.id_rol === 2) {
+        filtredInterventions = interventions.filter(
+          (i) => i.id_consultor === consultorAutenticado.id_consultor
+        );
+        filtredProjects = projects.filter((i) =>
+          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+        );
+      } else if (user.id_rol === 3) {
+        filtredInterventions = interventions;
+        filtredProjects = projects;
+      }
+    }
   }
 
   return (
@@ -184,7 +188,7 @@ export default function IntervencionPage() {
       <InterventionTable
         interventions={filtredInterventions}
         setInterventions={setInterventions}
-        projects={projects}
+        projects={filtredProjects}
         empresas={empresas}
         uebs={uebs}
         direcciones={direcciones}

@@ -262,7 +262,7 @@ function SideBar({}) {
             </>
           )}
           {user &&
-          (user.id_rol === 4 || user.id_rol === 2 || user.id_rol === 3) ? (
+          (user.id_rol === 4 || user.id_rol === 3) ? (
             <li>
               {" "}
               <Link href="/Home/reportePage">

@@ -14,15 +14,17 @@ export default function RecomendacionPage() {
   const [consultores, setConsultores] = useState([]);
   const [clasificaciones, setClasificaciones] = useState([]);
   const [projects, setProjects] = useState([]);
-  
+
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
 
-    //usuario autenticado
-    const [user, setUser] = useState(null);
-    let consultorAutenticado = {};
-    //recomendaciones filtradas
-    let filtredRecomendations = [];
+  //usuario autenticado
+  const [user, setUser] = useState(null);
+  let consultorAutenticado = {};
+  //datos filtrados
+  let filtredRecomendations = [];
+  let filtredInterventions = [];
+  let filtredProjects = [];
 
   useEffect(() => {
     async function fetchIntervention() {
@@ -107,26 +109,39 @@ export default function RecomendacionPage() {
     fetchClasificacion();
   }, []);
 
-  consultorAutenticado = consultores.find(
-    (i) => i.id_usuario === user.id_usuario
-  );
-
-  if (user && user.id_rol === 2) {
-    filtredRecomendations = recomendations.filter(
-      (i) => i.id_consultor === consultorAutenticado.id_consultor
+  if (user && consultores) {
+    consultorAutenticado = consultores.find(
+      (i) => i.id_usuario === user.id_usuario
     );
-  } else if(user && user.id_rol === 3){
-    filtredRecomendations=recomendations;
+    if (consultorAutenticado) {
+      if (user.id_rol === 2) {
+        filtredRecomendations = recomendations.filter(
+          (i) => i.id_consultor === consultorAutenticado.id_consultor
+        );
+        filtredProjects = projects.filter((i) =>
+          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+        );
+        filtredInterventions = interventions.filter((i) =>
+          filtredProjects.some(
+            (project) => project.id_proyecto === i.id_proyecto
+          )
+        );
+      } else if (user.id_rol === 3) {
+        filtredRecomendations = recomendations;
+        filtredProjects = projects;
+        filtredInterventions = interventions;
+      }
+    }
   }
 
   return (
     <div className={styles.title}>
       <h3> Recomendaciones</h3>
       <RecomendationTable
-        interventions={interventions}
+        interventions={filtredInterventions}
         recomendations={filtredRecomendations}
         setRecomendations={setRecomendations}
-        projects={projects}
+        projects={filtredProjects}
         consultores={consultores}
         consultor={consultorAutenticado}
         clasificaciones={clasificaciones}

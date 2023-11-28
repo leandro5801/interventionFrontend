@@ -130,8 +130,9 @@ export default function GanttPage() {
   //usuario autenticado
   const [user, setUser] = useState(null);
   let consultorAutenticado = {};
-  //intervenciones filtradas
+  //datos filtrados
   let filtredInterventions = [];
+  let filtredProjects = [];
 
   useEffect(() => {
     async function fetchIntervention() {
@@ -293,17 +294,22 @@ export default function GanttPage() {
     fetchConsultor();
   }, []);
 
-  if (user) {
+  if (user && consultores) {
     consultorAutenticado = consultores.find(
       (i) => i.id_usuario === user.id_usuario
     );
-
-    if (user.id_rol === 2) {
-      filtredInterventions = interventions.filter(
-        (i) => i.id_consultor === consultorAutenticado.id_consultor
-      );
-    } else if(user && user.id_rol === 3){
-      filtredInterventions = interventions;
+    if (consultorAutenticado) {
+      if (user.id_rol === 2) {
+        filtredInterventions = interventions.filter(
+          (i) => i.id_consultor === consultorAutenticado.id_consultor
+        );
+        filtredProjects = projects.filter((i) =>
+          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+        );
+      } else if (user.id_rol === 3) {
+        filtredInterventions = interventions;
+        filtredProjects = projects;
+      }
     }
   }
 
@@ -319,7 +325,7 @@ export default function GanttPage() {
           setOpen={setOpen}
           recomendations={recomendations}
           setTableRData={setTableRData}
-          projects={projects}
+          projects={filtredProjects}
           empresas={empresas}
           uebs={uebs}
           direcciones={direcciones}

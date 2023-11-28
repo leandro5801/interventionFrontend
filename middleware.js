@@ -22,7 +22,6 @@ export async function middleware(request) {
       }
     );
     const data = await response.json();
-    console.log("response", data);
     if (response.status === 201) {
       if (data.isValid) {
         return NextResponse.next();
