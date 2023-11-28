@@ -23,8 +23,9 @@ export default function IntervencionPage() {
   //usuario autenticado
   const [user, setUser] = useState(null);
   let consultorAutenticado = {};
-  //intervenciones filtradas
+  //datos filtrados
   let filtredInterventions = [];
+  let filtredProjects = [];
 
   useEffect(() => {
     async function fetchIntervention() {
@@ -170,8 +171,11 @@ export default function IntervencionPage() {
     filtredInterventions = interventions.filter(
       (i) => i.id_consultor === consultorAutenticado.id_consultor
     );
+    filtredProjects = projects.filter(
+      (i) => i.id_consultor === consultorAutenticado.id_consultor
+    );
   } else if(user && user.id_rol === 3) {
-    filtredInterventions=interventions;
+    filtredInterventions=projects;
   }
 
   return (

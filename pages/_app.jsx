@@ -4,13 +4,6 @@ import Header from "../Components/Header";
 import { useState, useEffect } from "react";
 import Dashboard from "./index";
 import Login from "./Login/Login";
-// import IntervencionPage from "./IntervencionPage";
-
-// function MyApp({ Component, pageProps }) {
-//   return <Component {...pageProps} />
-// }
-
-// export default MyApp
 
 function MyApp({ Component, pageProps }) {
 
