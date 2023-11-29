@@ -209,8 +209,8 @@ export default function ConsultorForm({
           <DialogContent>
             <p>
               {type === "crear"
-                ? "¿Está seguro de crear este usuario?"
-                : "¿Está seguro de modificar el usuario?"}
+                ? "¿Está seguro de crear este consultor?"
+                : "¿Está seguro de modificar el consultor?"}
             </p>
           </DialogContent>
           <DialogActions>

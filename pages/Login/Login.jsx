@@ -73,6 +73,10 @@ const Login = () => {
               text: "Usuario o contraseña incorrectos.",
               showConfirmButton: true,
             });
+            setCredentials({
+              nombre_usuario: "",
+              contraseña: "",
+            });
           },
         });
       } else {
@@ -108,6 +112,7 @@ const Login = () => {
             id="nombre_usuario"
             type="text"
             name="nombre_usuario"
+            value={credentials.nombre_usuario}
             placeholder="Nombre del usuario"
             InputProps={{
               startAdornment: (
@@ -123,6 +128,7 @@ const Login = () => {
             id="contraseña"
             type="password"
             name="contraseña"
+            value={credentials.contraseña}
             placeholder="Contraseña"
             onChange={handleChange}
             InputProps={{

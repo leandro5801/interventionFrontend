@@ -213,8 +213,8 @@ export default function ClienteForm({
           <DialogContent>
             <p>
               {type === "crear"
-                ? "¿Está seguro de crear este usuario?"
-                : "¿Está seguro de modificar el usuario?"}
+                ? "¿Está seguro de crear este cliente?"
+                : "¿Está seguro de modificar el cliente?"}
             </p>
           </DialogContent>
           <DialogActions>
