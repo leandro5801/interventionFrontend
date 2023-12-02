@@ -29,13 +29,15 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
 import { ConfirmationNumber } from "@mui/icons-material";
 import axios from "axios";
 
-function EmpresaTable({ empresas, setEmpresas, cargando }) {
+function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -85,8 +87,8 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
     empresas &&
     empresas.filter(
       (item) =>
-        item.nombreEmpresa &&
-        item.nombreEmpresa.toLowerCase().includes(nameFilter.toLowerCase())
+        item.nombre_empresa &&
+        item.nombre_empresa.toLowerCase().includes(nameFilter.toLowerCase())
     );
 
   const [data, setData] = useState("");
@@ -103,6 +105,17 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
   //   setOpen(false);
   // }
 
+  const vinculado = (id_empresa) => {
+    const ueb = uebs.find(
+      (dato) => dato.id_empresa === id_empresa
+    );
+    return ueb ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
   const [error, setError] = useState(null);
 
   async function handleDelete(id) {
@@ -111,7 +124,15 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
         `http://localhost:3000/api/empresa/${id}`
       );
       if (response.status === 200) {
-        setEmpresas(empresas.filter((empresa) => empresa.idEmpresa !== id));
+        const newDatos = empresas.filter((empresa) => empresa.id_empresa !== id);
+        setEmpresas(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+  
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar la empresa");
@@ -238,52 +259,68 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
                         )
                         .map((empresa) => (
                           <TableRow
-                            key={empresa.idEmpresa}
+                            key={empresa.id_empresa}
                             className={styles.trStyle}
                           >
                             <TableCell className={styles.tdStyle}>
-                              {empresa.nombreEmpresa}
+                              {empresa.nombre_empresa}
                             </TableCell>
 
                             <TableCell className={styles.tdStyle}>
-                              <FontAwesomeIcon
-                                icon={faEdit}
-                                onClick={() =>
-                                  setEditIIdx(
-                                    empresas.findIndex(
-                                      (item) =>
-                                        item.idEmpresa === empresa?.idEmpresa
-                                    )
-                                  )
-                                }
-                                className={styles.faIcon}
-                              />
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                onClick={() =>
-                                  openConfirmation(empresa?.idEmpresa)
-                                }
-                                data-task-id={empresa?.idEmpresa}
-                                className={styles.faIcon}
-                              />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>¿Está seguro de eliminar esta empresa?</p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
+                              {empresa.cargar_empresa === false ? (
+                                <>
+                                  <FontAwesomeIcon
+                                    icon={faEdit}
+                                    onClick={() =>
+                                      setEditIIdx(
+                                        empresas.findIndex(
+                                          (item) =>
+                                            item.id_empresa ===
+                                            empresa?.id_empresa
+                                        )
+                                      )
+                                    }
+                                    className={styles.faIcon}
+                                  />
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    onClick={() =>
+                                      vinculado(empresa?.id_empresa)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(empresa?.id_empresa)
+                                    }
+                                    data-task-id={empresa?.id_empresa}
+                                    className={styles.faIcon}
+                                  />
+                                  
+                                  <Dialog
+                                    open={open}
+                                    onClose={handleClose}
+                                    BackdropProps={{ invisible: true }}
+                                  >
+                                    <DialogTitle>
+                                      Confirmar Eliminación
+                                    </DialogTitle>
+                                    <DialogContent>
+                                      <p>
+                                        ¿Está seguro de eliminar esta empresa?
+                                      </p>
+                                    </DialogContent>
+                                    <DialogActions>
+                                      <Button
+                                        onClick={() => handleDelete(data)}
+                                      >
+                                        Aceptar
+                                      </Button>
+                                      <Button onClick={handleClose}>
+                                        Cancelar
+                                      </Button>
+                                    </DialogActions>
+                                  </Dialog>
+                                </>
+                              ) : (
+                                false
+                              )}
                             </TableCell>
                           </TableRow>
                         ))}
@@ -306,6 +343,22 @@ function EmpresaTable({ empresas, setEmpresas, cargando }) {
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar una empresa que ya esté vinculada a
+                  una UEB
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

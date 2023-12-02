@@ -31,6 +31,8 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
@@ -41,6 +43,7 @@ function ProjectTable({
   consultores,
   clientes,
   cargando,
+  interventions,
 }) {
   const nombreCliente = (id_cliente) => {
     const cliente = clientes.find(
@@ -164,6 +167,18 @@ function ProjectTable({
   //   setProjects(newIntervention);
   //   setOpen(false);
   // }
+
+  const vinculado = (id_proyecto) => {
+    const intervencion = interventions.find(
+      (dato) => dato.id_proyecto === id_proyecto
+    );
+    return intervencion ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -171,7 +186,17 @@ function ProjectTable({
         `http://localhost:3000/api/proyecto/${id}`
       );
       if (response.status === 200) {
-        setProjects(projects.filter((proyecto) => proyecto.id_proyecto !== id));
+        const newDatos = projects.filter(
+          (proyecto) => proyecto.id_proyecto !== id
+        );
+        setProjects(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar el proyecto");
@@ -271,44 +296,7 @@ function ProjectTable({
                   )}
                 </div>
               </div>
-              {/* <div className={styles.filtrosEstructuraContent}>
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={uebFilter}
-                onChange={handleUebFilterChange}
-                placeholder="Filtrar por UEB"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={structureFilter}
-                onChange={handleStructureFilterChange}
-                placeholder="Filtrar por dirección"
-              />
-            )}
-            {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="text"
-                value={areaFilter}
-                onChange={handleAreaFilterChange}
-                placeholder="Filtrar por área"
-              />
-            )}
-             {showFilters && (
-              <input
-                className={styles.inputFilter}
-                type="date"
-                value={startFilter}
-                onChange={handleStartFilterChange}
-                placeholder="Filtrar por fecha"
-              />
-            )}
-          </div> */}
+
               <>
                 {projects.length === 0 && (
                   <div className={styles.divIconH2}>
@@ -427,7 +415,9 @@ function ProjectTable({
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(project?.id_proyecto)
+                                  vinculado(project?.id_proyecto)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(project?.id_proyecto)
                                 }
                                 data-task-id={project?.id_proyecto}
                                 className={styles.faIcon}
@@ -472,6 +462,22 @@ function ProjectTable({
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar un proyecto que ya esté vinculado a una
+                  intervención
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

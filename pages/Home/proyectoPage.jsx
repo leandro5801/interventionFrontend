@@ -5,20 +5,14 @@ import axios from "axios";
 import styles from "../../styles/Home.module.css";
 import ProjectTable from "../../Components/Tables/ProjectTable";
 
-import datosProyectos from "../../public/datosProyectos.json";
-import datosUsers from "../../public/datosUsuarios.json";
 export default function ProyectoPage() {
   // datos de los proyectos
   const [projects, setProjects] = useState([]);
   const [clientes, setClientes] = useState([]);
   const [consultores, setConsultores] = useState([]);
-
+  const [interventions, setInterventions] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
-  // datos de los usuarios
-  const [users, setUsers] = useState(datosUsers?.users);
-  //almacenando un listado de consultores HAY QUE CAMBIAR ESTO  
-  // const consultores = users.filter((user) => user.idRole === "2");
   useEffect(() => {
     async function fetchProyecto() {
       setCargando(true);
@@ -62,9 +56,17 @@ export default function ProyectoPage() {
         setCargando(false);
       }
     }
+    async function fetchIntervention() {
+      const response = await axios.get(
+        "http://localhost:3000/api/intervencion"
+      );
+      setInterventions(response.data);
+    }
+  
     fetchProyecto();
     fetchClientes();
     fetchConsultores();
+    fetchIntervention();
   }, []);
 
   return (
@@ -76,6 +78,7 @@ export default function ProyectoPage() {
         consultores={consultores}
         clientes={clientes}
         cargando={cargando}
+        interventions={interventions}
       />
     </div>
   );

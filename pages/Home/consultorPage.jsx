@@ -10,6 +10,7 @@ import datosUsuarios from "../../public/datosUsuarios.json";
 
 export default function ConsultorPage() {
   const [consultores, setConsultores] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
@@ -39,8 +40,23 @@ export default function ConsultorPage() {
         setCargando(false);
       }
     }
+    async function fetchProyecto() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/proyecto");
+        setProjects(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
     fetchConsultor();
     fetchUsuario();
+    fetchProyecto();
   }, []);
 
   return (
@@ -52,6 +68,7 @@ export default function ConsultorPage() {
         users={users}
         setUsers={setUsers}
         cargando={cargando}
+        projects={projects}
       />
     </div>
   );

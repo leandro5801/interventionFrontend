@@ -43,11 +43,21 @@ export default function CreateRecomendationForm({
   const [follow, setFollow] = useState("");
   const [classification, setClassification] = useState(null);
 
+  const validarNombresIguales = (nombre_recomendacion) => {
+    const nombre = recomendations.find(
+      (i) =>
+        nombre_recomendacion.toLowerCase() ===
+        i.nombre_recomendacion.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
+
   // form validation rules
   const formOptions = { resolver: yupResolver(validationSchema) };
 
   // get functions to build form with useForm() hook
-  const { register, setValue, handleSubmit, reset, formState } =
+  const { register, setValue, handleSubmit, reset, formState, setError } =
     useForm(formOptions);
   const { errors } = formState;
 
@@ -56,12 +66,19 @@ export default function CreateRecomendationForm({
   const [formData, setFormData] = useState({});
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
+    const nombreRepetido = validarNombresIguales(data.name);
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre de la recomendación ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createRecomendacion(updatedRow) {
     try {
       const response = await axios.post(
@@ -187,8 +204,6 @@ export default function CreateRecomendationForm({
               <div className={styles.error}>{errors.description?.message}</div>
             </div>
           </div>
-
-        
 
           <div className={styles.inputGroup}>
             <div>

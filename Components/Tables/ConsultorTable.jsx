@@ -30,6 +30,8 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
@@ -40,6 +42,7 @@ function ConsultorTable({
   consultores,
   setConsultores,
   cargando,
+  projects,
 }) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
@@ -106,6 +109,18 @@ function ConsultorTable({
   //   setConsultores(newConsultor);
   //   setOpen(false);
   // }
+
+  const vinculado = (id_consultor) => {
+    const proyecto = projects.find((dato) =>
+      dato.consultores_asignados_id.some((id) => id === id_consultor)
+    );
+    return proyecto ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -113,7 +128,15 @@ function ConsultorTable({
         `http://localhost:3000/api/consultor/${id}`
       );
       if (response.status === 200) {
-        setConsultores(consultores.filter((consultor) => consultor.id_consultor !== id));
+        const newDatos = (consultor) => consultor.id_consultor !== id;
+        setConsultores(consultores.filter(newDatos));
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar el consultor");
@@ -271,7 +294,9 @@ function ConsultorTable({
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(consultor?.id_consultor)
+                                  vinculado(consultor?.id_consultor)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(consultor?.id_consultor)
                                 }
                                 data-task-id={consultor?.id_consultor}
                                 className={styles.faIcon}
@@ -318,6 +343,22 @@ function ConsultorTable({
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar un consultor que ya esté vinculado a un
+                  proyecto
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

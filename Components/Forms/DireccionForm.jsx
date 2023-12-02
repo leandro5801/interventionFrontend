@@ -35,48 +35,59 @@ export default function DireccionForm({
   onCancel,
   onSave,
 }) {
-
-  const [name, setName] = useState(direccion ? direccion.nombreDireccion : "");
+  const [name, setName] = useState(direccion ? direccion.nombre_direccion : "");
   const [empresa, setEmpresa] = useState(
     direccion
       ? {
-          label: nombreEmpresa(uebPorId(direccion.idUeb).idEmpresa),
-          value: uebPorId(direccion.idUeb).idEmpresa,
+          label: nombreEmpresa(uebPorId(direccion.id_ueb).id_empresa),
+          value: uebPorId(direccion.id_ueb).id_empresa,
         }
       : ""
   );
   const [ueb, setueb] = useState(
     direccion
       ? {
-          label: nombreUeb(direccion.idUeb),
-          value: direccion.idUeb,
+          label: nombreUeb(direccion.id_ueb),
+          value: direccion.id_ueb,
         }
       : ""
   );
-
+  const [uebId, setUebId] = useState(direccion ? direccion.id_ueb : "");
   const empresasOptions =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
-    const uebsOptions =
+    empresas
+      .filter((item) => item.cargar_empresa === false)
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
+  const uebsOptions =
     uebs &&
     uebs
       .filter((item) =>
-        empresa && empresa.value
-          ? item.idEmpresa === empresa.value
-          : true
+        empresa && empresa.value ? item.id_empresa === empresa.value : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.value, value: newValue.value });
   };
   const handleUebChange = (newValue) => {
     setueb({ label: newValue.value, value: newValue.value });
+  };
+
+  const validarNombresIguales = (nombre_direccion, id_original) => {
+    const nombre = direcciones
+      .filter((item) => item.id_ueb === ueb.value)
+      .find(
+        (i) =>
+          i.id_direccion !== id_original &&
+          nombre_direccion.toLowerCase() === i.nombre_direccion.toLowerCase()
+      );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
   };
 
   const defaultValues = {
@@ -91,8 +102,15 @@ export default function DireccionForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -101,12 +119,22 @@ export default function DireccionForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(direccion ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      direccion ? direccion.id_direccion : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre de la direccion ya existe en la ueb seleccionada",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(direccion ? "editar" : "crear");
+    }
   }
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createDireccion(updatedRow) {
     try {
       const response = await axios.post(
@@ -125,16 +153,16 @@ export default function DireccionForm({
       );
     }
   }
-  async function editDireccion(idDireccion, direccionData) {
+  async function editDireccion(id_direccion, direccionData) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/direccion/${idDireccion}`,
+        `http://localhost:3000/api/direccion/${id_direccion}`,
         direccionData
       );
       if (response.status === 200) {
         setDirecciones(
           direcciones.map((direccion) =>
-            direccion.idDireccion === idDireccion ? response.data : direccion
+            direccion.id_direccion === id_direccion ? response.data : direccion
           )
         );
       } else {
@@ -150,15 +178,15 @@ export default function DireccionForm({
 
   const handleConfirm = (data) => {
     const updatedRow = {
-      nombreDireccion: data.name,
-      idUeb: parseInt(data.ueb.value),
+      nombre_direccion: data.name,
+      id_ueb: parseInt(data.ueb.value),
     };
     direccion
-      ? editDireccion(direccion.idDireccion, updatedRow)
+      ? editDireccion(direccion.id_direccion, updatedRow)
       : createDireccion(updatedRow);
 
     onSave();
-    
+
     setOpen(false);
   };
 
@@ -186,6 +214,7 @@ export default function DireccionForm({
                   onChange={(selectedOption) => {
                     handleEmpresaChange(selectedOption);
                     setValue("empresa", selectedOption);
+                    setValue("ueb", "");
                     field.onChange(selectedOption);
                   }}
                   options={empresasOptions}
@@ -212,6 +241,7 @@ export default function DireccionForm({
                   }`}
                   onChange={(selectedOption) => {
                     handleUebChange(selectedOption);
+                    setUebId(parseInt(selectedOption.value));
                     setValue("ueb", selectedOption);
                     field.onChange(selectedOption);
                   }}

@@ -46,46 +46,48 @@ function TrabajadorTable({
   cargando,
 }) {
   //para retornar el nombre de y no el id
-  const uebPorId = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
+  const uebPorId = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
     if (!ueb) {
-      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
       return;
     }
     return ueb;
   };
-  const direccionPorId = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const direccionPorId = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     if (!direccion) {
-      console.error(`No se encontró ninguna direccion con idUeb: ${idDireccion}`);
+      console.error(
+        `No se encontró ninguna direccion con id_ueb: ${id_direccion}`
+      );
       return;
     }
     return direccion;
   };
-  const areaPorId = (idArea) => {
-    const area = areas.find((e) => e.idArea === idArea);
+  const areaPorId = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
     return area;
   };
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
-  const nombreUeb = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
+  const nombreUeb = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
     return name;
   };
-  const nombreDireccion = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const nombreDireccion = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     const name = direccion
-      ? direccion.nombreDireccion
+      ? direccion.nombre_direccion
       : "no se encontro el nombre";
     return name;
   };
-  const nombreArea = (idArea) => {
-    const area = areas.find((e) => e.idArea === idArea);
-    const name = area ? area.nombreArea : "no se encontro el nombre";
+  const nombreArea = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
+    const name = area ? area.nombre_area : "no se encontro el nombre";
     return name;
   };
   //para el sms de confirmacion
@@ -134,8 +136,8 @@ function TrabajadorTable({
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
+      value: item.id_empresa,
+      label: item.nombre_empresa,
     }));
 
   const optionUebs =
@@ -143,23 +145,23 @@ function TrabajadorTable({
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.idEmpresa === empresaFilter.value
+          ? item.id_empresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
 
   const optionDirecciones =
     direcciones &&
     direcciones
       .filter((item) =>
-        uebFilter && uebFilter.value ? item.idUeb === uebFilter.value : true
+        uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.idDirecciones,
-        label: item.nombreDirecciones,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
 
   const optionAreas =
@@ -167,12 +169,12 @@ function TrabajadorTable({
     areas
       .filter((item) =>
         structureFilter && structureFilter.value
-          ? item.idDireccion === structureFilter.value
+          ? item.id_direccion === structureFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idArea,
-        label: item.nombreArea,
+        value: item.id_area,
+        label: item.nombre_area,
       }));
 
   const handleNameFilterChange = (event) => {
@@ -201,16 +203,16 @@ function TrabajadorTable({
   };
   const filteredData = trabajadores.filter(
     (item) =>
-      item.nombreTrabajador.toLowerCase().includes(nameFilter.toLowerCase()) &&
+      item.nombre_trabajador.toLowerCase().includes(nameFilter.toLowerCase()) &&
       (empresaFilter.length === 0 ||
-        uebPorId(direccionPorId(areaPorId(item.idArea).idDireccion).idUeb)
-          .idEmpresa === empresaFilter.value) &&
+        uebPorId(direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb)
+          .id_empresa === empresaFilter.value) &&
       (uebFilter.length === 0 ||
-        direccionPorId(areaPorId(item.idArea).idDireccion).idUeb ===
+        direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb ===
           uebFilter.value) &&
       (structureFilter.length === 0 ||
-        areaPorId(item.idArea).idDireccion === structureFilter.value) &&
-      (areaFilter.length === 0 || item.idArea === areaFilter.value)
+        areaPorId(item.id_area).id_direccion === structureFilter.value) &&
+      (areaFilter.length === 0 || item.id_area === areaFilter.value)
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -235,9 +237,17 @@ function TrabajadorTable({
         `http://localhost:3000/api/trabajador/${id}`
       );
       if (response.status === 200) {
-        setAreas(
-          trabajadores.filter((trabajador) => trabajador.idTrabajador !== id)
+        const newDatos = trabajadores.filter(
+          (trabajador) => trabajador.id_trabajador !== id
         );
+        setTrabajadores(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar el trabajador");
@@ -441,35 +451,35 @@ function TrabajadorTable({
                         )
                         .map((trabajador) => (
                           <TableRow
-                            key={trabajador.idTrabajador}
+                            key={trabajador.id_trabajador}
                             className={styles.trStyle}
                           >
                             <TableCell className={styles.tdStyle}>
                               {nombreEmpresa(
                                 uebPorId(
                                   direccionPorId(
-                                    areaPorId(trabajador.idArea).idDireccion
-                                  ).idUeb
-                                ).idEmpresa
+                                    areaPorId(trabajador.id_area).id_direccion
+                                  ).id_ueb
+                                ).id_empresa
                               )}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               {nombreUeb(
                                 direccionPorId(
-                                  areaPorId(trabajador.idArea).idDireccion
-                                ).idUeb
+                                  areaPorId(trabajador.id_area).id_direccion
+                                ).id_ueb
                               )}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               {nombreDireccion(
-                                areaPorId(trabajador.idArea).idDireccion
+                                areaPorId(trabajador.id_area).id_direccion
                               )}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {nombreArea(trabajador.idArea)}
+                              {nombreArea(trabajador.id_area)}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {trabajador.nombreTrabajador}
+                              {trabajador.nombre_trabajador}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               <FontAwesomeIcon
@@ -478,8 +488,8 @@ function TrabajadorTable({
                                   setEditIIdx(
                                     filteredData.findIndex(
                                       (item) =>
-                                        item.idTrabajador ===
-                                        trabajador?.idTrabajador
+                                        item.id_trabajador ===
+                                        trabajador?.id_trabajador
                                     )
                                   )
                                 }
@@ -488,9 +498,9 @@ function TrabajadorTable({
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(trabajador?.idTrabajador)
+                                  openConfirmation(trabajador?.id_trabajador)
                                 }
-                                data-task-id={trabajador?.idTrabajador}
+                                data-task-id={trabajador?.id_trabajador}
                                 className={styles.faIcon}
                               />
                               <Dialog

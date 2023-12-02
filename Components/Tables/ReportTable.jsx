@@ -47,6 +47,32 @@ function ReportTable({
     );
     return intervention;
   };
+
+  const proyectoPorId = (id_proyecto) => {
+    const proyecto = projects.find((e) => e.id_proyecto === id_proyecto);
+    return proyecto;
+  };
+
+  const nombreProyecto = (id_proyecto) => {
+    const proyecto = projects.find(
+      (proyecto) => proyecto.id_proyecto === id_proyecto
+    );
+    const name = proyecto
+      ? proyecto.nombre_proyecto
+      : "no se encontro el nombre";
+    return name;
+  };
+
+  const nombreIntervencion = (id_intervencion) => {
+    const intervencion = interventions.find(
+      (intervencion) => intervencion.id_intervencion === id_intervencion
+    );
+    const name = intervencion
+      ? intervencion.nombre_intervencion
+      : "no se encontro el nombre";
+    return name;
+  };
+
   const isFollow = (follow) => {
     const name = follow ? "Sí" : "No";
     return name;
@@ -176,7 +202,6 @@ function ReportTable({
     setData(data);
   }
 
-  
   const handleClose = () => {
     setOpen(false);
   };
@@ -186,34 +211,7 @@ function ReportTable({
         <div className={styles.divIconH2}></div>
         <TableContainer component={Paper} className={styles.tableReport}>
           <div className={styles.btnNuevoContent}>
-            {/* SELECCIONAR PROYECTO ETC */}
-
-            {showFilters && (
-              <Select
-                styles={customStyles}
-                className={styles.selectGestiones}
-                defaultValue={projectFilter}
-                onChange={(projectFilter) => {
-                  handleProjectFilterChange(projectFilter);
-                }}
-                options={optionProjects}
-                placeholder="Proyecto"
-                isClearable
-              />
-            )}
-            {showFilters && (
-              <Select
-                styles={customStyles}
-                className={styles.selectGestiones}
-                defaultValue={interventionFilter}
-                onChange={(interventionFilter) => {
-                  handleInterventionFilterChange(interventionFilter);
-                }}
-                options={optioninterventions}
-                placeholder="Intervención"
-                isClearable
-              />
-            )}
+   
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
@@ -234,6 +232,38 @@ function ReportTable({
           <Table stickyHeader>
             <TableHead>
               <TableRow>
+                <TableCell className={styles.letraEnNegrita}>
+                  Proyecto
+                  {showFilters && (
+                    <Select
+                      styles={customStyles}
+                      className={styles.selectGestionesGantt}
+                      defaultValue={projectFilter}
+                      onChange={(projectFilter) => {
+                        handleProjectFilterChange(projectFilter);
+                      }}
+                      options={optionProjects}
+                      placeholder="Proyecto"
+                      isClearable
+                    />
+                  )}
+                </TableCell>
+                <TableCell className={styles.letraEnNegrita}>
+                  Intervención
+                  {showFilters && (
+                    <Select
+                      styles={customStyles}
+                      className={styles.selectGestionesGantt}
+                      defaultValue={interventionFilter}
+                      onChange={(interventionFilter) => {
+                        handleInterventionFilterChange(interventionFilter);
+                      }}
+                      options={optioninterventions}
+                      placeholder="Intervenci..."
+                      isClearable
+                    />
+                  )}
+                </TableCell>
                 <TableCell className={styles.letraEnNegrita}>
                   Recomendación
                   {showFilters && (
@@ -288,19 +318,22 @@ function ReportTable({
               {filteredData
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((recomendation) => (
-                  <TableRow key={recomendation.id_recomendacion} >
-                    <TableCell >
-                      {recomendation.nombre_recomendacion}
+                  <TableRow key={recomendation.id_recomendacion}>
+                    <TableCell>
+                      {nombreProyecto(
+                        intervencionPorId(recomendation.id_intervencion)
+                          .id_proyecto
+                      )}
                     </TableCell>
-                    <TableCell >
+                    <TableCell>
+                      {nombreIntervencion(recomendation.id_intervencion)}
+                    </TableCell>
+                    <TableCell>{recomendation.nombre_recomendacion}</TableCell>
+                    <TableCell>
                       {recomendation.descripcion_recomendacion}
                     </TableCell>
-                    <TableCell >
-                      {recomendation.fecha_recomendacion}
-                    </TableCell>
-                    <TableCell >
-                      {isFollow(recomendation.seguimiento)}
-                    </TableCell>
+                    <TableCell>{recomendation.fecha_recomendacion}</TableCell>
+                    <TableCell>{isFollow(recomendation.seguimiento)}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>

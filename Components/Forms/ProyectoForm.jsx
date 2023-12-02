@@ -52,6 +52,15 @@ export default function ProyectoForm({
   const [consultores, setConsultores] = useState(
     project ? project.consultores_asignados_id : []
   );
+  const validarNombresIguales = (nombre_proyecto, id_original) => {
+    const nombre = projects.find(
+      (i) =>
+        i.id_proyecto !== id_original &&
+        nombre_proyecto.toLowerCase() === i.nombre_proyecto.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
 
   const consultoresOptions =
     consultoress &&
@@ -86,7 +95,7 @@ export default function ProyectoForm({
       );
       return consultorNew.id_consultor;
     });
-    
+
     setConsultoresID(consultoresNuevos);
   };
   const defaultValues = {
@@ -101,8 +110,15 @@ export default function ProyectoForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -111,13 +127,23 @@ export default function ProyectoForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(project ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      project ? project.id_proyecto : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre del proyecto ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(project ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createProyecto(updatedRow) {
     try {
       const response = await axios.post(
@@ -162,7 +188,6 @@ export default function ProyectoForm({
   }
 
   const handleConfirm = (data) => {
-    
     const updatedRow = {
       // id_proyecto: project ? project.id : projects.length + 1,
       id_cliente: parseInt(data.cliente.value),
@@ -226,7 +251,6 @@ export default function ProyectoForm({
             <Controller
               name="consultores"
               control={control}
-              
               render={({ field }) => (
                 <Select
                   styles={customStyles}
@@ -234,12 +258,7 @@ export default function ProyectoForm({
                   className={`${styles.selectFormRec}  ${
                     errors.consultores ? "is-invalid" : ""
                   }`}
-                  defaultValue={consultoresIniciales} 
-                  // value={consultores.map((item) => ({
-                  //   value: item,
-                  //   label: item.nombre_consultor,
-                  // }))}
-
+                  defaultValue={consultoresIniciales}
                   onChange={(selectedOption) => {
                     const consultoresNuevos = selectedOption.map(
                       (consultor) => {

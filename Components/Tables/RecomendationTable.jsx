@@ -58,6 +58,30 @@ function RecomendationTable({
     );
     return intervention;
   };
+  const proyectoPorId = (id_proyecto) => {
+    const proyecto = projects.find((e) => e.id_proyecto === id_proyecto);
+    return proyecto;
+  };
+
+  const nombreProyecto = (id_proyecto) => {
+    const proyecto = projects.find(
+      (proyecto) => proyecto.id_proyecto === id_proyecto
+    );
+    const name = proyecto
+      ? proyecto.nombre_proyecto
+      : "no se encontro el nombre";
+    return name;
+  };
+
+  const nombreIntervencion = (id_intervencion) => {
+    const intervencion = interventions.find(
+      (intervencion) => intervencion.id_intervencion === id_intervencion
+    );
+    const name = intervencion
+      ? intervencion.nombre_intervencion
+      : "no se encontro el nombre";
+    return name;
+  };
 
   const nombreConsultor = (id_consultor) => {
     const consultor = consultores.find(
@@ -68,6 +92,7 @@ function RecomendationTable({
       : "no se encontro el nombre";
     return name;
   };
+
   const nombreClasificacion = (id_clasificacion) => {
     const clasificacion = clasificaciones.find(
       (clasificacion) => clasificacion.id_clasificacion === id_clasificacion
@@ -261,11 +286,17 @@ function RecomendationTable({
         `http://localhost:3000/api/recomendacion/${id}`
       );
       if (response.status === 200) {
-        setRecomendations(
-          recomendations.filter(
-            (recomendacion) => recomendacion.id_recomendacion !== id
-          )
+        const newDatos = recomendations.filter(
+          (recomendacion) => recomendacion.id_recomendacion !== id
         );
+        setRecomendations(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar la recomendacion");
@@ -280,7 +311,7 @@ function RecomendationTable({
   const handleClose = () => {
     setOpen(false);
   };
- 
+
   if (cargando) {
     return (
       <div>
@@ -332,32 +363,6 @@ function RecomendationTable({
               ></FormDialog>
               {/* SELECCIONAR PROYECTO ETC */}
 
-              {showFilters && (
-                <Select
-                  styles={customStyles}
-                  className={styles.selectGestiones}
-                  defaultValue={projectFilter}
-                  onChange={(projectFilter) => {
-                    handleProjectFilterChange(projectFilter);
-                  }}
-                  options={optionProjects}
-                  placeholder="Proyecto"
-                  isClearable
-                />
-              )}
-              {showFilters && (
-                <Select
-                  styles={customStyles}
-                  className={styles.selectGestiones}
-                  defaultValue={interventionFilter}
-                  onChange={(interventionFilter) => {
-                    handleInterventionFilterChange(interventionFilter);
-                  }}
-                  options={optioninterventions}
-                  placeholder="Intervención"
-                  isClearable
-                />
-              )}
               <div className={styles.filterListOffOutlinedContent}>
                 {showFilters ? (
                   <FilterListOffOutlinedIcon
@@ -385,6 +390,40 @@ function RecomendationTable({
                 <Table stickyHeader>
                   <TableHead>
                     <TableRow>
+                      <TableCell className={styles.letraEnNegrita}>
+                        Proyecto
+                        {showFilters && (
+                          <Select
+                            styles={customStyles}
+                            className={styles.selectGestionesGantt}
+                            defaultValue={projectFilter}
+                            onChange={(projectFilter) => {
+                              handleProjectFilterChange(projectFilter);
+                            }}
+                            options={optionProjects}
+                            placeholder="Proyecto"
+                            isClearable
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell className={styles.letraEnNegrita}>
+                        Intervención
+                        {showFilters && (
+                          <Select
+                            styles={customStyles}
+                            className={styles.selectGestionesGantt}
+                            defaultValue={interventionFilter}
+                            onChange={(interventionFilter) => {
+                              handleInterventionFilterChange(
+                                interventionFilter
+                              );
+                            }}
+                            options={optioninterventions}
+                            placeholder="Intervención"
+                            isClearable
+                          />
+                        )}
+                      </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Recomendación
                         {showFilters && (
@@ -478,6 +517,15 @@ function RecomendationTable({
                       )
                       .map((recomendation) => (
                         <TableRow key={recomendation.id_recomendacion}>
+                          <TableCell>
+                            {nombreProyecto(
+                              intervencionPorId(recomendation.id_intervencion)
+                                .id_proyecto
+                            )}
+                          </TableCell>
+                          <TableCell>
+                            {nombreIntervencion(recomendation.id_intervencion)}
+                          </TableCell>
                           <TableCell>
                             {recomendation.nombre_recomendacion}
                           </TableCell>

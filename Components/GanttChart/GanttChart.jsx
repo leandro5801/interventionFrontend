@@ -146,8 +146,8 @@ export default function GanttChart({
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
+      value: item.id_empresa,
+      label: item.nombre_empresa,
     }));
 
   const optionUebs =
@@ -155,23 +155,23 @@ export default function GanttChart({
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.idEmpresa === empresaFilter.value
+          ? item.id_empresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
 
   const optionDirecciones =
     direcciones &&
     direcciones
       .filter((item) =>
-        uebFilter && uebFilter.value ? item.idUeb === uebFilter.value : true
+        uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.idDireccion,
-        label: item.nombreDireccion,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
 
   const optionAreas =
@@ -179,12 +179,12 @@ export default function GanttChart({
     areas
       .filter((item) =>
         structureFilter && structureFilter.value
-          ? item.idDireccion === structureFilter.value
+          ? item.id_direccion === structureFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idArea,
-        label: item.nombreArea,
+        value: item.id_area,
+        label: item.nombre_area,
       }));
   //-----------------------------------------------
 
@@ -193,13 +193,13 @@ export default function GanttChart({
       (projectFilter.length === 0 ||
         item.id_proyecto === projectFilter.value) &&
       (empresaFilter.length === 0 ||
-        uebPorId(direccionPorId(areaPorId(item.id_area).idDireccion).idUeb)
-          .idEmpresa === empresaFilter.value) &&
+        uebPorId(direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb)
+          .id_empresa === empresaFilter.value) &&
       (uebFilter.length === 0 ||
-        direccionPorId(areaPorId(item.id_area).idDireccion).idUeb ===
+        direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb ===
           uebFilter.value) &&
       (structureFilter.length === 0 ||
-        areaPorId(item.id_area).idDireccion === structureFilter.value) &&
+        areaPorId(item.id_area).id_direccion === structureFilter.value) &&
       (areaFilter.length === 0 || item.id_area === areaFilter.value) &&
       item.nombre_intervencion
         .toLowerCase()

@@ -27,7 +27,20 @@ export default function EmpresaForm({
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(empresa ? empresa.nombreEmpresa : "");
+  const [name, setName] = useState(empresa ? empresa.nombre_empresa : "");
+  const [cargarEmpresa, setCargarEmpresa] = useState(
+    empresa ? empresa.cargar_empresa : false
+  );
+
+  const validarNombresIguales = (nombre_empresa, id_original) => {
+    const nombre = empresas.find(
+      (i) =>
+        i.id_empresa !== id_original &&
+        nombre_empresa.toLowerCase() ===i.nombre_empresa.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
 
   // form validation rules
   const formOptions = {
@@ -35,8 +48,15 @@ export default function EmpresaForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -45,13 +65,23 @@ export default function EmpresaForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(empresa ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      empresa ? empresa.id : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre de la empresa ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(empresa ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createEmpresa(updatedRow) {
     try {
       const response = await axios.post(
@@ -71,17 +101,17 @@ export default function EmpresaForm({
       );
     }
   }
-  async function editEmpresa(idEmpresa, empresaData) {
+  async function editEmpresa(id_empresa, empresaData) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/empresa/${idEmpresa}`,
+        `http://localhost:3000/api/empresa/${id_empresa}`,
         empresaData
       );
       if (response.status === 200) {
         // Actualiza el estado para reflejar los cambios en el frontend
         setEmpresas(
           empresas.map((empresa) =>
-            empresa.idEmpresa === idEmpresa ? response.data : empresa
+            empresa.id_empresa === id_empresa ? response.data : empresa
           )
         );
       } else {
@@ -96,15 +126,16 @@ export default function EmpresaForm({
   }
 
   const handleConfirm = (data) => {
+    // console.log(data)
     const updatedRow = {
-      // idEmpresa: 10,
-      nombreEmpresa: data.name,
+      // id_empresa: 10,
+      nombre_empresa: data.name,
+      cargar_empresa: Boolean(data.cargarEmpresa),
     };
-
     empresa
-      ? editEmpresa(empresa.idEmpresa, updatedRow)
+      ? editEmpresa(empresa.id_empresa, updatedRow)
       : createEmpresa(updatedRow);
-  
+
     onSave();
     setOpen(false);
   };
@@ -133,6 +164,23 @@ export default function EmpresaForm({
               />
               <div className={styles.error}>{errors.name?.message}</div>
             </div>
+          </div>
+          <div className={styles.inputGroup}>
+            <input
+              className={`  ${errors.cargar_empresa ? "is-invalid" : ""}`}
+              type="checkbox"
+              id="cargarEmpresa"
+              {...register("cargarEmpresa")}
+              checked={cargarEmpresa}
+              onChange={(event) => {
+                setCargarEmpresa(event.target.checked);
+              }}
+            />
+            <InputLabel id="demo-simple-select-standard-label">
+              Se cargan los datos de la empresa
+            </InputLabel>
+
+            <div className={styles.error}>{errors.cargar_empresa?.message}</div>
           </div>
         </div>
         <DialogActions>

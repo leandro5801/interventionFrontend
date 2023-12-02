@@ -78,8 +78,8 @@ export default function FormUpdateIntervention({
   const [empresaId, setEmpresaId] = useState(
     intervention
       ? uebPorId(
-          direccionPorId(areaPorId(intervention.id_area).idDireccion).idUeb
-        ).idEmpresa
+          direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
+        ).id_empresa
       : ""
   );
   const [empresa, setEmpresa] = useState(
@@ -87,39 +87,40 @@ export default function FormUpdateIntervention({
       ? {
           label: nombreEmpresa(
             uebPorId(
-              direccionPorId(areaPorId(intervention.id_area).idDireccion).idUeb
-            ).idEmpresa
+              direccionPorId(areaPorId(intervention.id_area).id_direccion)
+                .id_ueb
+            ).id_empresa
           ),
           value: uebPorId(
-            direccionPorId(areaPorId(intervention.id_area).idDireccion).idUeb
-          ).idEmpresa,
+            direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
+          ).id_empresa,
         }
       : ""
   );
   const [uebId, setUebId] = useState(
     intervention
-      ? direccionPorId(areaPorId(intervention.id_area).idDireccion).idUeb
+      ? direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
       : ""
   );
   const [ueb, setUeb] = useState(
     intervention
       ? {
           label: nombreUeb(
-            direccionPorId(areaPorId(intervention.id_area).idDireccion).idUeb
+            direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
           ),
-          value: direccionPorId(areaPorId(intervention.id_area).idDireccion)
-            .idUeb,
+          value: direccionPorId(areaPorId(intervention.id_area).id_direccion)
+            .id_ueb,
         }
       : ""
   );
   const [direccionId, setDireccionId] = useState(
-    intervention ? areaPorId(intervention.id_area).idDireccion : ""
+    intervention ? areaPorId(intervention.id_area).id_direccion : ""
   );
   const [selectedStructure, setSelectedStructure] = useState(
     intervention
       ? {
-          label: nombreDireccion(areaPorId(intervention.id_area).idDireccion),
-          value: areaPorId(intervention.id_area).idDireccion,
+          label: nombreDireccion(areaPorId(intervention.id_area).id_direccion),
+          value: areaPorId(intervention.id_area).id_direccion,
         }
       : ""
   );
@@ -154,20 +155,34 @@ export default function FormUpdateIntervention({
   //   setConsultor({ label: newValue.label, value: newValue.value });
   // };
 
+  const validarNombresIguales = (nombre_intervencion, id_original) => {
+    const nombre = interventions
+      // .filter((item) => item.id_proyecto === proyecto.value)
+      .find(
+        (i) =>
+          i.id_intervencion !== id_original &&
+          nombre_intervencion.toLowerCase() ===
+            i.nombre_intervencion.toLowerCase()
+      );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
+
   //para poner dependencia entre los select estructuras
   const empresasOptions =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
+    empresas
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
   const uebOptions =
     uebs &&
     uebs
-      .filter((item) => (empresaId ? item.idEmpresa === empresaId : false))
+      .filter((item) => (empresaId ? item.id_empresa === empresaId : false))
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.label, value: newValue.value });
@@ -177,16 +192,16 @@ export default function FormUpdateIntervention({
   };
 
   const structureOptions = direcciones
-    .filter((item) => (uebId ? item.idUeb === uebId : false))
+    .filter((item) => (uebId ? item.id_ueb === uebId : false))
     .map((item) => ({
-      value: item.idDireccion,
-      label: item.nombreDireccion,
+      value: item.id_direccion,
+      label: item.nombre_direccion,
     }));
   const areaOptions = areas
-    .filter((item) => (direccionId ? item.idDireccion === direccionId : false))
+    .filter((item) => (direccionId ? item.id_direccion === direccionId : false))
     .map((item) => ({
-      value: item.idArea,
-      label: item.nombreArea,
+      value: item.id_area,
+      label: item.nombre_area,
     }));
   const handleUebChange = (newValue) => {
     setUeb(newValue);
@@ -198,16 +213,17 @@ export default function FormUpdateIntervention({
     setSelectedArea("");
   };
   const trabajadoresOptions = trabajadores
-    .filter((item) => (areaId ? item.idArea === areaId : false))
+    .filter((item) => (areaId ? item.id_area === areaId : false))
     .map((item) => ({
-      value: item.idTrabajador,
-      label: item.nombreTrabajador,
+      value: item.id_trabajador,
+      label: item.nombre_trabajador,
     }));
 
   const proyectosOptions = projects.map((item) => ({
     value: item.id_proyecto,
     label: item.nombre_proyecto,
   }));
+
 
   const defaultValues = {
     proyecto: proyecto,
@@ -226,8 +242,15 @@ export default function FormUpdateIntervention({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -237,13 +260,23 @@ export default function FormUpdateIntervention({
   const [mostrarMensaje, setMostrarMensaje] = useState(false);
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(intervention ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      intervention ? intervention.id_intervencion : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre de la intervención ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(intervention ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createIntervencion(updatedRow) {
     try {
       const response = await axios.post(
@@ -471,40 +504,39 @@ export default function FormUpdateIntervention({
                 <div className={styles.error}>Seleccione una Dirección.</div>
               )}
             </div>
-            
           </div>
           <div className={styles.inputGroup}>
-              <div className={styles.halfRow}>
-                <Controller
-                  name="area"
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      styles={customStyles}
-                      id="area"
-                      {...field}
-                      className={`${styles.selectFormRec}  ${
-                        errors.area ? "is-invalid" : ""
-                      }`}
-                      onChange={(selectedOption) => {
-                        setSelectedArea(selectedOption);
-                        setAreaId(parseInt(selectedOption.value));
-                        setValue("area", selectedOption);
-                        setValue("worker", "");
-                        field.onChange(selectedOption);
-                      }}
-                      options={areaOptions}
-                      maxMenuHeight={120}
-                      placeholder="Área"
-                    />
-                  )}
-                />
-                {errors.area && (
-                  <div className={styles.error}>Seleccione un Área.</div>
+            <div className={styles.halfRow}>
+              <Controller
+                name="area"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    styles={customStyles}
+                    id="area"
+                    {...field}
+                    className={`${styles.selectFormRec}  ${
+                      errors.area ? "is-invalid" : ""
+                    }`}
+                    onChange={(selectedOption) => {
+                      setSelectedArea(selectedOption);
+                      setAreaId(parseInt(selectedOption.value));
+                      setValue("area", selectedOption);
+                      setValue("worker", "");
+                      field.onChange(selectedOption);
+                    }}
+                    options={areaOptions}
+                    maxMenuHeight={120}
+                    placeholder="Área"
+                  />
                 )}
-              </div>
+              />
+              {errors.area && (
+                <div className={styles.error}>Seleccione un Área.</div>
+              )}
+            </div>
 
-              {/* <div className={styles.halfRow}>
+            {/* <div className={styles.halfRow}>
               <Controller
                 name="consultor"
                 control={control}
@@ -532,34 +564,34 @@ export default function FormUpdateIntervention({
               )}
             </div> */}
 
-              <div className={styles.halfRow}>
-                <Controller
-                  name="worker"
-                  control={control}
-                  render={({ field }) => (
-                    <Select
-                      styles={customStyles}
-                      id="worker"
-                      {...field}
-                      className={`${styles.selectFormRec}  ${
-                        errors.worker ? "is-invalid" : ""
-                      }`}
-                      onChange={(selectedOption) => {
-                        setSelectedTrabajador(selectedOption);
-                        setValue("worker", selectedOption);
-                        field.onChange(selectedOption);
-                      }}
-                      options={trabajadoresOptions}
-                      maxMenuHeight={120}
-                      placeholder="Trabajador"
-                    />
-                  )}
-                />
-                {errors.worker && (
-                  <div className={styles.error}>Seleccione un Trabajador.</div>
+            <div className={styles.halfRow}>
+              <Controller
+                name="worker"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    styles={customStyles}
+                    id="worker"
+                    {...field}
+                    className={`${styles.selectFormRec}  ${
+                      errors.worker ? "is-invalid" : ""
+                    }`}
+                    onChange={(selectedOption) => {
+                      setSelectedTrabajador(selectedOption);
+                      setValue("worker", selectedOption);
+                      field.onChange(selectedOption);
+                    }}
+                    options={trabajadoresOptions}
+                    maxMenuHeight={120}
+                    placeholder="Trabajador"
+                  />
                 )}
-              </div>
+              />
+              {errors.worker && (
+                <div className={styles.error}>Seleccione un Trabajador.</div>
+              )}
             </div>
+          </div>
           <div className={styles.inputGroup}>
             <div>
               <InputLabel id="demo-simple-select-standard-label">

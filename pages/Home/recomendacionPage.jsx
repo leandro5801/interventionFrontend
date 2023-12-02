@@ -6,8 +6,6 @@ import Cookies from "js-cookie";
 import styles from "../../styles/Home.module.css";
 import RecomendationTable from "../../Components/Tables/RecomendationTable";
 
-import datosintervenciones from "../../public/datosintervenciones.json";
-import datosProyectos from "../../public/datosProyectos.json";
 export default function RecomendacionPage() {
   const [interventions, setInterventions] = useState([]);
   const [recomendations, setRecomendations] = useState([]);

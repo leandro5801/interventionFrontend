@@ -30,12 +30,23 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
 import { RollerShades } from "@mui/icons-material";
 
-function UserTable({ users, setUsers, roles, setRoles, cargando }) {
+function UserTable({
+  users,
+  setUsers,
+  roles,
+  setRoles,
+  cargando,
+  user: usuarioAutenticado,
+  clientes,
+  consultores,
+}) {
   const nombreRol = (id_rol) => {
     const role = roles.find((rol) => rol.id_rol === id_rol);
     const name = role ? role.nombre_rol : "no se encontro el nombre";
@@ -127,6 +138,38 @@ function UserTable({ users, setUsers, roles, setRoles, cargando }) {
   //   setOpen(false);
   // }
 
+  const clienteVinculado = (id_usuario) => {
+    const cliente = clientes.find((dato) => dato.id_usuario === id_usuario);
+    return cliente ? true : false;
+  };
+  const consultorVinculado = (id_usuario) => {
+    const consultor = consultores.find(
+      (dato) => dato.id_usuario === id_usuario
+    );
+    return consultor ? true : false;
+  };
+  const [openDialogAdvertenciaCliente, setOpenDialogAdvertenciaCliente] =
+    useState(false);
+  const [openDialogAdvertenciaConsultor, setOpenDialogAdvertenciaConsultor] =
+    useState(false);
+
+  const [esUsuarioPropio, setEsUsuarioPropio] = useState(false);
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+  const handleCloseDialogAdvertenciaConsultor = () => {
+    setOpenDialogAdvertenciaConsultor(false);
+  };
+  const handleCloseDialogAdvertenciaCliente = () => {
+    setOpenDialogAdvertenciaCliente(false);
+  };
+  const handleUsuarioPropio = () => {
+    handleClose();
+    setEsUsuarioPropio(true);
+    setOpenDialogAdvertencia(true);
+  };
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -134,8 +177,18 @@ function UserTable({ users, setUsers, roles, setRoles, cargando }) {
         `http://localhost:3000/api/usuario/${id}`
       );
       if (response.status === 200) {
-        setUsers(users.filter((usuario) => usuario.id_usuario !== id));
+        const newDatos = users.filter((usuario) => usuario.id_usuario !== id);
+        setUsers(newDatos);
+  
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+  
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
+        
       } else {
         throw new Error("Error al eliminar el usuario");
       }
@@ -156,17 +209,6 @@ function UserTable({ users, setUsers, roles, setRoles, cargando }) {
 
   const handleCancelI = () => {
     setEditIIdx(-1);
-  };
-
-  const userUpdate = (updatedRow) => {
-    // Crea una copia de los datos de la tabla
-    const updatedUserData = [...users];
-
-    // Actualiza los datos de la fila que se está editando
-    updatedUserData[editIIdx] = updatedRow;
-
-    // Actualiza el estado de los datos en la tabla
-    setUsers(updatedUserData);
   };
 
   if (cargando) {
@@ -304,9 +346,24 @@ function UserTable({ users, setUsers, roles, setRoles, cargando }) {
                               />
                               <FontAwesomeIcon
                                 icon={faTrash}
-                                onClick={() =>
-                                  openConfirmation(user?.id_usuario)
-                                }
+                                onClick={() => {
+                                  if (
+                                    usuarioAutenticado.id_usuario ===
+                                    user?.id_usuario
+                                  ) {
+                                    handleUsuarioPropio();
+                                  } else if (
+                                    clienteVinculado(user?.id_usuario)
+                                  ) {
+                                    setOpenDialogAdvertenciaCliente(true);
+                                  } else if (
+                                    consultorVinculado(user?.id_usuario)
+                                  ) {
+                                    setOpenDialogAdvertenciaConsultor(true);
+                                  } else {
+                                    openConfirmation(user?.id_usuario);
+                                  }
+                                }}
                                 data-task-id={user?.id_usuario}
                                 className={styles.faIcon}
                               />
@@ -350,6 +407,57 @@ function UserTable({ users, setUsers, roles, setRoles, cargando }) {
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                {esUsuarioPropio ? (
+                  <Alert severity="warning">
+                    <AlertTitle>Advertencia</AlertTitle>
+                    No se puede eliminar el usuario en uso
+                    <div className={styles.botonAlert}>
+                      <Button onClick={handleCloseDialogAdvertencia}>
+                        Aceptar
+                      </Button>
+                    </div>
+                  </Alert>
+                ) : (
+                  false
+                )}
+              </Dialog>
+              <Dialog
+                open={openDialogAdvertenciaCliente}
+                onClose={setOpenDialogAdvertenciaCliente}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar un usuario que ya esté vinculado a un
+                  cliente
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertenciaCliente}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
+              <Dialog
+                open={openDialogAdvertenciaConsultor}
+                onClose={handleCloseDialogAdvertenciaConsultor}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar un usuario que ya esté vinculado a un
+                  consultor
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertenciaConsultor}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

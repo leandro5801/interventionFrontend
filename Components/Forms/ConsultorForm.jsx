@@ -32,30 +32,46 @@ export default function ConsultorForm({
   onCancel,
   onSave,
 }) {
-    const nombreUsuario = (id_usuario) => {
-        const user = users.find((e) => e.id_usuario === id_usuario);
-        const name = user ? user.nombre_usuario : "no se encontro el nombre";
-        return name;
-      };
+  const nombreUsuario = (id_usuario) => {
+    const user = users.find((e) => e.id_usuario === id_usuario);
+    const name = user ? user.nombre_usuario : "no se encontro el nombre";
+    return name;
+  };
   const [name, setName] = useState(consultor ? consultor.nombre_consultor : "");
- 
+
   const [usuario, setUsuario] = useState(
-    consultor
+    consultor && consultor.id_usuario
       ? {
           label: nombreUsuario(consultor.id_usuario),
           value: consultor.id_usuario,
         }
-      : ""
+      :""
   );
 
-  const consultorIds = consultores.map(consultor => consultor.id_usuario);
+  const consultorIds = consultores.map((consultor) => consultor.id_usuario);
+
+  const validarNombresIguales = (nombre_consultor, id_original) => {
+    const nombre = consultores.find(
+      (i) =>
+        i.id_consultor !== id_original &&
+        nombre_consultor.toLowerCase() === i.nombre_consultor.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
 
   const userOptions =
     users &&
-    users.filter((user) => (user.id_rol === 2 || user.id_rol === 3)&& !consultorIds.includes(user.id_usuario)).map((item) => ({
-      value: item.id_usuario,
-      label: item.nombre_usuario,
-    }));
+    users
+      .filter(
+        (user) =>
+          (user.id_rol === 2 || user.id_rol === 3) &&
+          !consultorIds.includes(user.id_usuario)
+      )
+      .map((item) => ({
+        value: item.id_usuario,
+        label: item.nombre_usuario,
+      }));
   const handleUsuariosChange = (newValue) => {
     setUsuario({ label: newValue.label, value: newValue.value });
   };
@@ -70,8 +86,15 @@ export default function ConsultorForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -80,13 +103,23 @@ export default function ConsultorForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(consultor ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      consultor ? consultor.id_consultor : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre del consultor ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(consultor ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createConsultor(updatedRow) {
     try {
       const response = await axios.post(
@@ -131,17 +164,16 @@ export default function ConsultorForm({
   }
   const handleConfirm = (data) => {
     const updatedRow = {
-      // idConsultor: consultor ? consultor.idConsultor : consultores.length + 1,
       nombre_consultor: data.name,
-      id_usuario: parseInt(data.user.value),
+      id_usuario: data.user ? data.user.value : null,
     };
 
+    // console.log(updatedRow)
     consultor
-    ? editConsultor(consultor.id_consultor, updatedRow)
-    : createConsultor(updatedRow);
+      ? editConsultor(consultor.id_consultor, updatedRow)
+      : createConsultor(updatedRow);
 
     onSave();
-    //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
   };
 
@@ -177,12 +209,13 @@ export default function ConsultorForm({
                   styles={customStyles}
                   id="user"
                   {...field}
+                  
                   className={`${styles.selectFormRec}  ${
                     errors.user ? "is-invalid" : ""
                   }`}
                   onChange={(selectedOption) => {
                     handleUsuariosChange(selectedOption);
-                    setValue("user", selectedOption);
+                    setValue("user", selectedOption.value);
                     field.onChange(selectedOption);
                   }}
                   options={userOptions}
@@ -191,9 +224,9 @@ export default function ConsultorForm({
                 />
               )}
             />
-            {errors.user && (
+            {/* {errors.user && (
               <div className={styles.error}>Seleccione un usuario.</div>
-            )}
+            )} */}
           </div>
         </div>
 

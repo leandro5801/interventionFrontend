@@ -11,6 +11,7 @@ export default function DireccionPage() {
   const [direcciones, setDirecciones] = useState([]);
   const [uebs, setUebs] = useState([]);
   const [empresas, setEmpresas] = useState([]);
+  const [areas, setAreas] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
   useEffect(() => {
@@ -50,9 +51,22 @@ export default function DireccionPage() {
         setCargando(false);
       }
     }
+    async function fetchArea() {
+      setCargando(true);
+      try {
+        const response = await axios.get('http://localhost:3000/api/area');
+        setAreas(response.data);
+      } catch (error) {
+        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
     fetchEmpresa();
     fetchUeb();
     fetchDireccion();
+    fetchArea();
   }, []);
   return (
     <div className={styles.title}>
@@ -63,6 +77,7 @@ export default function DireccionPage() {
         empresas={empresas}
         uebs={uebs}
         cargando={cargando}
+        areas={areas}
       />
     </div>
   );

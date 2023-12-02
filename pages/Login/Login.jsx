@@ -17,7 +17,9 @@ const Login = () => {
     nombre_usuario: "",
     contraseña: "",
   });
+  const [user, setUser] = useState();
   const router = useRouter();
+
   // esto todavia no guarda ambas credenciales
   const handleChange = (e) => {
     setCredentials({
@@ -38,6 +40,7 @@ const Login = () => {
         // si el usuario es correcto
         //para guardar el token en las cokies del navegador
         document.cookie = `access_token=${response.data.access_token};  path=/`;
+        setUser(response.data.user);
 
         Swal.fire({
           timer: 1500,
@@ -46,7 +49,11 @@ const Login = () => {
             Swal.showLoading();
           },
           willClose: () => {
-            router.push("/");
+            if (response.data.user && (response.data.user.id_rol === 2 || response.data.user.id_rol === 3)) {
+              router.push("/Home/ganttPage");
+            } else {
+              router.push("/");
+            }
 
             Swal.fire({
               icon: "success",
@@ -101,7 +108,7 @@ const Login = () => {
         />
       </div>
       <div className={styles.smallContainer}>
-        <div className={styles.title}>
+        <div >
           <h4>Sistema de autenticación</h4>
         </div>
 

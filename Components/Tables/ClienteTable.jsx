@@ -30,11 +30,20 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
 
-function ClienteTable({ users, setUsers, clientes, setClientes, cargando }) {
+function ClienteTable({
+  users,
+  setUsers,
+  clientes,
+  setClientes,
+  cargando,
+  projects,
+}) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -102,6 +111,15 @@ function ClienteTable({ users, setUsers, clientes, setClientes, cargando }) {
   //   setClientes(newCliente);
   //   setOpen(false);
   // }
+
+  const vinculado = (id_cliente) => {
+    const proyecto = projects.find((dato) => dato.id_cliente === id_cliente);
+    return proyecto ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -109,7 +127,15 @@ function ClienteTable({ users, setUsers, clientes, setClientes, cargando }) {
         `http://localhost:3000/api/cliente/${id}`
       );
       if (response.status === 200) {
-        setClientes(clientes.filter((cliente) => cliente.id_cliente !== id));
+        const newDatos = clientes.filter((cliente) => cliente.id_cliente !== id);
+        setClientes(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar el cliente");
@@ -262,7 +288,9 @@ function ClienteTable({ users, setUsers, clientes, setClientes, cargando }) {
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(cliente?.id_cliente)
+                                  vinculado(cliente?.id_cliente)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(cliente?.id_cliente)
                                 }
                                 data-task-id={cliente?.id_cliente}
                                 className={styles.faIcon}
@@ -307,6 +335,22 @@ function ClienteTable({ users, setUsers, clientes, setClientes, cargando }) {
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar un cliente que ya esté vinculado a un
+                  proyecto
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

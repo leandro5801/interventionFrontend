@@ -41,18 +41,20 @@ export default function TrabajadorForm({
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(trabajador ? trabajador.nombreTrabajador : "");
+  const [name, setName] = useState(
+    trabajador ? trabajador.nombre_trabajador : ""
+  );
   const [empresa, setEmpresa] = useState(
     trabajador
       ? {
           label: nombreEmpresa(
             uebPorId(
-              direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb
-            ).idEmpresa
+              direccionPorId(areaPorId(trabajador.id_area).id_direccion).id_ueb
+            ).id_empresa
           ),
           value: uebPorId(
-            direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb
-          ).idEmpresa,
+            direccionPorId(areaPorId(trabajador.id_area).id_direccion).id_ueb
+          ).id_empresa,
         }
       : ""
   );
@@ -60,60 +62,67 @@ export default function TrabajadorForm({
     trabajador
       ? {
           label: nombreUeb(
-            direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb
+            direccionPorId(areaPorId(trabajador.id_area).id_direccion).id_ueb
           ),
-          value: direccionPorId(areaPorId(trabajador.idArea).idDireccion).idUeb,
+          value: direccionPorId(areaPorId(trabajador.id_area).id_direccion)
+            .id_ueb,
         }
       : ""
   );
   const [direccion, setDireccion] = useState(
     trabajador
       ? {
-          label: nombreDireccion(areaPorId(trabajador.idArea).idDireccion),
-          value: areaPorId(trabajador.idArea).idDireccion,
+          label: nombreDireccion(areaPorId(trabajador.id_area).id_direccion),
+          value: areaPorId(trabajador.id_area).id_direccion,
         }
       : ""
   );
   const [area, setArea] = useState(
     trabajador
       ? {
-          label: nombreArea(trabajador.idArea),
-          value: trabajador.idArea,
+          label: nombreArea(trabajador.id_area),
+          value: trabajador.id_area,
         }
       : ""
   );
 
   const empresasOptions =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
+    empresas
+      .filter((item) => item.cargar_empresa === false)
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
   const uebsOptions =
     uebs &&
     uebs
       .filter((item) =>
-        empresa && empresa.value ? item.idEmpresa === empresa.value : true
+        empresa && empresa.value ? item.id_empresa === empresa.value : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
   const direccionesOptions =
     direcciones &&
     direcciones
-      .filter((item) => (ueb && ueb.value ? item.idUeb === ueb.value : true))
+      .filter((item) => (ueb && ueb.value ? item.id_ueb === ueb.value : true))
       .map((item) => ({
-        value: item.idDireccion,
-        label: item.nombreDireccion,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
   const areasOptions =
     areas &&
     areas
-      .filter((item) => (direccion && direccion.value ? item.idDireccion === direccion.value : true))
+      .filter((item) =>
+        direccion && direccion.value
+          ? item.id_direccion === direccion.value
+          : true
+      )
       .map((item) => ({
-        value: item.idArea,
-        label: item.nombreArea,
+        value: item.id_area,
+        label: item.nombre_area,
       }));
 
   const handleEmpresaChange = (newValue) => {
@@ -136,6 +145,18 @@ export default function TrabajadorForm({
     area: area,
   };
 
+  const validarNombresIguales = (nombre_trabajador, id_original) => {
+    const nombre = trabajadores
+      .filter((item) => item.id_area === area.value)
+      .find(
+        (i) =>
+          i.id_trabajador !== id_original &&
+          nombre_trabajador.toLowerCase() === i.nombre_trabajador.toLowerCase()
+      );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
+
   // form validation rules
   const formOptions = {
     resolver: yupResolver(validationSchema),
@@ -143,8 +164,15 @@ export default function TrabajadorForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -153,12 +181,22 @@ export default function TrabajadorForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(trabajador ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      trabajador ? trabajador.id_trabajador : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre del trabajador ya existe en el area seleccionada",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(trabajador ? "editar" : "crear");
+    }
   }
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createTrabajador(updatedRow) {
     try {
       const response = await axios.post(
@@ -177,15 +215,19 @@ export default function TrabajadorForm({
       );
     }
   }
-  async function editTrabajador(idTrabajador, trabajadorData) {
+  async function editTrabajador(id_trabajador, trabajadorData) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/trabajador/${idTrabajador}`,
+        `http://localhost:3000/api/trabajador/${id_trabajador}`,
         trabajadorData
       );
       if (response.status === 200) {
         setTrabajadores(
-          trabajadores.map((trabajador) => (trabajador.idTrabajador === idTrabajador ? response.data : trabajador))
+          trabajadores.map((trabajador) =>
+            trabajador.id_trabajador === id_trabajador
+              ? response.data
+              : trabajador
+          )
         );
       } else {
         throw new Error("Error al editar la trabajador");
@@ -199,12 +241,12 @@ export default function TrabajadorForm({
   }
   const handleConfirm = (data) => {
     const updatedRow = {
-      nombreTrabajador: data.name,
-      idArea: parseInt(data.area.value),
+      nombre_trabajador: data.name,
+      id_area: parseInt(data.area.value),
     };
     trabajador
-    ? editTrabajador(trabajador.idTrabajador, updatedRow)
-    : createTrabajador(updatedRow);
+      ? editTrabajador(trabajador.id_trabajador, updatedRow)
+      : createTrabajador(updatedRow);
 
     onSave();
 
@@ -235,6 +277,9 @@ export default function TrabajadorForm({
                   onChange={(selectedOption) => {
                     handleEmpresaChange(selectedOption);
                     setValue("empresa", selectedOption);
+                    setValue("ueb", "");
+                    setValue("direccion", "");
+                    setValue("area", "");
                     field.onChange(selectedOption);
                   }}
                   options={empresasOptions}
@@ -262,6 +307,8 @@ export default function TrabajadorForm({
                   onChange={(selectedOption) => {
                     handleUebChange(selectedOption);
                     setValue("ueb", selectedOption);
+                    setValue("direccion", "");
+                    setValue("area", "");
                     field.onChange(selectedOption);
                   }}
                   options={uebsOptions}
@@ -317,7 +364,7 @@ export default function TrabajadorForm({
                   }`}
                   onChange={(selectedOption) => {
                     handleAreaChange(selectedOption);
-                    setValue("area", selectedOption);
+                    setValue("area", "");
                     field.onChange(selectedOption);
                   }}
                   options={areasOptions}
@@ -332,20 +379,20 @@ export default function TrabajadorForm({
           </div>
         </div>
         <div className={styles.inputGroup}>
-        <div>
-          <Input
-            className={`${styles.inputForm}  ${
-              errors.name ? "is-invalid" : ""
-            }`}
-            type="text"
-            id="name"
-            {...register("name")}
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            placeholder="Nombre del Trabajador"
-          />
-          <div className={styles.error}>{errors.name?.message}</div>
-        </div>
+          <div>
+            <Input
+              className={`${styles.inputForm}  ${
+                errors.name ? "is-invalid" : ""
+              }`}
+              type="text"
+              id="name"
+              {...register("name")}
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="Nombre del Trabajador"
+            />
+            <div className={styles.error}>{errors.name?.message}</div>
+          </div>
         </div>
         <DialogActions>
           <Button type="submit">Aceptar</Button>

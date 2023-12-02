@@ -31,6 +31,8 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
@@ -47,44 +49,45 @@ function InterventionTable({
   consultores,
   consultor,
   cargando,
+  recomendations,
 }) {
   //para retornar el nombre de y no el id
-  const uebPorId = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
+  const uebPorId = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
     if (!ueb) {
-      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
       return;
     }
     return ueb;
   };
-  const direccionPorId = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const direccionPorId = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     if (!direccion) {
       console.error(
-        `No se encontró ninguna direccion con idUeb: ${idDireccion}`
+        `No se encontró ninguna direccion con idUeb: ${id_direccion}`
       );
       return;
     }
     return direccion;
   };
-  const areaPorId = (idArea) => {
-    const area = areas.find((e) => e.idArea === idArea);
+  const areaPorId = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
     return area;
   };
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
-  const nombreUeb = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
+  const nombreUeb = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
     return name;
   };
-  const nombreDireccion = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const nombreDireccion = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     const name = direccion
-      ? direccion.nombreDireccion
+      ? direccion.nombre_direccion
       : "no se encontro el nombre";
     return name;
   };
@@ -104,10 +107,10 @@ function InterventionTable({
   };
   const nombreTrabajador = (id_trabajador) => {
     const trabajador = trabajadores.find(
-      (trabajador) => trabajador.idTrabajador === id_trabajador
+      (trabajador) => trabajador.id_trabajador === id_trabajador
     );
     const name = trabajador
-      ? trabajador.nombreTrabajador
+      ? trabajador.nombre_trabajador
       : "no se encontro el nombre";
     return name;
   };
@@ -231,8 +234,8 @@ function InterventionTable({
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
+      value: item.id_empresa,
+      label: item.nombre_empresa,
     }));
 
   const optionUebs =
@@ -240,23 +243,23 @@ function InterventionTable({
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.empresaId === empresaFilter.value
+          ? item.id_empresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
 
   const optionDirecciones =
     direcciones &&
     direcciones
       .filter((item) =>
-        uebFilter && uebFilter.value ? item.idUeb === uebFilter.value : true
+        uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.idDireccion,
-        label: item.nombreDireccion,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
 
   const optionAreas =
@@ -264,12 +267,12 @@ function InterventionTable({
     areas
       .filter((item) =>
         structureFilter && structureFilter.value
-          ? item.idDireccion === structureFilter.value
+          ? item.id_direccion === structureFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idArea,
-        label: item.nombreArea,
+        value: item.id_area,
+        label: item.nombre_area,
       }));
   //-----------------------------------------------
 
@@ -279,26 +282,25 @@ function InterventionTable({
         item.id_proyecto === projectFilter.value) &&
       (empresaFilter.length === 0 ||
         uebPorId(direccionPorId(areaPorId(item.id_area).idDireccion).idUeb)
-          .idEmpresa === empresaFilter.value) &&
+          .id_empresa === empresaFilter.value) &&
       (uebFilter.length === 0 ||
         direccionPorId(areaPorId(item.id_area).idDireccion).idUeb ===
           uebFilter.value) &&
       (structureFilter.length === 0 ||
         areaPorId(item.id_area).idDireccion === structureFilter.value) &&
       (areaFilter.length === 0 || item.id_area === areaFilter.value) &&
-      item.nombre_intervencion.toLowerCase().includes(nameFilter.toLowerCase()) &&
-    item.descripcion
-      .toLowerCase()
-      .includes(descriptionFilter.toLowerCase()) &&
-    (consultorFilter.length === 0 ||
-      item.id_consultor === consultorFilter.value) &&
-    nombreTrabajador(item.id_trabajador)
-      .toLowerCase()
-      .includes(workerFilter.toLowerCase()) 
-      &&
-    item.start_date
-      .toLowerCase()
-      .includes(startFilter.toLowerCase())
+      item.nombre_intervencion
+        .toLowerCase()
+        .includes(nameFilter.toLowerCase()) &&
+      item.descripcion
+        .toLowerCase()
+        .includes(descriptionFilter.toLowerCase()) &&
+      (consultorFilter.length === 0 ||
+        item.id_consultor === consultorFilter.value) &&
+      nombreTrabajador(item.id_trabajador)
+        .toLowerCase()
+        .includes(workerFilter.toLowerCase()) &&
+      item.start_date.toLowerCase().includes(startFilter.toLowerCase())
   );
 
   // sms de confirmacion
@@ -317,6 +319,18 @@ function InterventionTable({
   //   setInterventions(newIntervention);
   //   setOpen(false);
   // }
+
+  const vinculado = (id_intervencion) => {
+    const recomendacion = recomendations.find(
+      (dato) => dato.id_intervencion === id_intervencion
+    );
+    return recomendacion ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -324,7 +338,17 @@ function InterventionTable({
         `http://localhost:3000/api/intervencion/${id}`
       );
       if (response.status === 200) {
-        setInterventions(interventions.filter((intervencion) => intervencion.id_intervencion !== id));
+        const newDatos = interventions.filter(
+          (intervencion) => intervencion.id_intervencion !== id
+        );
+        setInterventions(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar la intervencion");
@@ -439,19 +463,7 @@ function InterventionTable({
               </div>
               <div className={styles.filtrosEstructuraContentInt}>
                 {/* SELECCIONAR PROYECTO ETC */}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={projectFilter}
-                    onChange={(projectFilter) => {
-                      handleProjectFilterChange(projectFilter);
-                    }}
-                    options={optionProjects}
-                    placeholder="Proyecto"
-                    isClearable
-                  />
-                )}
+
                 {showFilters && (
                   <Select
                     styles={customStyles}
@@ -504,7 +516,6 @@ function InterventionTable({
                     isClearable
                   />
                 )}
-
                 <div className={styles.divFechaFilter}>
                   {showFilters && (
                     <input
@@ -527,6 +538,22 @@ function InterventionTable({
                   <Table stickyHeader>
                     <TableHead>
                       <TableRow>
+                        <TableCell className={styles.letraEnNegrita}>
+                          Proyecto
+                          {showFilters && (
+                            <Select
+                              styles={customStyles}
+                              className={styles.selectGestionesGantt}
+                              defaultValue={projectFilter}
+                              onChange={(projectFilter) => {
+                                handleProjectFilterChange(projectFilter);
+                              }}
+                              options={optionProjects}
+                              placeholder="Proyecto"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Intervención
                           {showFilters && (
@@ -594,6 +621,9 @@ function InterventionTable({
                         )
                         .map((tsk) => (
                           <TableRow key={tsk.id_intervencion}>
+                            <TableCell>
+                              {nombreProyecto(tsk.id_proyecto)}
+                            </TableCell>
                             <TableCell>{tsk.nombre_intervencion}</TableCell>
                             <TableCell>{tsk.descripcion}</TableCell>
 
@@ -620,7 +650,9 @@ function InterventionTable({
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(tsk?.id_intervencion)
+                                  vinculado(tsk?.id_intervencion)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(tsk?.id_intervencion)
                                 }
                                 data-task-id={tsk?.id_intervencion}
                                 className={styles.faIcon}
@@ -667,6 +699,22 @@ function InterventionTable({
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar una intervención que ya esté vinculada a
+                  una recomendación
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}
@@ -685,15 +733,15 @@ function InterventionTable({
                 areas={areas}
                 projects={projects}
                 nombreEmpresa={nombreEmpresa}
-                  nombreUeb={nombreUeb}
-                  nombreTrabajador={nombreTrabajador}
-                  nombreDireccion={nombreDireccion}
-                  nombreArea={nombreArea}
-                  nombreConsultor={nombreConsultor}
-                  nombreProyecto={nombreProyecto}
-                  areaPorId={areaPorId}
-                  direccionPorId={direccionPorId}
-                  uebPorId={uebPorId}
+                nombreUeb={nombreUeb}
+                nombreTrabajador={nombreTrabajador}
+                nombreDireccion={nombreDireccion}
+                nombreArea={nombreArea}
+                nombreConsultor={nombreConsultor}
+                nombreProyecto={nombreProyecto}
+                areaPorId={areaPorId}
+                direccionPorId={direccionPorId}
+                uebPorId={uebPorId}
               ></FormDialog>
             </TableContainer>
           </div>

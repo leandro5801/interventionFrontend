@@ -32,6 +32,8 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
@@ -42,24 +44,25 @@ function DireccionTable({
   empresas,
   uebs,
   cargando,
+  areas
 }) {
   //para retornar el nombre de la empresa y no el id
-  const uebPorId = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
+  const uebPorId = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
     if (!ueb) {
-      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
       return;
     }
     return ueb;
   };
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
-  const nombreUeb = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
+  const nombreUeb = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
     return name;
   };
 
@@ -106,22 +109,24 @@ function DireccionTable({
 
   const optionEmpresas =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
+    empresas
+      .filter((item) => item.cargar_empresa === false)
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
 
   const optionUebs =
     uebs &&
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.idEmpresa === empresaFilter.value
+          ? item.id_empresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -141,9 +146,9 @@ function DireccionTable({
   const filteredData = direcciones.filter(
     (item) =>
       (empresaFilter.length === 0 ||
-        uebPorId(item.idUeb).idEmpresa === empresaFilter.value) &&
-      (uebFilter.length === 0 || item.idUeb === uebFilter.value) &&
-      item.nombreDireccion.toLowerCase().includes(nameFilter.toLowerCase())
+        uebPorId(item.id_ueb).id_empresa === empresaFilter.value) &&
+      (uebFilter.length === 0 || item.id_ueb === uebFilter.value) &&
+      item.nombre_direccion.toLowerCase().includes(nameFilter.toLowerCase())
   );
 
   // sms de confirmacion
@@ -161,6 +166,18 @@ function DireccionTable({
   //   setOpen(false);
   // }
 
+  const vinculado = (id_direccion) => {
+    const area = areas.find(
+      (dato) => dato.id_direccion === id_direccion
+    );
+    return area ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -168,9 +185,17 @@ function DireccionTable({
         `http://localhost:3000/api/direccion/${id}`
       );
       if (response.status === 200) {
-        setDirecciones(
-          direcciones.filter((direccion) => direccion.idDireccion !== id)
+        const newDatos = direcciones.filter(
+          (direccion) => direccion.id_direccion !== id
         );
+        setDirecciones(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar la dirección");
@@ -182,8 +207,6 @@ function DireccionTable({
       );
     }
   }
-
-  // Para editar una recomendacion desde la tabla
 
   const [editIIdx, setEditIIdx] = useState(-1);
 
@@ -223,7 +246,6 @@ function DireccionTable({
         <div className={styles.divTableInter}>
           <div>
             <div className={styles.divIconH2}></div>
-
             <TableContainer component={Paper} className={styles.table}>
               <div className={styles.btnNuevoContent}>
                 <Button
@@ -336,19 +358,19 @@ function DireccionTable({
                         )
                         .map((direccion) => (
                           <TableRow
-                            key={direccion.idDireccion}
+                            key={direccion.id_direccion}
                             className={styles.trStyle}
                           >
                             <TableCell className={styles.tdStyle}>
                               {nombreEmpresa(
-                                uebPorId(direccion.idUeb).idEmpresa
+                                uebPorId(direccion.id_ueb).id_empresa
                               )}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {nombreUeb(direccion.idUeb)}
+                              {nombreUeb(direccion.id_ueb)}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {direccion.nombreDireccion}
+                              {direccion.nombre_direccion}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               <FontAwesomeIcon
@@ -357,8 +379,8 @@ function DireccionTable({
                                   setEditIIdx(
                                     filteredData.findIndex(
                                       (item) =>
-                                        item.idDireccion ===
-                                        direccion?.idDireccion
+                                        item.id_direccion ===
+                                        direccion?.id_direccion
                                     )
                                   )
                                 }
@@ -367,9 +389,11 @@ function DireccionTable({
                               <FontAwesomeIcon
                                 icon={faTrash}
                                 onClick={() =>
-                                  openConfirmation(direccion?.idDireccion)
+                                  vinculado(direccion?.id_direccion)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(direccion?.id_direccion)
                                 }
-                                data-task-id={direccion?.idDireccion}
+                                data-task-id={direccion?.id_direccion}
                                 className={styles.faIcon}
                               />
                               <Dialog
@@ -414,6 +438,22 @@ function DireccionTable({
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar una dirección que ya esté vinculada a
+                  un área
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

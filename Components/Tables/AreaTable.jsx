@@ -32,38 +32,48 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
 
-function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
+function AreaTable({
+  areas,
+  setAreas,
+  empresas,
+  uebs,
+  direcciones,
+  cargando,
+  trabajadores,
+}) {
   //para retornar el nombre de la empresa y no el id
-  const uebPorId = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
+  const uebPorId = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
     if (!ueb) {
-      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
       return;
     }
     return ueb;
   };
-  const direccionPorId = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const direccionPorId = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     return direccion;
   };
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
-  const nombreUeb = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
+  const nombreUeb = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
     return name;
   };
-  const nombreDireccion = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const nombreDireccion = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     const name = direccion
-      ? direccion.nombreDireccion
+      ? direccion.nombre_direccion
       : "no se encontro el nombre";
     return name;
   };
@@ -113,8 +123,8 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
   const optionEmpresas =
     empresas &&
     empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
+      value: item.id_empresa,
+      label: item.nombre_empresa,
     }));
 
   const optionUebs =
@@ -122,23 +132,23 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
     uebs
       .filter((item) =>
         empresaFilter && empresaFilter.value
-          ? item.idEmpresa === empresaFilter.value
+          ? item.id_empresa === empresaFilter.value
           : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
 
   const optionDirecciones =
     direcciones &&
     direcciones
       .filter((item) =>
-        uebFilter && uebFilter.value ? item.idUeb === uebFilter.value : true
+        uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.idDirecciones,
-        label: item.nombreDirecciones,
+        value: item.id_direcciones,
+        label: item.nombre_direcciones,
       }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -162,15 +172,15 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
   };
   const filteredData = areas.filter(
     (item) =>
-      item.nombreArea.toLowerCase().includes(nameFilter.toLowerCase()) &&
+      item.nombre_area.toLowerCase().includes(nameFilter.toLowerCase()) &&
       (empresaFilter.length === 0 || item.empresa === empresaFilter.label) &&
       (empresaFilter.length === 0 ||
-        uebPorId(direccionPorId(item.idDireccion).idUeb).idEmpresa ===
+        uebPorId(direccionPorId(item.id_direccion).id_ueb).id_empresa ===
           empresaFilter.value) &&
       (uebFilter.length === 0 ||
-        direccionPorId(item.idDireccion).idUeb === uebFilter.value) &&
+        direccionPorId(item.id_direccion).id_ueb === uebFilter.value) &&
       (structureFilter.length === 0 ||
-        item.idDireccion === structureFilter.value)
+        item.id_direccion === structureFilter.value)
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -187,6 +197,15 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
   //   setOpen(false);
   // }
 
+  const vinculado = (id_area) => {
+    const trabajador = trabajadores.find((dato) => dato.id_area === id_area);
+    return trabajador ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -194,7 +213,15 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
         `http://localhost:3000/api/area/${id}`
       );
       if (response.status === 200) {
-        setAreas(areas.filter((area) => area.idArea !== id));
+        const newDatos = areas.filter((area) => area.id_area !== id);
+        setAreas(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar el área");
@@ -381,30 +408,26 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
                         )
                         .map((area) => (
                           <TableRow
-                            key={area.idArea}
+                            key={area.id_area}
                             className={styles.trStyle}
                           >
                             <TableCell className={styles.tdStyle}>
-                              {/* {nombreEmpresa(
-                              uebPorId(direccionPorId(area.idDireccion).idUeb)
-                                .idEmpresa
-                            )} */}
-
                               {nombreEmpresa(
-                                uebPorId(direccionPorId(area.idDireccion).idUeb)
-                                  .idEmpresa
+                                uebPorId(
+                                  direccionPorId(area.id_direccion).id_ueb
+                                ).id_empresa
                               )}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               {nombreUeb(
-                                direccionPorId(area.idDireccion).idUeb
+                                direccionPorId(area.id_direccion).id_ueb
                               )}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {nombreDireccion(area.idDireccion)}
+                              {nombreDireccion(area.id_direccion)}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {area.nombreArea}
+                              {area.nombre_area}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               <FontAwesomeIcon
@@ -412,7 +435,7 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
                                 onClick={() =>
                                   setEditIIdx(
                                     filteredData.findIndex(
-                                      (item) => item.idArea === area?.idArea
+                                      (item) => item.id_area === area?.id_area
                                     )
                                   )
                                 }
@@ -420,8 +443,12 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
                               />
                               <FontAwesomeIcon
                                 icon={faTrash}
-                                onClick={() => openConfirmation(area?.idArea)}
-                                data-task-id={area?.idArea}
+                                onClick={() =>
+                                  vinculado(area?.id_area)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(area?.id_area)
+                                }
+                                data-task-id={area?.id_area}
                                 className={styles.faIcon}
                               />
                               <Dialog
@@ -464,6 +491,22 @@ function AreaTable({ areas, setAreas, empresas, uebs, direcciones, cargando }) {
                   </Table>
                 )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar un área que ya esté vinculada a
+                  trabajadores
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

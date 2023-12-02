@@ -30,13 +30,13 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 
 import Select from "react-select";
 
-
-function UebTable({ uebs, setUebs, empresas, cargando }) {
-
+function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
   //para el sms de confirmacion
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
@@ -91,16 +91,18 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
   };
   const optionEmpresas =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
+    empresas
+      .filter((item) => item.cargar_empresa === false)
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
   const filteredData = uebs.filter(
     (item) =>
       (empresaFilter.length === 0 ||
-        item.idEmpresa === empresaFilter.value ||
-        !item.idEmpresa) &&
-      item.nombreUeb.toLowerCase().includes(nameFilter.toLowerCase())
+        item.id_empresa === empresaFilter.value ||
+        !item.id_empresa) &&
+      item.nombre_ueb.toLowerCase().includes(nameFilter.toLowerCase())
   );
   // sms de confirmacion
   const [data, setData] = useState("");
@@ -116,6 +118,16 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
   //   setUebs(newUeb);
   //   setOpen(false);
   // }
+
+  const vinculado = (id_ueb) => {
+    const ueb = uebs.find((dato) => dato.id_ueb === id_ueb);
+    return ueb ? true : false;
+  };
+  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
+  const handleCloseDialogAdvertencia = () => {
+    setOpenDialogAdvertencia(false);
+  };
+
   const [error, setError] = useState(null);
   async function handleDelete(id) {
     try {
@@ -123,7 +135,15 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
         `http://localhost:3000/api/ueb/${id}`
       );
       if (response.status === 200) {
-        setUebs(uebs.filter((ueb) => ueb.idUeb !== id));
+        const newDatos = uebs.filter((ueb) => ueb.id_ueb !== id);
+        setUebs(newDatos);
+        // Calcula el número total de páginas después de la eliminación
+        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+
+        // Si la página actual está fuera del rango, restablécela a la última página disponible
+        if (page > totalPages) {
+          setPage(totalPages);
+        }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar la ueb");
@@ -160,9 +180,9 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
   };
 
   //para retornar el nombre de la empresa y no el id
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
   if (cargando) {
@@ -228,117 +248,139 @@ function UebTable({ uebs, setUebs, empresas, cargando }) {
                 </div>
               </div>
               <>
-              {uebs.length === 0 && (
-                <div className={styles.divIconH2}>
-                  <h6> No hay UEB</h6>{" "}
-                </div>
-              )}
-              {uebs.length === 0 || (
-                <Table stickyHeader>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell className={styles.spacing}>
-                        Empresa
-                        {showFilters && (
-                          <Select
-                            className={styles.selectGestionesGantt}
-                            defaultValue={empresaFilter}
-                            onChange={(empresaFilter) => {
-                              handleEmpresaFilterChange(empresaFilter);
-                            }}
-                            options={optionEmpresas}
-                            placeholder="Empresa"
-                            isClearable
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}>
-                        Ueb
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="text"
-                            value={nameFilter}
-                            onChange={handleNameFilterChange}
-                            placeholder="Filtrar por ueb"
-                          />
-                        )}
-                      </TableCell>
-                      <TableCell className={styles.spacing}></TableCell>
-                    </TableRow>
-                  </TableHead>
+                {uebs.length === 0 && (
+                  <div className={styles.divIconH2}>
+                    <h6> No hay UEB</h6>{" "}
+                  </div>
+                )}
+                {uebs.length === 0 || (
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell className={styles.spacing}>
+                          Empresa
+                          {showFilters && (
+                            <Select
+                              className={styles.selectGestionesGantt}
+                              defaultValue={empresaFilter}
+                              onChange={(empresaFilter) => {
+                                handleEmpresaFilterChange(empresaFilter);
+                              }}
+                              options={optionEmpresas}
+                              placeholder="Empresa"
+                              isClearable
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}>
+                          Ueb
+                          {showFilters && (
+                            <input
+                              className={styles.inputFilter}
+                              type="text"
+                              value={nameFilter}
+                              onChange={handleNameFilterChange}
+                              placeholder="Filtrar por ueb"
+                            />
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.spacing}></TableCell>
+                      </TableRow>
+                    </TableHead>
 
-                  <TableBody>
-                    {filteredData
-                      .slice(
-                        page * rowsPerPage,
-                        page * rowsPerPage + rowsPerPage
-                      )
-                      .map((ueb) => (
-                        <TableRow key={ueb.idUeb} className={styles.trStyle}>
-                          <TableCell className={styles.tdStyle}>
-                            {nombreEmpresa(ueb.idEmpresa)}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {ueb.nombreUeb}
-                          </TableCell>
+                    <TableBody>
+                      {filteredData
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((ueb) => (
+                          <TableRow key={ueb.id_ueb} className={styles.trStyle}>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreEmpresa(ueb.id_empresa)}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {ueb.nombre_ueb}
+                            </TableCell>
 
-                          <TableCell className={styles.tdStyle}>
-                            <FontAwesomeIcon
-                              icon={faEdit}
-                              onClick={() =>
-                                setEditIIdx(
-                                  filteredData.findIndex(
-                                    (item) => item.idUeb === ueb?.idUeb
+                            <TableCell className={styles.tdStyle}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    filteredData.findIndex(
+                                      (item) => item.id_ueb === ueb?.id_ueb
+                                    )
                                   )
-                                )
-                              }
-                              className={styles.faIcon}
-                            />
-                            <FontAwesomeIcon
-                              icon={faTrash}
-                              onClick={() => openConfirmation(ueb?.idUeb)}
-                              data-task-id={ueb?.idUeb}
-                              className={styles.faIcon}
-                            />
-                            <Dialog
-                              open={open}
-                              onClose={handleClose}
-                              BackdropProps={{ invisible: true }}
-                            >
-                              <DialogTitle>Confirmar Eliminación</DialogTitle>
-                              <DialogContent>
-                                <p>¿Está seguro de eliminar esta ueb?</p>
-                              </DialogContent>
-                              <DialogActions>
-                                <Button onClick={() => handleDelete(data)}>
-                                  Aceptar
-                                </Button>
-                                <Button onClick={handleClose}>Cancelar</Button>
-                              </DialogActions>
-                            </Dialog>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                  </TableBody>
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() =>
+                                  vinculado(ueb?.id_ueb)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(ueb?.id_ueb)
+                                }
+                                data-task-id={ueb?.id_ueb}
+                                className={styles.faIcon}
+                              />
+                              <Dialog
+                                open={open}
+                                onClose={handleClose}
+                                BackdropProps={{ invisible: true }}
+                              >
+                                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                                <DialogContent>
+                                  <p>¿Está seguro de eliminar esta ueb?</p>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={() => handleDelete(data)}>
+                                    Aceptar
+                                  </Button>
+                                  <Button onClick={handleClose}>
+                                    Cancelar
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
 
-                  <TableFooter>
-                    <TableRow>
-                      <TablePagination
-                        className={styles.tablePagination}
-                        rowsPerPageOptions={[4, 5, 10]}
-                        count={filteredData.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                        labelRowsPerPage="Filas por página:"
-                      />
-                    </TableRow>
-                  </TableFooter>
-                </Table>
-              )}
+                    <TableFooter>
+                      <TableRow>
+                        <TablePagination
+                          className={styles.tablePagination}
+                          rowsPerPageOptions={[4, 5, 10]}
+                          count={filteredData.length}
+                          rowsPerPage={rowsPerPage}
+                          page={page}
+                          onPageChange={handleChangePage}
+                          onRowsPerPageChange={handleChangeRowsPerPage}
+                          labelRowsPerPage="Filas por página:"
+                        />
+                      </TableRow>
+                    </TableFooter>
+                  </Table>
+                )}
               </>
+              <Dialog
+                open={openDialogAdvertencia}
+                onClose={handleCloseDialogAdvertencia}
+                BackdropProps={{ invisible: true }}
+              >
+                <Alert severity="warning">
+                  <AlertTitle>Advertencia</AlertTitle>
+                  No se puede eliminar una ueb que ya esté vinculada a
+                  una dirección
+                  <div className={styles.botonAlert}>
+                    <Button onClick={handleCloseDialogAdvertencia}>
+                      Aceptar
+                    </Button>
+                  </div>
+                </Alert>
+              </Dialog>
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

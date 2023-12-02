@@ -32,33 +32,43 @@ export default function UebForm({
   onSave,
 }) {
   //para retornar el nombre de la empresa y no el id
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
 
-  const [name, setName] = useState(ueb ? ueb.nombreUeb : "");
-  const [empresaId, setEmpresaId] = useState(
-    ueb
-      ? ueb.idEmpresa
-      : ""
-  );
+  const [name, setName] = useState(ueb ? ueb.nombre_ueb : "");
+  const [empresaId, setEmpresaId] = useState(ueb ? ueb.id_empresa : "");
 
   const [empresa, setEmpresa] = useState(
     ueb
       ? {
-          label: nombreEmpresa(ueb.idEmpresa),
-          value: ueb.idEmpresa,
+          label: nombreEmpresa(ueb.id_empresa),
+          value: ueb.id_empresa,
         }
       : ""
   );
   const empresasOptions =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
+    empresas
+      .filter((item) => item.cargar_empresa === false)
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
+
+  const validarNombresIguales = (nombre_ueb, id_original) => {
+    const nombre = uebs
+      .filter((item) => item.id_empresa === empresaId)
+      .find(
+        (i) =>
+          i.id_ueb !== id_original &&
+          nombre_ueb.toLowerCase() === i.nombre_ueb.toLowerCase()
+      );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
 
   const defaultValues = {
     empresa: empresa,
@@ -71,8 +81,15 @@ export default function UebForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -81,12 +98,22 @@ export default function UebForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(ueb ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      ueb ? ueb.id_ueb : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre de la ueb ya existe en la empresa seleccionada",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(ueb ? "editar" : "crear");
+    }
   }
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createUeb(updatedRow) {
     try {
       const response = await axios.post(
@@ -105,17 +132,15 @@ export default function UebForm({
       );
     }
   }
-  async function editUeb(idUeb, uebData) {
+  async function editUeb(id_ueb, uebData) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/ueb/${idUeb}`,
+        `http://localhost:3000/api/ueb/${id_ueb}`,
         uebData
       );
       if (response.status === 200) {
         setUebs(
-          uebs.map((ueb) =>
-            ueb.idUeb === idUeb ? response.data : ueb
-          )
+          uebs.map((ueb) => (ueb.id_ueb === id_ueb ? response.data : ueb))
         );
       } else {
         throw new Error("Error al editar la ueb");
@@ -130,20 +155,18 @@ export default function UebForm({
 
   const handleConfirm = (data) => {
     const nombre = nombreEmpresa(parseInt(data.empresa.value));
-    
+
     const updatedRow = {
       // id: ueb ? ueb.id : uebs.length + 1,
-      nombreUeb: data.name,
-      idEmpresa: parseInt(data.empresa.value),
+      nombre_ueb: data.name,
+      id_empresa: parseInt(data.empresa.value),
     };
-    
-    ueb
-      ? editUeb(ueb.idUeb, updatedRow)
-      : createUeb(updatedRow);
-  
+
+    ueb ? editUeb(ueb.id_ueb, updatedRow) : createUeb(updatedRow);
+
     onSave();
     onSave();
-   
+
     setOpen(false);
   };
 
@@ -165,7 +188,6 @@ export default function UebForm({
                   styles={customStyles}
                   id="empresa"
                   {...field}
-                  
                   className={`${styles.selectForm}  ${
                     errors.empresa ? "is-invalid" : ""
                   }`}

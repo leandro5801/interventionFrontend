@@ -11,6 +11,7 @@ export default function AreaPage() {
   const [direcciones, setDirecciones] = useState([]);
   const [uebs, setUebs] = useState([]);
   const [empresas, setEmpresas] = useState([]);
+  const [trabajadores, setTrabajadores] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
   useEffect(() => {
@@ -62,6 +63,19 @@ export default function AreaPage() {
         setCargando(false);
       }
     }
+    async function fetchTrabajador() {
+      setCargando(true);
+      try {
+        const response = await axios.get('http://localhost:3000/api/trabajador');
+        setTrabajadores(response.data);
+      } catch (error) {
+        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    fetchTrabajador();
     fetchEmpresa();
     fetchUeb();
     fetchDireccion();
@@ -77,6 +91,7 @@ export default function AreaPage() {
         uebs={uebs}
         direcciones={direcciones}
         cargando={cargando}
+        trabajadores={trabajadores}
       />
     </div>
   );

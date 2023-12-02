@@ -33,18 +33,29 @@ export default function UserForm({
   onCancel,
   onSave,
 }) {
-  const [nombre_usuario, setUserName] = useState(user ? user.nombre_usuario : "");
+  const [nombre_usuario, setUserName] = useState(
+    user ? user.nombre_usuario : ""
+  );
   const [contraseña, setcontraseña] = useState(user ? user.contraseña : "");
-
 
   const [role, setRole] = useState(
     user
-      ? {  
+      ? {
           label: nombreRol(user.id_rol),
           value: user.id_rol,
         }
       : ""
   );
+
+  const validarNombresIguales = (nombre_usuario, id_original) => {
+    const nombre = users.find(
+      (i) =>
+        i.id_usuario !== id_original &&
+        nombre_usuario.toLowerCase() === i.nombre_usuario.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
 
   const rolesOptions =
     roles &&
@@ -67,8 +78,15 @@ export default function UserForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -77,13 +95,23 @@ export default function UserForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(user ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.nombre_usuario,
+      user ? user.id_usuario : null
+    );
+    if (nombreRepetido) {
+      setError("nombre_usuario", {
+        type: "manual",
+        message: "El nombre de usuario ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(user ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createUsuario(updatedRow) {
     try {
       const response = await axios.post(
@@ -98,7 +126,7 @@ export default function UserForm({
       }
     } catch (error) {
       console.error(error);
-      setError(
+      setErrorAxios(
         "Hubo un problema al crear el usuario. Por favor, inténtalo de nuevo."
       );
     }
@@ -121,7 +149,7 @@ export default function UserForm({
       }
     } catch (error) {
       console.error(error);
-      setError(
+      setErrorAxios(
         "Hubo un problema al editar el usuario. Por favor, inténtalo de nuevo."
       );
     }
@@ -135,10 +163,7 @@ export default function UserForm({
       contraseña: data.contraseña,
     };
 
-    user
-      ? editUsuario(user.id_usuario, updatedRow)
-      : createUsuario(updatedRow);
-
+    user ? editUsuario(user.id_usuario, updatedRow) : createUsuario(updatedRow);
 
     onSave();
 
@@ -166,6 +191,7 @@ export default function UserForm({
               onChange={(event) => setUserName(event.target.value)}
               placeholder="Usuario"
             />
+
             <div className={styles.error}>{errors.nombre_usuario?.message}</div>
           </div>
           <div>
@@ -195,10 +221,8 @@ export default function UserForm({
               <div className={styles.error}>Seleccione un rol.</div>
             )}
           </div>
-        
         </div>
         <div className={styles.inputGroup}>
-        
           <div>
             <Input
               className={`${styles.inputForm}  ${

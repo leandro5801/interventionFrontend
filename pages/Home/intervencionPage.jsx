@@ -9,6 +9,7 @@ import InterventionTable from "../../Components/Tables/InterventionTable";
 export default function IntervencionPage() {
   // datos de las intervenciones
   const [interventions, setInterventions] = useState([]);
+  const [recomendations, setRecomendations] = useState([]);
   const [projects, setProjects] = useState([]);
   const [empresas, setEmpresas] = useState([]);
   const [uebs, setUebs] = useState([]);
@@ -26,7 +27,7 @@ export default function IntervencionPage() {
   //datos filtrados
   let filtredInterventions = [];
   let filtredProjects = [];
-
+  
   useEffect(() => {
     async function fetchIntervention() {
       const response = await axios.get(
@@ -134,6 +135,12 @@ export default function IntervencionPage() {
         setCargando(false);
       }
     }
+    async function fetchRecomendacion() {
+      const response = await axios.get(
+        "http://localhost:3000/api/recomendacion"
+      );
+      setRecomendations(response.data);
+    }
     //cargando usuario autenticado
     async function getProfile() {
       try {
@@ -161,6 +168,7 @@ export default function IntervencionPage() {
     fetchIntervention();
     fetchProyecto();
     fetchConsultor();
+    fetchRecomendacion();
   }, []);
 
   if (user && consultores) {
@@ -196,6 +204,7 @@ export default function IntervencionPage() {
         trabajadores={trabajadores}
         consultores={consultores}
         consultor={consultorAutenticado}
+        recomendations={recomendations}
       />
     </div>
   );

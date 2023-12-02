@@ -56,9 +56,9 @@ export default function RecomendationForm({
     recomendation ? recomendation.fecha_recomendacion : ""
   );
   const [follow, setFollow] = useState(
-    recomendation ? (recomendation.seguimiento===true ? "Sí" : "No" ) : ""
+    recomendation ? (recomendation.seguimiento === true ? "Sí" : "No") : ""
   );
-  
+
   const [classification, setClassification] = useState(
     recomendation
       ? {
@@ -72,7 +72,16 @@ export default function RecomendationForm({
     // consultor: consultor,
     classification: classification,
   };
-
+  const validarNombresIguales = (nombre_recomendacion, id_original) => {
+    const nombre = recomendations.find(
+      (i) =>
+        i.id_recomendacion !== id_original &&
+        nombre_recomendacion.toLowerCase() ===
+          i.nombre_recomendacion.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
   // form validation rules
   const formOptions = {
     resolver: yupResolver(validationSchema),
@@ -80,8 +89,15 @@ export default function RecomendationForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -90,13 +106,23 @@ export default function RecomendationForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(recomendation ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      recomendation ? recomendation.id_recomendacion : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre de la recomendación ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(recomendation ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function editRecomendacion(id_recomendacion, recomendacionData) {
     try {
       const response = await axios.put(
@@ -132,11 +158,11 @@ export default function RecomendationForm({
       id_clasificacion: parseInt(data.classification.value),
       descripcion_recomendacion: data.description,
       fecha_recomendacion: data.fecha,
-      seguimiento: follow === "Sí"? true : false,
+      seguimiento: follow === "Sí" ? true : false,
     };
     editRecomendacion(recomendation.id_recomendacion, updatedRow);
     onSave();
-   
+
     setOpen(true);
   };
 
@@ -200,8 +226,6 @@ export default function RecomendationForm({
               <div className={styles.error}>{errors.description?.message}</div>
             </div>
           </div>
-
-         
 
           <div className={styles.inputGroup}>
             <div>

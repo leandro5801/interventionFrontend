@@ -44,7 +44,7 @@ function Header() {
     <div>
       <div className={styles.headcontainer}>
         <div className={styles.headwrapper}>
-          <div className={styles.title}>
+          <div className={styles.titlePrincipal}>
             <h2>Intervenciones</h2>
           </div>
         </div>

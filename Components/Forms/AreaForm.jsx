@@ -38,61 +38,62 @@ export default function AreaForm({
   onCancel,
   onSave,
 }) {
-  const [name, setName] = useState(area ? area.nombreArea : "");
+  const [name, setName] = useState(area ? area.nombre_area : "");
   const [empresa, setEmpresa] = useState(
     area
       ? {
           label: nombreEmpresa(
-            uebPorId(direccionPorId(area.idDireccion).idUeb).idEmpresa
+            uebPorId(direccionPorId(area.id_direccion).id_ueb).id_empresa
           ),
-          value: uebPorId(direccionPorId(area.idDireccion).idUeb).idEmpresa,
+          value: uebPorId(direccionPorId(area.id_direccion).id_ueb).id_empresa,
         }
       : ""
   );
   const [ueb, setueb] = useState(
     area
       ? {
-          label: nombreUeb(direccionPorId(area.idDireccion).idUeb),
-          value: direccionPorId(area.idDireccion).idUeb,
+          label: nombreUeb(direccionPorId(area.id_direccion).id_ueb),
+          value: direccionPorId(area.id_direccion).id_ueb,
         }
       : ""
   );
   const [direccion, setDireccion] = useState(
     area
       ? {
-          label: nombreDireccion(area.idDireccion),
-          value: area.idDireccion,
+          label: nombreDireccion(area.id_direccion),
+          value: area.id_direccion,
         }
       : ""
   );
 
   const empresasOptions =
     empresas &&
-    empresas.map((item) => ({
-      value: item.idEmpresa,
-      label: item.nombreEmpresa,
-    }));
+    empresas
+      .filter((item) => item.cargar_empresa === false)
+      .map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      }));
+
   const uebsOptions =
     uebs &&
     uebs
       .filter((item) =>
-        empresa && empresa.value ? item.idEmpresa === empresa.value : true
+        empresa && empresa.value ? item.id_empresa === empresa.value : true
       )
       .map((item) => ({
-        value: item.idUeb,
-        label: item.nombreUeb,
+        value: item.id_ueb,
+        label: item.nombre_ueb,
       }));
   const direccionesOptions =
     direcciones &&
     direcciones
-      .filter((item) =>
-        ueb && ueb.value ? item.idUeb === ueb.value : true
-      )
+      .filter((item) => (ueb && ueb.value ? item.id_ueb === ueb.value : true))
       .map((item) => ({
-        value: item.idDireccion,
-        label: item.nombreDireccion,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
-  
+
   const handleEmpresaChange = (newValue) => {
     setEmpresa({ label: newValue.value, value: newValue.value });
   };
@@ -109,6 +110,18 @@ export default function AreaForm({
     direccion: direccion,
   };
 
+  const validarNombresIguales = (nombre_area, id_original) => {
+    const nombre = areas
+      .filter((item) => item.id_direccion === direccion.value)
+      .find(
+        (i) =>
+          i.id_area !== id_original &&
+          nombre_area.toLowerCase() === i.nombre_area.toLowerCase()
+      );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
+
   // form validation rules
   const formOptions = {
     resolver: yupResolver(validationSchema),
@@ -116,8 +129,15 @@ export default function AreaForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -126,12 +146,22 @@ export default function AreaForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(area ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      area ? area.id_area : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre del area ya existe en la dirección seleccionada",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(area ? "editar" : "crear");
+    }
   }
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createArea(updatedRow) {
     try {
       const response = await axios.post(
@@ -150,15 +180,15 @@ export default function AreaForm({
       );
     }
   }
-  async function editArea(idArea, areaData) {
+  async function editArea(id_area, areaData) {
     try {
       const response = await axios.patch(
-        `http://localhost:3000/api/area/${idArea}`,
+        `http://localhost:3000/api/area/${id_area}`,
         areaData
       );
       if (response.status === 200) {
         setAreas(
-          areas.map((area) => (area.idArea === idArea ? response.data : area))
+          areas.map((area) => (area.id_area === id_area ? response.data : area))
         );
       } else {
         throw new Error("Error al editar la area");
@@ -173,13 +203,11 @@ export default function AreaForm({
 
   const handleConfirm = (data) => {
     const updatedRow = {
-      nombreArea: data.name,
-      idDireccion: parseInt(data.direccion.value),
+      nombre_area: data.name,
+      id_direccion: parseInt(data.direccion.value),
     };
 
-    area
-    ? editArea(area.idArea, updatedRow)
-    : createArea(updatedRow);
+    area ? editArea(area.id_area, updatedRow) : createArea(updatedRow);
 
     onSave();
     setOpen(false);
@@ -209,6 +237,8 @@ export default function AreaForm({
                   onChange={(selectedOption) => {
                     handleEmpresaChange(selectedOption);
                     setValue("empresa", selectedOption);
+                    setValue("ueb", "");
+                    setValue("direccion", "");
                     field.onChange(selectedOption);
                   }}
                   options={empresasOptions}

@@ -40,7 +40,7 @@ export default function ClienteForm({
   const [name, setName] = useState(cliente ? cliente.nombre_cliente : "");
 
   const [usuario, setUsuario] = useState(
-    cliente
+    cliente && cliente.id_usuario
       ? {
           label: nombreUsuario(cliente.id_usuario),
           value: cliente.id_usuario,
@@ -48,12 +48,24 @@ export default function ClienteForm({
       : ""
   );
 
-  const clienteIds = clientes.map(cliente => cliente.id_usuario);
+  const clienteIds = clientes.map((cliente) => cliente.id_usuario);
+
+  const validarNombresIguales = (nombre_cliente, id_original) => {
+    const nombre = clientes.find(
+      (i) =>
+        i.id_cliente !== id_original &&
+        nombre_cliente.toLowerCase() === i.nombre_cliente.toLowerCase()
+    );
+    const nombreRepetido = nombre ? true : false;
+    return nombreRepetido;
+  };
 
   const userOptions =
     users &&
     users
-      .filter((user) => user.id_rol === 4 && !clienteIds.includes(user.id_usuario))
+      .filter(
+        (user) => user.id_rol === 4 && !clienteIds.includes(user.id_usuario)
+      )
       .map((item) => ({
         value: item.id_usuario,
         label: item.nombre_usuario,
@@ -73,8 +85,15 @@ export default function ClienteForm({
   };
 
   // get functions to build form with useForm() hook
-  const { register, control, setValue, handleSubmit, reset, formState } =
-    useForm(formOptions);
+  const {
+    register,
+    control,
+    setValue,
+    handleSubmit,
+    reset,
+    formState,
+    setError,
+  } = useForm(formOptions);
   const { errors } = formState;
 
   //para el sms de confirmacion
@@ -83,13 +102,23 @@ export default function ClienteForm({
   const [type, setType] = useState("crear");
 
   function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-    setType(cliente ? "editar" : "crear");
+    const nombreRepetido = validarNombresIguales(
+      data.name,
+      cliente ? cliente.id_cliente : null
+    );
+    if (nombreRepetido) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre del cliente ya existe",
+      });
+    } else {
+      setOpen(true);
+      setFormData(data);
+      setType(cliente ? "editar" : "crear");
+    }
   }
 
-  const [error, setError] = useState(null);
+  const [errorAxios, setErrorAxios] = useState(null);
   async function createCliente(updatedRow) {
     try {
       const response = await axios.post(
@@ -137,13 +166,13 @@ export default function ClienteForm({
     const updatedRow = {
       // idCliente: cliente ? cliente.idCliente : clientes.length + 1,
       nombre_cliente: data.name,
-      id_usuario: parseInt(data.user.value),
+      id_usuario: data.user ? data.user.value : null,
     };
 
     cliente
-    ? editCliente(cliente.id_cliente, updatedRow)
-    : createCliente(updatedRow);
-  
+      ? editCliente(cliente.id_cliente, updatedRow)
+      : createCliente(updatedRow);
+
     onSave();
     //Aquí puedes enviar los datos a una ruta API de Next.js para procesarlos
     setOpen(false);
@@ -186,7 +215,7 @@ export default function ClienteForm({
                   }`}
                   onChange={(selectedOption) => {
                     handleUsuariosChange(selectedOption);
-                    setValue("user", selectedOption);
+                    setValue("user", selectedOption.value);
                     field.onChange(selectedOption);
                   }}
                   options={userOptions}

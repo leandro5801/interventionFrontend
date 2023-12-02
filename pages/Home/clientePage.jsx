@@ -11,6 +11,7 @@ import ClienteTable from "../../Components/Tables/ClienteTable";
 
 export default function ClientePage() {
   const [clientes, setClientes] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
@@ -40,8 +41,23 @@ export default function ClientePage() {
         setCargando(false);
       }
     }
+    async function fetchProyecto() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/proyecto");
+        setProjects(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
     fetchCliente();
     fetchUsuario();
+    fetchProyecto();
   }, []);
 
   return (
@@ -53,6 +69,7 @@ export default function ClientePage() {
         users={users}
         setUsers={setUsers}
         cargando={cargando}
+        projects={projects}
       />
     </div>
   );

@@ -11,6 +11,7 @@
   background-color: white;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
     0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  z-index: 16;
 }
 
 .wrapper {
@@ -65,16 +66,17 @@
 
 
 /* for mobiles phones */
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
   .sidebarcontainer {
-    width: 75px;
+    width: 25%;
   }
 
   .logo {
-    width: 60px;
-    height: 40px;
-    padding: 5px;
-    margin: 0.2px;
+    width: 100%;
+    max-height: 10%;
+    min-height: 10;
+    /* padding: 5px;
+    margin: 0.2px; */
   }
 
   .wrapper>ul {
@@ -105,8 +107,8 @@
   flex-wrap: wrap;
   height: 70px;
   background-color: #007e9e;
-  margin-left: 200px;
-  z-index: 100;
+  /* margin-left: 200px; */
+  z-index: 15;
 }
 
 .headwrapper {
@@ -116,11 +118,17 @@
 }
 
 .title {
-  margin-left: 40px;
   padding: 10px;
+  margin-left: 220px;
+  margin-top: 70px;
 }
 
-.title>h2 {
+.titlePrincipal {
+  padding: 10px;
+  margin-left: 220px;
+}
+
+.titlePrincipal>h2 {
   color: #fff;
   font-size: 24px;
   font-weight: bold;
@@ -132,7 +140,7 @@
 
 .faIconOutAltContent {
   position: absolute;
-  right: 60mm;
+  right: 10mm;
   margin-top: 20px;
   margin-bottom: 18px;
   margin-right: -5px;
@@ -140,15 +148,16 @@
 
 .nombreUsuarioContent {
   position: absolute;
-  right: 68mm;
+  right: 18mm;
   margin-top: 20px;
   margin-bottom: 18px;
   margin-right: -5px;
 }
+
 .nombreUsuarioContent>h2 {
   color: #fff;
   font-size: 14px;
-  font-weight:lighter;
+  font-weight: lighter;
 }
 
 .faIconOutAlt {
@@ -165,35 +174,49 @@
 
 
 /* for mobiles phones */
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
   .headcontainer {
     width: 89.8%;
-    margin-left: 50px;
-    height: 40px;
+    margin-left: 10%;
+    height: 10%;
   }
 
-  .headwrapper {
-    margin-left: 10px;
+  .title {
+    margin-left: 25%;
+    margin-top: 11%;
   }
 
-  .title>h2 {
-    font-size: 16px;
+  .titlePrincipal {
+    margin-left: 80%;
+  }
+
+  .titlePrincipal>h2 {
+    font-size: 70%;
   }
 
   .faIconOutAltContent {
-    right: 8mm;
+    right: 8%;
     margin-top: 10px;
     margin-right: 0.2px;
   }
 
+  .nombreUsuarioContent {
+    right: 16%;
+    margin-top: 10px;
+    margin-right: 0.2px;
+  }
+
+  .nombreUsuarioContent>h2 {
+    font-size: 70%;
+  }
 }
 
 /* ------------------------------------------------------------------------------------------------------------ */
 /* Content Layout*/
 .contenetcontainerLayout {
   /* position: fixed; */
-  margin-top: 70px;
-  width: 1165px;
+  /* margin-top: 70px; */
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   /* align-items: center; */
@@ -202,7 +225,7 @@
   /* height: 540px; */
   min-height: 100vh;
   /* Altura mínima para cubrir toda la pantalla */
-  margin-left: 200px;
+  /* margin-left: 200px; */
 }
 
 
@@ -214,11 +237,11 @@
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
     0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);  */
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
   .contenetcontainerLayout {
     width: 89.8%;
-    height: 577px;
-    margin-left: 50px;
+    /* height: 577px; */
+    margin-left: 10%;
     font-size: 12px;
   }
 }
@@ -295,7 +318,7 @@
 }
 
 /* for mobiles phones */
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
   .contenetcontainer {
     margin-left: 15px;
     align-items: center;
@@ -333,11 +356,12 @@
   display: flex;
   align-items: center;
   text-align: center;
+  gap: 5px;
 }
 
 .filterListOffOutlinedContent {
   position: absolute;
-  right: 15mm;
+  right: 30mm;
   margin-top: -10px;
   margin-right: 20px;
 }
@@ -351,7 +375,7 @@
 }
 
 .selectGestiones {
-  padding: 7px;
+  /* padding: 7px; */
   font-size: 14px;
   width: 200px;
   z-index: 15;
@@ -359,7 +383,7 @@
 }
 
 .selectGestionesGantt {
-  padding: 7px;
+  /* padding: 7px; */
   font-size: 14px;
   width: 150px;
   font-weight: lighter;
@@ -371,9 +395,9 @@
 }
 
 .table {
-  position: fixed;
-  max-height: 410px;
-  max-width: 1058px;
+  /* position: fixed; */
+  height: 450px;
+  width: 1090px;
 }
 
 .table thead th {
@@ -430,35 +454,33 @@ weight .table td {
   align-items: center;
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
   .table {
-    width: 67%;
-    height: 577px;
-    margin-left: -10px;
+    width: 30%;
+    height: 67%;
+    margin-left: 10%;
   }
 
   .btnNuevoContent {
-    display: flex;
-    align-items: center;
     padding: 8px;
-    width: 230px;
-    font-size: 10px !important;
+    width: 23%;
+    /* font-size: 70%; */
   }
 
   .btn {
-    width: 100px;
-    font-size: 10px !important;
+    width: 30%;
+    font-size: 70%;
   }
 
   .spacing {
-    width: 200px;
-    font-size: 12px;
+    width: 20%;
+    font-size: 70%;
   }
 
   .tdStyle {
     padding: 1px;
-    max-width: 150px;
-    font-size: 11px !important;
+    width: 20%;
+    font-size: 70%;
   }
 
   .filtrosEstructuraContent {
@@ -467,13 +489,13 @@ weight .table td {
   }
 
   .inputFilter {
-    font-size: 10px !important;
+    font-size: 70%;
     padding: 2px;
     width: 100px;
   }
 
   .filterListOffOutlinedContent {
-    right: -5mm;
+    right: -5%;
     margin-top: -10px;
     margin-right: 50px;
   }
@@ -550,7 +572,7 @@ weight .table td {
   width: 500px;
 }
 
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
   .tableReport {
     width: 67%;
     height: 577px;
@@ -624,6 +646,7 @@ weight .table td {
   /* top: 100%;
   left: 0; */
   color: brown;
+  width: 400px;
 }
 
 .inputForm {
@@ -896,7 +919,7 @@ weight .table td {
 
 
 /* for mobiles phones */
-@media only screen and (max-width:768px) {
+@media only screen and (max-width: 600px) {
 
   .timeRange {
     display: flex;
@@ -1129,6 +1152,7 @@ weight .table td {
   font-size: 14px;
   margin-right: 4px;
 }
+
 
 /* Estilos para pantallas con un ancho de 600px o menos */
 @media (max-width: 950px) {
