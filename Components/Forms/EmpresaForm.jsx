@@ -1,6 +1,8 @@
 import styles from "../../styles/Home.module.css";
 import axios from "axios";
 import { useState } from "react";
+import { customStyles } from "../../styles/SelectStyles";
+import Select from "react-select";
 
 //validaciones
 import { useForm } from "react-hook-form";
@@ -28,15 +30,27 @@ export default function EmpresaForm({
   onSave,
 }) {
   const [name, setName] = useState(empresa ? empresa.nombre_empresa : "");
-  const [cargarEmpresa, setCargarEmpresa] = useState(
-    empresa ? empresa.cargar_empresa : false
+  const [cargar_empresa, setCargarEmpresa] = useState(
+    empresa ? (empresa.cargar_empresa === true ? "Sí" : "No") : ""
   );
+  const [editando, setEditando] = useState(empresa ? true : false);
+  const [seCargan, setSeCargan] = useState(empresa ? false : null);
 
+  const handleCarganChange = (event) => {
+    setCargarEmpresa(event);
+    if (event === "Sí") {
+      setSeCargan(true);
+    } else if (event === "No") {
+      setSeCargan(false);
+    }
+  };
+  const [selectedOption, setSelectedOption] = useState(null);
+  const options = [{ value: "AICA+", label: "AICA+" }];
   const validarNombresIguales = (nombre_empresa, id_original) => {
     const nombre = empresas.find(
       (i) =>
         i.id_empresa !== id_original &&
-        nombre_empresa.toLowerCase() ===i.nombre_empresa.toLowerCase()
+        nombre_empresa.toLowerCase() === i.nombre_empresa.toLowerCase()
     );
     const nombreRepetido = nombre ? true : false;
     return nombreRepetido;
@@ -45,6 +59,9 @@ export default function EmpresaForm({
   // form validation rules
   const formOptions = {
     resolver: yupResolver(validationSchema),
+  };
+  const defaultValues = {
+    name: name,
   };
 
   // get functions to build form with useForm() hook
@@ -124,13 +141,11 @@ export default function EmpresaForm({
       );
     }
   }
-
   const handleConfirm = (data) => {
-    // console.log(data)
     const updatedRow = {
       // id_empresa: 10,
       nombre_empresa: data.name,
-      cargar_empresa: Boolean(data.cargarEmpresa),
+      cargar_empresa: data.cargar_empresa === "Sí" ? true : false,
     };
     empresa
       ? editEmpresa(empresa.id_empresa, updatedRow)
@@ -149,38 +164,118 @@ export default function EmpresaForm({
       <DialogTitle>Empresa</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <div className={styles.inputGroup}>
+          <div>
             <div>
-              <Input
-                className={`${styles.inputForm}  ${
-                  errors.name ? "is-invalid" : ""
-                }`}
-                type="text"
-                id="name"
-                {...register("name")}
-                value={name}
-                onChange={(event) => setName(event.target.value)}
-                placeholder="Nombre de la empresa"
-              />
-              <div className={styles.error}>{errors.name?.message}</div>
+              {!editando ? (
+                <div>
+                  <>
+                    <InputLabel id="demo-simple-select-standard-label">
+                      ¿Se van a cargar los datos de la empresa?
+                    </InputLabel>
+                    <div className={styles.inputGroup}>
+                      <InputLabel>
+                        Sí{" "}
+                        <input
+                          className={styles.input}
+                          type="radio"
+                          name="cargar_empresa"
+                          value="Sí"
+                          {...register("cargar_empresa")}
+                          checked={cargar_empresa === "Sí"}
+                          onChange={(event) =>
+                            handleCarganChange(event.target.value)
+                          }
+                        />
+                      </InputLabel>
+                      <InputLabel>
+                        No{" "}
+                        <input
+                          className={styles.input}
+                          type="radio"
+                          name="cargar_empresa"
+                          value="No"
+                          {...register("cargar_empresa")}
+                          checked={cargar_empresa === "No"}
+                          onChange={(event) =>
+                            handleCarganChange(event.target.value)
+                          }
+                        />
+                      </InputLabel>
+                    </div>
+                    {errors.cargar_empresa && (
+                      <div className="invalid-feedback">
+                        {errors.cargar_empresa?.message}
+                      </div>
+                    )}
+                  </>
+                </div>
+              ) : (
+                false
+              )}
+              {/* <div className={styles.error}>
+                {errors.cargar_empresa?.message}
+              </div> */}
+              {/* <input
+                className={`  ${errors.cargar_empresa ? "is-invalid" : ""}`}
+                type="checkbox"
+                id="cargarEmpresa"
+                {...register("cargarEmpresa")}
+                checked={cargarEmpresa}
+                onChange={(event) => {
+                  setCargarEmpresa(event.target.checked);
+                }}
+              /> */}
             </div>
-          </div>
-          <div className={styles.inputGroup}>
-            <input
-              className={`  ${errors.cargar_empresa ? "is-invalid" : ""}`}
-              type="checkbox"
-              id="cargarEmpresa"
-              {...register("cargarEmpresa")}
-              checked={cargarEmpresa}
-              onChange={(event) => {
-                setCargarEmpresa(event.target.checked);
-              }}
-            />
-            <InputLabel id="demo-simple-select-standard-label">
-              Se cargan los datos de la empresa
-            </InputLabel>
 
-            <div className={styles.error}>{errors.cargar_empresa?.message}</div>
+            {seCargan === false ? (
+              <div>
+                <Input
+                  className={`${styles.inputForm}  ${
+                    errors.name ? "is-invalid" : ""
+                  }`}
+                  type="text"
+                  id="name"
+                  {...register("name")}
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder="Nombre de la empresa"
+                />
+              </div>
+            ) : (
+              false
+            )}
+            {seCargan === true ? (
+              <>
+                <div>
+                  <Controller
+                    name="nombre"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        styles={customStyles}
+                        id="name"
+                        // {...field}
+                        className={`${styles.selectFormRec}  ${
+                          errors.name ? "is-invalid" : ""
+                        }`}
+                        value={selectedOption}
+                        onChange={(selectedOption) => {
+                          setSelectedOption(selectedOption);
+                          setName(selectedOption.value);
+                          setValue("name", selectedOption.value);
+                          field.onChange(selectedOption.value);
+                        }}
+                        options={options}
+                        placeholder="Nombre Empresa"
+                      />
+                    )}
+                  />
+                </div>
+              </>
+            ) : (
+              false
+            )}
+            <div className={styles.error}>{errors.name?.message}</div>
           </div>
         </div>
         <DialogActions>

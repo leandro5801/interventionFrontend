@@ -211,7 +211,6 @@ function ReportTable({
         <div className={styles.divIconH2}></div>
         <TableContainer component={Paper} className={styles.tableReport}>
           <div className={styles.btnNuevoContent}>
-   
             <div className={styles.filterListOffOutlinedContent}>
               {showFilters ? (
                 <FilterListOffOutlinedIcon
@@ -229,129 +228,140 @@ function ReportTable({
               )}
             </div>
           </div>
-          <Table stickyHeader>
-            <TableHead>
-              <TableRow>
-                <TableCell className={styles.letraEnNegrita}>
-                  Proyecto
-                  {showFilters && (
-                    <Select
-                      styles={customStyles}
-                      className={styles.selectGestionesGantt}
-                      defaultValue={projectFilter}
-                      onChange={(projectFilter) => {
-                        handleProjectFilterChange(projectFilter);
-                      }}
-                      options={optionProjects}
-                      placeholder="Proyecto"
-                      isClearable
-                    />
-                  )}
-                </TableCell>
-                <TableCell className={styles.letraEnNegrita}>
-                  Intervención
-                  {showFilters && (
-                    <Select
-                      styles={customStyles}
-                      className={styles.selectGestionesGantt}
-                      defaultValue={interventionFilter}
-                      onChange={(interventionFilter) => {
-                        handleInterventionFilterChange(interventionFilter);
-                      }}
-                      options={optioninterventions}
-                      placeholder="Intervenci..."
-                      isClearable
-                    />
-                  )}
-                </TableCell>
-                <TableCell className={styles.letraEnNegrita}>
-                  Recomendación
-                  {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={nameFilter}
-                      onChange={handleNameFilterChange}
-                      placeholder="Filtrar por recomendación"
-                    />
-                  )}
-                </TableCell>
-                <TableCell className={styles.letraEnNegrita}>
-                  Descripción
-                  {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={descriptionFilter}
-                      onChange={handleDescriptionFilterChange}
-                      placeholder="Filtrar por descripción"
-                    />
-                  )}
-                </TableCell>
-                <TableCell className={styles.letraEnNegrita}>
-                  Fecha
-                  {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="date"
-                      value={fechaFilter}
-                      onChange={handleFechaFilterChange}
-                      placeholder="Filtrar por fecha"
-                    />
-                  )}
-                </TableCell>
-                <TableCell className={styles.letraEnNegrita}>
-                  Seguida
-                  {showFilters && (
-                    <input
-                      className={styles.inputFilter}
-                      type="text"
-                      value={followFilter}
-                      onChange={handleFollowFilterChange}
-                      placeholder="Filtrar por seguidas"
-                    />
-                  )}
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredData
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((recomendation) => (
-                  <TableRow key={recomendation.id_recomendacion}>
-                    <TableCell>
-                      {nombreProyecto(
-                        intervencionPorId(recomendation.id_intervencion)
-                          .id_proyecto
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      {nombreIntervencion(recomendation.id_intervencion)}
-                    </TableCell>
-                    <TableCell>{recomendation.nombre_recomendacion}</TableCell>
-                    <TableCell>
-                      {recomendation.descripcion_recomendacion}
-                    </TableCell>
-                    <TableCell>{recomendation.fecha_recomendacion}</TableCell>
-                    <TableCell>{isFollow(recomendation.seguimiento)}</TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-            <TableFooter>
-              <TableRow>
-                <TablePagination
-                  className={styles.tablePagination}
-                  rowsPerPageOptions={[4, 5, 10]}
-                  count={recomendations.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  labelRowsPerPage="Filas por página:"
-                />
-              </TableRow>
-            </TableFooter>
-          </Table>
+          {recomendations.length === 0 && (
+            <div className={styles.divIconH2}>
+              <h5> No hay Reportes</h5>{" "}
+            </div>
+          )}
+          {recomendations.length === 0 || (
+            <Table stickyHeader>
+              <TableHead>
+                <TableRow>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Proyecto
+                    {showFilters && (
+                      <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={projectFilter}
+                        onChange={(projectFilter) => {
+                          handleProjectFilterChange(projectFilter);
+                        }}
+                        options={optionProjects}
+                        placeholder="Proyecto"
+                        isClearable
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Intervención
+                    {showFilters && (
+                      <Select
+                        styles={customStyles}
+                        className={styles.selectGestionesGantt}
+                        defaultValue={interventionFilter}
+                        onChange={(interventionFilter) => {
+                          handleInterventionFilterChange(interventionFilter);
+                        }}
+                        options={optioninterventions}
+                        placeholder="Intervenci..."
+                        isClearable
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Recomendación
+                    {showFilters && (
+                      <input
+                        className={styles.inputFilter}
+                        type="text"
+                        value={nameFilter}
+                        onChange={handleNameFilterChange}
+                        placeholder="Filtrar por recomendación"
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Descripción
+                    {showFilters && (
+                      <input
+                        className={styles.inputFilter}
+                        type="text"
+                        value={descriptionFilter}
+                        onChange={handleDescriptionFilterChange}
+                        placeholder="Filtrar por descripción"
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Fecha
+                    {showFilters && (
+                      <input
+                        className={styles.inputFilter}
+                        type="date"
+                        value={fechaFilter}
+                        onChange={handleFechaFilterChange}
+                        placeholder="Filtrar por fecha"
+                      />
+                    )}
+                  </TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Seguida
+                    {showFilters && (
+                      <input
+                        className={styles.inputFilter}
+                        type="text"
+                        value={followFilter}
+                        onChange={handleFollowFilterChange}
+                        placeholder="Filtrar por seguidas"
+                      />
+                    )}
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredData
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((recomendation) => (
+                    <TableRow key={recomendation.id_recomendacion}>
+                      <TableCell>
+                        {nombreProyecto(
+                          intervencionPorId(recomendation.id_intervencion)
+                            .id_proyecto
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        {nombreIntervencion(recomendation.id_intervencion)}
+                      </TableCell>
+                      <TableCell>
+                        {recomendation.nombre_recomendacion}
+                      </TableCell>
+                      <TableCell>
+                        {recomendation.descripcion_recomendacion}
+                      </TableCell>
+                      <TableCell>{recomendation.fecha_recomendacion}</TableCell>
+                      <TableCell>
+                        {isFollow(recomendation.seguimiento)}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    className={styles.tablePagination}
+                    rowsPerPageOptions={[4, 5, 10]}
+                    count={recomendations.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    labelRowsPerPage="Filas por página:"
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          )}
         </TableContainer>
         {/* Para editar  */}
       </>

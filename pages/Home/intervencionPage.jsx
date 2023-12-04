@@ -25,8 +25,8 @@ export default function IntervencionPage() {
   const [user, setUser] = useState(null);
   let consultorAutenticado = {};
   //datos filtrados
-  let filtredInterventions = [];
-  let filtredProjects = [];
+  let filteredInterventions = [];
+  let filteredProjects = [];
   
   useEffect(() => {
     async function fetchIntervention() {
@@ -177,15 +177,15 @@ export default function IntervencionPage() {
     );
     if (consultorAutenticado) {
       if (user.id_rol === 2) {
-        filtredInterventions = interventions.filter(
+        filteredInterventions = interventions.filter(
           (i) => i.id_consultor === consultorAutenticado.id_consultor
         );
-        filtredProjects = projects.filter((i) =>
+        filteredProjects = projects.filter((i) =>
           i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
         );
       } else if (user.id_rol === 3) {
-        filtredInterventions = interventions;
-        filtredProjects = projects;
+        filteredInterventions = interventions;
+        filteredProjects = projects;
       }
     }
   }
@@ -194,9 +194,9 @@ export default function IntervencionPage() {
     <div className={styles.title}>
       <h3 className={styles.tituloH3}> Intervenciones</h3>
       <InterventionTable
-        interventions={filtredInterventions}
+        interventions={filteredInterventions}
         setInterventions={setInterventions}
-        projects={filtredProjects}
+        projects={filteredProjects}
         empresas={empresas}
         uebs={uebs}
         direcciones={direcciones}

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
-import TrabajadorTable from "../../Components/Tables/TrabajadorTable";
+import TrabajadorCargarDatosTable from "../../Components/Tables/TrabajadorCargarDatosTable";
 
 export default function TrabajadorPage() {
   // datos de las ueb
@@ -91,7 +91,7 @@ export default function TrabajadorPage() {
 
   if (empresas) {
     filteredEmpresa = empresas.filter(
-      (empresa) => empresa.cargar_empresa === false
+      (empresa) => empresa.cargar_empresa === true
     );
     filteredUeb = uebs.filter((ueb) =>
       filteredEmpresa.find((empresa) => empresa.id_empresa === ueb.id_empresa)
@@ -114,7 +114,7 @@ export default function TrabajadorPage() {
   return (
     <div className={styles.title}>
       <h3>Trabajadores</h3>
-      <TrabajadorTable
+      <TrabajadorCargarDatosTable
         trabajadores={filteredTrabajador}
         setTrabajadores={setTrabajadores}
         empresas={filteredEmpresa}

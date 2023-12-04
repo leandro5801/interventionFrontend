@@ -70,10 +70,10 @@ export default function GanttPage() {
   };
   const nombreTrabajador = (id_trabajador) => {
     const trabajador = trabajadores.find(
-      (trabajador) => trabajador.idTrabajador === id_trabajador
+      (trabajador) => trabajador.id_trabajador === id_trabajador
     );
     const name = trabajador
-      ? trabajador.nombreTrabajador
+      ? trabajador.nombre_trabajador
       : "no se encontro el nombre";
     return name;
   };

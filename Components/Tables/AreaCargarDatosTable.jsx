@@ -38,7 +38,7 @@ import {
 
 import Select from "react-select";
 
-function AreaTable({
+function AreaCargarDatosTable({
   areas,
   setAreas,
   empresas,
@@ -52,21 +52,6 @@ function AreaTable({
   nombreUeb,
   nombreDireccion,
 }) {
-  //para el sms de confirmacion
-  const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({});
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-  }
-  //para el formulario
-  const [dialogOpen, setDialogOpen] = useState(false);
-
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
 
@@ -156,79 +141,24 @@ function AreaTable({
       (structureFilter.length === 0 ||
         item.id_direccion === structureFilter.value)
   );
-  // sms de confirmacion
-  const [data, setData] = useState("");
-
-  function openConfirmation(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setData(data);
-  }
-
-  // function handleDelete(idNum) {
-  //   const newArea = areas.filter((area) => area.id !== idNum);
-  //   setAreas(newArea);
-  //   setOpen(false);
-  // }
-
-  const vinculado = (id_area) => {
-    const trabajador = trabajadores.find((dato) => dato.id_area === id_area);
-    return trabajador ? true : false;
-  };
-  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
-  const handleCloseDialogAdvertencia = () => {
-    setOpenDialogAdvertencia(false);
-  };
 
   const [error, setError] = useState(null);
-  async function handleDelete(id) {
+  const [cargandoUeb, setCargandoArea] = useState(false);
+  async function fetchArea() {
+    setCargandoArea(true);
     try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/area/${id}`
-      );
-      if (response.status === 200) {
-        const newDatos = areas.filter((area) => area.id_area !== id);
-        setAreas(newDatos);
-        // Calcula el número total de páginas después de la eliminación
-        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
-
-        // Si la página actual está fuera del rango, restablécela a la última página disponible
-        if (page > totalPages) {
-          setPage(totalPages);
-        }
-        setOpen(false);
-      } else {
-        throw new Error("Error al eliminar el área");
-      }
+      const response = await axios.get("http://localhost:3000/api/area/area");
+      setAreas(response.data);
+      console.log(response.data);
     } catch (error) {
-      console.error(error);
-      setError(
-        "Hubo un problema al eliminar el área. Por favor, inténtalo de nuevo."
-      );
+      setOpenDialogError(true);
+    } finally {
+      setCargandoArea(false);
     }
   }
-
-  // Para editar una recomendacion desde la tabla
-
-  const [editIIdx, setEditIIdx] = useState(-1);
-
-  const handleSaveI = () => {
-    setEditIIdx(-1);
-  };
-
-  const handleCancelI = () => {
-    setEditIIdx(-1);
-  };
-
-  const areaUpdate = (updatedRow) => {
-    // Crea una copia de los datos de la tabla
-    const updatedAreasData = [...areas];
-
-    // Actualiza los datos de la fila que se está editando
-    updatedAreasData[editIIdx] = updatedRow;
-
-    // Actualiza el estado de los datos en la tabla
-    setAreas(updatedAreasData);
+  const [openDialogError, setOpenDialogError] = useState(false);
+  const handleCloseDialogError = () => {
+    setOpenDialogError(false);
   };
 
   if (cargando) {
@@ -255,34 +185,12 @@ function AreaTable({
                   <Button
                     className={styles.btn}
                     onClick={() => {
-                      setDialogOpen(true);
+                      fetchArea();
                     }}
                   >
-                    Nuevo +
+                    Cargar Áreas
                   </Button>
-                  <FormDialog
-                    open={dialogOpen}
-                    onClose={() => {
-                      setDialogOpen(false);
-                    }}
-                    FormComponent={AreaForm}
-                    setAreas={setAreas}
-                    areas={areas}
-                    onSave={() => {
-                      setDialogOpen(false);
-                    }}
-                    onCancel={() => {
-                      setDialogOpen(false);
-                    }}
-                    empresas={empresas}
-                    uebs={uebs}
-                    direcciones={direcciones}
-                    uebPorId={uebPorId}
-                    direccionPorId={direccionPorId}
-                    nombreEmpresa={nombreEmpresa}
-                    nombreUeb={nombreUeb}
-                    nombreDireccion={nombreDireccion}
-                  ></FormDialog>
+
                   {/* SELECCIONAR PROYECTO ETC */}
                   <div className={styles.filterListOffOutlinedContent}>
                     {showFilters ? (
@@ -370,7 +278,6 @@ function AreaTable({
                             />
                           )}
                         </TableCell>
-                        <TableCell className={styles.spacing}></TableCell>
                       </TableRow>
                     </TableHead>
 
@@ -403,51 +310,25 @@ function AreaTable({
                             <TableCell className={styles.tdStyle}>
                               {area.nombre_area}
                             </TableCell>
-                            <TableCell className={styles.tdStyle}>
-                              <FontAwesomeIcon
-                                icon={faEdit}
-                                onClick={() =>
-                                  setEditIIdx(
-                                    filteredData.findIndex(
-                                      (item) => item.id_area === area?.id_area
-                                    )
-                                  )
-                                }
-                                className={styles.faIcon}
-                              />
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                onClick={() =>
-                                  vinculado(area?.id_area)
-                                    ? setOpenDialogAdvertencia(true)
-                                    : openConfirmation(area?.id_area)
-                                }
-                                data-task-id={area?.id_area}
-                                className={styles.faIcon}
-                              />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>¿Está seguro de eliminar esta area?</p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
-                            </TableCell>
                           </TableRow>
                         ))}
                     </TableBody>
-
+                    <Dialog
+                      open={openDialogError}
+                      onClose={handleCloseDialogError}
+                      BackdropProps={{ invisible: true }}
+                    >
+                      <Alert severity="error">
+                        <AlertTitle>Error</AlertTitle>
+                        Puede que el servidor no esté conectado. Inténtelo más
+                        tarde.
+                        <div className={styles.botonAlert}>
+                          <Button onClick={handleCloseDialogError}>
+                            Aceptar
+                          </Button>
+                        </div>
+                      </Alert>
+                    </Dialog>
                     <TableFooter>
                       <TableRow>
                         <TablePagination
@@ -465,40 +346,6 @@ function AreaTable({
                   </Table>
                 )}
               </>
-              <Dialog
-                open={openDialogAdvertencia}
-                onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
-              >
-                <Alert severity="warning">
-                  <AlertTitle>Advertencia</AlertTitle>
-                  No se puede eliminar un área que ya esté vinculada a
-                  trabajadores
-                  <div className={styles.botonAlert}>
-                    <Button onClick={handleCloseDialogAdvertencia}>
-                      Aceptar
-                    </Button>
-                  </div>
-                </Alert>
-              </Dialog>
-              <FormDialog
-                open={editIIdx !== -1}
-                onClose={handleCancelI}
-                FormComponent={AreaForm}
-                setAreas={setAreas}
-                area={areas[editIIdx]}
-                areas={areas}
-                uebPorId={uebPorId}
-                direccionPorId={direccionPorId}
-                nombreEmpresa={nombreEmpresa}
-                nombreUeb={nombreUeb}
-                nombreDireccion={nombreDireccion}
-                onSave={handleSaveI}
-                onCancel={handleCancelI}
-                empresas={empresas}
-                uebs={uebs}
-                direcciones={direcciones}
-              ></FormDialog>
             </TableContainer>
           </div>
         </div>
@@ -507,4 +354,4 @@ function AreaTable({
   }
 }
 
-export default AreaTable;
+export default AreaCargarDatosTable;

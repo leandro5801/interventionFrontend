@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
-import AreaTable from "../../Components/Tables/AreaTable";
+import AreaCargarDatosTable from "../../Components/Tables/AreaCargarDatosTable";
 
-export default function AreaPage() {
+export default function AreaCargarDatosPage() {
   // datos de las areas
   const [areas, setAreas] = useState([]);
   const [direcciones, setDirecciones] = useState([]);
@@ -134,7 +134,7 @@ export default function AreaPage() {
 
   if (empresas) {
     filteredEmpresa = empresas.filter(
-      (empresa) => empresa.cargar_empresa === false
+      (empresa) => empresa.cargar_empresa === true
     );
     filteredUeb = uebs.filter((ueb) =>
       filteredEmpresa.find((empresa) => empresa.id_empresa === ueb.id_empresa)
@@ -152,7 +152,7 @@ export default function AreaPage() {
   return (
     <div className={styles.title}>
       <h3> Áreas</h3>
-      <AreaTable
+      <AreaCargarDatosTable
         areas={filteredArea}
         setAreas={setAreas}
         empresas={filteredEmpresa}

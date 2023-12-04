@@ -360,10 +360,11 @@
 }
 
 .filterListOffOutlinedContent {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
   right: 30mm;
   margin-top: -10px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .inputFilter {
@@ -395,9 +396,9 @@
 }
 
 .table {
-  /* position: fixed; */
-  height: 450px;
-  width: 1090px;
+  position: fixed;
+  max-height: 450px;
+  max-width: 1090px;
 }
 
 .table thead th {

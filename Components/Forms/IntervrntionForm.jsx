@@ -171,11 +171,10 @@ export default function FormUpdateIntervention({
   //para poner dependencia entre los select estructuras
   const empresasOptions =
     empresas &&
-    empresas
-      .map((item) => ({
-        value: item.id_empresa,
-        label: item.nombre_empresa,
-      }));
+    empresas.map((item) => ({
+      value: item.id_empresa,
+      label: item.nombre_empresa,
+    }));
   const uebOptions =
     uebs &&
     uebs
@@ -203,6 +202,19 @@ export default function FormUpdateIntervention({
       value: item.id_area,
       label: item.nombre_area,
     }));
+  const trabajadoresOptions = trabajadores
+    .filter((item) => {
+      const area = areas.find((area) => area.id_area === item.id_area);
+      const direccion = direcciones.find(
+        (direccion) => direccion.id_direccion === area.id_direccion
+      );
+      return uebId ? direccion && direccion.id_ueb === uebId : false;
+    })
+    .map((item) => ({
+      value: item.id_trabajador,
+      label: item.nombre_trabajador,
+    }));
+
   const handleUebChange = (newValue) => {
     setUeb(newValue);
     setSelectedStructure("");
@@ -212,18 +224,11 @@ export default function FormUpdateIntervention({
     setSelectedStructure(newValue);
     setSelectedArea("");
   };
-  const trabajadoresOptions = trabajadores
-    .filter((item) => (areaId ? item.id_area === areaId : false))
-    .map((item) => ({
-      value: item.id_trabajador,
-      label: item.nombre_trabajador,
-    }));
 
   const proyectosOptions = projects.map((item) => ({
     value: item.id_proyecto,
     label: item.nombre_proyecto,
   }));
-
 
   const defaultValues = {
     proyecto: proyecto,

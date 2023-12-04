@@ -14,6 +14,11 @@ export default function DireccionPage() {
   const [areas, setAreas] = useState([]);
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
+
+  let filteredEmpresa = [];
+  let filteredUeb = [];
+  let filteredDireccion = [];
+
   useEffect(() => {
     async function fetchEmpresa() {
       setCargando(true);
@@ -68,14 +73,28 @@ export default function DireccionPage() {
     fetchDireccion();
     fetchArea();
   }, []);
+
+  if (empresas) {
+    filteredEmpresa = empresas.filter(
+      (empresa) => empresa.cargar_empresa === false
+    );
+    filteredUeb = uebs.filter((ueb) =>
+      filteredEmpresa.find((empresa) => empresa.id_empresa === ueb.id_empresa)
+    );
+    filteredDireccion = direcciones.filter((direccion) =>
+      filteredUeb.find((ueb) => ueb.id_ueb === direccion.id_ueb)
+    );
+  }
+
+
   return (
     <div className={styles.title}>
       <h3> Direcciones</h3>
       <DireccionTable
-        direcciones={direcciones}
+        direcciones={filteredDireccion}
         setDirecciones={setDirecciones}
-        empresas={empresas}
-        uebs={uebs}
+        empresas={filteredEmpresa}
+        uebs={filteredUeb}
         cargando={cargando}
         areas={areas}
       />

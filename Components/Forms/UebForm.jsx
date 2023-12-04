@@ -52,7 +52,6 @@ export default function UebForm({
   const empresasOptions =
     empresas &&
     empresas
-      .filter((item) => item.cargar_empresa === false)
       .map((item) => ({
         value: item.id_empresa,
         label: item.nombre_empresa,

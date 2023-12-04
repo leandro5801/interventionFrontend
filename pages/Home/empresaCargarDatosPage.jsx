@@ -28,35 +28,29 @@ export default function EmpresaPage() {
         setCargando(false);
       }
     }
-    async function fetchUeb() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/ueb");
-        setUebs(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
+    // async function fetchUeb() {
+    //   setCargando(true);
+    //   try {
+    //     const response = await axios.get("http://localhost:3000/api/ueb");
+    //     setUebs(response.data);
+    //   } catch (error) {
+    //     setError(
+    //       "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+    //     );
+    //     console.error(error);
+    //   } finally {
+    //     setCargando(false);
+    //   }
+    // }
     fetchEmpresa();
-    fetchUeb();
+    // fetchUeb();
   }, []);
 
   return (
     <div className={styles.title}>
       <h3>Empresas</h3>
       
-      <EmpresaTable
-        empresas={empresas}
-        setEmpresas={setEmpresas}
-        error={error}
-        cargando={cargando}
-        uebs={uebs}
-      />
+    
     </div>
   );
 }

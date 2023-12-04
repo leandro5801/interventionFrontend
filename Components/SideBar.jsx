@@ -27,7 +27,10 @@ import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 import Link from "next/link";
 
 function SideBar({}) {
-  const [showEmpresaOptions, setShowEmpresaOptions] = useState(false);
+  const [showGestionarEmpresaOptions, setShowGestionarEmpresaOptions] =
+    useState(false);
+  const [showCargarEmpresaOptions, setShowCargarEmpresaOptions] =
+    useState(false);
 
   const [user, setUser] = useState(null);
 
@@ -138,7 +141,29 @@ function SideBar({}) {
           {user && user.id_rol === 1 ? (
             <li>
               {" "}
-              <a onClick={() => setShowEmpresaOptions(!showEmpresaOptions)}>
+              <Link href="/Home/empresaPage">
+                {" "}
+                <ApartmentOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Empresa
+              </Link>
+            </li>
+          ) : (
+            false
+          )}
+          {user && user.id_rol === 1 ? (
+            <li>
+              {" "}
+              <a
+                onClick={() =>
+                  setShowGestionarEmpresaOptions(!showGestionarEmpresaOptions)
+                }
+              >
                 <ManageSearchOutlinedIcon
                   style={{
                     width: "18px",
@@ -146,8 +171,8 @@ function SideBar({}) {
                     verticalAlign: "middle",
                   }}
                 />{" "}
-                Datos de la Empresa
-                {showEmpresaOptions ? (
+                Gestionar Estructura
+                {showGestionarEmpresaOptions ? (
                   <ExpandLessOutlinedIcon
                     style={{
                       width: "18px",
@@ -169,23 +194,8 @@ function SideBar({}) {
           ) : (
             false
           )}
-          {showEmpresaOptions && (
+          {showGestionarEmpresaOptions && (
             <>
-              <li>
-                {" "}
-                <Link href="/Home/empresaPage">
-                  {" "}
-                  <ApartmentOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Empresa
-                </Link>
-              </li>
               <li>
                 {" "}
                 <Link href="/Home/uebPage">
@@ -244,25 +254,109 @@ function SideBar({}) {
                   Trabajadores
                 </Link>
               </li>
-              <li>
-                {" "}
-                <Link href="/Home/cargarDatosPage">
-                  {" "}
-                  <PublishedWithChangesOutlinedIcon
+            </>
+          )}
+          {user && user.id_rol === 1 ? (
+            <li>
+              {" "}
+              <a
+                onClick={() =>
+                  setShowCargarEmpresaOptions(!showCargarEmpresaOptions)
+                }
+              >
+                <PublishedWithChangesOutlinedIcon
+                  style={{
+                    width: "18px",
+                    cursor: "pointer",
+                    verticalAlign: "middle",
+                  }}
+                />{" "}
+                Cargar Estructura
+                {showCargarEmpresaOptions ? (
+                  <ExpandLessOutlinedIcon
                     style={{
                       width: "18px",
                       cursor: "pointer",
-                      marginLeft: "10px",
                       verticalAlign: "middle",
                     }}
-                  />{" "}
-                  Cargar Datos
-                </Link>
-              </li>
-            </>
+                  />
+                ) : (
+                  <ExpandMoreOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />
+                )}
+              </a>
+            </li>
+          ) : (
+            false
           )}
-          {user &&
-          (user.id_rol === 4 || user.id_rol === 3) ? (
+          {showCargarEmpresaOptions && (
+           <>
+           <li>
+             {" "}
+             <Link href="/Home/uebCargarDatosPage">
+               {" "}
+               <CorporateFareOutlinedIcon
+                 style={{
+                   width: "18px",
+                   cursor: "pointer",
+                   marginLeft: "10px",
+                   verticalAlign: "middle",
+                 }}
+               />{" "}
+               UEB
+             </Link>
+           </li>
+           <li>
+             {" "}
+             <Link href="/Home/direccionCargarDatosPage">
+               <BusinessOutlinedIcon
+                 style={{
+                   width: "18px",
+                   cursor: "pointer",
+                   marginLeft: "10px",
+                   verticalAlign: "middle",
+                 }}
+               />{" "}
+               Direcciones
+             </Link>
+           </li>
+           <li>
+             {" "}
+             <Link href="/Home/areaCargarDatosPage">
+               <DragIndicatorOutlinedIcon
+                 style={{
+                   width: "18px",
+                   cursor: "pointer",
+                   marginLeft: "10px",
+                   verticalAlign: "middle",
+                 }}
+               />{" "}
+               Áreas
+             </Link>
+           </li>
+           <li>
+             {" "}
+             <Link href="/Home/trabajadorCargarDatosPage">
+               {" "}
+               <EngineeringOutlinedIcon
+                 style={{
+                   width: "18px",
+                   cursor: "pointer",
+                   marginLeft: "10px",
+                   verticalAlign: "middle",
+                 }}
+               />{" "}
+               Trabajadores
+             </Link>
+           </li>
+         </>
+          )}
+          {user && (user.id_rol === 4 || user.id_rol === 3) ? (
             <li>
               {" "}
               <Link href="/Home/reportePage">

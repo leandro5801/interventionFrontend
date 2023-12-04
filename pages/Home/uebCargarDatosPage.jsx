@@ -4,7 +4,7 @@ import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
 
-import UebTable from "../../Components/Tables/UebTable";
+import UebCargarDatosTable from "../../Components/Tables/uebCargarDatosTable";
 
 import datosUeb from "../../public/datosEmpresas.json";
 export default function UEBPage() {
@@ -24,9 +24,6 @@ export default function UEBPage() {
       try {
         const response = await axios.get("http://localhost:3000/api/empresa");
         setEmpresas(response.data);
-        // setEmpresas((empresa) =>
-        //   empresa.cargar_datos === false ? response.data : false
-        // );
       } catch (error) {
         setError(
           "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
@@ -71,7 +68,7 @@ export default function UEBPage() {
 
   if (empresas) {
     filteredEmpresa = empresas.filter(
-      (empresa) => empresa.cargar_empresa === false
+      (empresa) => empresa.cargar_empresa === true
     );
     filteredUeb = uebs.filter((ueb) =>
       filteredEmpresa.find((empresa) => empresa.id_empresa === ueb.id_empresa)
@@ -83,7 +80,7 @@ export default function UEBPage() {
       <h3>
         {" "}
         UEB
-        <UebTable
+        <UebCargarDatosTable
           uebs={filteredUeb}
           setUebs={setUebs}
           empresas={filteredEmpresa}
