@@ -19,11 +19,11 @@ export const customStyles = {
    maxHeight: "60px",
    overflow: 'auto',
   }),
-    valueContainer: (base) => ({
-    ...base,
-    maxHeight: "30px",
-    overflow: 'auto',
-  }),
+  //   valueContainer: (base) => ({
+  //   ...base,
+  //   maxHeight: "30px",
+  //   overflow: 'auto',
+  // }),
     components: {
     MultiValueContainer: ({ children, innerProps }) => (
       <div style={{ display: "flex" }} {...innerProps}>

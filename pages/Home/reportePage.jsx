@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
-
+import { Container } from "react-grid-system";
+import { Card } from "react-bootstrap";
 import styles from "../../styles/Home.module.css";
-
+import {TableContainer,   Paper,} from "@mui/material"
 import ReportTable from "../../Components/Tables/ReportTable";
 
 export default function ReportePage() {
@@ -12,6 +13,8 @@ export default function ReportePage() {
   const [recomendations, setRecomendations] = useState([]);
   const [projects, setProjects] = useState([]);
   const [clientes, setClientes] = useState([]);
+  const [trabajadores, setTrabajadores] = useState([]);
+  const [consultores, setConsultores] = useState([]);
 
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(false);
@@ -65,6 +68,36 @@ export default function ReportePage() {
         setCargando(false);
       }
     }
+    async function fetchTrabajador() {
+      setCargando(true);
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/trabajador"
+        );
+        setTrabajadores(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos del trabajador. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchConsultor() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/consultor");
+        setConsultores(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos de los consultores. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
     //cargando usuario autenticado
     async function getProfile() {
       try {
@@ -87,6 +120,8 @@ export default function ReportePage() {
     fetchRecomendacion();
     fetchProyecto();
     fetchCliente();
+    fetchTrabajador();
+    fetchConsultor();
   }, []);
 
   if (user) {
@@ -116,15 +151,92 @@ export default function ReportePage() {
       filtredInterventions = interventions;
     }
   }
+  // -------------------------------------------------------------------------------
+  // Datos de una intervencion
+  const nombreConsultor = (id_consultor) => {
+    const consultor = consultores.find(
+      (consultor) => consultor.id_consultor === id_consultor
+    );
+    const name = consultor
+      ? consultor.nombre_consultor
+      : "no se encontro el nombre";
+    return name;
+  };
+  const nombreTrabajador = (id_trabajador) => {
+    const trabajador = trabajadores.find(
+      (trabajador) => trabajador.id_trabajador === id_trabajador
+    );
+    const name = trabajador
+      ? trabajador.nombre_trabajador
+      : "no se encontro el nombre";
+    return name;
+  };
+  const [selectedIntervention, setSelectedIntervention] = useState(null);
+
   return (
     <div className={styles.title}>
-      <h3> Reportes</h3>
-      <ReportTable
-        interventions={filtredInterventions}
-        recomendations={filtredRecomendations}
-        setRecomendations={setRecomendations}
-        projects={filtredProjects}
-      />
+      <h3 className={styles.tituloH3}> Reportes</h3>
+      <div className={styles.containerReport}>
+        {" "}
+        <div>
+          <ReportTable
+            interventions={filtredInterventions}
+            recomendations={filtredRecomendations}
+            setRecomendations={setRecomendations}
+            projects={filtredProjects}
+            setSelectedIntervention={setSelectedIntervention}
+          />
+        </div>
+        <div>
+        <TableContainer component={Paper} className={styles.tableReport}>
+          {selectedIntervention && (
+            <>
+              {/* Datos de la intervencion seleccionada */}
+
+              <div style={{ padding: "10px" }}>
+                <h4>Detalles de la intervención seleccionada</h4>
+              </div>
+              <Container key={selectedIntervention.id_intervencion}>
+                <Card style={{ width: "50rem" }}>
+                  <Card.Body>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <Card.Title>
+                          Nombre de la Intervención:{" "}
+                          {selectedIntervention.nombre_intervencion}
+                        </Card.Title>
+                        <Card.Text>
+                          Consultor:{" "}
+                          {nombreConsultor(selectedIntervention.id_consultor)}
+                        </Card.Text>
+                      </div>
+                      <div>
+                        
+                        <Card.Text>
+                          Descripción: {selectedIntervention.descripcion}
+                        </Card.Text>
+                        <Card.Text>
+                          Trabajador:{" "}
+                          {nombreTrabajador(selectedIntervention.id_trabajador)}
+                        </Card.Text>
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </Container>
+            </>
+          )}
+          </TableContainer>
+
+          {/* Fin del mostrado de Datos de una intervencion */}
+        </div>
+      </div>
     </div>
   );
 }

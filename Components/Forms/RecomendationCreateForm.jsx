@@ -24,6 +24,7 @@ import {
 
 export default function CreateRecomendationForm({
   recomendations,
+  filtredRecomendations,
   setRecomendations,
   onSave,
   onCancel,
@@ -87,7 +88,7 @@ export default function CreateRecomendationForm({
       );
       if (response.status === 201) {
         // Actualiza el estado para añadir la nueva empresa al frontend
-        setRecomendations([...recomendations, response.data]);
+        setRecomendations([...filtredRecomendations, response.data]);
       } else {
         throw new Error("Error al crear la recomendacion");
       }

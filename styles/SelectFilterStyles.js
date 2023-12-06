@@ -19,10 +19,10 @@ export const customStyles = {
    maxHeight: "80px",
    overflow: 'auto',
   }),
-    valueContainer: (base) => ({
-    ...base,
-    maxHeight: "30px",
-    overflow: 'auto',
-  }),
+  //   valueContainer: (base) => ({
+  //   ...base,
+  //   maxHeight: "30px",
+  //   overflow: 'auto',
+  // }),
 
 };

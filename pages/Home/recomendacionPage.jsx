@@ -137,7 +137,8 @@ export default function RecomendacionPage() {
       <h3> Recomendaciones</h3>
       <RecomendationTable
         interventions={filtredInterventions}
-        recomendations={filtredRecomendations}
+        filtredRecomendations={filtredRecomendations}
+        recomendations={recomendations}
         setRecomendations={setRecomendations}
         projects={filtredProjects}
         consultores={consultores}

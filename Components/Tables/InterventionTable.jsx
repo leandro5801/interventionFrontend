@@ -38,6 +38,7 @@ import {
 import Select from "react-select";
 
 function InterventionTable({
+  filteredInterventions,
   interventions,
   setInterventions,
   projects,
@@ -91,9 +92,9 @@ function InterventionTable({
       : "no se encontro el nombre";
     return name;
   };
-  const nombreArea = (idArea) => {
-    const area = areas.find((e) => e.idArea === idArea);
-    const name = area ? area.nombreArea : "no se encontro el nombre";
+  const nombreArea = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
+    const name = area ? area.nombre_area : "no se encontro el nombre";
     return name;
   };
   const nombreConsultor = (id_consultor) => {
@@ -276,7 +277,7 @@ function InterventionTable({
       }));
   //-----------------------------------------------
 
-  const filteredData = interventions.filter(
+  const filteredData = filteredInterventions.filter(
     (item) =>
       (projectFilter.length === 0 ||
         item.id_proyecto === projectFilter.value) &&
@@ -338,7 +339,7 @@ function InterventionTable({
         `http://localhost:3000/api/intervencion/${id}`
       );
       if (response.status === 200) {
-        const newDatos = interventions.filter(
+        const newDatos = filteredInterventions.filter(
           (intervencion) => intervencion.id_intervencion !== id
         );
         setInterventions(newDatos);
@@ -375,7 +376,7 @@ function InterventionTable({
 
   const interventionUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedInterventonsData = [...interventions];
+    const updatedInterventonsData = [...filteredInterventions];
 
     // Actualiza los datos de la fila que se está editando
     updatedInterventonsData[editIIdx] = updatedRow;
@@ -417,6 +418,7 @@ function InterventionTable({
                   }}
                   FormComponent={IntervrntionForm}
                   setInterventions={setInterventions}
+                  filteredInterventions={filteredInterventions}
                   interventions={interventions}
                   onSave={() => {
                     setDialogCreInteOpen(false);
@@ -529,12 +531,12 @@ function InterventionTable({
                 </div>
               </div>
               <>
-                {interventions.length === 0 && (
+                {filteredInterventions.length === 0 && (
                   <div className={styles.divIconH2}>
                     <h5> No hay Intervenciones</h5>{" "}
                   </div>
                 )}
-                {interventions.length === 0 || (
+                {filteredInterventions.length === 0 || (
                   <Table stickyHeader>
                     <TableHead>
                       <TableRow>
@@ -638,7 +640,7 @@ function InterventionTable({
                                 icon={faEdit}
                                 onClick={() =>
                                   setEditIIdx(
-                                    interventions.findIndex(
+                                    filteredInterventions.findIndex(
                                       (item) =>
                                         item.id_intervencion ===
                                         tsk?.id_intervencion
@@ -721,7 +723,7 @@ function InterventionTable({
                 FormComponent={IntervrntionForm}
                 interventions={interventions}
                 setInterventions={setInterventions}
-                intervention={interventions[editIIdx]}
+                intervention={filteredInterventions[editIIdx]}
                 onSave={handleSaveI}
                 onCancel={handleCancelI}
                 consultores={consultores}

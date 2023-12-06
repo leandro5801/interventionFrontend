@@ -15,7 +15,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import DireccionForm from "../Forms/DireccionForm";
+import DireccionCargarDatosForm from "../Forms/DireccionCargarDatosForm";
 
 import {
   Table,
@@ -27,9 +27,6 @@ import {
   Paper,
   TableFooter,
   TablePagination,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   Dialog,
   Button,
   Alert,
@@ -93,12 +90,10 @@ function DireccionCargarDatosTable({
 
   const optionEmpresas =
     empresas &&
-    empresas
-      .filter((item) => item.cargar_empresa === false)
-      .map((item) => ({
-        value: item.id_empresa,
-        label: item.nombre_empresa,
-      }));
+    empresas.map((item) => ({
+      value: item.id_empresa,
+      label: item.nombre_empresa,
+    }));
 
   const optionUebs =
     uebs &&
@@ -137,19 +132,22 @@ function DireccionCargarDatosTable({
 
   const [error, setError] = useState(null);
   const [cargandoDirecciones, setCargandoDirecciones] = useState(false);
-  async function fetchUeb() {
-    setCargandoDirecciones(true);
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/api/direccion/direccion"
-      );
-      setDirecciones(response.data);
-    } catch (error) {
-      setOpenDialogError(true);
-    } finally {
-      setCargandoDirecciones(false);
-    }
-  }
+  // async function fetchUeb() {
+  //   setCargandoDirecciones(true);
+  //   try {
+  //     const response = await axios.get(
+  //       "http://localhost:3000/api/direccion/direccion"
+  //     );
+  //     setDirecciones(response.data);
+  //   } catch (error) {
+  //     setOpenDialogError(true);
+  //   } finally {
+  //     setCargandoDirecciones(false);
+  //   }
+  // }
+  //para el formulario
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   const [openDialogError, setOpenDialogError] = useState(false);
   const handleCloseDialogError = () => {
     setOpenDialogError(false);
@@ -178,12 +176,30 @@ function DireccionCargarDatosTable({
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    fetchUeb();
+                    setDialogOpen(true);
                   }}
                 >
                   Cargar Direcciones
                 </Button>
-
+                <FormDialog
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={DireccionCargarDatosForm}
+                  setDirecciones={setDirecciones}
+                  direcciones={direcciones}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                  setOpenDialogError={setOpenDialogError}
+                  uebPorId={uebPorId}
+                  uebs={uebs}
+                ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
@@ -284,22 +300,7 @@ function DireccionCargarDatosTable({
                           </TableRow>
                         ))}
                     </TableBody>
-                    <Dialog
-                      open={openDialogError}
-                      onClose={handleCloseDialogError}
-                      BackdropProps={{ invisible: true }}
-                    >
-                      <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        Puede que el servidor no esté conectado. Inténtelo más
-                        tarde.
-                        <div className={styles.botonAlert}>
-                          <Button onClick={handleCloseDialogError}>
-                            Aceptar
-                          </Button>
-                        </div>
-                      </Alert>
-                    </Dialog>
+
                     <TableFooter>
                       <TableRow>
                         <TablePagination
@@ -316,6 +317,19 @@ function DireccionCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
+                <Dialog
+                  open={openDialogError}
+                  onClose={handleCloseDialogError}
+                  BackdropProps={{ invisible: true }}
+                >
+                  <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    Ha ocurrido un error. Inténtelo más tarde.
+                    <div className={styles.botonAlert}>
+                      <Button onClick={handleCloseDialogError}>Aceptar</Button>
+                    </div>
+                  </Alert>
+                </Dialog>
               </>
             </TableContainer>
           </div>

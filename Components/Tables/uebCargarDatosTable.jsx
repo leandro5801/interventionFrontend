@@ -13,7 +13,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import UebForm from "../Forms/UebForm";
+import UebCargarDatosForm from "../Forms/UebCargarDatosForm";
 
 import {
   Table,
@@ -25,9 +25,6 @@ import {
   Paper,
   TableFooter,
   TablePagination,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   Dialog,
   Button,
   Alert,
@@ -97,12 +94,10 @@ function UebCargarDatosTable({
   };
   const optionEmpresas =
     empresas &&
-    empresas
-      .filter((item) => item.cargar_empresa === false)
-      .map((item) => ({
-        value: item.id_empresa,
-        label: item.nombre_empresa,
-      }));
+    empresas.map((item) => ({
+      value: item.id_empresa,
+      label: item.nombre_empresa,
+    }));
   const filteredData = uebs.filter(
     (item) =>
       (empresaFilter.length === 0 ||
@@ -122,22 +117,7 @@ function UebCargarDatosTable({
   const [error, setError] = useState(null);
   const [cargandoUeb, setCargandoUeb] = useState(false);
 
-  async function fetchUeb() {
-    setCargandoUeb(true);
-    try {
-      const response = await axios.get("http://localhost:3000/api/ueb/ueb");
-      setUebs(response.data);
-      console.log(response.data);
-    } catch (error) {
-      setError(
-        "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-      );
-      setOpenDialogError(true);
-      // alert("Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.");
-    } finally {
-      setCargandoUeb(false);
-    }
-  }
+
   const [openDialogError, setOpenDialogError] = useState(false);
   const handleCloseDialogError = () => {
     setOpenDialogError(false);
@@ -148,6 +128,7 @@ function UebCargarDatosTable({
     const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
+
   if (cargando) {
     return (
       <div>
@@ -171,11 +152,27 @@ function UebCargarDatosTable({
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    fetchUeb();
+                    setDialogOpen(true);
                   }}
                 >
-                  Cargar UEB +
+                  Cargar UEB
                 </Button>
+                <FormDialog
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={UebCargarDatosForm}
+                  setUebs={setUebs}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                  setOpenDialogError={setOpenDialogError}
+                ></FormDialog>
 
                 {/* SELECCIONAR PROYECTO ETC */}
                 <div className={styles.filterListOffOutlinedContent}>
@@ -252,22 +249,7 @@ function UebCargarDatosTable({
                           </TableRow>
                         ))}
                     </TableBody>
-                    <Dialog
-                      open={openDialogError}
-                      onClose={handleCloseDialogError}
-                      BackdropProps={{ invisible: true }}
-                    >
-                      <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        Puede que el servidor no esté conectado. Inténtelo más
-                        tarde.
-                        <div className={styles.botonAlert}>
-                          <Button onClick={handleCloseDialogError}>
-                            Aceptar
-                          </Button>
-                        </div>
-                      </Alert>
-                    </Dialog>
+
                     <TableFooter>
                       <TableRow>
                         <TablePagination
@@ -284,6 +266,19 @@ function UebCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
+                <Dialog
+                  open={openDialogError}
+                  onClose={handleCloseDialogError}
+                  BackdropProps={{ invisible: true }}
+                >
+                  <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    Ha ocurrido un error. Inténtelo más tarde.
+                    <div className={styles.botonAlert}>
+                      <Button onClick={handleCloseDialogError}>Aceptar</Button>
+                    </div>
+                  </Alert>
+                </Dialog>
               </>
             </TableContainer>
           </div>

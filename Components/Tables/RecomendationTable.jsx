@@ -42,6 +42,7 @@ import {
 } from "@mui/material";
 
 function RecomendationTable({
+  filtredRecomendations,
   recomendations,
   setRecomendations,
   interventions,
@@ -141,7 +142,7 @@ function RecomendationTable({
 
   const recomendationUpdate = (updatedRow) => {
     // Crea una copia de los datos de la tabla
-    const updatedTableRData = [...recomendations];
+    const updatedTableRData = [...filtredRecomendations];
 
     // Actualiza los datos de la fila que se está editando
     updatedTableRData[editRIdx] = updatedRow;
@@ -234,7 +235,7 @@ function RecomendationTable({
     setFechaFilter("");
     setFollowFilter("");
   };
-  const filteredData = recomendations.filter(
+  const filteredData = filtredRecomendations.filter(
     (item) =>
       (projectFilter.length === 0 ||
         intervencionPorId(item.id_intervencion).id_proyecto ===
@@ -286,7 +287,7 @@ function RecomendationTable({
         `http://localhost:3000/api/recomendacion/${id}`
       );
       if (response.status === 200) {
-        const newDatos = recomendations.filter(
+        const newDatos = filtredRecomendations.filter(
           (recomendacion) => recomendacion.id_recomendacion !== id
         );
         setRecomendations(newDatos);
@@ -345,6 +346,7 @@ function RecomendationTable({
                 }}
                 FormComponent={CreateRecomendationForm}
                 recomendations={recomendations}
+                filtredRecomendations={filtredRecomendations}
                 classifications={clasificaciones}
                 setTableRData={setRecomendations}
                 setRecomendations={setRecomendations}
@@ -381,12 +383,12 @@ function RecomendationTable({
               </div>
             </div>
             <>
-              {recomendations.length === 0 && (
+              {filtredRecomendations.length === 0 && (
                 <div className={styles.divIconH2}>
                   <h5> No hay Recomendaciones</h5>{" "}
                 </div>
               )}
-              {recomendations.length === 0 || (
+              {filtredRecomendations.length === 0 || (
                 <Table stickyHeader>
                   <TableHead>
                     <TableRow>
@@ -551,7 +553,7 @@ function RecomendationTable({
                               icon={faEdit}
                               onClick={() =>
                                 setEditRIdx(
-                                  recomendations.findIndex(
+                                  filtredRecomendations.findIndex(
                                     (item) =>
                                       item.id_recomendacion ===
                                       recomendation?.id_recomendacion
@@ -618,7 +620,8 @@ function RecomendationTable({
             FormComponent={RecomendationEditForm}
             setRecomendations={setRecomendations}
             recomendations={recomendations}
-            recomendation={recomendations[editRIdx]}
+            filtredRecomendations={filtredRecomendations}
+            recomendation={filtredRecomendations[editRIdx]}
             onSave={handleSaveR}
             onCancel={handleCancelR}
             consultores={consultores}

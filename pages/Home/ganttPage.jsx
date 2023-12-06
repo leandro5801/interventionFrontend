@@ -408,13 +408,6 @@ export default function GanttPage() {
         {/* Fin del mostrado de Datos de una intervencion */}
       </div>
 
-      {/* <Dialog open={open} onClose={() => {
-                setOpen(false);
-              }}>
-          <Burbuja
-          intervention={selectedIntervention}
-          />
-        </Dialog> */}
     </div>
   );
 }

@@ -15,7 +15,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
-import AreaForm from "../Forms/AreaForm";
+import AreaCargarDatosForm from "../Forms/AreaCargarDatosForm";
 
 import {
   Table,
@@ -106,8 +106,8 @@ function AreaCargarDatosTable({
         uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.id_direcciones,
-        label: item.nombre_direcciones,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -141,21 +141,12 @@ function AreaCargarDatosTable({
       (structureFilter.length === 0 ||
         item.id_direccion === structureFilter.value)
   );
+  //para el formulario
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const [error, setError] = useState(null);
   const [cargandoUeb, setCargandoArea] = useState(false);
-  async function fetchArea() {
-    setCargandoArea(true);
-    try {
-      const response = await axios.get("http://localhost:3000/api/area/area");
-      setAreas(response.data);
-      console.log(response.data);
-    } catch (error) {
-      setOpenDialogError(true);
-    } finally {
-      setCargandoArea(false);
-    }
-  }
+
   const [openDialogError, setOpenDialogError] = useState(false);
   const handleCloseDialogError = () => {
     setOpenDialogError(false);
@@ -185,12 +176,35 @@ function AreaCargarDatosTable({
                   <Button
                     className={styles.btn}
                     onClick={() => {
-                      fetchArea();
+                      setDialogOpen(true);
                     }}
                   >
                     Cargar Áreas
                   </Button>
-
+                  <FormDialog
+                    open={dialogOpen}
+                    onClose={() => {
+                      setDialogOpen(false);
+                    }}
+                    FormComponent={AreaCargarDatosForm}
+                    setAreas={setAreas}
+                    areas={areas}
+                    onSave={() => {
+                      setDialogOpen(false);
+                    }}
+                    onCancel={() => {
+                      setDialogOpen(false);
+                    }}
+                    empresas={empresas}
+                    uebs={uebs}
+                    direcciones={direcciones}
+                    uebPorId={uebPorId}
+                    direccionPorId={direccionPorId}
+                    nombreEmpresa={nombreEmpresa}
+                    nombreUeb={nombreUeb}
+                    nombreDireccion={nombreDireccion}
+                    setOpenDialogError={setOpenDialogError}
+                  ></FormDialog>
                   {/* SELECCIONAR PROYECTO ETC */}
                   <div className={styles.filterListOffOutlinedContent}>
                     {showFilters ? (
@@ -313,22 +327,7 @@ function AreaCargarDatosTable({
                           </TableRow>
                         ))}
                     </TableBody>
-                    <Dialog
-                      open={openDialogError}
-                      onClose={handleCloseDialogError}
-                      BackdropProps={{ invisible: true }}
-                    >
-                      <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        Puede que el servidor no esté conectado. Inténtelo más
-                        tarde.
-                        <div className={styles.botonAlert}>
-                          <Button onClick={handleCloseDialogError}>
-                            Aceptar
-                          </Button>
-                        </div>
-                      </Alert>
-                    </Dialog>
+
                     <TableFooter>
                       <TableRow>
                         <TablePagination
@@ -345,6 +344,19 @@ function AreaCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
+                <Dialog
+                  open={openDialogError}
+                  onClose={handleCloseDialogError}
+                  BackdropProps={{ invisible: true }}
+                >
+                  <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    Ha ocurrido un error. Inténtelo más tarde.
+                    <div className={styles.botonAlert}>
+                      <Button onClick={handleCloseDialogError}>Aceptar</Button>
+                    </div>
+                  </Alert>
+                </Dialog>
               </>
             </TableContainer>
           </div>

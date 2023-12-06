@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
+import { Button } from "@mui/material";
 
 export default function GanttChart({
   interventions,
@@ -41,7 +42,7 @@ export default function GanttChart({
   uebPorId,
 }) {
   const [timeRange, setTimeRange] = useState({
-    fromSelectMonth: 10,
+    fromSelectMonth: 11,
     fromSelectYear: "2023",
     toSelectMonth: 11,
     toSelectYear: "2023",
@@ -336,10 +337,10 @@ export default function GanttChart({
             )}
           </div>
 
-          <div>
-            <button className={styles.btn} onClick={mostrar}>
+          <div className={styles.btnNuevoContent}>
+            <Button className={styles.btn} onClick={mostrar}>
               Establecer Período
-            </button>
+            </Button>
             {mostrarPeriodo ? (
               <TimeRange timeRange={timeRange} setTimeRange={setTimeRange} />
             ) : null}

@@ -27,6 +27,7 @@ import {
 export default function FormUpdateIntervention({
   setInterventions,
   interventions,
+  filteredInterventions,
   intervention,
   onCancel,
   onSave,
@@ -290,7 +291,7 @@ export default function FormUpdateIntervention({
       );
       if (response.status === 201) {
         // Actualiza el estado para añadir la nueva empresa al frontend
-        setInterventions([...interventions, response.data]);
+        setInterventions([...filteredInterventions, response.data]);
       } else {
         throw new Error("Error al crear la intervencion");
       }
@@ -495,7 +496,6 @@ export default function FormUpdateIntervention({
                       setDireccionId(parseInt(selectedOption.value));
                       setValue("structure", selectedOption);
                       setValue("area", "");
-                      setValue("worker", "");
                       field.onChange(selectedOption);
                     }}
                     options={structureOptions}
@@ -527,7 +527,7 @@ export default function FormUpdateIntervention({
                       setSelectedArea(selectedOption);
                       setAreaId(parseInt(selectedOption.value));
                       setValue("area", selectedOption);
-                      setValue("worker", "");
+
                       field.onChange(selectedOption);
                     }}
                     options={areaOptions}

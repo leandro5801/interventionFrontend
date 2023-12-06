@@ -10,6 +10,8 @@ import { customStyles } from "../../styles/SelectFilterStyles";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
 
+import TrabajadorCargarDatosForm from "../Forms/TrabajadorCargarDatosForm"
+import FormDialog from "../Forms/FormDialog";
 
 import {
   Table,
@@ -199,20 +201,8 @@ function TrabajadorCargarDatosTable({
   const [error, setError] = useState(null);
   const [cargandoTrabaajdor, setCargandoTrabajador] = useState(false);
 
-  async function fetchTrabajador() {
-    setCargandoTrabajador(true);
-    try {
-      const response = await axios.get(
-        "http://localhost:3000/api/trabajador/trabajadores"
-      );
-      setTrabajadores(response.data);
-      console.log(response.data);
-    } catch (error) {
-      setOpenDialogError(true);
-    } finally {
-      setCargandoTrabajador(false);
-    }
-  }
+  //para el formulario
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [openDialogError, setOpenDialogError] = useState(false);
   const handleCloseDialogError = () => {
     setOpenDialogError(false);
@@ -240,12 +230,38 @@ function TrabajadorCargarDatosTable({
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    fetchTrabajador();
+                    setDialogOpen(true);
                   }}
                 >
                   Cargar Trabajadores
                 </Button>
-
+                <FormDialog
+                  open={dialogOpen}
+                  onClose={() => {
+                    setDialogOpen(false);
+                  }}
+                  FormComponent={TrabajadorCargarDatosForm}
+                  setTrabajadores={setTrabajadores}
+                  trabajadores={trabajadores}
+                  onSave={() => {
+                    setDialogOpen(false);
+                  }}
+                  onCancel={() => {
+                    setDialogOpen(false);
+                  }}
+                  empresas={empresas}
+                  uebs={uebs}
+                  direcciones={direcciones}
+                  areas={areas}
+                  uebPorId={uebPorId}
+                  direccionPorId={direccionPorId}
+                  areaPorId={areaPorId}
+                  nombreEmpresa={nombreEmpresa}
+                  nombreUeb={nombreUeb}
+                  nombreDireccion={nombreDireccion}
+                  nombreArea={nombreArea}
+                  setOpenDialogError={setOpenDialogError}
+                ></FormDialog>
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
@@ -393,22 +409,7 @@ function TrabajadorCargarDatosTable({
                           </TableRow>
                         ))}
                     </TableBody>
-                    <Dialog
-                      open={openDialogError}
-                      onClose={handleCloseDialogError}
-                      BackdropProps={{ invisible: true }}
-                    >
-                      <Alert severity="error">
-                        <AlertTitle>Error</AlertTitle>
-                        Puede que el servidor no esté conectado. Inténtelo más
-                        tarde.
-                        <div className={styles.botonAlert}>
-                          <Button onClick={handleCloseDialogError}>
-                            Aceptar
-                          </Button>
-                        </div>
-                      </Alert>
-                    </Dialog>
+
                     <TableFooter>
                       <TableRow>
                         <TablePagination
@@ -425,6 +426,19 @@ function TrabajadorCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
+                <Dialog
+                  open={openDialogError}
+                  onClose={handleCloseDialogError}
+                  BackdropProps={{ invisible: true }}
+                >
+                  <Alert severity="error">
+                    <AlertTitle>Error</AlertTitle>
+                    Ha ocurrido un error. Inténtelo más tarde.
+                    <div className={styles.botonAlert}>
+                      <Button onClick={handleCloseDialogError}>Aceptar</Button>
+                    </div>
+                  </Alert>
+                </Dialog>
               </>
             </TableContainer>
           </div>

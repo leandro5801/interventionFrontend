@@ -24,6 +24,7 @@ import {
 } from "@mui/material";
 
 export default function RecomendationForm({
+  filteredRecomendations,
   recomendations,
   setTableRData,
   setRecomendations,

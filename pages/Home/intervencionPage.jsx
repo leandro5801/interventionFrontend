@@ -194,7 +194,8 @@ export default function IntervencionPage() {
     <div className={styles.title}>
       <h3 className={styles.tituloH3}> Intervenciones</h3>
       <InterventionTable
-        interventions={filteredInterventions}
+      filteredInterventions={filteredInterventions}
+        interventions={interventions}
         setInterventions={setInterventions}
         projects={filteredProjects}
         empresas={empresas}
