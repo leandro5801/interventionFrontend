@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -263,6 +263,7 @@ export default function TrabajadorForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -284,7 +285,7 @@ export default function TrabajadorForm({
                   }}
                   options={empresasOptions}
                   maxMenuHeight={120}
-                  placeholder="Empresa"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -293,6 +294,7 @@ export default function TrabajadorForm({
             )}
           </div>
           <div>
+          <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -313,7 +315,7 @@ export default function TrabajadorForm({
                   }}
                   options={uebsOptions}
                   maxMenuHeight={120}
-                  placeholder="Ueb"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -324,6 +326,7 @@ export default function TrabajadorForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Dirección</InputLabel>
             <Controller
               name="direccion"
               control={control}
@@ -342,7 +345,7 @@ export default function TrabajadorForm({
                   }}
                   options={direccionesOptions}
                   maxMenuHeight={120}
-                  placeholder="Dirección"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -351,6 +354,7 @@ export default function TrabajadorForm({
             )}
           </div>
           <div>
+          <InputLabel>Área</InputLabel>
             <Controller
               name="area"
               control={control}
@@ -369,7 +373,7 @@ export default function TrabajadorForm({
                   }}
                   options={areasOptions}
                   maxMenuHeight={120}
-                  placeholder="Área"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -380,6 +384,7 @@ export default function TrabajadorForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Nombre del trabajador</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -389,7 +394,7 @@ export default function TrabajadorForm({
               {...register("name")}
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Nombre del Trabajador"
+              // placeholder="Nombre del Trabajador"
             />
             <div className={styles.error}>{errors.name?.message}</div>
           </div>

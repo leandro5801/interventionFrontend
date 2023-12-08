@@ -9,8 +9,8 @@
   /* padding: 10px; */
   /* border-radius: 20px; */
   background-color: white;
-  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
-    0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
+    0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); */
   z-index: 16;
 }
 
@@ -398,7 +398,7 @@
 .table {
   position: fixed;
   max-height: 450px;
-  max-width: 1090px;
+  max-width: 1100px;
 }
 
 .table thead th {
@@ -442,6 +442,9 @@ weight .table td {
 
 .tdStyle {
   width: 200px;
+}
+.tdStyleIcon {
+ text-align: right;
 }
 
 .tabs {
@@ -617,7 +620,7 @@ weight .table td {
 }
 
 .paddingSelect {
-  gap: 10px;
+  /* gap: 10px; */
   padding: 5px;
 }
 
@@ -649,25 +652,35 @@ weight .table td {
   /* top: 100%;
   left: 0; */
   color: brown;
-  width: 400px;
+  max-width: 400px;
 }
 
 .inputForm {
   padding: 7px;
-  border: none;
-  border-bottom: 1px solid gray;
-  background-color: #ccc;
+  /* border: none; */
+  border: 1px solid #ccc;
+  /* background-color: #ccc; */
   font-size: 14px;
   color: black;
   width: 400px;
   height: 40px;
 }
+.inputFormInt {
+  padding: 7px;
+  /* border: none; */
+  border: 1px solid #ccc;
+  /* background-color: #ccc; */
+  font-size: 14px;
+  color: black;
+  width: 250px;
+  height: 40px;
+}
 
 .inputFormDirec {
   padding: 7px;
-  border: none;
-  border-bottom: 1px solid gray;
-  background-color: #ccc;
+  /* border: none; */
+  border: 1px solid #ccc;
+  /* background-color: #ccc; */
   font-size: 14px;
   color: black;
   width: 510px;
@@ -678,21 +691,19 @@ weight .table td {
   width: 250px;
   grid-column: 1 / -1;
   font-size: 14px;
-  border-bottom: 2px solid gray;
+  /* border-bottom: 2px solid gray; */
   color: black;
 }
 
 .selectFormRecInt {
   width: 810px;
   font-size: 14px;
-  border-bottom: 2px solid gray;
   color: black;
 }
 
 .selectFormRec {
   width: 400px;
   font-size: 14px;
-  border-bottom: 2px solid gray;
   color: black;
 }
 

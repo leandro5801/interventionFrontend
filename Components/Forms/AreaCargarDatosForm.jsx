@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -148,6 +148,7 @@ export default function AreaCargarDatosForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -168,7 +169,7 @@ export default function AreaCargarDatosForm({
                   }}
                   options={empresasOptions}
                   maxMenuHeight={120}
-                  placeholder="Empresa"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -177,6 +178,7 @@ export default function AreaCargarDatosForm({
             )}
           </div>
           <div>
+          <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -195,7 +197,7 @@ export default function AreaCargarDatosForm({
                   }}
                   options={uebsOptions}
                   maxMenuHeight={120}
-                  placeholder="Ueb"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -206,6 +208,7 @@ export default function AreaCargarDatosForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Dirección</InputLabel>
             <Controller
               name="direccion"
               control={control}
@@ -224,7 +227,7 @@ export default function AreaCargarDatosForm({
                   }}
                   options={direccionesOptions}
                   maxMenuHeight={120}
-                  placeholder="Dirección"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -234,6 +237,7 @@ export default function AreaCargarDatosForm({
           </div>
           
         </div>
+        
         <DialogActions>
           <Button type="submit">Aceptar</Button>
 

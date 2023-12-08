@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -179,6 +179,7 @@ export default function UebForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -197,7 +198,7 @@ export default function UebForm({
                   }}
                   options={empresasOptions}
                   maxMenuHeight={120}
-                  placeholder="Empresa"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -207,6 +208,7 @@ export default function UebForm({
           </div>
 
           <div>
+          <InputLabel>UEB</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -216,7 +218,7 @@ export default function UebForm({
               {...register("name")}
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Nombre de la ueb"
+
             />
             <div className={styles.error}>{errors.name?.message}</div>
           </div>

@@ -110,7 +110,7 @@ export default function TrabajadorPage() {
       )
     );
   }
-
+console.log(trabajadores)
   return (
     <div className={styles.title}>
       <h3>Trabajadores</h3>

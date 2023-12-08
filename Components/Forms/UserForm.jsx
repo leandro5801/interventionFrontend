@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -180,6 +180,7 @@ export default function UserForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Nombre de usuario</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.nombre_usuario ? "is-invalid" : ""
@@ -189,12 +190,13 @@ export default function UserForm({
               {...register("nombre_usuario")}
               value={nombre_usuario}
               onChange={(event) => setUserName(event.target.value)}
-              placeholder="Usuario"
+              // placeholder="Usuario"
             />
 
             <div className={styles.error}>{errors.nombre_usuario?.message}</div>
           </div>
           <div>
+          <InputLabel>Rol</InputLabel>
             <Controller
               name="role"
               control={control}
@@ -213,7 +215,7 @@ export default function UserForm({
                   }}
                   options={rolesOptions}
                   maxMenuHeight={120}
-                  placeholder="Rol"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -224,6 +226,7 @@ export default function UserForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Contraseña</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.contraseña ? "is-invalid" : ""
@@ -233,7 +236,7 @@ export default function UserForm({
               {...register("contraseña")}
               value={contraseña}
               onChange={(event) => setcontraseña(event.target.value)}
-              placeholder="Contraseña"
+              // placeholder="Contraseña"
             />
             <div className={styles.error}>{errors.contraseña?.message}</div>
           </div>

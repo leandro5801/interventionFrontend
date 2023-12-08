@@ -13,6 +13,7 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import FormDialog from "../Forms/FormDialog";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import UebCargarDatosForm from "../Forms/UebCargarDatosForm";
 
 import {
@@ -117,7 +118,6 @@ function UebCargarDatosTable({
   const [error, setError] = useState(null);
   const [cargandoUeb, setCargandoUeb] = useState(false);
 
-
   const [openDialogError, setOpenDialogError] = useState(false);
   const handleCloseDialogError = () => {
     setOpenDialogError(false);
@@ -157,6 +157,19 @@ function UebCargarDatosTable({
                 >
                   Cargar UEB
                 </Button>
+                <div className={styles.filtrosEstructuraContentInt}>
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={empresaFilter}
+                    onChange={(empresaFilter) => {
+                      handleEmpresaFilterChange(empresaFilter);
+                    }}
+                    options={optionEmpresas}
+                    placeholder="Empresa"
+                    isClearable
+                  />
+                </div>
                 <FormDialog
                   open={dialogOpen}
                   onClose={() => {
@@ -175,22 +188,7 @@ function UebCargarDatosTable({
                 ></FormDialog>
 
                 {/* SELECCIONAR PROYECTO ETC */}
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
+                
               </div>
               <>
                 {uebs.length === 0 && (
@@ -204,31 +202,8 @@ function UebCargarDatosTable({
                       <TableRow>
                         <TableCell className={styles.spacing}>
                           Empresa
-                          {showFilters && (
-                            <Select
-                              className={styles.selectGestionesGantt}
-                              defaultValue={empresaFilter}
-                              onChange={(empresaFilter) => {
-                                handleEmpresaFilterChange(empresaFilter);
-                              }}
-                              options={optionEmpresas}
-                              placeholder="Empresa"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Ueb
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por ueb"
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Ueb</TableCell>
                       </TableRow>
                     </TableHead>
 
@@ -266,11 +241,7 @@ function UebCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
-                <Dialog
-                  open={openDialogError}
-                  onClose={handleCloseDialogError}
-                  BackdropProps={{ invisible: true }}
-                >
+                <Dialog open={openDialogError} onClose={handleCloseDialogError}>
                   <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
                     Ha ocurrido un error. Inténtelo más tarde.

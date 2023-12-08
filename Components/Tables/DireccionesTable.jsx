@@ -372,7 +372,7 @@ function DireccionTable({
                             <TableCell className={styles.tdStyle}>
                               {direccion.nombre_direccion}
                             </TableCell>
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -399,7 +399,6 @@ function DireccionTable({
                               <Dialog
                                 open={open}
                                 onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
                               >
                                 <DialogTitle>Confirmar Eliminación</DialogTitle>
                                 <DialogContent>
@@ -441,7 +440,6 @@ function DireccionTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>

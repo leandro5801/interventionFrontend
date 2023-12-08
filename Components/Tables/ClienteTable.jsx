@@ -127,7 +127,9 @@ function ClienteTable({
         `http://localhost:3000/api/cliente/${id}`
       );
       if (response.status === 200) {
-        const newDatos = clientes.filter((cliente) => cliente.id_cliente !== id);
+        const newDatos = clientes.filter(
+          (cliente) => cliente.id_cliente !== id
+        );
         setClientes(newDatos);
         // Calcula el número total de páginas después de la eliminación
         const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
@@ -212,23 +214,6 @@ function ClienteTable({
                   users={users}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
-
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
               </div>
               <>
                 {clientes.length === 0 && (
@@ -242,15 +227,6 @@ function ClienteTable({
                       <TableRow>
                         <TableCell className={styles.spacing}>
                           Cliente
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por cliente"
-                            />
-                          )}
                         </TableCell>
 
                         <TableCell className={styles.spacing}></TableCell>
@@ -272,7 +248,7 @@ function ClienteTable({
                               {cliente.nombre_cliente}
                             </TableCell>
 
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -295,27 +271,21 @@ function ClienteTable({
                                 data-task-id={cliente?.id_cliente}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>¿Está seguro de eliminar este cliente?</p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
                             </TableCell>
                           </TableRow>
                         ))}
+                      <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Confirmar Eliminación</DialogTitle>
+                        <DialogContent>
+                          <p>¿Está seguro de eliminar este cliente?</p>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={() => handleDelete(data)}>
+                            Aceptar
+                          </Button>
+                          <Button onClick={handleClose}>Cancelar</Button>
+                        </DialogActions>
+                      </Dialog>
                     </TableBody>
 
                     <TableFooter>
@@ -338,7 +308,6 @@ function ClienteTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>

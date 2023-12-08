@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -140,6 +140,7 @@ export default function DireccionCargarDatosForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -168,6 +169,7 @@ export default function DireccionCargarDatosForm({
             )}
           </div>
           <div>
+          <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -196,6 +198,7 @@ export default function DireccionCargarDatosForm({
             )}
           </div>
         </div>
+        <div></div>
 
         <DialogActions>
           <Button type="submit">Aceptar</Button>

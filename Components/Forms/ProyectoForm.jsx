@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 
@@ -218,6 +218,7 @@ export default function ProyectoForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Nombre del proyecto*</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -232,6 +233,7 @@ export default function ProyectoForm({
             <div className={styles.error}>{errors.name?.message}</div>
           </div>
           <div>
+          <InputLabel>Objetivo del proyecto*</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.objetivo ? "is-invalid" : ""
@@ -248,6 +250,7 @@ export default function ProyectoForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Consultores*</InputLabel>
             <Controller
               name="consultores"
               control={control}
@@ -287,6 +290,7 @@ export default function ProyectoForm({
             )}
           </div>
           <div>
+          <InputLabel>Cliente*</InputLabel>
             <Controller
               name="cliente"
               control={control}

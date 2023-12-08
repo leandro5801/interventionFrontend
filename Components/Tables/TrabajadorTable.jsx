@@ -310,6 +310,55 @@ function TrabajadorTable({
                 >
                   Nuevo +
                 </Button>
+                <div className={styles.filtrosEstructuraContentInt}>
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={empresaFilter}
+                    onChange={(empresaFilter) => {
+                      handleEmpresaFilterChange(empresaFilter);
+                    }}
+                    options={optionEmpresas}
+                    placeholder="Empresa"
+                    isClearable
+                  />
+
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={uebFilter}
+                    onChange={(uebFilter) => {
+                      handleUebFilterChange(uebFilter);
+                    }}
+                    options={optionUebs}
+                    placeholder="Ueb"
+                    isClearable
+                  />
+
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={structureFilter}
+                    onChange={(structureFilter) => {
+                      handleStructureFilterChange(structureFilter);
+                    }}
+                    options={optionDirecciones}
+                    placeholder="Dirección"
+                    isClearable
+                  />
+
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={areaFilter}
+                    onChange={(areaFilter) => {
+                      handleAreaFilterChange(areaFilter);
+                    }}
+                    options={optionAreas}
+                    placeholder="Área"
+                    isClearable
+                  />
+                </div>
                 <FormDialog
                   open={dialogOpen}
                   onClose={() => {
@@ -336,22 +385,7 @@ function TrabajadorTable({
                   nombreDireccion={nombreDireccion}
                   nombreArea={nombreArea}
                 ></FormDialog>
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
+               
               </div>
               <>
                 {trabajadores.length === 0 && (
@@ -365,79 +399,14 @@ function TrabajadorTable({
                       <TableRow>
                         <TableCell className={styles.spacing}>
                           Empresa
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={empresaFilter}
-                              onChange={(empresaFilter) => {
-                                handleEmpresaFilterChange(empresaFilter);
-                              }}
-                              options={optionEmpresas}
-                              placeholder="Empresa"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Ueb
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={uebFilter}
-                              onChange={(uebFilter) => {
-                                handleUebFilterChange(uebFilter);
-                              }}
-                              options={optionUebs}
-                              placeholder="Ueb"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Ueb</TableCell>
                         <TableCell className={styles.spacing}>
                           Dirección
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={structureFilter}
-                              onChange={(structureFilter) => {
-                                handleStructureFilterChange(structureFilter);
-                              }}
-                              options={optionDirecciones}
-                              placeholder="Dirección"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Área
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={areaFilter}
-                              onChange={(areaFilter) => {
-                                handleAreaFilterChange(areaFilter);
-                              }}
-                              options={optionAreas}
-                              placeholder="Área"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Área</TableCell>
                         <TableCell className={styles.spacing}>
                           Trabajador
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por trabajador"
-                            />
-                          )}
                         </TableCell>
                         <TableCell className={styles.spacing}></TableCell>
                       </TableRow>
@@ -481,7 +450,7 @@ function TrabajadorTable({
                             <TableCell className={styles.tdStyle}>
                               {trabajador.nombre_trabajador}
                             </TableCell>
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -503,11 +472,7 @@ function TrabajadorTable({
                                 data-task-id={trabajador?.id_trabajador}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
+                              <Dialog open={open} onClose={handleClose}>
                                 <DialogTitle>Confirmar Eliminación</DialogTitle>
                                 <DialogContent>
                                   <p>

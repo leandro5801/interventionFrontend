@@ -15,48 +15,48 @@ import { Card } from "react-bootstrap";
 
 export default function GanttPage() {
   //para retornar el nombre de y no el id
-  const uebPorId = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
+  const uebPorId = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
     if (!ueb) {
-      console.error(`No se encontró ninguna UEB con idUeb: ${idUeb}`);
+      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
       return;
     }
     return ueb;
   };
-  const direccionPorId = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const direccionPorId = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     if (!direccion) {
       console.error(
-        `No se encontró ninguna direccion con idUeb: ${idDireccion}`
+        `No se encontró ninguna direccion con id_ueb: ${id_direccion}`
       );
       return;
     }
     return direccion;
   };
-  const areaPorId = (idArea) => {
-    const area = areas.find((e) => e.idArea === idArea);
+  const areaPorId = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
     return area;
   };
-  const nombreEmpresa = (idEmpresa) => {
-    const empresa = empresas.find((e) => e.idEmpresa === idEmpresa);
-    const name = empresa ? empresa.nombreEmpresa : "no se encontro el nombre";
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
     return name;
   };
-  const nombreUeb = (idUeb) => {
-    const ueb = uebs.find((e) => e.idUeb === idUeb);
-    const name = ueb ? ueb.nombreUeb : "no se encontro el nombre";
+  const nombreUeb = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
     return name;
   };
-  const nombreDireccion = (idDireccion) => {
-    const direccion = direcciones.find((e) => e.idDireccion === idDireccion);
+  const nombreDireccion = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     const name = direccion
-      ? direccion.nombreDireccion
+      ? direccion.nombre_direccion
       : "no se encontro el nombre";
     return name;
   };
-  const nombreArea = (idArea) => {
-    const area = areas.find((e) => e.idArea === idArea);
-    const name = area ? area.nombreArea : "no se encontro el nombre";
+  const nombreArea = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
+    const name = area ? area.nombre_area : "no se encontro el nombre";
     return name;
   };
   const nombreConsultor = (id_consultor) => {

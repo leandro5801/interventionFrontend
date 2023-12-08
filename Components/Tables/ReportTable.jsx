@@ -191,6 +191,40 @@ function ReportTable({
         <TableContainer component={Paper} className={styles.tableReport}>
           <>
             <div className={styles.btnNuevoContent}>
+              <div className={styles.filtrosEstructuraContentInt}>
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestionesGantt}
+                  defaultValue={projectFilter}
+                  onChange={(projectFilter) => {
+                    handleProjectFilterChange(projectFilter);
+                  }}
+                  options={optionProjects}
+                  placeholder="Proyecto"
+                  isClearable
+                />
+
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestionesGantt}
+                  defaultValue={interventionFilter}
+                  onChange={(interventionFilter) => {
+                    handleInterventionFilterChange(interventionFilter);
+                  }}
+                  options={optioninterventions}
+                  placeholder="Intervenci..."
+                  isClearable
+                />
+                {showFilters && (
+                  <input
+                    className={styles.inputFilter}
+                    type="date"
+                    value={fechaFilter}
+                    onChange={handleFechaFilterChange}
+                    placeholder="Filtrar por fecha"
+                  />
+                )}
+              </div>
               <div className={styles.filterListOffOutlinedContent}>
                 {showFilters ? (
                   <FilterListOffOutlinedIcon
@@ -219,83 +253,21 @@ function ReportTable({
                   <TableRow>
                     <TableCell className={styles.letraEnNegrita}>
                       Proyecto
-                      {showFilters && (
-                        <Select
-                          styles={customStyles}
-                          className={styles.selectGestionesGantt}
-                          defaultValue={projectFilter}
-                          onChange={(projectFilter) => {
-                            handleProjectFilterChange(projectFilter);
-                          }}
-                          options={optionProjects}
-                          placeholder="Proyecto"
-                          isClearable
-                        />
-                      )}
                     </TableCell>
                     <TableCell className={styles.letraEnNegrita}>
                       Intervención
-                      {showFilters && (
-                        <Select
-                          styles={customStyles}
-                          className={styles.selectGestionesGantt}
-                          defaultValue={interventionFilter}
-                          onChange={(interventionFilter) => {
-                            handleInterventionFilterChange(interventionFilter);
-                          }}
-                          options={optioninterventions}
-                          placeholder="Intervenci..."
-                          isClearable
-                        />
-                      )}
                     </TableCell>
                     <TableCell className={styles.letraEnNegrita}>
                       Recomendación
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={nameFilter}
-                          onChange={handleNameFilterChange}
-                          placeholder="Filtrar por recomendación"
-                        />
-                      )}
                     </TableCell>
                     <TableCell className={styles.letraEnNegrita}>
                       Descripción
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={descriptionFilter}
-                          onChange={handleDescriptionFilterChange}
-                          placeholder="Filtrar por descripción"
-                        />
-                      )}
                     </TableCell>
                     <TableCell className={styles.letraEnNegrita}>
                       Fecha
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="date"
-                          value={fechaFilter}
-                          onChange={handleFechaFilterChange}
-                          placeholder="Filtrar por fecha"
-                        />
-                      )}
                     </TableCell>
                     <TableCell className={styles.letraEnNegrita}>
                       Seguida
-                      {showFilters && (
-                        <input
-                          className={styles.inputFilter}
-                          type="text"
-                          value={followFilter}
-                          onChange={handleFollowFilterChange}
-                          placeholder="Filtrar por seguidas"
-                        />
-                      )}
                     </TableCell>
                   </TableRow>
                 </TableHead>

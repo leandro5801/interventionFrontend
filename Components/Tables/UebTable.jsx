@@ -1,7 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import { useState } from "react";
 import axios from "axios";
-
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -120,9 +120,10 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
   // }
 
   const vinculado = (id_ueb) => {
-    const ueb = uebs.find((dato) => dato.id_ueb === id_ueb);
-    return ueb ? true : false;
+    const direccion = direcciones.find((dato) => dato.id_ueb === id_ueb);
+    return direccion ? true : false;
   };
+
   const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
   const handleCloseDialogAdvertencia = () => {
     setOpenDialogAdvertencia(false);
@@ -213,6 +214,19 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
                 >
                   Nuevo +
                 </Button>
+                <div className={styles.filtrosEstructuraContentInt}>
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={empresaFilter}
+                    onChange={(empresaFilter) => {
+                      handleEmpresaFilterChange(empresaFilter);
+                    }}
+                    options={optionEmpresas}
+                    placeholder="Empresa"
+                    isClearable
+                  />
+                </div>
                 <FormDialog
                   open={dialogOpen}
                   onClose={() => {
@@ -230,22 +244,6 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
                   empresas={empresas}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
               </div>
               <>
                 {uebs.length === 0 && (
@@ -259,31 +257,8 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
                       <TableRow>
                         <TableCell className={styles.spacing}>
                           Empresa
-                          {showFilters && (
-                            <Select
-                              className={styles.selectGestionesGantt}
-                              defaultValue={empresaFilter}
-                              onChange={(empresaFilter) => {
-                                handleEmpresaFilterChange(empresaFilter);
-                              }}
-                              options={optionEmpresas}
-                              placeholder="Empresa"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Ueb
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por ueb"
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Ueb</TableCell>
                         <TableCell className={styles.spacing}></TableCell>
                       </TableRow>
                     </TableHead>
@@ -303,7 +278,7 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
                               {ueb.nombre_ueb}
                             </TableCell>
 
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -325,11 +300,7 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
                                 data-task-id={ueb?.id_ueb}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
+                              <Dialog open={open} onClose={handleClose}>
                                 <DialogTitle>Confirmar Eliminación</DialogTitle>
                                 <DialogContent>
                                   <p>¿Está seguro de eliminar esta ueb?</p>
@@ -368,12 +339,11 @@ function UebTable({ uebs, setUebs, empresas, cargando, direcciones }) {
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>
-                  No se puede eliminar una ueb que ya esté vinculada a
-                  una dirección
+                  No se puede eliminar una ueb que ya esté vinculada a una
+                  dirección
                   <div className={styles.botonAlert}>
                     <Button onClick={handleCloseDialogAdvertencia}>
                       Aceptar

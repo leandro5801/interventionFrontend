@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -223,6 +223,7 @@ export default function AreaForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -243,7 +244,7 @@ export default function AreaForm({
                   }}
                   options={empresasOptions}
                   maxMenuHeight={120}
-                  placeholder="Empresa"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -252,6 +253,7 @@ export default function AreaForm({
             )}
           </div>
           <div>
+          <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -270,7 +272,7 @@ export default function AreaForm({
                   }}
                   options={uebsOptions}
                   maxMenuHeight={120}
-                  placeholder="Ueb"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -281,6 +283,7 @@ export default function AreaForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Dirección</InputLabel>
             <Controller
               name="direccion"
               control={control}
@@ -299,7 +302,7 @@ export default function AreaForm({
                   }}
                   options={direccionesOptions}
                   maxMenuHeight={120}
-                  placeholder="Dirección"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -308,6 +311,7 @@ export default function AreaForm({
             )}
           </div>
           <div>
+          <InputLabel>Nombre del Área</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -317,7 +321,7 @@ export default function AreaForm({
               {...register("name")}
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Nombre del Área"
+
             />
             <div className={styles.error}>{errors.name?.message}</div>
           </div>

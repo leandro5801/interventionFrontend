@@ -347,7 +347,6 @@ function AreaCargarDatosTable({
                 <Dialog
                   open={openDialogError}
                   onClose={handleCloseDialogError}
-                  BackdropProps={{ invisible: true }}
                 >
                   <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>

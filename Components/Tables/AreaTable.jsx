@@ -121,8 +121,8 @@ function AreaTable({
         uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
       )
       .map((item) => ({
-        value: item.id_direcciones,
-        label: item.nombre_direcciones,
+        value: item.id_direccion,
+        label: item.nombre_direccion,
       }));
   const handleNameFilterChange = (event) => {
     setNameFilter(event.target.value);
@@ -147,7 +147,9 @@ function AreaTable({
   const filteredData = areas.filter(
     (item) =>
       item.nombre_area.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      (empresaFilter.length === 0 || item.empresa === empresaFilter.label) &&
+      (empresaFilter.length === 0 ||
+        item.id_empresa === empresaFilter.value ||
+        !item.id_empresa) &&
       (empresaFilter.length === 0 ||
         uebPorId(direccionPorId(item.id_direccion).id_ueb).id_empresa ===
           empresaFilter.value) &&
@@ -403,7 +405,7 @@ function AreaTable({
                             <TableCell className={styles.tdStyle}>
                               {area.nombre_area}
                             </TableCell>
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -428,7 +430,6 @@ function AreaTable({
                               <Dialog
                                 open={open}
                                 onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
                               >
                                 <DialogTitle>Confirmar Eliminación</DialogTitle>
                                 <DialogContent>
@@ -468,7 +469,6 @@ function AreaTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>

@@ -1,7 +1,7 @@
 import styles from "../../styles/Home.module.css";
 import axios from "axios";
 import { useState } from "react";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 //validaciones
@@ -229,6 +229,9 @@ export default function EmpresaForm({
 
             {seCargan === false ? (
               <div>
+                  <InputLabel>
+                      Nombre de la empresa
+                    </InputLabel>
                 <Input
                   className={`${styles.inputForm}  ${
                     errors.name ? "is-invalid" : ""
@@ -238,7 +241,7 @@ export default function EmpresaForm({
                   {...register("name")}
                   value={name}
                   onChange={(event) => setName(event.target.value)}
-                  placeholder="Nombre de la empresa"
+                  // placeholder="Nombre de la empresa"
                 />
               </div>
             ) : (
@@ -247,6 +250,9 @@ export default function EmpresaForm({
             {seCargan === true ? (
               <>
                 <div>
+                <InputLabel>
+                      Nombre de la empresa
+                    </InputLabel>
                   <Controller
                     name="nombre"
                     control={control}
@@ -266,7 +272,7 @@ export default function EmpresaForm({
                           field.onChange(selectedOption.value);
                         }}
                         options={options}
-                        placeholder="Nombre Empresa"
+                        placeholder="Seleccione..."
                       />
                     )}
                   />

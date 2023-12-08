@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 import data from "../../public/structure.json";
 
@@ -187,6 +187,7 @@ export default function ConsultorForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Nombre del consultor*</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -196,11 +197,12 @@ export default function ConsultorForm({
               {...register("name")}
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Nombre del consultor"
+              // placeholder="Nombre del consultor"
             />
             <div className={styles.error}>{errors.name?.message}</div>
           </div>
           <div>
+          <InputLabel>Usuario</InputLabel>
             <Controller
               name="user"
               control={control}
@@ -220,7 +222,7 @@ export default function ConsultorForm({
                   }}
                   options={userOptions}
                   maxMenuHeight={120}
-                  placeholder="Usuario"
+                  placeholder="Seleccione..."
                 />
               )}
             />

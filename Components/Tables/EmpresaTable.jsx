@@ -106,9 +106,7 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
   // }
 
   const vinculado = (id_empresa) => {
-    const ueb = uebs.find(
-      (dato) => dato.id_empresa === id_empresa
-    );
+    const ueb = uebs.find((dato) => dato.id_empresa === id_empresa);
     return ueb ? true : false;
   };
   const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
@@ -124,11 +122,13 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
         `http://localhost:3000/api/empresa/${id}`
       );
       if (response.status === 200) {
-        const newDatos = empresas.filter((empresa) => empresa.id_empresa !== id);
+        const newDatos = empresas.filter(
+          (empresa) => empresa.id_empresa !== id
+        );
         setEmpresas(newDatos);
         // Calcula el número total de páginas después de la eliminación
         const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
-  
+
         // Si la página actual está fuera del rango, restablécela a la última página disponible
         if (page > totalPages) {
           setPage(totalPages);
@@ -193,6 +193,7 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                 >
                   Nuevo +
                 </Button>
+
                 <FormDialog
                   open={dialogOpen}
                   onClose={() => {
@@ -208,22 +209,6 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                     setDialogOpen(false);
                   }}
                 ></FormDialog>
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
               </div>
               <>
                 {empresas.length === 0 && (
@@ -235,18 +220,7 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                   <Table stickyHeader>
                     <TableHead>
                       <TableRow>
-                        <TableCell className={styles.spacing}>
-                          Nombre
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por empresa"
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Nombre</TableCell>
                         <TableCell className={styles.spacing}></TableCell>
                       </TableRow>
                     </TableHead>
@@ -266,7 +240,7 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                               {empresa.nombre_empresa}
                             </TableCell>
 
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               {empresa.cargar_empresa === false ? (
                                 <>
                                   <FontAwesomeIcon
@@ -286,37 +260,12 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                                     icon={faTrash}
                                     onClick={() =>
                                       vinculado(empresa?.id_empresa)
-                                    ? setOpenDialogAdvertencia(true)
-                                    : openConfirmation(empresa?.id_empresa)
+                                        ? setOpenDialogAdvertencia(true)
+                                        : openConfirmation(empresa?.id_empresa)
                                     }
                                     data-task-id={empresa?.id_empresa}
                                     className={styles.faIcon}
                                   />
-                                  
-                                  <Dialog
-                                    open={open}
-                                    onClose={handleClose}
-                                    BackdropProps={{ invisible: true }}
-                                  >
-                                    <DialogTitle>
-                                      Confirmar Eliminación
-                                    </DialogTitle>
-                                    <DialogContent>
-                                      <p>
-                                        ¿Está seguro de eliminar esta empresa?
-                                      </p>
-                                    </DialogContent>
-                                    <DialogActions>
-                                      <Button
-                                        onClick={() => handleDelete(data)}
-                                      >
-                                        Aceptar
-                                      </Button>
-                                      <Button onClick={handleClose}>
-                                        Cancelar
-                                      </Button>
-                                    </DialogActions>
-                                  </Dialog>
                                 </>
                               ) : (
                                 false
@@ -324,6 +273,33 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                             </TableCell>
                           </TableRow>
                         ))}
+                      <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Confirmar Eliminación</DialogTitle>
+                        <DialogContent>
+                          <p>¿Está seguro de eliminar esta empresa?</p>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={() => handleDelete(data)}>
+                            Aceptar
+                          </Button>
+                          <Button onClick={handleClose}>Cancelar</Button>
+                        </DialogActions>
+                      </Dialog>
+                      <Dialog
+                        open={openDialogAdvertencia}
+                        onClose={handleCloseDialogAdvertencia}
+                      >
+                        <Alert severity="warning">
+                          <AlertTitle>Advertencia</AlertTitle>
+                          No se puede eliminar una empresa que ya esté vinculada
+                          a una UEB
+                          <div className={styles.botonAlert}>
+                            <Button onClick={handleCloseDialogAdvertencia}>
+                              Aceptar
+                            </Button>
+                          </div>
+                        </Alert>
+                      </Dialog>
                     </TableBody>
 
                     <TableFooter>
@@ -343,22 +319,7 @@ function EmpresaTable({ empresas, setEmpresas, cargando, uebs }) {
                   </Table>
                 )}
               </>
-              <Dialog
-                open={openDialogAdvertencia}
-                onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
-              >
-                <Alert severity="warning">
-                  <AlertTitle>Advertencia</AlertTitle>
-                  No se puede eliminar una empresa que ya esté vinculada a
-                  una UEB
-                  <div className={styles.botonAlert}>
-                    <Button onClick={handleCloseDialogAdvertencia}>
-                      Aceptar
-                    </Button>
-                  </div>
-                </Alert>
-              </Dialog>
+
               <FormDialog
                 open={editIIdx !== -1}
                 onClose={handleCancelI}

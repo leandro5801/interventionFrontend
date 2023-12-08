@@ -194,8 +194,8 @@ function RecomendationTable({
       label: item.nombre_consultor,
     }));
   const optionClasificaciones =
-    consultores &&
-    consultores.map((item) => ({
+    clasificaciones &&
+    clasificaciones.map((item) => ({
       value: item.id_clasificacion,
       label: item.nombre_clasificacion,
     }));
@@ -339,6 +339,71 @@ function RecomendationTable({
               >
                 Nuevo +
               </Button>
+              <div className={styles.filtrosEstructuraContentInt}>
+                {" "}
+                <Select
+                  styles={customStyles}
+                  className={styles.selectGestionesGantt}
+                  defaultValue={projectFilter}
+                  onChange={(projectFilter) => {
+                    handleProjectFilterChange(projectFilter);
+                  }}
+                  options={optionProjects}
+                  placeholder="Proyecto"
+                  isClearable
+                />
+                 <Select
+                  styles={customStyles}
+                  className={styles.selectGestionesGantt}
+                  defaultValue={interventionFilter}
+                  onChange={(interventionFilter) => {
+                    handleInterventionFilterChange(interventionFilter);
+                  }}
+                  options={optioninterventions}
+                  placeholder="Intervención"
+                  isClearable
+                  
+                />
+              </div>
+              <div className={styles.filtrosEstructuraContentInt}>
+                {showFilters && (
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={consultorFilter}
+                    onChange={(consultorFilter) => {
+                      handleConsultorFilterChange(consultorFilter);
+                    }}
+                    options={optionConsultores}
+                    placeholder="Consultor"
+                    isClearable
+                  />
+                )}
+                {showFilters && (
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={classificationFilter}
+                    onChange={(classificationFilter) => {
+                      handleClassificationFilterChange(classificationFilter);
+                    }}
+                    options={optionClasificaciones}
+                    placeholder="Tipo"
+                    isClearable
+                  />
+                )}
+              </div>
+              <div className={styles.filtrosEstructuraContentInt}>
+                {showFilters && (
+                  <input
+                    className={styles.inputFilter}
+                    type="date"
+                    value={fechaFilter}
+                    onChange={handleFechaFilterChange}
+                    placeholder="Filtrar por fecha"
+                  />
+                )}
+              </div>
               <FormDialog
                 open={dialogCreRecOpen}
                 onClose={() => {
@@ -394,119 +459,27 @@ function RecomendationTable({
                     <TableRow>
                       <TableCell className={styles.letraEnNegrita}>
                         Proyecto
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={projectFilter}
-                            onChange={(projectFilter) => {
-                              handleProjectFilterChange(projectFilter);
-                            }}
-                            options={optionProjects}
-                            placeholder="Proyecto"
-                            isClearable
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Intervención
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={interventionFilter}
-                            onChange={(interventionFilter) => {
-                              handleInterventionFilterChange(
-                                interventionFilter
-                              );
-                            }}
-                            options={optioninterventions}
-                            placeholder="Intervención"
-                            isClearable
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Recomendación
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="text"
-                            value={nameFilter}
-                            onChange={handleNameFilterChange}
-                            placeholder="filtrar por recomendación..."
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Descripción
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="text"
-                            value={descriptionFilter}
-                            onChange={handleDescriptionFilterChange}
-                            placeholder="filtrar por descripción"
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Consultor
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={consultorFilter}
-                            onChange={(consultorFilter) => {
-                              handleConsultorFilterChange(consultorFilter);
-                            }}
-                            options={optionConsultores}
-                            placeholder="Consultor"
-                            isClearable
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Fecha
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="date"
-                            value={fechaFilter}
-                            onChange={handleFechaFilterChange}
-                            placeholder="Filtrar por fecha"
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Tipo
-                        {showFilters && (
-                          <Select
-                            styles={customStyles}
-                            className={styles.selectGestionesGantt}
-                            defaultValue={classificationFilter}
-                            onChange={(classificationFilter) => {
-                              handleClassificationFilterChange(
-                                classificationFilter
-                              );
-                            }}
-                            options={optionClasificaciones}
-                            placeholder="Tipo"
-                            isClearable
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}>
                         Seguida
-                        {showFilters && (
-                          <input
-                            className={styles.inputFilter}
-                            type="text"
-                            value={followFilter}
-                            onChange={handleFollowFilterChange}
-                            placeholder="Filtrar por seguidas"
-                          />
-                        )}
                       </TableCell>
                       <TableCell className={styles.letraEnNegrita}></TableCell>
                     </TableRow>
@@ -548,7 +521,7 @@ function RecomendationTable({
                           <TableCell>
                             {isFollow(recomendation.seguimiento)}
                           </TableCell>
-                          <TableCell>
+                          <TableCell className={styles.tdStyleIcon}>
                             <FontAwesomeIcon
                               icon={faEdit}
                               onClick={() =>
@@ -572,28 +545,25 @@ function RecomendationTable({
                               data-task-id={recomendation?.id_recomendacion}
                               className={styles.faIcon}
                             />
-                            <Dialog
-                              open={open}
-                              onClose={handleClose}
-                              className="my-custom-dialog"
-                              BackdropProps={{ invisible: true }}
-                            >
-                              <DialogTitle>Confirmar Eliminación</DialogTitle>
-                              <DialogContent>
-                                <p>
-                                  ¿Está seguro de eliminar esta recomendación?
-                                </p>
-                              </DialogContent>
-                              <DialogActions>
-                                <Button onClick={() => handleDelete(data)}>
-                                  Aceptar
-                                </Button>
-                                <Button onClick={handleClose}>Cancelar</Button>
-                              </DialogActions>
-                            </Dialog>
                           </TableCell>
                         </TableRow>
                       ))}
+                    <Dialog
+                      open={open}
+                      onClose={handleClose}
+                      className="my-custom-dialog"
+                    >
+                      <DialogTitle>Confirmar Eliminación</DialogTitle>
+                      <DialogContent>
+                        <p>¿Está seguro de eliminar esta recomendación?</p>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={() => handleDelete(data)}>
+                          Aceptar
+                        </Button>
+                        <Button onClick={handleClose}>Cancelar</Button>
+                      </DialogActions>
+                    </Dialog>
                   </TableBody>
                   <TableFooter>
                     <TableRow>

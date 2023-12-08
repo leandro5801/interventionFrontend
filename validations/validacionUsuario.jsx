@@ -7,7 +7,7 @@ export const validationSchema = Yup.object().shape({
     .min(6, "La contraseña debe tener al menos 6 caracteres.")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      "La contraseña debe contener al menos una letra mayúscula, una letra minúscula t un número."
+      "La contraseña debe contener al menos una letra mayúscula, una letra minúscula y un número."
     ),
   role: Yup.object().shape({
     value: Yup.string().required("Seleccione un rol."),

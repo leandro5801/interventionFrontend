@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -199,6 +199,7 @@ export default function RecomendationForm({
         <div>
           <div className={styles.inputGroup}>
             <div>
+            <InputLabel>Recomendación*</InputLabel>
               <Input
                 className={`${styles.inputForm}  ${
                   errors.name ? "is-invalid" : ""
@@ -213,6 +214,7 @@ export default function RecomendationForm({
               <div className={styles.error}>{errors.name?.message}</div>
             </div>
             <div>
+            <InputLabel>Descripción*</InputLabel>
               <Input
                 className={`${styles.inputForm}  ${
                   errors.description ? "is-invalid" : ""
@@ -231,7 +233,7 @@ export default function RecomendationForm({
           <div className={styles.inputGroup}>
             <div>
               <InputLabel id="demo-simple-select-standard-label">
-                Fecha
+                Fecha*
               </InputLabel>
               <Input
                 type="date"
@@ -307,6 +309,7 @@ export default function RecomendationForm({
             </div> */}
 
             <div>
+            <InputLabel>Clasificación</InputLabel>
               <Controller
                 name="classification"
                 control={control}

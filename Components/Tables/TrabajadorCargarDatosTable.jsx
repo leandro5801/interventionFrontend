@@ -10,7 +10,7 @@ import { customStyles } from "../../styles/SelectFilterStyles";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
 
-import TrabajadorCargarDatosForm from "../Forms/TrabajadorCargarDatosForm"
+import TrabajadorCargarDatosForm from "../Forms/TrabajadorCargarDatosForm";
 import FormDialog from "../Forms/FormDialog";
 
 import {
@@ -235,6 +235,55 @@ function TrabajadorCargarDatosTable({
                 >
                   Cargar Trabajadores
                 </Button>
+                <div className={styles.filtrosEstructuraContentInt}>
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={empresaFilter}
+                    onChange={(empresaFilter) => {
+                      handleEmpresaFilterChange(empresaFilter);
+                    }}
+                    options={optionEmpresas}
+                    placeholder="Empresa"
+                    isClearable
+                  />
+
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={uebFilter}
+                    onChange={(uebFilter) => {
+                      handleUebFilterChange(uebFilter);
+                    }}
+                    options={optionUebs}
+                    placeholder="Ueb"
+                    isClearable
+                  />
+
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={structureFilter}
+                    onChange={(structureFilter) => {
+                      handleStructureFilterChange(structureFilter);
+                    }}
+                    options={optionDirecciones}
+                    placeholder="Dirección"
+                    isClearable
+                  />
+
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={areaFilter}
+                    onChange={(areaFilter) => {
+                      handleAreaFilterChange(areaFilter);
+                    }}
+                    options={optionAreas}
+                    placeholder="Área"
+                    isClearable
+                  />
+                </div>
                 <FormDialog
                   open={dialogOpen}
                   onClose={() => {
@@ -262,22 +311,7 @@ function TrabajadorCargarDatosTable({
                   nombreArea={nombreArea}
                   setOpenDialogError={setOpenDialogError}
                 ></FormDialog>
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
+               
               </div>
               <>
                 {trabajadores.length === 0 && (
@@ -291,68 +325,12 @@ function TrabajadorCargarDatosTable({
                       <TableRow>
                         <TableCell className={styles.spacing}>
                           Empresa
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={empresaFilter}
-                              onChange={(empresaFilter) => {
-                                handleEmpresaFilterChange(empresaFilter);
-                              }}
-                              options={optionEmpresas}
-                              placeholder="Empresa"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Ueb
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={uebFilter}
-                              onChange={(uebFilter) => {
-                                handleUebFilterChange(uebFilter);
-                              }}
-                              options={optionUebs}
-                              placeholder="Ueb"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Ueb</TableCell>
                         <TableCell className={styles.spacing}>
                           Dirección
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={structureFilter}
-                              onChange={(structureFilter) => {
-                                handleStructureFilterChange(structureFilter);
-                              }}
-                              options={optionDirecciones}
-                              placeholder="Dirección"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Área
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={areaFilter}
-                              onChange={(areaFilter) => {
-                                handleAreaFilterChange(areaFilter);
-                              }}
-                              options={optionAreas}
-                              placeholder="Área"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
+                        <TableCell className={styles.spacing}>Área</TableCell>
                         <TableCell className={styles.spacing}>
                           Trabajador
                           {showFilters && (
@@ -426,11 +404,7 @@ function TrabajadorCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
-                <Dialog
-                  open={openDialogError}
-                  onClose={handleCloseDialogError}
-                  BackdropProps={{ invisible: true }}
-                >
+                <Dialog open={openDialogError} onClose={handleCloseDialogError}>
                   <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
                     Ha ocurrido un error. Inténtelo más tarde.

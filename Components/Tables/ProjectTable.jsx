@@ -258,6 +258,31 @@ function ProjectTable({
                 >
                   Nuevo +
                 </Button>
+                <div className={styles.filtrosEstructuraContentInt}>
+                  {" "}
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={clienteFilter}
+                    onChange={(clienteFilter) => {
+                      handleClienteFilterChange(clienteFilter);
+                    }}
+                    options={clienteOptions}
+                    placeholder="Clientes"
+                    isClearable
+                  />
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={consultoresFilter}
+                    onChange={(consultoresFilter) => {
+                      handleConsultoresFilterChange(consultoresFilter);
+                    }}
+                    options={consultoresOptions}
+                    placeholder="Consultor"
+                    isClearable
+                  />
+                </div>
                 <FormDialog
                   open={dialogOpen}
                   onClose={() => {
@@ -279,7 +304,7 @@ function ProjectTable({
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
 
-                <div className={styles.filterListOffOutlinedContent}>
+                {/* <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
                       onClick={() => {
@@ -294,7 +319,7 @@ function ProjectTable({
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   )}
-                </div>
+                </div> */}
               </div>
 
               <>
@@ -309,62 +334,16 @@ function ProjectTable({
                       <TableRow>
                         <TableCell className={styles.letraEnNegrita}>
                           Proyecto
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por proyecto"
-                            />
-                          )}
                         </TableCell>
 
                         <TableCell className={styles.letraEnNegrita}>
                           Objetivo
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={objetivoFilter}
-                              onChange={handleObjetivoFilterChange}
-                              placeholder="Filtrar por objetivo"
-                            />
-                          )}
                         </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Cliente
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={clienteFilter}
-                              onChange={(clienteFilter) => {
-                                handleClienteFilterChange(clienteFilter);
-                              }}
-                              options={clienteOptions}
-                              placeholder="Clientes"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Consultor
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={consultoresFilter}
-                              onChange={(consultoresFilter) => {
-                                handleConsultoresFilterChange(
-                                  consultoresFilter
-                                );
-                              }}
-                              options={consultoresOptions}
-                              placeholder="Consultor"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
                         <TableCell
                           className={styles.letraEnNegrita}
@@ -398,7 +377,7 @@ function ProjectTable({
                                 .join(", ")}
                             </TableCell>
 
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -422,27 +401,21 @@ function ProjectTable({
                                 data-task-id={project?.id_proyecto}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>¿Está seguro de eliminar este proyecto?</p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
                             </TableCell>
                           </TableRow>
                         ))}
+                      <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Confirmar Eliminación</DialogTitle>
+                        <DialogContent>
+                          <p>¿Está seguro de eliminar este proyecto?</p>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={() => handleDelete(data)}>
+                            Aceptar
+                          </Button>
+                          <Button onClick={handleClose}>Cancelar</Button>
+                        </DialogActions>
+                      </Dialog>
                     </TableBody>
 
                     <TableFooter>
@@ -465,7 +438,6 @@ function ProjectTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>

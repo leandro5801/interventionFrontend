@@ -65,7 +65,7 @@ function InterventionTable({
     const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
     if (!direccion) {
       console.error(
-        `No se encontró ninguna direccion con idUeb: ${id_direccion}`
+        `No se encontró ninguna direccion con id_ueb: ${id_direccion}`
       );
       return;
     }
@@ -282,13 +282,13 @@ function InterventionTable({
       (projectFilter.length === 0 ||
         item.id_proyecto === projectFilter.value) &&
       (empresaFilter.length === 0 ||
-        uebPorId(direccionPorId(areaPorId(item.id_area).idDireccion).idUeb)
+        uebPorId(direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb)
           .id_empresa === empresaFilter.value) &&
       (uebFilter.length === 0 ||
-        direccionPorId(areaPorId(item.id_area).idDireccion).idUeb ===
+        direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb ===
           uebFilter.value) &&
       (structureFilter.length === 0 ||
-        areaPorId(item.id_area).idDireccion === structureFilter.value) &&
+        areaPorId(item.id_area).id_direccion === structureFilter.value) &&
       (areaFilter.length === 0 || item.id_area === areaFilter.value) &&
       item.nombre_intervencion
         .toLowerCase()
@@ -343,13 +343,13 @@ function InterventionTable({
           (intervencion) => intervencion.id_intervencion !== id
         );
         setInterventions(newDatos);
-        // Calcula el número total de páginas después de la eliminación
-        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
+        // // Calcula el número total de páginas después de la eliminación
+        // const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
 
-        // Si la página actual está fuera del rango, restablécela a la última página disponible
-        if (page > totalPages) {
-          setPage(totalPages);
-        }
+        // // Si la página actual está fuera del rango, restablécela a la última página disponible
+        // if (page > totalPages) {
+        //   setPage(totalPages);
+        // }
         setOpen(false);
       } else {
         throw new Error("Error al eliminar la intervencion");
@@ -411,6 +411,31 @@ function InterventionTable({
                 >
                   Nuevo +
                 </Button>
+                <div className={styles.filtrosEstructuraContentInt}>
+                  {" "}
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={projectFilter}
+                    onChange={(projectFilter) => {
+                      handleProjectFilterChange(projectFilter);
+                    }}
+                    options={optionProjects}
+                    placeholder="Proyecto"
+                    isClearable
+                  />
+                  <Select
+                    styles={customStyles}
+                    className={styles.selectGestionesGantt}
+                    defaultValue={consultorFilter}
+                    onChange={(consultorFilter) => {
+                      handleConsultorFilterChange(consultorFilter);
+                    }}
+                    options={optionConsultores}
+                    placeholder="Consultor"
+                    isClearable
+                  />
+                </div>
                 <FormDialog
                   open={dialogCreInteOpen}
                   onClose={() => {
@@ -542,72 +567,19 @@ function InterventionTable({
                       <TableRow>
                         <TableCell className={styles.letraEnNegrita}>
                           Proyecto
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={projectFilter}
-                              onChange={(projectFilter) => {
-                                handleProjectFilterChange(projectFilter);
-                              }}
-                              options={optionProjects}
-                              placeholder="Proyecto"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Intervención
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por intervención"
-                            />
-                          )}
                         </TableCell>
 
                         <TableCell className={styles.letraEnNegrita}>
                           Descripción
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={descriptionFilter}
-                              onChange={handleDescriptionFilterChange}
-                              placeholder="Filtrar por descripción"
-                            />
-                          )}
                         </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Consultor
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={consultorFilter}
-                              onChange={(consultorFilter) => {
-                                handleConsultorFilterChange(consultorFilter);
-                              }}
-                              options={optionConsultores}
-                              placeholder="Consultor"
-                              isClearable
-                            />
-                          )}
                         </TableCell>
                         <TableCell className={styles.letraEnNegrita}>
                           Trabajador
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={workerFilter}
-                              onChange={handleWorkerFilterChange}
-                              placeholder="Filtrar por trabajador"
-                            />
-                          )}
                         </TableCell>
                         <TableCell
                           className={styles.letraEnNegrita}
@@ -635,7 +607,7 @@ function InterventionTable({
                             <TableCell>
                               {nombreTrabajador(tsk.id_trabajador)}
                             </TableCell>
-                            <TableCell>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -659,29 +631,21 @@ function InterventionTable({
                                 data-task-id={tsk?.id_intervencion}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>
-                                    ¿Está seguro de eliminar esta Intervención?
-                                  </p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
                             </TableCell>
                           </TableRow>
                         ))}
+                      <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Confirmar Eliminación</DialogTitle>
+                        <DialogContent>
+                          <p>¿Está seguro de eliminar esta Intervención?</p>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={() => handleDelete(data)}>
+                            Aceptar
+                          </Button>
+                          <Button onClick={handleClose}>Cancelar</Button>
+                        </DialogActions>
+                      </Dialog>
                     </TableBody>
 
                     <TableFooter>
@@ -704,7 +668,6 @@ function InterventionTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>

@@ -55,12 +55,12 @@ const Login = () => {
               router.push("/");
             }
 
-            Swal.fire({
-              icon: "success",
-              title: "¡Sesión iniciada exitosamente!",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            // Swal.fire({
+            //   icon: "success",
+            //   title: "¡Sesión iniciada exitosamente!",
+            //   showConfirmButton: false,
+            //   timer: 1500,
+            // });
           },
         });
       }

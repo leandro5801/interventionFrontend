@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 import data from "../../public/structure.json";
 
@@ -188,6 +188,7 @@ export default function ClienteForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Nombre del cliente*</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -202,6 +203,7 @@ export default function ClienteForm({
             <div className={styles.error}>{errors.name?.message}</div>
           </div>
           <div>
+          <InputLabel>usuario</InputLabel>
             <Controller
               name="user"
               control={control}

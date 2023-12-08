@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 import data from "../../public/structure.json";
 
@@ -83,6 +83,7 @@ export default function FormUpdateIntervention({
         ).id_empresa
       : ""
   );
+
   const [empresa, setEmpresa] = useState(
     intervention
       ? {
@@ -358,38 +359,45 @@ export default function FormUpdateIntervention({
       <DialogTitle>Intervención</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <div className={styles.paddingSelect}>
-            <Controller
-              name="proyecto"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  styles={customStyles}
-                  id="proyecto"
-                  {...field}
-                  className={`${styles.selectFormRecInt} ${
-                    errors.proyecto ? "is-invalid" : ""
-                  }`}
-                  onChange={(selectedOption) => {
-                    setProyecto(selectedOption);
-                    setValue("proyecto", selectedOption);
-                    field.onChange(selectedOption);
-                  }}
-                  options={proyectosOptions}
-                  placeholder="Proyecto"
-                />
-              )}
-            />
-            {errors.proyecto && (
-              <div className={styles.error}>Seleccione un proyecto.</div>
-            )}
-
-            <div className={styles.error}>{errors.intervention?.message}</div>
-          </div>
-          <div className={styles.inputGroup}>
+          <div className={styles.formGrid}>
             <div>
+              {" "}
+              <div className={styles.inputGroup}>
+                <InputLabel>Proyecto*</InputLabel>
+              </div>
+              <Controller
+                name="proyecto"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    styles={customStyles}
+                    id="proyecto"
+                    {...field}
+                    className={`${styles.selectForm} ${
+                      errors.proyecto ? "is-invalid" : ""
+                    }`}
+                    onChange={(selectedOption) => {
+                      setProyecto(selectedOption);
+                      setValue("proyecto", selectedOption);
+                      field.onChange(selectedOption);
+                    }}
+                    options={proyectosOptions}
+                    placeholder="Seleccione..."
+                  />
+                )}
+              />
+              {errors.proyecto && (
+                <div className={styles.error}>Seleccione un proyecto.</div>
+              )}
+            </div>
+
+            <div>
+              <div className={styles.inputGroup}>
+                <InputLabel>Nombre de la intervención*</InputLabel>
+              </div>
+
               <Input
-                className={`${styles.inputForm}  ${
+                className={`${styles.inputFormInt}  ${
                   errors.name ? "is-invalid" : ""
                 }`}
                 type="text"
@@ -397,13 +405,17 @@ export default function FormUpdateIntervention({
                 {...register("name")}
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                placeholder="Nombre de la intervención"
+                // placeholder="Nombre de la intervención"
               />
               <div className={styles.error}>{errors.name?.message}</div>
             </div>
             <div>
+              <div className={styles.inputGroup}>
+                <InputLabel>Descripción*</InputLabel>
+              </div>
+
               <Input
-                className={`${styles.inputForm}  ${
+                className={`${styles.inputFormInt}  ${
                   errors.description ? "is-invalid" : ""
                 }`}
                 type="text"
@@ -411,14 +423,20 @@ export default function FormUpdateIntervention({
                 {...register("description")}
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
-                placeholder="Descripción"
+                // placeholder="Descripción"
               />
               <div className={styles.error}>{errors.description?.message}</div>
             </div>
+            {/* {errors.proyecto && (
+              <div className={styles.error}>Seleccione un proyecto.</div>
+            )} */}
+
+            <div className={styles.error}>{errors.intervention?.message}</div>
           </div>
 
           <div className={styles.formGrid}>
             <div className={styles.halfRow}>
+              <InputLabel>Empresa*</InputLabel>
               <Controller
                 name="empresa"
                 control={control}
@@ -440,7 +458,7 @@ export default function FormUpdateIntervention({
                     }}
                     options={empresasOptions}
                     maxMenuHeight={120}
-                    placeholder="Empresa"
+                    placeholder="Seleccione..."
                   />
                 )}
               />
@@ -450,6 +468,7 @@ export default function FormUpdateIntervention({
             </div>
 
             <div className={styles.halfRow}>
+              <InputLabel>Ueb*</InputLabel>
               <Controller
                 name="ueb"
                 control={control}
@@ -470,7 +489,7 @@ export default function FormUpdateIntervention({
                     }}
                     options={uebOptions}
                     maxMenuHeight={120}
-                    placeholder="UEB"
+                    placeholder="Seleccione..."
                   />
                 )}
               />
@@ -480,6 +499,7 @@ export default function FormUpdateIntervention({
             </div>
 
             <div className={styles.halfRow}>
+              <InputLabel>Dirección*</InputLabel>
               <Controller
                 name="structure"
                 control={control}
@@ -500,7 +520,7 @@ export default function FormUpdateIntervention({
                     }}
                     options={structureOptions}
                     maxMenuHeight={120}
-                    placeholder="Dirección"
+                    placeholder="Seleccione..."
                   />
                 )}
               />
@@ -512,6 +532,13 @@ export default function FormUpdateIntervention({
           </div>
           <div className={styles.inputGroup}>
             <div className={styles.halfRow}>
+              <div className={styles.inputGroup}>
+                <InputLabel>Área*</InputLabel>
+                {errors.area && (
+                  <div className={styles.error}>Seleccione un Área.</div>
+                )}
+              </div>
+
               <Controller
                 name="area"
                 control={control}
@@ -532,13 +559,10 @@ export default function FormUpdateIntervention({
                     }}
                     options={areaOptions}
                     maxMenuHeight={120}
-                    placeholder="Área"
+                    placeholder="Seleccione..."
                   />
                 )}
               />
-              {errors.area && (
-                <div className={styles.error}>Seleccione un Área.</div>
-              )}
             </div>
 
             {/* <div className={styles.halfRow}>
@@ -570,6 +594,13 @@ export default function FormUpdateIntervention({
             </div> */}
 
             <div className={styles.halfRow}>
+              <div className={styles.inputGroup}>
+                <InputLabel>Trabajador*</InputLabel>
+                {errors.worker && (
+                  <div className={styles.error}>Seleccione un Trabajador.</div>
+                )}
+              </div>
+
               <Controller
                 name="worker"
                 control={control}
@@ -588,20 +619,19 @@ export default function FormUpdateIntervention({
                     }}
                     options={trabajadoresOptions}
                     maxMenuHeight={120}
-                    placeholder="Trabajador"
+                    placeholder="Seleccione..."
                   />
                 )}
               />
-              {errors.worker && (
-                <div className={styles.error}>Seleccione un Trabajador.</div>
-              )}
             </div>
           </div>
           <div className={styles.inputGroup}>
             <div>
-              <InputLabel id="demo-simple-select-standard-label">
-                Fecha de inicio
-              </InputLabel>
+              <div className={styles.inputGroup}>
+                <InputLabel id="demo-simple-select-standard-label">
+                  Fecha de inicio*
+                </InputLabel>
+              </div>
 
               <Input
                 className={`${styles.inputForm}  ${
@@ -615,10 +645,15 @@ export default function FormUpdateIntervention({
               />
               <div className={styles.error}>{errors.start?.message}</div>
             </div>
+            
             <div>
-              <InputLabel id="demo-simple-select-standard-label">
-                Fecha de fin
-              </InputLabel>
+              <div className={styles.inputGroup}>
+                <InputLabel id="demo-simple-select-standard-label">
+                  Fecha de fin*
+                </InputLabel>
+                
+              </div>
+
               <Input
                 type="date"
                 id="end"

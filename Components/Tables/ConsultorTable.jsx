@@ -217,23 +217,6 @@ function ConsultorTable({
                   users={users}
                 ></FormDialog>
                 {/* SELECCIONAR PROYECTO ETC */}
-
-                <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div>
               </div>
               <>
                 {consultores.length === 0 && (
@@ -247,15 +230,6 @@ function ConsultorTable({
                       <TableRow>
                         <TableCell className={styles.spacing}>
                           Consultor
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por consultor"
-                            />
-                          )}
                         </TableCell>
 
                         <TableCell className={styles.spacing}></TableCell>
@@ -277,7 +251,7 @@ function ConsultorTable({
                               {consultor.nombre_consultor}
                             </TableCell>
 
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -301,29 +275,21 @@ function ConsultorTable({
                                 data-task-id={consultor?.id_consultor}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>
-                                    ¿Está seguro de eliminar este consultor?
-                                  </p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
                             </TableCell>
                           </TableRow>
                         ))}
+                      <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Confirmar Eliminación</DialogTitle>
+                        <DialogContent>
+                          <p>¿Está seguro de eliminar este consultor?</p>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={() => handleDelete(data)}>
+                            Aceptar
+                          </Button>
+                          <Button onClick={handleClose}>Cancelar</Button>
+                        </DialogActions>
+                      </Dialog>
                     </TableBody>
 
                     <TableFooter>
@@ -346,7 +312,6 @@ function ConsultorTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>

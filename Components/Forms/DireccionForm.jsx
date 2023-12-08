@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -200,6 +200,7 @@ export default function DireccionForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
+          <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -219,7 +220,7 @@ export default function DireccionForm({
                   }}
                   options={empresasOptions}
                   maxMenuHeight={120}
-                  placeholder="Empresa"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -228,6 +229,7 @@ export default function DireccionForm({
             )}
           </div>
           <div>
+          <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -247,7 +249,7 @@ export default function DireccionForm({
                   }}
                   options={uebsOptions}
                   maxMenuHeight={120}
-                  placeholder="Ueb"
+                  placeholder="Seleccione..."
                 />
               )}
             />
@@ -257,6 +259,7 @@ export default function DireccionForm({
           </div>
         </div>
         <div className={styles.fullRow}>
+        <InputLabel>Nombre de la dirección</InputLabel>
           <Input
             className={`${styles.inputFormDirec}  ${
               errors.name ? "is-invalid" : ""
@@ -266,7 +269,7 @@ export default function DireccionForm({
             {...register("name")}
             value={name}
             onChange={(event) => setName(event.target.value)}
-            placeholder="Nombre de la dirección"
+            // placeholder="Dirección"
           />
           <div className={styles.error}>{errors.name?.message}</div>
         </div>

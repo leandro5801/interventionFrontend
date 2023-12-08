@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { customStyles } from "../../styles/SelectStyles";
+import { customStyles } from "../../styles/SelectFilterStyles";
 import Select from "react-select";
 
 import axios from "axios";
@@ -161,6 +161,7 @@ export default function CreateRecomendationForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div className={styles.paddingSelect}>
+            <InputLabel>Intervención</InputLabel>
             <Select
               styles={customStyles}
               id="intervention"
@@ -177,8 +178,10 @@ export default function CreateRecomendationForm({
             />
             <div className={styles.error}>{errors.intervention?.message}</div>
           </div>
+
           <div className={styles.inputGroup}>
             <div>
+              <InputLabel>Recomendación*</InputLabel>
               <Input
                 className={`${styles.inputForm}  ${
                   errors.name ? "is-invalid" : ""
@@ -191,7 +194,9 @@ export default function CreateRecomendationForm({
               />
               <div className={styles.error}>{errors.name?.message}</div>
             </div>
+
             <div>
+              <InputLabel>Descripción*</InputLabel>
               <Input
                 className={`${styles.inputForm}  ${
                   errors.description ? "is-invalid" : ""
@@ -209,7 +214,7 @@ export default function CreateRecomendationForm({
           <div className={styles.inputGroup}>
             <div>
               <InputLabel id="demo-simple-select-standard-label">
-                Fecha
+                Fecha*
               </InputLabel>
               <Input
                 type="date"
@@ -224,8 +229,48 @@ export default function CreateRecomendationForm({
               />
               <div className={styles.error}>{errors.fecha?.message}</div>
             </div>
+
             <div>
-              <InputLabel>¿Se le ha dado seguimiento?</InputLabel>
+              <InputLabel>Clasificación*</InputLabel>
+              <Select
+                styles={customStyles}
+                id="classification"
+                {...register("classification")}
+                className={`${styles.selectFormRec}  ${
+                  errors.classification ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleClassificationChange(selectedOption);
+                  setValue("classification", selectedOption.value);
+                }}
+                options={classificationsOptions}
+                placeholder="Clasificación"
+              />
+              <div className={styles.error}>
+                {errors.classification?.message}
+              </div>
+            </div>
+          </div>
+          <div className={styles.inputGroup}>
+            {/* <div>
+              <Select
+                styles={customStyles}
+                id="consultor"
+                {...register("consultor")}
+                className={`${styles.selectFormRec}  ${
+                  errors.consultor ? "is-invalid" : ""
+                }`}
+                onChange={(selectedOption) => {
+                  handleConsultorChange(selectedOption);
+                  setValue("consultor", selectedOption.value);
+                }}
+                options={consultoresOptions}
+                placeholder="Consultor"
+              />
+              <div className={styles.error}>{errors.consultor?.message}</div>
+            </div> */}
+            <div>
+              <InputLabel>¿Se le ha dado seguimiento?*</InputLabel>
               <div className={styles.inputGroup}>
                 <InputLabel>
                   Sí{" "}
@@ -253,47 +298,8 @@ export default function CreateRecomendationForm({
                 </InputLabel>
               </div>
               {errors.follow && (
-                <div className="invalid-feedback">{errors.follow.message}</div>
+                <div className={styles.error}>{errors.follow.message}</div>
               )}
-            </div>
-          </div>
-          <div className={styles.inputGroup}>
-            {/* <div>
-              <Select
-                styles={customStyles}
-                id="consultor"
-                {...register("consultor")}
-                className={`${styles.selectFormRec}  ${
-                  errors.consultor ? "is-invalid" : ""
-                }`}
-                onChange={(selectedOption) => {
-                  handleConsultorChange(selectedOption);
-                  setValue("consultor", selectedOption.value);
-                }}
-                options={consultoresOptions}
-                placeholder="Consultor"
-              />
-              <div className={styles.error}>{errors.consultor?.message}</div>
-            </div> */}
-
-            <div>
-              <Select
-                styles={customStyles}
-                id="classification"
-                {...register("classification")}
-                className={`${styles.selectFormRec}  ${
-                  errors.classification ? "is-invalid" : ""
-                }`}
-                onChange={(selectedOption) => {
-                  handleClassificationChange(selectedOption);
-                  setValue("classification", selectedOption.value);
-                }}
-                options={classificationsOptions}
-                placeholder="Clasificación"
-              />
-              <div className={styles.error}>
-                {errors.classification?.message}
-              </div>
             </div>
           </div>
         </div>

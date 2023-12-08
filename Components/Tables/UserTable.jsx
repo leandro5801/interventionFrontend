@@ -179,16 +179,15 @@ function UserTable({
       if (response.status === 200) {
         const newDatos = users.filter((usuario) => usuario.id_usuario !== id);
         setUsers(newDatos);
-  
+
         // Calcula el número total de páginas después de la eliminación
         const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
-  
+
         // Si la página actual está fuera del rango, restablécela a la última página disponible
         if (page > totalPages) {
           setPage(totalPages);
         }
         setOpen(false);
-        
       } else {
         throw new Error("Error al eliminar el usuario");
       }
@@ -331,7 +330,7 @@ function UserTable({
                             <TableCell className={styles.tdStyle}>
                               {nombreRol(user.id_rol)}
                             </TableCell>
-                            <TableCell className={styles.tdStyle}>
+                            <TableCell className={styles.tdStyleIcon}>
                               <FontAwesomeIcon
                                 icon={faEdit}
                                 onClick={() =>
@@ -367,28 +366,22 @@ function UserTable({
                                 data-task-id={user?.id_usuario}
                                 className={styles.faIcon}
                               />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                                BackdropProps={{ invisible: true }}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>¿Está seguro de eliminar este usuario?</p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
                             </TableCell>
                           </TableRow>
                         ))}
                     </TableBody>
+                    <Dialog open={open} onClose={handleClose}>
+                      <DialogTitle>Confirmar Eliminación</DialogTitle>
+                      <DialogContent>
+                        <p>¿Está seguro de eliminar este ususario?</p>
+                      </DialogContent>
+                      <DialogActions>
+                        <Button onClick={() => handleDelete(data)}>
+                          Aceptar
+                        </Button>
+                        <Button onClick={handleClose}>Cancelar</Button>
+                      </DialogActions>
+                    </Dialog>
 
                     <TableFooter>
                       <TableRow>
@@ -410,7 +403,6 @@ function UserTable({
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
-                BackdropProps={{ invisible: true }}
               >
                 {esUsuarioPropio ? (
                   <Alert severity="warning">
