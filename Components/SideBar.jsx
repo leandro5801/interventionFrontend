@@ -295,66 +295,66 @@ function SideBar({}) {
             false
           )}
           {showCargarEmpresaOptions && (
-           <>
-           <li>
-             {" "}
-             <Link href="/Home/uebCargarDatosPage">
-               {" "}
-               <CorporateFareOutlinedIcon
-                 style={{
-                   width: "18px",
-                   cursor: "pointer",
-                   marginLeft: "10px",
-                   verticalAlign: "middle",
-                 }}
-               />{" "}
-               UEB
-             </Link>
-           </li>
-           <li>
-             {" "}
-             <Link href="/Home/direccionCargarDatosPage">
-               <BusinessOutlinedIcon
-                 style={{
-                   width: "18px",
-                   cursor: "pointer",
-                   marginLeft: "10px",
-                   verticalAlign: "middle",
-                 }}
-               />{" "}
-               Direcciones
-             </Link>
-           </li>
-           <li>
-             {" "}
-             <Link href="/Home/areaCargarDatosPage">
-               <DragIndicatorOutlinedIcon
-                 style={{
-                   width: "18px",
-                   cursor: "pointer",
-                   marginLeft: "10px",
-                   verticalAlign: "middle",
-                 }}
-               />{" "}
-               Áreas
-             </Link>
-           </li>
-           <li>
-             {" "}
-             <Link href="/Home/trabajadorCargarDatosPage">
-               {" "}
-               <EngineeringOutlinedIcon
-                 style={{
-                   width: "18px",
-                   cursor: "pointer",
-                   marginLeft: "10px",
-                   verticalAlign: "middle",
-                 }}
-               />{" "}
-               Trabajadores
-             </Link>
-           </li>
-         </>
+            <>
+              <li>
+                {" "}
+                <Link href="/Home/uebCargarDatosPage">
+                  {" "}
+                  <CorporateFareOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  UEB
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/direccionCargarDatosPage">
+                  <BusinessOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Direcciones
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/areaCargarDatosPage">
+                  <DragIndicatorOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Áreas
+                </Link>
+              </li>
+              <li>
+                {" "}
+                <Link href="/Home/trabajadorCargarDatosPage">
+                  {" "}
+                  <EngineeringOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Trabajadores
+                </Link>
+              </li>
+            </>
           )}
           {user && (user.id_rol === 4 || user.id_rol === 3) ? (
             <li>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -407,7 +406,6 @@ export default function GanttPage() {
 
         {/* Fin del mostrado de Datos de una intervencion */}
       </div>
-
     </div>
   );
 }

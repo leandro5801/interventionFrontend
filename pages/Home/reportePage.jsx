@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 import { Container } from "react-grid-system";
 import { Card } from "react-bootstrap";
 import styles from "../../styles/Home.module.css";
-import {TableContainer,   Paper,} from "@mui/material"
+import { TableContainer, Paper } from "@mui/material";
 import ReportTable from "../../Components/Tables/ReportTable";
 
 export default function ReportePage() {
@@ -177,7 +177,6 @@ export default function ReportePage() {
     <div className={styles.title}>
       <h3 className={styles.tituloH3}> Reportes</h3>
       <div className={styles.containerReport}>
-        {" "}
         <div>
           <ReportTable
             interventions={filtredInterventions}
@@ -188,50 +187,51 @@ export default function ReportePage() {
           />
         </div>
         <div>
-        <TableContainer component={Paper} className={styles.tableReport}>
-          {selectedIntervention && (
-            <>
-              {/* Datos de la intervencion seleccionada */}
+          <TableContainer component={Paper} className={styles.tableReport}>
+            {selectedIntervention && (
+              <>
+                {/* Datos de la intervencion seleccionada */}
 
-              <div style={{ padding: "10px" }}>
-                <h4>Detalles de la intervención seleccionada</h4>
-              </div>
-              <Container key={selectedIntervention.id_intervencion}>
-                <Card style={{ width: "50rem" }}>
-                  <Card.Body>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>
-                        <Card.Title>
-                          Nombre de la Intervención:{" "}
-                          {selectedIntervention.nombre_intervencion}
-                        </Card.Title>
-                        <Card.Text>
-                          Consultor:{" "}
-                          {nombreConsultor(selectedIntervention.id_consultor)}
-                        </Card.Text>
+                <div style={{ padding: "10px" }}>
+                  <h4>Detalles de la intervención seleccionada</h4>
+                </div>
+                <Container key={selectedIntervention.id_intervencion}>
+                  <Card style={{ width: "50rem" }}>
+                    <Card.Body>
+                      <div 
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>
+                          <Card.Title>
+                            Nombre de la Intervención:{" "}
+                            {selectedIntervention.nombre_intervencion}
+                          </Card.Title>
+                          <Card.Text>
+                            Consultor:{" "}
+                            {nombreConsultor(selectedIntervention.id_consultor)}
+                          </Card.Text>
+                        </div>
+                        <div>
+                          <Card.Text>
+                            Descripción: {selectedIntervention.descripcion}
+                          </Card.Text>
+                          <Card.Text>
+                            Trabajador:{" "}
+                            {nombreTrabajador(
+                              selectedIntervention.id_trabajador
+                            )}
+                          </Card.Text>
+                        </div>
                       </div>
-                      <div>
-                        
-                        <Card.Text>
-                          Descripción: {selectedIntervention.descripcion}
-                        </Card.Text>
-                        <Card.Text>
-                          Trabajador:{" "}
-                          {nombreTrabajador(selectedIntervention.id_trabajador)}
-                        </Card.Text>
-                      </div>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Container>
-            </>
-          )}
+                    </Card.Body>
+                  </Card>
+                </Container>
+              </>
+            )}
           </TableContainer>
 
           {/* Fin del mostrado de Datos de una intervencion */}

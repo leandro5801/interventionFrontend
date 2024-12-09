@@ -1,16 +1,15 @@
-import React from "react";
 import styles from "../styles/Home.module.css";
 import GanttChart from "./GanttChart/GanttChart";
 
-import { useState} from "react";
+import { useState } from "react";
 import InterventionTable from "./Tables/InterventionTable";
 import RecomendationTable from "./Tables/RecomendationTable";
-import IntervrntionForm from "./Forms/InterventionForm";
+import IntervrntionForm from "./Forms/IntervrntionForm";
 import Dialog from "./Forms/Dialog";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { Container} from "react-grid-system";
-import { Card} from "react-bootstrap";
+import { Container } from "react-grid-system";
+import { Card } from "react-bootstrap";
 
 function Content({
   selectedUeb,

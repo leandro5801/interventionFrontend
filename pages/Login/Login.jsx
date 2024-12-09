@@ -3,7 +3,7 @@ import Head from "next/head";
 import Swal from "sweetalert2";
 import styles from "../../styles/Home.module.css";
 import Image from "next/image";
-
+import { UserContext } from "../../contexts/user/UserContext";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 
@@ -11,13 +11,16 @@ import { Input, InputAdornment, Button, TextField } from "@mui/material";
 
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
     nombre_usuario: "",
     contraseña: "",
   });
-  const [user, setUser] = useState();
+  //  const [usuario, setUsuario] = useState();
+  // const { user, setUser, fetchSession } = useContext(UserContext);
+  const { user, changeUser } = useContext(UserContext);
   const router = useRouter();
 
   // esto todavia no guarda ambas credenciales
@@ -40,7 +43,11 @@ const Login = () => {
         // si el usuario es correcto
         //para guardar el token en las cokies del navegador
         document.cookie = `access_token=${response.data.access_token};  path=/`;
-        setUser(response.data.user);
+
+        console.log(response.data);
+
+        changeUser(response.data.user);
+        // fetchSession(response.data.user.id_session);
 
         Swal.fire({
           timer: 1500,
@@ -49,7 +56,11 @@ const Login = () => {
             Swal.showLoading();
           },
           willClose: () => {
-            if (response.data.user && (response.data.user.id_rol === 2 || response.data.user.id_rol === 3)) {
+            if (
+              response.data.user &&
+              (response.data.user.id_rol === 2 ||
+                response.data.user.id_rol === 3)
+            ) {
               router.push("/Home/ganttPage");
             } else {
               router.push("/");
@@ -108,7 +119,7 @@ const Login = () => {
         />
       </div>
       <div className={styles.smallContainer}>
-        <div >
+        <div>
           <h4>Sistema de autenticación</h4>
         </div>
 

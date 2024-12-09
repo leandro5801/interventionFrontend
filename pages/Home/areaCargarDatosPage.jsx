@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -25,6 +24,8 @@ export default function AreaCargarDatosPage() {
       setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/empresa");
+        console.log(response.data);
+
         setEmpresas(response.data);
       } catch (error) {
         setError(

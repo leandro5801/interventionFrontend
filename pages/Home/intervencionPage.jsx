@@ -27,18 +27,20 @@ export default function IntervencionPage() {
   //datos filtrados
   let filteredInterventions = [];
   let filteredProjects = [];
-  
+
   useEffect(() => {
     async function fetchIntervention() {
       const response = await axios.get(
         "http://localhost:3000/api/intervencion"
       );
+      console.log(response.data);
       setInterventions(response.data);
     }
     async function fetchProyecto() {
       setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/proyecto");
+
         setProjects(response.data);
       } catch (error) {
         setError(
@@ -81,6 +83,8 @@ export default function IntervencionPage() {
       setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/direccion");
+        console.log(response.data);
+
         setDirecciones(response.data);
       } catch (error) {
         setError(
@@ -180,11 +184,19 @@ export default function IntervencionPage() {
         filteredInterventions = interventions.filter(
           (i) => i.id_consultor === consultorAutenticado.id_consultor
         );
+        console.log(projects);
+        console.log("entro 1");
         filteredProjects = projects.filter((i) =>
           i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
         );
+        console.log(filteredInterventions);
+        console.log(filteredProjects);
       } else if (user.id_rol === 3) {
         filteredInterventions = interventions;
+        console.log(projects);
+        console.log(filteredInterventions);
+        console.log("entro 2");
+
         filteredProjects = projects;
       }
     }
@@ -194,7 +206,7 @@ export default function IntervencionPage() {
     <div className={styles.title}>
       <h3 className={styles.tituloH3}> Intervenciones</h3>
       <InterventionTable
-      filteredInterventions={filteredInterventions}
+        filteredInterventions={filteredInterventions}
         interventions={interventions}
         setInterventions={setInterventions}
         projects={filteredProjects}

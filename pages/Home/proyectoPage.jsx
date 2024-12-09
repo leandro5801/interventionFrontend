@@ -12,10 +12,9 @@ export default function ProyectoPage() {
   const [consultores, setConsultores] = useState([]);
   const [interventions, setInterventions] = useState([]);
   const [error, setError] = useState(null);
-  const [cargando, setCargando] = useState(false);
+  const [cargando, setCargando] = useState(true);
   useEffect(() => {
     async function fetchProyecto() {
-      setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/proyecto");
         setProjects(response.data);
@@ -25,11 +24,9 @@ export default function ProyectoPage() {
         );
         console.error(error);
       } finally {
-        setCargando(false);
       }
     }
     async function fetchClientes() {
-      setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/cliente");
         setClientes(response.data);
@@ -39,11 +36,9 @@ export default function ProyectoPage() {
         );
         console.error(error);
       } finally {
-        setCargando(false);
       }
     }
     async function fetchConsultores() {
-      setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/consultor");
         setConsultores(response.data);
@@ -53,7 +48,6 @@ export default function ProyectoPage() {
         );
         console.error(error);
       } finally {
-        setCargando(false);
       }
     }
     async function fetchIntervention() {
@@ -62,14 +56,15 @@ export default function ProyectoPage() {
       );
       setInterventions(response.data);
     }
-  
+
     fetchProyecto();
     fetchClientes();
     fetchConsultores();
     fetchIntervention();
+    setCargando(false);
   }, []);
 
-  return (
+  return cargando ? null : (
     <div className={styles.title}>
       <h3> Proyectos</h3>
       <ProjectTable

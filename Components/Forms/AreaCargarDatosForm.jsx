@@ -131,7 +131,7 @@ export default function AreaCargarDatosForm({
       nombre_ueb: data.ueb.label,
       nombre_direccion: data.direccion.label,
     };
-    fetchDireccion(updatedRow)
+    fetchDireccion(updatedRow);
     console.log(updatedRow);
 
     onSave();
@@ -148,7 +148,7 @@ export default function AreaCargarDatosForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Empresa</InputLabel>
+            <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -178,7 +178,7 @@ export default function AreaCargarDatosForm({
             )}
           </div>
           <div>
-          <InputLabel>UEB</InputLabel>
+            <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -206,9 +206,12 @@ export default function AreaCargarDatosForm({
             )}
           </div>
         </div>
-        <div className={styles.inputGroup}>
+        <div
+          className={styles.inputGroup}
+          style={{ WebkitTapHighlightColor: "rgba(0, 0, 0, 0.3)" }}
+        >
           <div>
-          <InputLabel>Dirección</InputLabel>
+            <InputLabel>Dirección</InputLabel>
             <Controller
               name="direccion"
               control={control}
@@ -235,9 +238,8 @@ export default function AreaCargarDatosForm({
               <div className={styles.error}>Seleccione una dirección.</div>
             )}
           </div>
-          
         </div>
-        
+
         <DialogActions>
           <Button type="submit">Aceptar</Button>
 

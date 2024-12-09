@@ -15,7 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
-import { Button } from "@mui/material";
+import { Button, Input, InputAdornment, TextField } from "@mui/material";
+import { CalendarToday } from "@mui/icons-material";
 
 export default function GanttChart({
   interventions,
@@ -45,7 +46,7 @@ export default function GanttChart({
     fromSelectMonth: 11,
     fromSelectYear: "2023",
     toSelectMonth: 11,
-    toSelectYear: "2023",
+    toSelectYear: "2025",
   });
 
   // Para mostrar el periodo de tiempo
@@ -226,7 +227,10 @@ export default function GanttChart({
                   toggleFilters();
                   limpiarFiltrados();
                 }}
-                style={{ width: "18px", cursor: "pointer" }}
+                style={{
+                  width: "18px",
+                  cursor: "pointer",
+                }}
               />
             ) : (
               <FilterListOutlinedIcon
@@ -318,21 +322,35 @@ export default function GanttChart({
               />
             )}
             {showFilters && (
-              <input
+              <TextField
                 className={styles.inputFilter}
                 type="text"
                 value={workerFilter}
                 onChange={handleWorkerFilterChange}
-                placeholder="Filtrar por trabajador"
+                size="small"
+                InputLabelProps={{
+                  style: {
+                    fontSize: "14px",
+                    letterSpacing: "0.2px",
+                    // textAlign: "center",
+                    //  color: "black",
+                  },
+                }}
+                label="Filtrar por Trabajador"
               />
             )}
             {showFilters && (
-              <input
+              <TextField
                 className={styles.inputFilter}
                 type="date"
+                size="small"
                 value={startFilter}
                 onChange={handleStartFilterChange}
-                placeholder="Filtrar por fecha"
+                label="Fecha"
+                Input
+                InputLabelProps={{
+                  shrink: true, // Esto hace que la etiqueta se mantenga arriba
+                }}
               />
             )}
           </div>

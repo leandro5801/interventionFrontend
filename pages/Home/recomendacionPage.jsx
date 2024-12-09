@@ -14,7 +14,7 @@ export default function RecomendacionPage() {
   const [projects, setProjects] = useState([]);
 
   const [error, setError] = useState(null);
-  const [cargando, setCargando] = useState(false);
+  const [cargando, setCargando] = useState(true);
 
   //usuario autenticado
   const [user, setUser] = useState(null);
@@ -38,7 +38,6 @@ export default function RecomendacionPage() {
       setRecomendations(response.data);
     }
     async function fetchProyecto() {
-      setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/proyecto");
         setProjects(response.data);
@@ -48,11 +47,9 @@ export default function RecomendacionPage() {
         );
         console.error(error);
       } finally {
-        setCargando(false);
       }
     }
     async function fetchConsultor() {
-      setCargando(true);
       try {
         const response = await axios.get("http://localhost:3000/api/consultor");
         setConsultores(response.data);
@@ -62,11 +59,9 @@ export default function RecomendacionPage() {
         );
         console.error(error);
       } finally {
-        setCargando(false);
       }
     }
     async function fetchClasificacion() {
-      setCargando(true);
       try {
         const response = await axios.get(
           "http://localhost:3000/api/clasificacion"
@@ -78,7 +73,6 @@ export default function RecomendacionPage() {
         );
         console.error(error);
       } finally {
-        setCargando(false);
       }
     }
     //cargando usuario autenticado
@@ -105,6 +99,7 @@ export default function RecomendacionPage() {
     fetchProyecto();
     fetchConsultor();
     fetchClasificacion();
+    setCargando(false);
   }, []);
 
   if (user && consultores) {
@@ -124,15 +119,18 @@ export default function RecomendacionPage() {
             (project) => project.id_proyecto === i.id_proyecto
           )
         );
+        console.log("entro 2");
       } else if (user.id_rol === 3) {
+        console.log("entro 3");
         filtredRecomendations = recomendations;
         filtredProjects = projects;
         filtredInterventions = interventions;
+        console.log(filtredProjects);
       }
     }
   }
 
-  return (
+  return cargando ? null : (
     <div className={styles.title}>
       <h3> Recomendaciones</h3>
       <RecomendationTable

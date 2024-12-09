@@ -1,7 +1,80 @@
+:root {
+  --bg-color-general: #eeeeee;
+  --bg-color-primary: #ffffff;
+  --bg-color-secondary: #007e9e;
+  --bg-color-third: #fff;
+
+  --bg-color-option-select: rgb(255, 255, 255);
+  --bg-color-option-hover: #f7f7f7;
+
+  --bg-hover-button: #0099cc;
+
+  --text-color-general: #050506;
+  --text-color-primary: #fff;
+  --text-color-link: #272a2e;
+
+  --text-color-indicator-dropdown: #080808;
+  --text-color-indicator-dropdown-focused: #5f5f5f;
+
+  --text-color-hover-select: #007e9e;
+
+  --text-color-hover: #fff;
+  --text-color-hover-primary: var(--bg-color-secondary);
+
+  --text-color-table-head: #0b0e0d;
+
+  --bg-color-table: #ffffff;
+
+  --border-color-general: #606264;
+
+  --border-color-select: #323434;
+  --border-color-select-focus: #0b0e0d;
+}
+
+[data-theme="dark"] {
+  /* fondos */
+  --bg-color-general: #eeeeee;
+  --bg-color-primary: #0b0e0d;
+  --bg-color-secondary: #007e9e;
+  --bg-color-third: #121716;
+
+  /* fondos para select */
+  --bg-color-option-select: #091114ea;
+
+  /* fondos para el hover */
+  --bg-hover-button: #0099cc;
+
+  /* color textos */
+  --text-color-general: #eeeeee;
+  --text-color-primary: #ffffff;
+  --text-color-link: #dde4ed;
+
+  /* color texto indicador de dropdown */
+  --text-color-indicator-dropdown: #0099cc;
+  --text-color-indicator-dropdown-focused: #007e9e;
+
+  --text-color-hover: #ffffffd7;
+  --text-color-hover-primary: var(--bg-color-secondary);
+
+  --bg-color-option-hover: #f7f7f7;
+  --text-color-hover-select: #0099cc;
+
+  --border-color-general: #fafafa9c;
+  /* color borde de los select */
+  --border-color-select: #fcfcfc;
+  --border-color-select-focus: #0099cc;
+
+  /* color texto tabla */
+  --text-color-table-head: #ffffff;
+  /* fondo tabla */
+  --bg-color-table: #181a1c;
+
+  --box-shadows-color-select: 0 0 0 2px rgba(7, 243, 164, 0.61);
+}
+
 html,
 body {
-  background-color: #eeeeee;
-  background-color: #eeeeee;
+  /*  background-color: #eeeeee; */
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -9,7 +82,7 @@ body {
 }
 
 a {
-  color: black;
+  /* color: black; */
   text-decoration: none;
 }
 
@@ -19,34 +92,29 @@ a {
   box-sizing: border-box;
 }
 
-
 body {
-  background-color: rgb(245,245,245);
-  color: #3c4858;
+  background-color: var(--bg-color-general);
+  color: var(--text-color-general);
   margin: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.5em;
   width: 100%;
   height: 100%;
-
 }
 
-body {
-  background-color: #eeeeee;
-  color: #3c4858;
-}
+/* Estilos para las filas de la tabla */
 
 /* ------------------------------------------------------------------------------------ */
 /*Menu de filtrado */
 /* Estilo para el contenedor del menú desplegable */
-.Dropdown-root {
+/* .Dropdown-root {
   position: relative;
   width: 180px;
 }
 
 /* Estilo para el control del menú desplegable */
-.Dropdown-control {
+/* .Dropdown-control {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -66,7 +134,6 @@ body {
 
 .Dropdown-control:hover {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
-
 }
 
 /* Estilo para la flecha del menú desplegable */
@@ -82,7 +149,7 @@ body {
   /* right: 5px;  */
   left: 3px;
   top: 18px;
-  width: 0
+  width: 0;
 }
 
 .is-open .Dropdown-arrow {
@@ -93,7 +160,7 @@ body {
 /* Estilo para el menú desplegable */
 .Dropdown-menu {
   /* Cambia el color de fondo del menú */
-  background-color: #0099CC;
+  background-color: #0099cc;
   /* border: 1px solid #ccc; */
   color: #eeeeee;
   font-size: 16px;
@@ -102,7 +169,7 @@ body {
   margin-top: -1px;
   max-height: 200px;
   overflow-y: auto;
-  position:relative;
+  position: relative;
   top: 100%;
   width: 100%;
   z-index: 1000;
@@ -110,7 +177,7 @@ body {
   cursor: pointer;
 }
 
-.Dropdown-menu .Dropdown-group>.Dropdown-title {
+.Dropdown-menu .Dropdown-group > .Dropdown-title {
   padding: 8px 10px;
   color: rgba(51, 51, 51, 1);
   font-weight: bold;
@@ -127,7 +194,6 @@ body {
 .Dropdown-option.is-selected {
   /* Cambia el color de fondo de la opción seleccionada */
   background-color: #73c2dd;
-  ;
 }
 
 .custom-menu::-webkit-scrollbar {

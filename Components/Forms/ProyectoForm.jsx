@@ -145,11 +145,12 @@ export default function ProyectoForm({
 
   const [errorAxios, setErrorAxios] = useState(null);
   async function createProyecto(updatedRow) {
+    console.log(updatedRow);
+
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/proyecto",
-        updatedRow
-      );
+      const response = await axios.post("http://localhost:3000/api/proyecto", {
+        id_cliente: 1,
+      });
       if (response.status === 201) {
         // Actualiza el estado para añadir la nueva empresa al frontend
         setProjects([...projects, response.data]);
@@ -188,6 +189,8 @@ export default function ProyectoForm({
   }
 
   const handleConfirm = (data) => {
+    console.log(data);
+
     const updatedRow = {
       // id_proyecto: project ? project.id : projects.length + 1,
       id_cliente: parseInt(data.cliente.value),
@@ -218,7 +221,7 @@ export default function ProyectoForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Nombre del proyecto*</InputLabel>
+            <InputLabel>Nombre del proyecto*</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -233,7 +236,7 @@ export default function ProyectoForm({
             <div className={styles.error}>{errors.name?.message}</div>
           </div>
           <div>
-          <InputLabel>Objetivo del proyecto*</InputLabel>
+            <InputLabel>Objetivo del proyecto*</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.objetivo ? "is-invalid" : ""
@@ -250,7 +253,7 @@ export default function ProyectoForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Consultores*</InputLabel>
+            <InputLabel>Consultores*</InputLabel>
             <Controller
               name="consultores"
               control={control}
@@ -290,7 +293,7 @@ export default function ProyectoForm({
             )}
           </div>
           <div>
-          <InputLabel>Cliente*</InputLabel>
+            <InputLabel>Cliente*</InputLabel>
             <Controller
               name="cliente"
               control={control}

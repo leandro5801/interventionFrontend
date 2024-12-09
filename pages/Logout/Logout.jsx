@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import styles from "../../styles/Home.module.css";
 
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { SessionContext } from "../../contexts/session/SessionContext";
 
 const Logout = ({ setMostrarLogout }) => {
+  const { saveSession } = useContext(SessionContext);
   const router = useRouter();
   const handleLogout = () => {
     Swal.fire({
@@ -31,6 +33,10 @@ const Logout = ({ setMostrarLogout }) => {
           },
           willClose: () => {
             Cookies.remove("access_token");
+            Cookies.remove("id_session");
+            Cookies.remove("session");
+            saveSession();
+            document.documentElement.setAttribute("data-theme", "light");
             router.push("/Login/Login");
           },
         });

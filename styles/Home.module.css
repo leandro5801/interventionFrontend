@@ -1,14 +1,52 @@
 /* Dashboard */
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 8px;
+}
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.badge {
+}
+.icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+.animate {
+  animation: shake 1s infinite;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .sidebarcontainer {
   top: 0px;
   position: fixed;
   width: 200px;
   height: 100%;
-  border: 1px solid #606264;
+  border: 1px solid var(--border-color-general);
   /* margin: 20px; */
   /* padding: 10px; */
   /* border-radius: 20px; */
-  background-color: white;
+  background-color: var(--bg-color-primary);
   /* box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42),
     0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); */
   z-index: 16;
@@ -26,7 +64,7 @@
   border-block-end-width: 0.5px;
 }
 
-.wrapper>ul {
+.wrapper > ul {
   margin-top: 20px;
   text-align: left;
   padding-left: 5px;
@@ -36,21 +74,20 @@
   font-size: 18px;
 }
 
-.wrapper>ul>li {
+.wrapper > ul > li {
   list-style: none;
   font-size: 14px;
   text-decoration: none;
 }
 
 /* cambiar el color de letra del sideBar */
-.wrapper>ul>li>a {
-  color: #272a2e;
+.wrapper > ul > li > a {
+  color: var(--text-color-link);
   cursor: pointer;
 }
 
-.wrapper>ul>li>a:hover {
-  color: #007e9e;
-
+.wrapper > ul > li > a:hover {
+  color: var(--text-color-hover-primary);
 }
 
 /*
@@ -63,7 +100,6 @@
     opacity: 1;
   }
 } */
-
 
 /* for mobiles phones */
 @media only screen and (max-width: 600px) {
@@ -79,19 +115,18 @@
     margin: 0.2px; */
   }
 
-  .wrapper>ul {
+  .wrapper > ul {
     gap: 3px;
   }
 
-  .wrapper>ul>li>a:hover {
+  .wrapper > ul > li > a:hover {
     font-size: 0;
     transition: 0s;
   }
 
-  .wrapper>ul>li>a {
+  .wrapper > ul > li > a {
     /* opacity: 0; */
     font-size: 0.5px;
-
   }
 }
 
@@ -106,9 +141,32 @@
   display: flex;
   flex-wrap: wrap;
   height: 70px;
-  background-color: #007e9e;
-  /* margin-left: 200px; */
+  background-color: var(--bg-color-secondary); /* margin-left: 200px; */
   z-index: 15;
+}
+
+.selectFont {
+  display: flex;
+  position: absolute;
+  right: 70mm;
+}
+
+.switchWrapper {
+  display: flex;
+  position: absolute;
+  right: 40mm;
+  margin-top: 15px;
+  margin-bottom: 18px;
+  margin-right: -5px;
+}
+.switchTitle {
+  color: var(--text-color-primary);
+  margin-top: 7px;
+  margin-bottom: 18px;
+}
+
+.switchTheme {
+  color: #4be388c4;
 }
 
 .headwrapper {
@@ -128,7 +186,7 @@
   margin-left: 220px;
 }
 
-.titlePrincipal>h2 {
+.titlePrincipal > h2 {
   color: #fff;
   font-size: 24px;
   font-weight: bold;
@@ -154,8 +212,8 @@
   margin-right: -5px;
 }
 
-.nombreUsuarioContent>h2 {
-  color: #fff;
+.nombreUsuarioContent > h2 {
+  color: var(--text-color-primary);
   font-size: 14px;
   font-weight: lighter;
 }
@@ -171,7 +229,6 @@
 .faIconOutAlt:hover {
   color: black;
 }
-
 
 /* for mobiles phones */
 @media only screen and (max-width: 600px) {
@@ -190,7 +247,7 @@
     margin-left: 80%;
   }
 
-  .titlePrincipal>h2 {
+  .titlePrincipal > h2 {
     font-size: 70%;
   }
 
@@ -206,7 +263,7 @@
     margin-right: 0.2px;
   }
 
-  .nombreUsuarioContent>h2 {
+  .nombreUsuarioContent > h2 {
     font-size: 70%;
   }
 }
@@ -221,13 +278,12 @@
   flex-wrap: wrap;
   /* align-items: center; */
   /* justify-content:center; */
-  background-color: #fff;
+  background-color: var(--bg-color-third);
   /* height: 540px; */
   min-height: 100vh;
   /* Altura mínima para cubrir toda la pantalla */
   /* margin-left: 200px; */
 }
-
 
 /* position: fixed;
   width: 200px;
@@ -249,21 +305,21 @@
 /* ------------------------------------------------------------------------------------------------------------ */
 /* Botones */
 .btn {
-  color: #fff;
+  color: var(--text-color-primary);
   padding: 5px 10px;
-  background-color: #007e9e;
+  background-color: var(--bg-color-secondary);
   border-radius: 6px;
   text-transform: uppercase;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   margin-right: 4px;
 }
 
 .btn:hover {
   /* Cambiar el color del fondo */
-  background-color: #0099CC;
+  background-color: var(--bg-hover-button);
   /* Cambiar el color del texto */
-  color: white;
+  color: var(--text-color-hover);
 }
 
 .btnConfirm {
@@ -312,9 +368,9 @@
 }
 
 .contentwrapper h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
-  color: #0099CC;
+  color: #0099cc;
 }
 
 /* for mobiles phones */
@@ -331,7 +387,6 @@
     align-items: center;
     justify-content: center;
   }
-
 }
 
 /* .container {
@@ -369,11 +424,18 @@
 
 .inputFilter {
   padding: 7px;
-  border: none;
-  border-bottom: 2px solid #ddd;
+  /*   border: 2px solid var(--border-color-general); */
+  border-radius: 4px;
+  /* border-bottom: 2px solid var(--border-color-general); */
+  color: var(--text-color-general);
+  background-color: var(--bg-color-third);
+  text-align: center;
   font-size: 14px;
   width: 150px;
 }
+/* .inputFilter:focus {
+  border-color: #0099cc;
+} */
 
 .selectGestiones {
   /* padding: 7px; */
@@ -385,6 +447,7 @@
 
 .selectGestionesGantt {
   /* padding: 7px; */
+
   font-size: 14px;
   width: 150px;
   font-weight: lighter;
@@ -399,23 +462,25 @@
   position: fixed;
   max-height: 450px;
   max-width: 1100px;
+  background-color: var(--bg-color-table);
+  color: var(--text-color-table-head);
 }
 
 .table thead th {
   position: sticky;
   top: 0;
   /* z-index: 1; */
-  background-color: #fff;
+  background-color: var(--bg-color-table);
 }
 
 .table tfoot td {
   position: sticky;
   bottom: 0;
-  background-color: #ffff;
+  background-color: var(--bg-color-table);
 }
 
 weight .table td {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.5px solid #ddd;
   /* white-space: nowrap; */
 }
 
@@ -444,7 +509,7 @@ weight .table td {
   width: 200px;
 }
 .tdStyleIcon {
- text-align: right;
+  text-align: right;
 }
 
 .tabs {
@@ -537,14 +602,12 @@ weight .table td {
   position: sticky;
   top: 0;
   /* z-index: 10; */
-  background-color: #fff;
 }
 
 .tableReport tfoot td {
   position: sticky;
   bottom: 0;
   /* z-index: 10; */
-  background-color: #ffff;
 }
 
 .tableReport td {
@@ -601,9 +664,7 @@ weight .table td {
     padding: 2px;
     width: 100px;
   }
-
 }
-
 
 /* ------------------------------------------------------------------------------------------------------------ */
 .dialogBody {
@@ -636,7 +697,6 @@ weight .table td {
   padding: 1px;
 }
 
-
 .fullRow {
   position: relative;
   grid-column: 1 / span 2;
@@ -659,7 +719,7 @@ weight .table td {
   padding: 7px;
   /* border: none; */
   border: 1px solid #ccc;
-  /* background-color: #ccc; */
+  background-color: var(--bg-color-third);
   font-size: 14px;
   color: black;
   width: 400px;
@@ -669,7 +729,7 @@ weight .table td {
   padding: 7px;
   /* border: none; */
   border: 1px solid #ccc;
-  /* background-color: #ccc; */
+  background-color: var(--bg-color-third);
   font-size: 14px;
   color: black;
   width: 250px;
@@ -698,13 +758,13 @@ weight .table td {
 .selectFormRecInt {
   width: 810px;
   font-size: 14px;
-  color: black;
+  /* color: black; */
 }
 
 .selectFormRec {
   width: 400px;
   font-size: 14px;
-  color: black;
+  /*  color: black; */
 }
 
 .selectFormRec .options {
@@ -729,7 +789,6 @@ weight .table td {
   outline: none;
   border-bottom-color: #fff;
 }
-
 
 /* .select {
   padding: 7px;
@@ -760,7 +819,7 @@ weight .table td {
 }
 
 .input[type="radio"]:checked {
-  border-color: #0099CC;
+  border-color: #0099cc;
 }
 
 .input[type="radio"]:checked::before {
@@ -772,7 +831,7 @@ weight .table td {
   width: 8px;
   height: 8px;
   margin: auto;
-  background-color: #0099CC;
+  background-color: #0099cc;
   border-radius: 50%;
 }
 
@@ -806,7 +865,7 @@ weight .table td {
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }
 
-.timeRangeContainer>* {
+.timeRangeContainer > * {
   display: flex;
   align-items: center;
 }
@@ -820,15 +879,13 @@ weight .table td {
 
 .selectTimeRange {
   appearance: none;
-  background-color: white;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-color: var(--bg-color-primary);
   background-repeat: no-repeat;
   background-position: right 10px center;
   padding-right: 40px;
   font-family: Arial, sans-serif;
-  color: #0099CC;
+  color: var(--text-color-general);
   margin-top: 0.5rem;
-  z-index: 999;
 }
 
 /* settings */
@@ -869,17 +926,17 @@ weight .table td {
   border: none;
   outline: none;
   background: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   text-align: center;
   cursor: pointer;
+  color: var(--text-color-general);
 }
 
 .inputTask:focus {
   /* background-color: darkgray; */
   transition: 0.2;
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-
 }
 
 .btnTask {
@@ -896,14 +953,12 @@ weight .table td {
   transform: scale(1.3);
 }
 
-
 /* Time table  */
 .ganttGridContainerTime {
   display: grid;
   overflow-x: auto;
   outline: 0.5px solid var(--color-outline);
   font-size: 14px;
-
 }
 
 .faIcon {
@@ -931,10 +986,8 @@ weight .table td {
   padding: 0px;
 }
 
-
 /* for mobiles phones */
 @media only screen and (max-width: 600px) {
-
   .timeRange {
     display: flex;
     align-items: center;
@@ -950,7 +1003,7 @@ weight .table td {
     background-position: right 10px center;
     padding-right: 40px;
     font-family: Arial, sans-serif;
-    color: #0099CC;
+    color: #0099cc;
     margin-top: 0.5rem;
     z-index: 999;
   }
@@ -991,7 +1044,7 @@ weight .table td {
     border: none;
     outline: none;
     background: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 10px;
     text-align: center;
     cursor: pointer;
@@ -1001,7 +1054,6 @@ weight .table td {
     /* background-color: darkgray; */
     transition: 0.2;
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-
   }
 
   .btnTask {
@@ -1018,7 +1070,6 @@ weight .table td {
     transform: scale(1.3);
   }
 
-
   /* Time table  */
   .ganttGridContainerTime {
     display: grid;
@@ -1028,7 +1079,6 @@ weight .table td {
     margin-left: -40px;
     font-size: 10px;
   }
-
 }
 
 /* filtrado en el gantt --------------------------------------------------------------- */
@@ -1042,7 +1092,7 @@ weight .table td {
 
 .select:focus {
   outline: none;
-  border-bottom-color: #0099CC;
+  border-bottom-color: #0099cc;
 }
 
 /* ------------------------------------------------------------------------------------------------------ */
@@ -1064,7 +1114,7 @@ weight .table td {
 }
 
 .selectFilter {
-  background-color: #0099CC;
+  background-color: #0099cc;
   background-repeat: no-repeat;
   background-position: right 10px center;
 }
@@ -1085,7 +1135,6 @@ weight .table td {
 .iconContainer {
   position: absolute;
   top: 100px;
-  ;
   left: 50%;
   transform: translateX(-50%);
   /* Resto de las propiedades */
@@ -1106,7 +1155,6 @@ weight .table td {
   background: #fff;
 }
 
-
 .image {
   margin-bottom: 20px;
 }
@@ -1120,7 +1168,6 @@ weight .table td {
 .smallContainer label {
   margin-bottom: 5px;
   margin-left: -130px;
-
 }
 
 /* .inputForm {
@@ -1162,11 +1209,10 @@ weight .table td {
   color: #fff;
   cursor: pointer;
   text-transform: uppercase;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   margin-right: 4px;
 }
-
 
 /* Estilos para pantallas con un ancho de 600px o menos */
 @media (max-width: 950px) {
@@ -1192,5 +1238,4 @@ weight .table td {
     font-size: 24px;
     font-weight: bold;
   } */
-
 }

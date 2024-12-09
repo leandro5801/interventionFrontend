@@ -116,7 +116,7 @@ export default function UebForm({
   async function createUeb(updatedRow) {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/ueb",
+        "http://localhost:3000/api/ueb/ueb",
         updatedRow
       );
       if (response.status === 201) {

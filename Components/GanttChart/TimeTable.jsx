@@ -21,8 +21,6 @@ export default function TimeTable({
   selectedConsultor,
   selectedProcess,
 }) {
-
-
   // for dynamic css styling
   const ganttTimePeriod = {
     display: "grid",
@@ -108,7 +106,7 @@ export default function TimeTable({
       );
       weekRow.push(
         <div key={j} style={{ ...ganttTimePeriod, outline: "none" }}>
-          <span style={{ ...ganttTimePeriodSpan, color: "#3E455B" }}>
+          <span style={{ ...ganttTimePeriodSpan, color: "#3E455Z" }}>
             {getDayOfWeek(currYear, currMonth - 1, j - 1)}
           </span>
         </div>
@@ -154,13 +152,16 @@ export default function TimeTable({
               style={{
                 ...ganttTimePeriodCell,
                 backgroundColor:
-                  dayOfTheWeek === "S" ? "var(--color-tertiary)" : "#fff",
+                  dayOfTheWeek === "S" || dayOfTheWeek === "D" ? "" : "",
               }}
               data-task={task?.id_intervencion}
               data-date={formattedDate}
             >
               {interventions.map((el, i) => {
-                if (el?.id_intervencion === task?.id_intervencion && el?.start_date === formattedDate) {
+                if (
+                  el?.id_intervencion === task?.id_intervencion &&
+                  el?.start_date === formattedDate
+                ) {
                   return (
                     <div
                       key={`${i}-${el?.id_intervencion}`}
@@ -208,11 +209,11 @@ export default function TimeTable({
           gridTemplateColumns: `repeat(${numMonths}, 1fr)`,
           paddingLeft: "0.5px",
           position: "sticky",
-          zIndex:"10",
-          top:"0",
-          
-  // top: "0",
-  // z-index: "10",
+          zIndex: "10",
+          top: "0",
+
+          // top: "0",
+          // z-index: "10",
         }}
       >
         {taskRows}

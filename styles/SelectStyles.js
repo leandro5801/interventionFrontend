@@ -13,23 +13,21 @@ export const customStyles = {
   }),
   dropdown: (base) => ({
     ...base,
-   
   }),
   menuList: (data) => ({
-   maxHeight: "60px",
-   overflow: 'auto',
+    maxHeight: "60px",
+    overflow: "auto",
   }),
   //   valueContainer: (base) => ({
   //   ...base,
   //   maxHeight: "30px",
   //   overflow: 'auto',
   // }),
-    components: {
+  components: {
     MultiValueContainer: ({ children, innerProps }) => (
       <div style={{ display: "flex" }} {...innerProps}>
         {children}
       </div>
     ),
   },
-
 };

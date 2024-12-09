@@ -161,7 +161,6 @@ function AreaCargarDatosTable({
         >
           <CircularProgress color="inherit" />
         </Backdrop>
-        {/* Renderizar las empresas aquí */}
       </div>
     );
   } else {
@@ -344,10 +343,7 @@ function AreaCargarDatosTable({
                     </TableFooter>
                   </Table>
                 )}
-                <Dialog
-                  open={openDialogError}
-                  onClose={handleCloseDialogError}
-                >
+                <Dialog open={openDialogError} onClose={handleCloseDialogError}>
                   <Alert severity="error">
                     <AlertTitle>Error</AlertTitle>
                     Ha ocurrido un error. Inténtelo más tarde.

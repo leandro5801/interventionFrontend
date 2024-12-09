@@ -82,10 +82,15 @@ export default function UebCargarDatosForm({
   async function fetchUeb(Data) {
     // setCargandoUeb(true);
     try {
+      
       const response = await axios.get(
         "http://localhost:3000/api/ueb/ueb/",
         Data
       );
+
+      // const response = await axios.get(
+      //   "/list_UEBs.json"
+      //)
       setUebs(response.data);
       console.log(response.data);
     } catch (error) {

@@ -37,12 +37,8 @@ export default function DireccionCargarDatosForm({
   onSave,
 }) {
   const [name, setName] = useState(direccion ? direccion.nombre_direccion : "");
-  const [empresa, setEmpresa] = useState(
-    ""
-  );
-  const [ueb, setueb] = useState(
-    ""
-  );
+  const [empresa, setEmpresa] = useState("");
+  const [ueb, setueb] = useState("");
 
   const [uebId, setUebId] = useState("");
   const empresasOptions =
@@ -140,7 +136,7 @@ export default function DireccionCargarDatosForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Empresa</InputLabel>
+            <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -169,7 +165,7 @@ export default function DireccionCargarDatosForm({
             )}
           </div>
           <div>
-          <InputLabel>UEB</InputLabel>
+            <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
