@@ -24,6 +24,11 @@ export const createCustomTheme = (font, mode) => {
         },
         typography: { fontFamily: getFontFamily(font) },
         components: {
+          MuiButton: {
+            defaultProps: {
+              variant: "contained", // Establece el estilo por defecto como outlined
+            },
+          },
           MuiInput: {
             styleOverrides: {
               root: {
@@ -34,6 +39,7 @@ export const createCustomTheme = (font, mode) => {
           MuiFilledInput: {
             styleOverrides: {
               root: {
+                color: "white",
                 backgroundColor: "#181a1c", // Color de fondo en modo oscuro
                 "&:hover": {
                   backgroundColor: "#202326", // Color de fondo al pasar el mouse en modo oscuro
@@ -68,7 +74,7 @@ export const createCustomTheme = (font, mode) => {
             main: "#007e9e",
           },
           secondary: {
-            main: "#4be35a",
+            main: "#4beeee",
           },
           background: {
             default: "#ffffff",
@@ -77,6 +83,11 @@ export const createCustomTheme = (font, mode) => {
         },
         typography: { fontFamily: getFontFamily(font) },
         components: {
+          MuiButton: {
+            defaultProps: {
+              variant: "contained", // Establece el estilo por defecto como outlined
+            },
+          },
           MuiInput: {
             styleOverrides: {
               root: {

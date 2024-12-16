@@ -149,7 +149,7 @@ export default function ProyectoForm({
 
     try {
       const response = await axios.post("http://localhost:3000/api/proyecto", {
-        id_cliente: 1,
+        ...updatedRow,
       });
       if (response.status === 201) {
         // Actualiza el estado para añadir la nueva empresa al frontend

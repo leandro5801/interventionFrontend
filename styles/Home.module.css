@@ -1,4 +1,28 @@
 /* Dashboard */
+/* Toast */
+.toast_custom {
+  background-color: #1976d2; /* Color de fondo */
+  color: white; /* Color del texto */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 16px; /* Espaciado interno */
+  display: flex; /* Para alinear el contenido */
+  align-items: center; /* Centrar verticalmente */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.toast_icon {
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+  font-size: 24px; /* Tamaño del icono */
+}
+
+.toast_title {
+  font-weight: bold; /* Título en negrita */
+  margin-bottom: 4px; /* Espacio debajo del título */
+}
+
+.toast_message {
+  font-size: 14px; /* Tamaño del texto del mensaje */
+}
 
 .buttonContainer {
   display: flex;
