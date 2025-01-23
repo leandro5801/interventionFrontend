@@ -56,7 +56,7 @@ export default function DireccionForm({
   const empresasOptions =
     empresas &&
     empresas
-      .filter((item) => item.cargar_empresa === false)
+      /* .filter((item) => item.cargar_empresa === false) */
       .map((item) => ({
         value: item.id_empresa,
         label: item.nombre_empresa,
@@ -200,7 +200,7 @@ export default function DireccionForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Empresa</InputLabel>
+            <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -229,7 +229,7 @@ export default function DireccionForm({
             )}
           </div>
           <div>
-          <InputLabel>UEB</InputLabel>
+            <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -259,7 +259,7 @@ export default function DireccionForm({
           </div>
         </div>
         <div className={styles.fullRow}>
-        <InputLabel>Nombre de la dirección</InputLabel>
+          <InputLabel>Nombre de la dirección</InputLabel>
           <Input
             className={`${styles.inputFormDirec}  ${
               errors.name ? "is-invalid" : ""

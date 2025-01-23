@@ -1,7 +1,8 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Fuente } from "../../enums/Fuente.enum";
+import useLocalStorage from "../../helpers/useLocalStorage";
+import { UserContext } from "../user/UserContext";
 export const SessionContext = createContext({});
 export default function SessionProvider({ children }) {
   /* const sessionCookie = Cookies.get("session");
@@ -9,49 +10,56 @@ export default function SessionProvider({ children }) {
     ? JSON.parse(sessionCookie)
     : { isDark: false, font: "", id: "" }; */
 
-  const [session, setSession] = useState({
-    isDark: false,
-    font: "",
-    id: "",
+  const { user } = useContext(UserContext);
+  const { get, set } = useLocalStorage();
+  const [id_session, setId_session] = useState(() => {
+    const session = get("id_session");
+    return session ? session : "";
   });
-
   const [isLoading, setIsLoading] = useState(true); // Estado de carga
   const [isDark, setIsDark] = useState(() => {
-    // Establecer el estado inicial de isDark desde la cookie
-    const sessionCookie = Cookies.get("session");
-    if (sessionCookie) {
-      const parsedSession = JSON.parse(sessionCookie);
-      return parsedSession.isDark; // Retorna el valor de isDark de la cookie
-    } else return false; // Valor por defecto si no hay cookie
+    // Establecer el estado inicial de isDark desde localStorage
+    const dark = get("isDark");
+
+    if (dark === "true") {
+      console.log(dark);
+      return true;
+    } else return false;
   });
   const [font, setFont] = useState(() => {
-    // Establecer el estado inicial de isDark desde la cookie
-    const sessionCookie = Cookies.get("session");
-    console.log(sessionCookie);
-
-    if (sessionCookie) {
-      const parsedSession = JSON.parse(sessionCookie);
-      return parsedSession.font; // Retorna el valor de isDark de la cookie
-    } else return "Roboto"; // Valor por defecto si no hay cookie
+    // Establecer el estado inicial de isDark desde localStorage
+    const font = get("font");
+    if (font) {
+      return get("font");
+    } else return "Roboto";
   });
+
+  useEffect(() => {
+    async function fetchSession(idSession) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/session/${idSession}`
+        );
+        if (response.status === 200) {
+          set("isDark", response.data.isDark);
+          set("font", response.data.font);
+          setIsDark(response.data.isDark);
+          setFont(response.data.font);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchSession(user ? user.id_session : get("id_session"));
+    setIsLoading(false);
+  }, []);
+
   const toggleTheme = () => {
     const newIsDark = !isDark;
-    Cookies.set("session", JSON.stringify({ isDark: newIsDark, font: font }));
+    set("isDark", newIsDark);
     setIsDark(newIsDark);
   };
-  useEffect(() => {
-    // Cargar la sesión desde las cookies si existe
-    const sessionCookie = Cookies.get("session");
-    if (sessionCookie) {
-      const parsedSession = JSON.parse(sessionCookie);
-      // setIsDark(parsedSession.isDark);
-      setSession(parsedSession);
-      // setFont(parsedSession.font); // Analiza la cookie de sesión y establece el estado
-    } else {
-      console.log("no tiene cookie");
-    }
-    setIsLoading(false);
-  }, []); // Este efecto se ejecuta solo una vez después de que el componente se monta
 
   useEffect(() => {
     if (typeof document !== "undefined") {
@@ -60,40 +68,16 @@ export default function SessionProvider({ children }) {
         isDark ? "dark" : "light"
       );
     }
-    console.log(isDark);
   }, [isDark]);
 
-  async function fetchSession(idSession) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/api/session/${idSession}`
-      );
-      if (response.status === 200) {
-        console.log(response.data);
-        /* document.cookie = `theme=${response.data.isDark};  path=/`; */
-        Cookies.set(
-          "session",
-          JSON.stringify({
-            isDark: response.data.isDark,
-            font: response.data.font,
-          })
-        );
-        setSession(response.data);
-        setIsDark(response.data.isDark);
-        setFont(response.data.font);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
   async function saveSession() {
-    console.log(session);
+    console.log({ font, isDark, id_session });
 
     try {
       const response = await axios.patch(`http://localhost:3000/api/session/`, {
         isDark: isDark,
-        font: Fuente[font],
-        id: session.id,
+        font: font,
+        id: id_session,
       });
       console.log(response);
 
@@ -108,17 +92,14 @@ export default function SessionProvider({ children }) {
     }
   }
   const changeFont = (newFont) => {
-    Cookies.set("session", JSON.stringify({ isDark: isDark, font: newFont }));
-    setSession({ isDark: isDark, font: newFont, id: session.id });
+    set("font", newFont);
     setFont(newFont);
   };
 
   return (
     <SessionContext.Provider
       value={{
-        session,
-        setSession,
-        fetchSession,
+        id_session,
         isDark,
         setIsDark,
         font,

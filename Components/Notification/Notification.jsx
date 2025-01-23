@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import styles from "../../styles/Home.module.css";
 import MarkEmailReadIcon from "@mui/icons-material/MarkEmailRead";
+import WorkIcon from "@mui/icons-material/Work";
 
 import {
+  Avatar,
   Badge,
+  Box,
   Button,
+  Card,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   IconButton,
   List,
   ListItem,
+  ListItemAvatar,
+  ListItemButton,
   ListItemSecondaryAction,
   ListItemText,
   Popover,
@@ -25,6 +32,9 @@ import { useNotification } from "./useNotification";
 import DeleteIcon from "@mui/icons-material/Delete";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import Image from "next/image";
+import { SessionContext } from "../../contexts/session/SessionContext";
+import { NotificationImportant } from "@mui/icons-material";
+import NotificationDialog from "./DialogNotification";
 export function NotificationBell() {
   // const [animate, setAnimate] = useState(false);
   const {
@@ -40,8 +50,17 @@ export function NotificationBell() {
     isMarkingAsRead,
     handleDelete,
     handleMarkAsRead,
+    handleSelectedNotification,
+    selectedNotification,
+    openSelectedNotification,
+    handleCloseDialogNotification,
   } = useNotification();
+  const { isDark } = useContext(SessionContext);
   const [abrirDialog, setAbrirDialog] = useState(false);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
 
   const handleOpenDialog = () => {
     setAbrirDialog(true);
@@ -69,7 +88,12 @@ export function NotificationBell() {
               },
             }}
           >
-            <NotificationsIcon className={styles.icon} />
+            <NotificationsIcon
+              className={styles.icon}
+              style={{
+                color: isDark ? "black" : "#fff",
+              }}
+            />
           </Badge>
         </Tooltip>
       </div>
@@ -87,19 +111,26 @@ export function NotificationBell() {
           horizontal: "center",
         }}
         sx={{
-          maxWidth: "550px",
-          maxHeight: "400px", // Limitar el ancho
+          /* width: "full",
+          height: "full", */
+
+          maxWidth: "500px",
+          maxHeight: "350px", // Limitar el ancho
         }}
       >
         {notifications.length <= 0 ? (
           <Typography sx={{ p: 1 }}> No hay notificaciones</Typography>
         ) : (
-          <div>
+          <Box sx={{ width: "full" }}>
             <Typography sx={{ p: 1 }}>Notificaciones</Typography>
             <hr />
             <List
+              component="nav"
               sx={{
-                maxHeight: "200px",
+                // maxWidth: 500,
+                maxHeight: 220,
+                width: 300,
+                height: "full",
                 overflow: "auto",
                 padding: 0,
                 "&::-webkit-scrollbar": {
@@ -114,25 +145,45 @@ export function NotificationBell() {
               }}
             >
               {notifications.map((notification) => (
-                <ListItem
+                <ListItemButton
+                  dense
                   key={notification.id}
-                  sx={{
-                    "&:hover": {
-                      backgroundColor: (theme) => theme.palette.action.hover, // Usa el color de hover del tema
-                      transition: "background-color 0.3s ease", // Transición suave
-                    },
-                    cursor: "default",
-                  }}
+                  alignItems="center"
+                  selected={
+                    selectedNotification
+                      ? selectedNotification.id === notification.id
+                      : false
+                  }
+                  sx={{ width: "full", height: "" }}
                 >
-                  <Image
+                  <ListItemAvatar
+                    onClick={(event) =>
+                      handleSelectedNotification(notification)
+                    }
+                  >
+                    <Avatar>
+                      <WorkIcon
+                        /* fontSize="2em" */ sx={{
+                          color: "rgb(30, 59, 78)",
+                        }}
+                      />
+                    </Avatar>
+                  </ListItemAvatar>
+
+                  {/* <Image
                     src={`/images/proyect.jpg`}
                     alt="Proyecto"
                     width={140} // Ancho de la imagen
                     height={60} // Alto de la imagen
                     style={{ borderRadius: "50%", marginRight: "5%" }}
-                  />
+                  /> */}
                   <ListItemText
+                    sx={{}}
                     primary={notification.mensaje}
+                    onClick={(event) =>
+                      handleSelectedNotification(notification)
+                    }
+
                     /* secondary={
                   notification.isRead ? (
                     <CheckBoxIcon />
@@ -149,7 +200,7 @@ export function NotificationBell() {
                       sx={{ marginLeft: 1 }} // Espaciado a la izquierda
                     />
                   )}
-                  <ListItemSecondaryAction>
+                  <>
                     <Tooltip title="Eliminar notificación" arrow>
                       <IconButton
                         edge="end"
@@ -159,8 +210,8 @@ export function NotificationBell() {
                         <HighlightOffIcon color="info" />
                       </IconButton>
                     </Tooltip>
-                  </ListItemSecondaryAction>
-                </ListItem>
+                  </>
+                </ListItemButton>
               ))}
             </List>
             <div className={styles.buttonContainer}>
@@ -186,9 +237,18 @@ export function NotificationBell() {
                 </Button>
               </Tooltip>
             </div>
-          </div>
+          </Box>
         )}
       </Popover>
+      {openSelectedNotification ? (
+        <NotificationDialog
+          handleClose={handleCloseDialogNotification}
+          notification={selectedNotification}
+          open={openSelectedNotification}
+        />
+      ) : (
+        ""
+      )}{" "}
       <Dialog
         open={abrirDialog}
         onClose={handleCloseDialog}

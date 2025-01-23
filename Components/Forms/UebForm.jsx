@@ -51,11 +51,10 @@ export default function UebForm({
   );
   const empresasOptions =
     empresas &&
-    empresas
-      .map((item) => ({
-        value: item.id_empresa,
-        label: item.nombre_empresa,
-      }));
+    empresas.map((item) => ({
+      value: item.id_empresa,
+      label: item.nombre_empresa,
+    }));
 
   const validarNombresIguales = (nombre_ueb, id_original) => {
     const nombre = uebs
@@ -116,7 +115,7 @@ export default function UebForm({
   async function createUeb(updatedRow) {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/ueb/ueb",
+        "http://localhost:3000/api/ueb",
         updatedRow
       );
       if (response.status === 201) {
@@ -179,7 +178,7 @@ export default function UebForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Empresa</InputLabel>
+            <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -208,7 +207,7 @@ export default function UebForm({
           </div>
 
           <div>
-          <InputLabel>UEB</InputLabel>
+            <InputLabel>UEB</InputLabel>
             <Input
               className={`${styles.inputForm}  ${
                 errors.name ? "is-invalid" : ""
@@ -218,7 +217,6 @@ export default function UebForm({
               {...register("name")}
               value={name}
               onChange={(event) => setName(event.target.value)}
-
             />
             <div className={styles.error}>{errors.name?.message}</div>
           </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "../../styles/Home.module.css";
 
 //sms de confirmacion
@@ -10,6 +10,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
+import { SessionContext } from "../../contexts/session/SessionContext";
 
 export default function Tasks({
   interventions,
@@ -26,6 +27,7 @@ export default function Tasks({
   setTableRData,
   setOpenDialog,
 }) {
+  const { font } = useContext(SessionContext);
   const inputRef = useRef([]);
   const indexRef = useRef(null);
 
@@ -107,14 +109,17 @@ export default function Tasks({
             key={`${i}-${tsk?.id_intervencion}-${tsk.nombre_intervencion}`}
             className={styles.ganttTaskRow}
           >
-            <input
+            <textarea
               readOnly
               className={styles.inputTask}
               data-task-id={tsk?.id_intervencion}
               value={tsk?.nombre_intervencion}
-              // onChange={(e) => onChange(e, i)}
               onClick={handleClick}
-              // ref={(el) => (inputRef.current[i] = el)}
+              style={{
+                resize: "none",
+                overflowY: "scroll",
+                fontFamily: `${font}`,
+              }}
             />
           </div>
         ))}

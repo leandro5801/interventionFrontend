@@ -4,123 +4,30 @@ import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
 import TrabajadorTable from "../../Components/Tables/TrabajadorTable";
+import { Typography } from "@mui/material";
+import useTrabajadoresPage from "../../hooks/useTrabajadoresPage";
 
 export default function TrabajadorPage() {
-  // datos de las ueb
-  const [trabajadores, setTrabajadores] = useState([]);
-  const [areas, setAreas] = useState([]);
-  const [direcciones, setDirecciones] = useState([]);
-  const [uebs, setUebs] = useState([]);
-  const [empresas, setEmpresas] = useState([]);
-  const [error, setError] = useState(null);
-  const [cargando, setCargando] = useState(false);
-
-  let filteredEmpresa = [];
-  let filteredUeb = [];
-  let filteredDireccion = [];
-  let filteredArea = [];
-  let filteredTrabajador = [];
-
-  useEffect(() => {
-    async function fetchEmpresa() {
-      setCargando(true);
-      try {
-        const response = await axios.get('http://localhost:3000/api/empresa');
-        setEmpresas(response.data);
-      } catch (error) {
-        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchUeb() {
-      setCargando(true);
-      try {
-        const response = await axios.get('http://localhost:3000/api/ueb');
-        setUebs(response.data);
-      } catch (error) {
-        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchDireccion() {
-      setCargando(true);
-      try {
-        const response = await axios.get('http://localhost:3000/api/direccion');
-        setDirecciones(response.data);
-      } catch (error) {
-        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchArea() {
-      setCargando(true);
-      try {
-        const response = await axios.get('http://localhost:3000/api/area');
-        setAreas(response.data);
-      } catch (error) {
-        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchTrabajador() {
-      setCargando(true);
-      try {
-        const response = await axios.get('http://localhost:3000/api/trabajador');
-        setTrabajadores(response.data);
-      } catch (error) {
-        setError('Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo.');
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    fetchEmpresa();
-    fetchUeb();
-    fetchDireccion();
-    fetchArea();
-    fetchTrabajador();
-  }, []);
-
-  if (empresas) {
-    filteredEmpresa = empresas.filter(
-      (empresa) => empresa.cargar_empresa === false
-    );
-    filteredUeb = uebs.filter((ueb) =>
-      filteredEmpresa.find((empresa) => empresa.id_empresa === ueb.id_empresa)
-    );
-    filteredDireccion = direcciones.filter((direccion) =>
-      filteredUeb.find((ueb) => ueb.id_ueb === direccion.id_ueb)
-    );
-    filteredArea = areas.filter((area) =>
-      filteredDireccion.find(
-        (direccion) => direccion.id_direccion === area.id_direccion
-      )
-    );
-    filteredTrabajador = trabajadores.filter((trabajador) =>
-      filteredArea.find(
-        (area) => area.id_area === trabajador.id_area
-      )
-    );
-  }
+  const {
+    trabajadores,
+    setTrabajadores,
+    empresas,
+    uebs,
+    direcciones,
+    areas,
+    cargando,
+  } = useTrabajadoresPage();
 
   return (
     <div className={styles.title}>
-      <h3>Trabajadores</h3>
+      <Typography variant="h3">Trabajadores</Typography>
       <TrabajadorTable
-        trabajadores={filteredTrabajador}
+        trabajadores={trabajadores}
         setTrabajadores={setTrabajadores}
-        empresas={filteredEmpresa}
-        uebs={filteredUeb}
-        direcciones={filteredDireccion}
-        areas={filteredArea}
+        empresas={empresas}
+        uebs={uebs}
+        direcciones={direcciones}
+        areas={areas}
         cargando={cargando}
       />
     </div>

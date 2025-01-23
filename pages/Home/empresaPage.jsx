@@ -1,55 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
 
 import EmpresaTable from "../../Components/Tables/EmpresaTable";
+import { Typography } from "@mui/material";
+import useEmpresaPage from "../../hooks/useEmpresaPage";
 export default function EmpresaPage() {
-  // datos de las empresas
-  // const [empresas, setEmpresas] = useState(datosEmpresas?.empresas);
-  const [empresas, setEmpresas] = useState([]);
-  const [uebs, setUebs] = useState([]);
-  const [error, setError] = useState(null);
-  const [cargando, setCargando] = useState(false);
-  
-  useEffect(() => {
-    async function fetchEmpresa() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/empresa");
-        setEmpresas(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchUeb() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/ueb");
-        setUebs(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    fetchEmpresa();
-    fetchUeb();
-  }, []);
-
+  const { empresas, setEmpresas, cargando, error, uebs } = useEmpresaPage();
   return (
     <div className={styles.title}>
-      <h3>Empresas</h3>
-      
+      <Typography variant="h3">Empresas</Typography>
+
       <EmpresaTable
         empresas={empresas}
         setEmpresas={setEmpresas}

@@ -352,7 +352,7 @@ function RecomendationTable({
                   placeholder="Proyecto"
                   isClearable
                 />
-                 <Select
+                <Select
                   styles={customStyles}
                   className={styles.selectGestionesGantt}
                   defaultValue={interventionFilter}
@@ -362,7 +362,6 @@ function RecomendationTable({
                   options={optioninterventions}
                   placeholder="Intervención"
                   isClearable
-                  
                 />
               </div>
               <div className={styles.filtrosEstructuraContentInt}>

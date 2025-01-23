@@ -12,12 +12,14 @@ import { Input, InputAdornment, Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext } from "react";
+import useLocalStorage from "../../helpers/useLocalStorage";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
     nombre_usuario: "",
     contraseña: "",
   });
+  const { set } = useLocalStorage();
   //  const [usuario, setUsuario] = useState();
   // const { user, setUser, fetchSession } = useContext(UserContext);
   const { user, changeUser } = useContext(UserContext);
@@ -43,8 +45,8 @@ const Login = () => {
         // si el usuario es correcto
         //para guardar el token en las cokies del navegador
         document.cookie = `access_token=${response.data.access_token};  path=/`;
-
-        console.log(response.data);
+        set("access_token", response.data.access_token);
+        console.log(response.data.user);
 
         changeUser(response.data.user);
         // fetchSession(response.data.user.id_session);
@@ -120,7 +122,7 @@ const Login = () => {
       </div>
       <div className={styles.smallContainer}>
         <div>
-          <h4>Sistema de autenticación</h4>
+          <h4 /* style={{ color: "black" }} */>Sistema de autenticación</h4>
         </div>
 
         <form onSubmit={handleLogin}>

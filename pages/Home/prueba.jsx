@@ -1,7 +1,8 @@
-import React from "react";
+/* import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Typography } from "@mui/material";
 
 export default function Prueba() {
   const [error, setError] = useState(null);
@@ -27,11 +28,12 @@ export default function Prueba() {
     }
     getProfile();
   }, []);
-  
+
   return (
     <div>
-      <h3> Prueba</h3>
+      <Typography variant="h3"> Prueba</Typography>
       <button onClick={() => getProfile()}>getProfile</button>
     </div>
   );
 }
+ */

@@ -1,72 +1,22 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
 
 import styles from "../../styles/Home.module.css";
 import ProjectTable from "../../Components/Tables/ProjectTable";
+import { Typography } from "@mui/material";
+import useProjectsPage from "../../hooks/useProjectsPage";
 
 export default function ProyectoPage() {
-  // datos de los proyectos
-  const [projects, setProjects] = useState([]);
-  const [clientes, setClientes] = useState([]);
-  const [consultores, setConsultores] = useState([]);
-  const [interventions, setInterventions] = useState([]);
-  const [error, setError] = useState(null);
-  const [cargando, setCargando] = useState(true);
-  useEffect(() => {
-    async function fetchProyecto() {
-      try {
-        const response = await axios.get("http://localhost:3000/api/proyecto");
-        setProjects(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-      }
-    }
-    async function fetchClientes() {
-      try {
-        const response = await axios.get("http://localhost:3000/api/cliente");
-        setClientes(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-      }
-    }
-    async function fetchConsultores() {
-      try {
-        const response = await axios.get("http://localhost:3000/api/consultor");
-        setConsultores(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-      }
-    }
-    async function fetchIntervention() {
-      const response = await axios.get(
-        "http://localhost:3000/api/intervencion"
-      );
-      setInterventions(response.data);
-    }
-
-    fetchProyecto();
-    fetchClientes();
-    fetchConsultores();
-    fetchIntervention();
-    setCargando(false);
-  }, []);
-
+  const {
+    projects,
+    setProjects,
+    consultores,
+    clientes,
+    cargando,
+    interventions,
+  } = useProjectsPage();
   return cargando ? null : (
     <div className={styles.title}>
-      <h3> Proyectos</h3>
+      <Typography variant="h3"> Proyectos</Typography>
       <ProjectTable
         projects={projects}
         setProjects={setProjects}

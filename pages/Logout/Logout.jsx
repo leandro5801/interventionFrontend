@@ -6,9 +6,11 @@ import styles from "../../styles/Home.module.css";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { SessionContext } from "../../contexts/session/SessionContext";
+import useLocalStorage from "../../helpers/useLocalStorage";
 
 const Logout = ({ setMostrarLogout }) => {
   const { saveSession } = useContext(SessionContext);
+  const { remove } = useLocalStorage();
   const router = useRouter();
   const handleLogout = () => {
     Swal.fire({
@@ -32,12 +34,16 @@ const Logout = ({ setMostrarLogout }) => {
             Swal.showLoading();
           },
           willClose: () => {
-            Cookies.remove("access_token");
-            Cookies.remove("id_session");
-            Cookies.remove("session");
             saveSession();
-            document.documentElement.setAttribute("data-theme", "light");
+            remove("access_token");
+            remove("id_session");
+            remove("session");
+            remove("id_rol");
+            remove("id_usuario");
+            remove("isDark");
+            remove("font");
             router.push("/Login/Login");
+            document.documentElement.setAttribute("data-theme", "light");
           },
         });
       }

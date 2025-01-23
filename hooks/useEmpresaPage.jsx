@@ -1,12 +1,7 @@
-/* import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import styles from "../../styles/Home.module.css";
-
-import EmpresaTable from "../../Components/Tables/EmpresaTable";
-import { Typography } from "@mui/material";
-export default function EmpresaPage() {
+export default function useEmpresaPage() {
   // datos de las empresas
   // const [empresas, setEmpresas] = useState(datosEmpresas?.empresas);
   const [empresas, setEmpresas] = useState([]);
@@ -29,28 +24,22 @@ export default function EmpresaPage() {
         setCargando(false);
       }
     }
-    // async function fetchUeb() {
-    //   setCargando(true);
-    //   try {
-    //     const response = await axios.get("http://localhost:3000/api/ueb");
-    //     setUebs(response.data);
-    //   } catch (error) {
-    //     setError(
-    //       "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-    //     );
-    //     console.error(error);
-    //   } finally {
-    //     setCargando(false);
-    //   }
-    // }
+    async function fetchUeb() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/ueb");
+        setUebs(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
     fetchEmpresa();
-    // fetchUeb();
+    fetchUeb();
   }, []);
-
-  return (
-    <div className={styles.title}>
-      <Typography variant="h3">Empresas</Typography>
-    </div>
-  );
+  return { empresas, error, setEmpresas, cargando, uebs };
 }
- */

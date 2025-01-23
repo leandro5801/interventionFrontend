@@ -100,8 +100,10 @@ export default function DireccionCargarDatosForm({
 
   async function fetchDireccion(Data) {
     // setCargandoUeb(true);
+    console.log(Data);
+
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         "http://localhost:3000/api/direccion/direccion/",
         Data
       );
@@ -119,7 +121,10 @@ export default function DireccionCargarDatosForm({
     const updatedRow = {
       nombre_ueb: data.ueb.label,
       nombre_empresa: data.empresa.label,
+      uebId: +uebId,
     };
+    console.log(uebId);
+
     fetchDireccion(updatedRow);
     onSave();
 

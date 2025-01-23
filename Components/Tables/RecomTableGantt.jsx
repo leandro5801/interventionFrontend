@@ -27,6 +27,7 @@ import {
   DialogTitle,
   Dialog,
   Button,
+  Typography,
 } from "@mui/material";
 
 function RecomendationTable({
@@ -142,7 +143,9 @@ function RecomendationTable({
       {tableRData.length === 0 || (
         <div>
           <div className={styles.divIconH2}>
-            <h4>Recomendaciones</h4>
+            <Typography>
+              <h4>Recomendaciones</h4>
+            </Typography>
           </div>
           <TableContainer component={Paper}>
             <Table stickyHeader>
@@ -151,53 +154,60 @@ function RecomendationTable({
                   <TableCell className={styles.letraEnNegrita}>
                     Recomendación
                   </TableCell>
-                  <TableCell className={styles.letraEnNegrita}>Descripción</TableCell>
-                  <TableCell className={styles.letraEnNegrita}>Consultor</TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Descripción
+                  </TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Consultor
+                  </TableCell>
                   <TableCell className={styles.letraEnNegrita}>Fecha</TableCell>
                   <TableCell className={styles.letraEnNegrita}>Tipo</TableCell>
-                  <TableCell className={styles.letraEnNegrita}>Seguida</TableCell>
+                  <TableCell className={styles.letraEnNegrita}>
+                    Seguida
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                  {tableRData
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((recomendation) => (
-                    <TableRow key={recomendation.id_recomendacion} className={styles.trStyle}>
-                      <TableCell >
+                {tableRData
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((recomendation) => (
+                    <TableRow
+                      key={recomendation.id_recomendacion}
+                      className={styles.trStyle}
+                    >
+                      <TableCell>
                         {recomendation.nombre_recomendacion}
                       </TableCell>
-                      <TableCell >
+                      <TableCell>
                         {recomendation.descripcion_recomendacion}
                       </TableCell>
-                      <TableCell >
+                      <TableCell>
                         {nombreConsultor(recomendation.id_consultor)}
                       </TableCell>
-                      <TableCell >
-                        {recomendation.fecha_recomendacion}
-                      </TableCell>
-                      <TableCell >
+                      <TableCell>{recomendation.fecha_recomendacion}</TableCell>
+                      <TableCell>
                         {nombreClasificacion(recomendation.id_clasificacion)}
                       </TableCell>
-                      <TableCell >
+                      <TableCell>
                         {isFollow(recomendation.seguimiento)}
                       </TableCell>
                     </TableRow>
                   ))}
               </TableBody>
               <TableFooter>
-              <TableRow>
-                <TablePagination
-                  className={styles.tablePagination}
-                  rowsPerPageOptions={[2, 4, 8]}
-                  count={tableRData.length}
-                  rowsPerPage={rowsPerPage}
-                  page={page}
-                  onPageChange={handleChangePage}
-                  onRowsPerPageChange={handleChangeRowsPerPage}
-                  labelRowsPerPage="Filas por página:"
-                />
-              </TableRow>
-            </TableFooter>
+                <TableRow>
+                  <TablePagination
+                    className={styles.tablePagination}
+                    rowsPerPageOptions={[2, 4, 8]}
+                    count={tableRData.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    labelRowsPerPage="Filas por página:"
+                  />
+                </TableRow>
+              </TableFooter>
             </Table>
           </TableContainer>
         </div>

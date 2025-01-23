@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import Cookies from "js-cookie";
+import React, { useContext, useState } from "react";
 import {
   Backdrop,
   CircularProgress,
@@ -8,23 +7,11 @@ import {
 } from "@mui/material";
 import { createCustomTheme } from "../helpers/theme"; // Importa los temas
 import { SessionContext } from "../contexts/session/SessionContext";
-import { UserContext } from "../contexts/user/UserContext";
 import { ToastContainer } from "react-toastify";
 export default function Wrap({ children }) {
-  const { isDark, fetchSession, font, session } = useContext(SessionContext);
-  const { user } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(true);
+  const { isDark, font } = useContext(SessionContext);
 
-  useEffect(() => {
-    console.log(Cookies.get("id_session"));
-
-    session.id === ""
-      ? fetchSession(
-          user ? user.id_session : JSON.parse(Cookies.get("id_session"))
-        )
-      : null;
-    setIsLoading(false);
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   return isLoading ? (
     <div>

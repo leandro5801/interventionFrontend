@@ -1,20 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { ThemeContext } from "../contexts/theme/ThemeContext";
+import WbSunnyIcon from "@mui/icons-material/WbSunny"; // Icono de sol
+import NightsStayIcon from "@mui/icons-material/NightsStay"; // Icono de luna
 import Logout from "../pages/Logout/Logout";
-
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import { Switch, Typography, Unstable_Grid2 } from "@mui/material";
+import { Switch, Typography, Tooltip } from "@mui/material";
 import { SessionContext } from "../contexts/session/SessionContext";
 import SelectFont from "./Select/SelectFont";
 import Notification from "./Notification/Notification";
 import { UserContext } from "../contexts/user/UserContext";
 
 function Header() {
-  //cambiar tema
   const { isDark, toggleTheme } = useContext(SessionContext);
   const { user } = useContext(UserContext);
   const [mostrarLogout, setMostrarLogout] = useState(false);
@@ -24,7 +20,7 @@ function Header() {
       <div className={styles.headcontainer}>
         <div className={styles.headwrapper}>
           <div className={styles.titlePrincipal}>
-            <h2>Intervenciones</h2>
+            <Typography variant="h2">Intervenciones</Typography>
           </div>
         </div>
 
@@ -33,20 +29,53 @@ function Header() {
           <SelectFont />
         </div>
         <div className={styles.switchWrapper}>
-          <Typography className={styles.switchTitle}>
-            {isDark ? "Oscuro" : "Claro"}
-          </Typography>
-
-          <Switch
-            className={styles.switchTheme}
-            checked={isDark}
-            onChange={toggleTheme}
-            color="default"
-          />
+          <div className={styles.themeToggle}>
+            <div className={styles.switchTitle}>
+              {isDark ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <NightsStayIcon
+                    style={{ color: "#000000", transition: "color 0.3s" }}
+                  />
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <WbSunnyIcon
+                    style={{ color: "#ffffff", transition: "color 0.3s" }}
+                  />
+                </div>
+              )}
+            </div>
+            <Switch
+              className={styles.switchTheme}
+              checked={isDark}
+              onChange={toggleTheme}
+              color="default"
+              sx={{
+                "& .MuiSwitch-thumb": {
+                  backgroundColor: isDark ? "#000000" : "#ffffff",
+                },
+                "& .Mui-checked": {
+                  color: isDark ? "#000000" : "#ffffff",
+                },
+              }}
+            />
+          </div>
         </div>
 
         <div className={styles.nombreUsuarioContent}>
-          <h2>{user.nombre_usuario}</h2>
+          <Typography variant="h2">{user.nombre_usuario}</Typography>
         </div>
 
         <div className={styles.faIconOutAltContent}>

@@ -14,10 +14,35 @@ export function useNotification() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [idConsultor, setIdConsultor] = useState(false);
   const [isMarkingAsRead, setIsMarkingAsRead] = useState(false); // Estado para el botón
+  const [selectedNotification, setSelectedNotification] = useState(null);
+  const [openSelectedNotification, setOpenSelectedNotification] =
+    useState(false);
 
+  const handleCloseDialogNotification = () => {
+    setOpenSelectedNotification(false);
+  };
+
+  async function handleSelectedNotification(notification) {
+    setSelectedNotification(notification);
+    setNotifications((prevNotifications) =>
+      prevNotifications.map((notifica) =>
+        notifica.id === notification.id
+          ? { ...notifica, isRead: true }
+          : notifica
+      )
+    );
+    // decrement();
+    try {
+      await axios.patch(
+        `http://localhost:3000/api/notificacion/${notification.id}`,
+        { ...notification, isRead: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+    setOpenSelectedNotification(true);
+  }
   const handleDelete = async (id) => {
-    console.log(id);
-
     setNotifications(
       notifications.filter((notification) => notification.id !== id)
     );
@@ -45,6 +70,7 @@ export function useNotification() {
     setUnreadNotifications(0);
   };
   const handleClose = () => {
+    setSelectedNotification(null);
     setAnchorEl(null);
   };
   const open = Boolean(anchorEl);
@@ -134,5 +160,9 @@ export function useNotification() {
     handleDelete,
     isMarkingAsRead,
     setIsMarkingAsRead,
+    handleSelectedNotification,
+    selectedNotification,
+    handleCloseDialogNotification,
+    openSelectedNotification,
   };
 }

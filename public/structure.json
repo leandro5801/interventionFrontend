@@ -1,348 +1,608 @@
 {
-    "ueb": [
-        {
-            "ueb": "AICA",
-            "entidad": "AICA+",
-            "codigo": "16"
-        },
-        {
-            "ueb": "LIORAD",
-            "entidad": "AICA+",
-            "codigo": "25"
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "entidad": "AICA+",
-            "codigo": "55"
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "entidad": "AICA+",
-            "codigo": "100"
-        },
-        {
-            "ueb": "SH+",
-            "entidad": "AICA+",
-            "codigo": "57"
-        }
-    ],
-    "structure": [
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "codigo": "1"
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Direción",
-            "codigo": "2"
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "codigo": "3"
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "codigo": "4"
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "structure": "Dirección Técnico Productiva",
-            "codigo": "5"
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Calidad",
-            "codigo": "6"
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Direción",
-            "codigo": "7"
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Dirección Técnico Productiva",
-            "codigo": "8"
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Calidad",
-            "codigo": "9"
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Direción",
-            "codigo": "10"
-        }
-    ],
-    "area": [
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "DOCUMENTACIÓN                                                                   "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "GRUPO DE TESTIGO, SUSTANCIAS DE REFERENCIA Y MUESTREO                           "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "INSPECCIÓN DE LA CALIDAD                                                        "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "LABORATORIO DE MICROBIOLOGIA                                                    "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "LABORATORIO FÍSICO QUÍMICO                                                      "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "LIBERACIÓN DE LOTES                                                             "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Calidad",
-            "area": "REGISTRO                                                                        "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Direción",
-            "area": "DETARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Direción",
-            "area": "DIRECCIÓN                                                                       "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Departamento de Direción",
-            "area": "GRUPO DE INFORMATICA                                                            "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": " AREA ESTERILIZACIÓN                                                            "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE LAVADO                                                                  "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE LIOFILIZADO                                                             "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE LLENADO                                                                 "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "GRUPO DE PREPARACION DE MEDICAMENTOS                                            "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "GRUPO TÉCNICO                                                                   "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "PLANTA DE PRODUCCIÓN                                                            "
-        },
-        {
-            "ueb": "LIORAD",
-            "structure": "Dirección Técnico Productiva",
-            "area": "REVISIÓN DE CARPULES Y BULBOS                                                   "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "  DEPARTAMENTO DE ESTRATEGIA DE ORGANIZACION Y PLANIFICACION DE LA PRODUCCION   "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "GRUPO ESTRATEGICO DE PLANIFICACION DE LA PROD AMPOLLETAS Y BULBOS (EMPRESA)     "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "DEPARTAMENTO DE DESARROLLO TECNOLÓGICO                                          "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "GRUPO DE VIGILANCIA TECNOLOGICA                                                 "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ALMACÉN DE CUARENTENA                                                           "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE ENVASE                                                                  "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE ESTERILIZACIÓN                                                          "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE ETIQUETADO                                                              "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE LAVADO                                                                  "
-        },
-        {
-            "ueb": "AICA",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Calidad",
-            "area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Calidad",
-            "area": "GRUPO DE REGISTRO Y FARMACOVIGILANCIA                                           "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Calidad",
-            "area": "LABORATORIO DE CONTROL MICROBIOLÓGICO                                           "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Calidad",
-            "area": "LABORATORIO FISICO-QUÍMICO                                                      "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Direción",
-            "area": "DIRECCIÓN GENERAL                                                               "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Departamento de Direción",
-            "area": "GRUPO DE SEGURIDAD INTERNO                                                      "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Dirección Técnico Productiva",
-            "area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Dirección Técnico Productiva",
-            "area": " FORMULACIÓN Y LLENADO                                                          "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Dirección Técnico Productiva",
-            "area": " PREPARACIÓN DE MATERIALES                                                      "
-        },
-        {
-            "ueb": "CITOSTÁTICOS",
-            "structure": "Dirección Técnico Productiva",
-            "area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 "
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Calidad",
-            "area": "DEPARTAMENTO DE ASEGURAMIENTO DE LA CALIDAD                                     "
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Calidad",
-            "area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  "
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Calidad",
-            "area": "GRUPO DE INSPECCIÒN                                                             "
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Direción",
-            "area": "CENTRO DE CONTROL                                                               "
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Direción",
-            "area": "DIRECCIÒN                                                                       "
-        },
-        {
-            "ueb": "SH+",
-            "structure": "Departamento de Direción",
-            "area": "GRUPO DE INFORMÀTICA                                                            "
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "structure": "Dirección Técnico Productiva",
-            "area": " GRUPO CONTROL DE PROCESO                                                       "
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA CONCILIACION                                                               "
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "structure": "Dirección Técnico Productiva",
-            "area": "AREA DE CONFORMACION Y LLENADO DE FRASCOS PLÁSTICOS                             "
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE ETIQUETADO                                                              "
-        },
-        {
-            "ueb": "JULIO TRIGO",
-            "structure": "Dirección Técnico Productiva",
-            "area": "ÁREA DE LAVADO DE BULBOS                                                        "
-        }
-    ]
+  "ueb": [
+    {
+      "ueb": "AICA",
+      "entidad": "AICA+",
+      "codigo": "16"
+    },
+    {
+      "ueb": "LIORAD",
+      "entidad": "AICA+",
+      "codigo": "25"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "entidad": "AICA+",
+      "codigo": "55"
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "entidad": "AICA+",
+      "codigo": "100"
+    },
+    {
+      "ueb": "SH+",
+      "entidad": "AICA+",
+      "codigo": "57"
+    }
+  ],
+  "structure": [
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "codigo": "1"
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Dirección",
+      "codigo": "2"
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "codigo": "3"
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "codigo": "4"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "codigo": "5"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Dirección",
+      "codigo": "5"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "codigo": "5"
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Calidad",
+      "codigo": "6"
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Dirección",
+      "codigo": "7"
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Dirección Técnico Productiva",
+      "codigo": "8"
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Dirección Técnico Productiva",
+      "codigo": "11"
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Calidad",
+      "codigo": "9"
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Dirección",
+      "codigo": "10"
+    }
+  ],
+  "area": [
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "DOCUMENTACIÓN                                                                   "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE TESTIGO, SUSTANCIAS DE REFERENCIA Y MUESTREO                           "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "INSPECCIÓN DE LA CALIDAD                                                        "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "LABORATORIO DE MICROBIOLOGIA                                                    "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "LABORATORIO FÍSICO QUÍMICO                                                      "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "LIBERACIÓN DE LOTES                                                             "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Calidad",
+      "area": "REGISTRO                                                                        "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Dirección",
+      "area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCION FISICA                                   "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Dirección",
+      "area": "DIRECCIÓN                                                                       "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Departamento de Dirección",
+      "area": "GRUPO DE INFORMATICA                                                            "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": " AREA ESTERILIZACIÓN                                                            "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LAVADO                                                                  "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LIOFILIZADO                                                             "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LLENADO                                                                 "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ENVASE Y ETIQUETADO DE CARPULES Y BULBOS                                        "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE PREPARACION DE MEDICAMENTOS                                            "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO TÉCNICO                                                                   "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PLANTA DE PRODUCCIÓN                                                            "
+    },
+    {
+      "ueb": "LIORAD",
+      "structure": "Dirección Técnico Productiva",
+      "area": "REVISIÓN DE CARPULES Y BULBOS                                                   "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "DIRECCIÓN TÊCNICA PRODUCTIVA                                                    "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "  DEPARTAMENTO DE ESTRATEGIA DE ORGANIZACION Y PLANIFICACION DE LA PRODUCCION   "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO OPERATIVO DE PLANIFICACIÓN DE LA PRODUCCIÓN DE AMPOLLETAS Y BULBOS(UEB)"
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO ESTRATEGICO DE PLANIFICACION DE LA PROD AMPOLLETAS Y BULBOS (EMPRESA)     "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "DEPARTAMENTO DE DESARROLLO TECNOLÓGICO                                          "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE VIGILANCIA TECNOLOGICA                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ALMACÉN DE CUARENTENA                                                           "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE ENVASE                                                                  "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE ESTERILIZACIÓN                                                          "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE ETIQUETADO                                                              "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LAVADO                                                                  "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LAVADO Y ESTERILIZACIÓN                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LIOFILIZADO Y SISTEMAS DE CARGA                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LLENADO                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE PREPARACIÓN DE MATERIALES                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE PREPARACIÓN DE MEDICAMENTOS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE RETAPE                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE REVISIÓN                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "CONTADORES DE BULBOS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE DROGAS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE HIGIENE DE PLANTA DE PRODUCCIÓN                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE INSPECTORES DE PROCESOS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE LIBERACIÓN INTERMEDIA                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO DE VALIDACIÓN                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "LABORATORIO DE CONTROL DE PROCESO DE AMPOLLETAS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PLANTA DE BULBOS                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PLANTA DE PRODUCCIÓN                                                 "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PLANTAS DE AMPOLLETAS                                                "
+    },
+    {
+      "ueb": "AICA",
+      "structure": "Dirección Técnico Productiva",
+      "area": "TEAM DE LIMPIEZA DE SALAS BLANCAS                                                 "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Calidad",
+      "area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD                                           "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE REGISTRO Y FARMACOVIGILANCIA                                           "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Calidad",
+      "area": "LABORATORIO DE CONTROL MICROBIOLÓGICO                                           "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Calidad",
+      "area": "LABORATORIO FISICO-QUÍMICO                                                      "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Dirección",
+      "area": "DIRECCIÓN GENERAL                                                               "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Departamento de Dirección",
+      "area": "GRUPO DE SEGURIDAD INTERNO                                                      "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Dirección Técnico Productiva",
+      "area": " ETIQUETADO, REVISIÓN Y ENVASE                                                  "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Dirección Técnico Productiva",
+      "area": " FORMULACIÓN Y LLENADO                                                          "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Dirección Técnico Productiva",
+      "area": " PREPARACIÓN DE MATERIALES                                                      "
+    },
+    {
+      "ueb": "CITOSTÁTICOS",
+      "structure": "Dirección Técnico Productiva",
+      "area": "DEPARTAMENTO TÉCNICO PRODUCTIVO                                                 "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Calidad",
+      "area": "DEPARTAMENTO DE ASEGURAMIENTO DE LA CALIDAD                                     "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE DOCUMENTACIÒN,REGISTRO Y LIBERACIÒN DE LOTES                                                  "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE GESTIÒN DE LA CALIDAD                                                  "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE INSPECCIÒN                                                             "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Dirección",
+      "area": "CENTRO DE CONTROL                                                               "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Dirección",
+      "area": "DIRECCIÒN                                                                       "
+    },
+    {
+      "ueb": "SH+",
+      "structure": "Departamento de Dirección",
+      "area": "GRUPO DE INFORMÀTICA                                                            "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": " GRUPO CONTROL DE PROCESO                                                       "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA CONCILIACION                                                               "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "AREA DE CONFORMACION Y LLENADO DE FRASCOS PLÁSTICOS                             "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE ETIQUETADO                                                              "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LAVADO DE BULBOS                                                        "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LAVANDERIA                                                        "
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LIOFILIZACION"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE LLENADO"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "AREA DE LOTEO DE ESTUCHE"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE RETAPE"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "ÁREA DE REVISADO DE BULBOS"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "AREA DE TAPADO DE FRASCOS PLÁSTICOS"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "DEPARTAMENTO TÉCNICO PRODUCTIVO"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "GRUPO TECNICO Y DE PLANIFICACIÓN DE LA PRODUCCIÓN"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "LINEA DE ENVASE AUTOMATICA DE COLIRIOS"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "LINEA DE ENVASE AUTOMATICA DE INYECTABLES"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "LINEA DE ENVASE MANUAL"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PLANTA DE ENVASE"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PLANTA DE PRODUCCION DE COLIRIOS E INYECTABLES"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Dirección Técnico Productiva",
+      "area": "PREPARACIÓN DE MEDICAMENTOS"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "DEPARTAMENTO DE GESTIÓN DE LA CALIDAD"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "DOCUMENTACIÓN Y REGISTRO DE MEDICAMENTOS"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE ASEGURAMIENTO DE LA CALIDAD"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "GRUPO DE CONTROL DE LA CALIDAD"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "INGENIERÍA DE LA CALIDAD"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "INSPECCIÓN DE LA CALIDAD"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "LABORATORIO DE MICROBIOLOGÍA"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "LABORATORIO FÍSICO-QUÍMICO"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "LIBERACIÓN DE LOTES"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Calidad",
+      "area": "MEJORAMIENTO DE LA CALIDAD"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Dirección",
+      "area": "ALMACÉN DE PRODUCTOS TERMINADOS"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Dirección",
+      "area": "DEPARTAMENTO DE SEGURIDAD Y PROTECCIÓN FÍSICA"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Dirección",
+      "area": "DIRECCIÓN"
+    },
+    {
+      "ueb": "JULIO TRIGO",
+      "structure": "Departamento de Dirección",
+      "area": "GRUPO DE VENTAS"
+    }
+  ]
 }

@@ -37,6 +37,7 @@ export default function AreaCargarDatosForm({
   const [empresa, setEmpresa] = useState("");
   const [ueb, setueb] = useState("");
   const [direccion, setDireccion] = useState("");
+  const [idDireccion, setIdDireccion] = useState("");
 
   const empresasOptions =
     empresas &&
@@ -112,7 +113,7 @@ export default function AreaCargarDatosForm({
   async function fetchDireccion(Data) {
     // setCargandoUeb(true);
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         "http://localhost:3000/api/area/area/",
         Data
       );
@@ -130,9 +131,10 @@ export default function AreaCargarDatosForm({
       nombre_empresa: data.empresa.label,
       nombre_ueb: data.ueb.label,
       nombre_direccion: data.direccion.label,
+      direccionId: +idDireccion,
     };
-    fetchDireccion(updatedRow);
     console.log(updatedRow);
+    fetchDireccion(updatedRow);
 
     onSave();
     setOpen(false);
@@ -226,6 +228,8 @@ export default function AreaCargarDatosForm({
                   onChange={(selectedOption) => {
                     handleDireccionChange(selectedOption);
                     setValue("direccion", selectedOption);
+                    setIdDireccion(selectedOption.value);
+
                     field.onChange(selectedOption);
                   }}
                   options={direccionesOptions}

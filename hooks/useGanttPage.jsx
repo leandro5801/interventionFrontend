@@ -1,0 +1,331 @@
+import axios from "axios";
+import { useState, useEffect } from "react";
+import useLocalStorage from "../helpers/useLocalStorage";
+
+export default function useGanttPage() {
+  //para retornar el nombre de y no el id
+  const { get } = useLocalStorage();
+  const uebPorId = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    if (!ueb) {
+      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
+      return;
+    }
+    return ueb;
+  };
+  const direccionPorId = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
+    if (!direccion) {
+      console.error(
+        `No se encontró ninguna direccion con id_ueb: ${id_direccion}`
+      );
+      return;
+    }
+    return direccion;
+  };
+  const areaPorId = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
+    return area;
+  };
+  const nombreEmpresa = (id_empresa) => {
+    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
+    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
+    return name;
+  };
+  const nombreUeb = (id_ueb) => {
+    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
+    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
+    return name;
+  };
+  const nombreDireccion = (id_direccion) => {
+    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
+    const name = direccion
+      ? direccion.nombre_direccion
+      : "no se encontro el nombre";
+    return name;
+  };
+  const nombreArea = (id_area) => {
+    const area = areas.find((e) => e.id_area === id_area);
+    const name = area ? area.nombre_area : "no se encontro el nombre";
+    return name;
+  };
+  const nombreConsultor = (id_consultor) => {
+    const consultor = consultores.find(
+      (consultor) => consultor.id_consultor === id_consultor
+    );
+    const name = consultor
+      ? consultor.nombre_consultor
+      : "no se encontro el nombre";
+    return name;
+  };
+  const nombreTrabajador = (id_trabajador) => {
+    const trabajador = trabajadores.find(
+      (trabajador) => trabajador.id_trabajador === id_trabajador
+    );
+    const name = trabajador
+      ? trabajador.nombre_trabajador
+      : "no se encontro el nombre";
+    return name;
+  };
+  const nombreProyecto = (id_proyecto) => {
+    const proyecto = projects.find(
+      (proyecto) => proyecto.id_proyecto === id_proyecto
+    );
+    const name = proyecto
+      ? proyecto.nombre_proyecto
+      : "no se encontro el nombre";
+    return name;
+  };
+
+  // datos de las intervenciones
+  const [interventions, setInterventions] = useState([]);
+  const [recomendations, setRecomendations] = useState([]);
+  //Para cuando selecciono una intervencion en el gantt se muestren sus datos
+  const [selectedIntervention, setSelectedIntervention] = useState(null);
+  const [open, setOpen] = useState(false);
+
+  // Para editar una intervencion desde la tabla
+  const [isIEditing, setIsIEditing] = useState(false);
+
+  const handleSaveI = (newData) => {
+    setIsIEditing(false);
+  };
+  const handleCancelI = () => {
+    setIsIEditing(false);
+  };
+
+  const interventionUpdate = (updatedRow) => {
+    // Actualiza el estado de los datos en la tabla
+    setSelectedIntervention(updatedRow);
+    //  const intervenciones = interventions.filter((i)=> i === updatedRow.id)
+    setInterventions((prevData) =>
+      prevData.map((item) => (item.id === updatedRow.id ? updatedRow : item))
+    );
+  };
+
+  //Para que se muestren las recomendaciones de una intervencion seleccionada
+  const [tableRData, setTableRData] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [empresas, setEmpresas] = useState([]);
+  const [uebs, setUebs] = useState([]);
+  const [direcciones, setDirecciones] = useState([]);
+  const [areas, setAreas] = useState([]);
+  const [trabajadores, setTrabajadores] = useState([]);
+  const [clasificaciones, setClasificaciones] = useState([]);
+  const [consultores, setConsultores] = useState([]);
+
+  const [error, setError] = useState(null);
+  const [cargando, setCargando] = useState(false);
+
+  //usuario autenticado
+  const [user, setUser] = useState(null);
+  let consultorAutenticado = {};
+  //datos filtrados
+  let filtredInterventions = [];
+  let filtredProjects = [];
+
+  useEffect(() => {
+    async function fetchIntervention() {
+      const response = await axios.get(
+        "http://localhost:3000/api/intervencion"
+      );
+      setInterventions(response.data);
+    }
+    async function fetchProyecto() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/proyecto");
+        setProjects(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchEmpresa() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/empresa");
+        setEmpresas(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchUeb() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/ueb");
+        setUebs(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchDireccion() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/direccion");
+        setDirecciones(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchArea() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/area");
+        setAreas(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchTrabajador() {
+      setCargando(true);
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/trabajador"
+        );
+        setTrabajadores(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchConsultor() {
+      setCargando(true);
+      try {
+        const response = await axios.get("http://localhost:3000/api/consultor");
+        setConsultores(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    async function fetchRecomendacion() {
+      const response = await axios.get(
+        "http://localhost:3000/api/recomendacion"
+      );
+      setRecomendations(response.data);
+    }
+    async function fetchClasificacion() {
+      setCargando(true);
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/clasificacion"
+        );
+        setClasificaciones(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    //cargando usuario autenticado
+    async function getProfile() {
+      try {
+        const token = get("access_token");
+        const response = await axios.get(
+          "http://localhost:3000/api/autenticacion/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error: en getProfile", error);
+      }
+    }
+    getProfile();
+
+    fetchEmpresa();
+    fetchUeb();
+    fetchDireccion();
+    fetchArea();
+    fetchTrabajador();
+    fetchIntervention();
+    fetchRecomendacion();
+    fetchClasificacion();
+    fetchProyecto();
+    fetchConsultor();
+  }, []);
+
+  if (user && consultores) {
+    consultorAutenticado = consultores.find(
+      (i) => i.id_usuario === user.id_usuario
+    );
+    if (consultorAutenticado) {
+      if (user.id_rol === 2) {
+        filtredInterventions = interventions.filter(
+          (i) => i.id_consultor === consultorAutenticado.id_consultor
+        );
+        filtredProjects = projects.filter((i) =>
+          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+        );
+      } else if (user.id_rol === 3) {
+        filtredInterventions = interventions;
+        filtredProjects = projects;
+      }
+    }
+  }
+  return {
+    interventions: filtredInterventions,
+    setInterventions,
+    recomendations,
+    setRecomendations,
+    selectedIntervention,
+    setSelectedIntervention,
+    projects: filtredProjects,
+    empresas,
+    uebs,
+    direcciones,
+    areas,
+    trabajadores,
+    consultores,
+    cargando,
+    error,
+    nombreConsultor,
+    nombreTrabajador,
+    tableRData,
+    setTableRData,
+    setOpen,
+    clasificaciones,
+    areaPorId,
+    direccionPorId,
+    uebPorId,
+  };
+}

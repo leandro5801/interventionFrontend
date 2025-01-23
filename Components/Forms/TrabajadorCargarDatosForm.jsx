@@ -127,7 +127,7 @@ export default function TrabajadorForm({
   async function fetchDireccion(Data) {
     // setCargandoUeb(true);
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         "http://localhost:3000/api/trabajador/trabajadores/",
         Data
       );
@@ -147,8 +147,9 @@ export default function TrabajadorForm({
       nombre_ueb: data.ueb.label,
       nombre_direccion: data.direccion.label,
       nombre_area: data.area.label,
+      idArea: data.area.value,
     };
-    fetchDireccion(updatedRow)
+    fetchDireccion(updatedRow);
 
     onSave();
 
@@ -165,7 +166,7 @@ export default function TrabajadorForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Empresa</InputLabel>
+            <InputLabel>Empresa</InputLabel>
             <Controller
               name="empresa"
               control={control}
@@ -196,7 +197,7 @@ export default function TrabajadorForm({
             )}
           </div>
           <div>
-          <InputLabel>UEB</InputLabel>
+            <InputLabel>UEB</InputLabel>
             <Controller
               name="ueb"
               control={control}
@@ -228,7 +229,7 @@ export default function TrabajadorForm({
         </div>
         <div className={styles.inputGroup}>
           <div>
-          <InputLabel>Dirección</InputLabel>
+            <InputLabel>Dirección</InputLabel>
             <Controller
               name="direccion"
               control={control}
@@ -256,7 +257,7 @@ export default function TrabajadorForm({
             )}
           </div>
           <div>
-          <InputLabel>Área</InputLabel>
+            <InputLabel>Área</InputLabel>
             <Controller
               name="area"
               control={control}

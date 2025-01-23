@@ -4,7 +4,6 @@ import Header from "../Components/Header";
 
 import Wrap from "../Components/Wrap";
 
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SessionProvider from "../contexts/session/SessionContext";
 import UserProvider from "../contexts/user/UserContext";

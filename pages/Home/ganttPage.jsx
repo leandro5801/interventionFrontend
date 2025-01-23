@@ -1,330 +1,52 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-
 import styles from "../../styles/Home.module.css";
 import GanttChart from "../../Components/GanttChart/GanttChart";
 import RecomendationTableGantt from "../../Components/Tables/RecomTableGantt";
 
-import Dialog from "../../Components/Forms/Dialog";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Container } from "react-grid-system";
 import { Card } from "react-bootstrap";
+import { Box, Typography } from "@mui/material";
+import useGanttPage from "../../hooks/useGanttPage";
 
 export default function GanttPage() {
-  //para retornar el nombre de y no el id
-  const uebPorId = (id_ueb) => {
-    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
-    if (!ueb) {
-      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
-      return;
-    }
-    return ueb;
-  };
-  const direccionPorId = (id_direccion) => {
-    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
-    if (!direccion) {
-      console.error(
-        `No se encontró ninguna direccion con id_ueb: ${id_direccion}`
-      );
-      return;
-    }
-    return direccion;
-  };
-  const areaPorId = (id_area) => {
-    const area = areas.find((e) => e.id_area === id_area);
-    return area;
-  };
-  const nombreEmpresa = (id_empresa) => {
-    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
-    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
-    return name;
-  };
-  const nombreUeb = (id_ueb) => {
-    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
-    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
-    return name;
-  };
-  const nombreDireccion = (id_direccion) => {
-    const direccion = direcciones.find((e) => e.id_direccion === id_direccion);
-    const name = direccion
-      ? direccion.nombre_direccion
-      : "no se encontro el nombre";
-    return name;
-  };
-  const nombreArea = (id_area) => {
-    const area = areas.find((e) => e.id_area === id_area);
-    const name = area ? area.nombre_area : "no se encontro el nombre";
-    return name;
-  };
-  const nombreConsultor = (id_consultor) => {
-    const consultor = consultores.find(
-      (consultor) => consultor.id_consultor === id_consultor
-    );
-    const name = consultor
-      ? consultor.nombre_consultor
-      : "no se encontro el nombre";
-    return name;
-  };
-  const nombreTrabajador = (id_trabajador) => {
-    const trabajador = trabajadores.find(
-      (trabajador) => trabajador.id_trabajador === id_trabajador
-    );
-    const name = trabajador
-      ? trabajador.nombre_trabajador
-      : "no se encontro el nombre";
-    return name;
-  };
-  const nombreProyecto = (id_proyecto) => {
-    const proyecto = projects.find(
-      (proyecto) => proyecto.id_proyecto === id_proyecto
-    );
-    const name = proyecto
-      ? proyecto.nombre_proyecto
-      : "no se encontro el nombre";
-    return name;
-  };
-
-  // datos de las intervenciones
-  const [interventions, setInterventions] = useState([]);
-  const [recomendations, setRecomendations] = useState([]);
-  //Para cuando selecciono una intervencion en el gantt se muestren sus datos
-  const [selectedIntervention, setSelectedIntervention] = useState(null);
-  const [open, setOpen] = useState(false);
-
-  // Para editar una intervencion desde la tabla
-  const [isIEditing, setIsIEditing] = useState(false);
-
-  const handleSaveI = (newData) => {
-    setIsIEditing(false);
-  };
-  const handleCancelI = () => {
-    setIsIEditing(false);
-  };
-
-  const interventionUpdate = (updatedRow) => {
-    // Actualiza el estado de los datos en la tabla
-    setSelectedIntervention(updatedRow);
-    //  const intervenciones = interventions.filter((i)=> i === updatedRow.id)
-    setInterventions((prevData) =>
-      prevData.map((item) => (item.id === updatedRow.id ? updatedRow : item))
-    );
-  };
-
-  //Para que se muestren las recomendaciones de una intervencion seleccionada
-  const [tableRData, setTableRData] = useState(null);
-  const [projects, setProjects] = useState([]);
-  const [empresas, setEmpresas] = useState([]);
-  const [uebs, setUebs] = useState([]);
-  const [direcciones, setDirecciones] = useState([]);
-  const [areas, setAreas] = useState([]);
-  const [trabajadores, setTrabajadores] = useState([]);
-  const [clasificaciones, setClasificaciones] = useState([]);
-  const [consultores, setConsultores] = useState([]);
-
-  const [error, setError] = useState(null);
-  const [cargando, setCargando] = useState(false);
-
-  //usuario autenticado
-  const [user, setUser] = useState(null);
-  let consultorAutenticado = {};
-  //datos filtrados
-  let filtredInterventions = [];
-  let filtredProjects = [];
-
-  useEffect(() => {
-    async function fetchIntervention() {
-      const response = await axios.get(
-        "http://localhost:3000/api/intervencion"
-      );
-      setInterventions(response.data);
-    }
-    async function fetchProyecto() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/proyecto");
-        setProjects(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchEmpresa() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/empresa");
-        setEmpresas(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchUeb() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/ueb");
-        setUebs(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchDireccion() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/direccion");
-        setDirecciones(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchArea() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/area");
-        setAreas(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchTrabajador() {
-      setCargando(true);
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/trabajador"
-        );
-        setTrabajadores(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchConsultor() {
-      setCargando(true);
-      try {
-        const response = await axios.get("http://localhost:3000/api/consultor");
-        setConsultores(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    async function fetchRecomendacion() {
-      const response = await axios.get(
-        "http://localhost:3000/api/recomendacion"
-      );
-      setRecomendations(response.data);
-    }
-    async function fetchClasificacion() {
-      setCargando(true);
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/api/clasificacion"
-        );
-        setClasificaciones(response.data);
-      } catch (error) {
-        setError(
-          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
-        );
-        console.error(error);
-      } finally {
-        setCargando(false);
-      }
-    }
-    //cargando usuario autenticado
-    async function getProfile() {
-      try {
-        const token = Cookies.get("access_token");
-        const response = await axios.get(
-          "http://localhost:3000/api/autenticacion/profile",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUser(response.data.user);
-      } catch (error) {
-        console.error("Error: en getProfile", error);
-      }
-    }
-    getProfile();
-
-    fetchEmpresa();
-    fetchUeb();
-    fetchDireccion();
-    fetchArea();
-    fetchTrabajador();
-    fetchIntervention();
-    fetchRecomendacion();
-    fetchClasificacion();
-    fetchProyecto();
-    fetchConsultor();
-  }, []);
-
-  if (user && consultores) {
-    consultorAutenticado = consultores.find(
-      (i) => i.id_usuario === user.id_usuario
-    );
-    if (consultorAutenticado) {
-      if (user.id_rol === 2) {
-        filtredInterventions = interventions.filter(
-          (i) => i.id_consultor === consultorAutenticado.id_consultor
-        );
-        filtredProjects = projects.filter((i) =>
-          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
-        );
-      } else if (user.id_rol === 3) {
-        filtredInterventions = interventions;
-        filtredProjects = projects;
-      }
-    }
-  }
-
+  const {
+    interventions,
+    setInterventions,
+    recomendations,
+    setRecomendations,
+    selectedIntervention,
+    setSelectedIntervention,
+    projects,
+    empresas,
+    uebs,
+    direcciones,
+    areas,
+    trabajadores,
+    consultores,
+    setOpen,
+    setTableRData,
+    tableRData,
+    nombreConsultor,
+    nombreTrabajador,
+    clasificaciones,
+    areaPorId,
+    direccionPorId,
+    uebPorId,
+  } = useGanttPage();
   return (
     <div className={styles.title}>
-      <h3 className={styles.tituloH3}>Diagrama de Gantt</h3>
+      <Typography variant="h3" className={styles.tituloH3}>
+        Diagrama de Gantt
+      </Typography>
       <div>
         <GanttChart
           selectedIntervention={selectedIntervention}
           setSelectedIntervention={setSelectedIntervention}
-          interventions={filtredInterventions}
+          interventions={interventions}
           setInterventions={setInterventions}
           setOpen={setOpen}
           recomendations={recomendations}
           setTableRData={setTableRData}
-          projects={filtredProjects}
+          projects={projects}
           empresas={empresas}
           uebs={uebs}
           direcciones={direcciones}
@@ -346,7 +68,9 @@ export default function GanttPage() {
             {/* Datos de la intervencion seleccionada */}
 
             <div style={{ padding: "10px" }}>
-              <h4>Datos de la intervencion</h4>
+              <Typography variant="h6">
+                <strong>Datos de la intervencion</strong>
+              </Typography>
             </div>
 
             <Container key={selectedIntervention.id_intervencion}>
@@ -361,21 +85,30 @@ export default function GanttPage() {
                   >
                     <div>
                       <Card.Title>
-                        Nombre de la Intervención:{" "}
-                        {selectedIntervention.nombre_intervencion}
+                        <Typography>
+                          Nombre de la Intervención:{" "}
+                          {selectedIntervention.nombre_intervencion}
+                        </Typography>
                       </Card.Title>
                       <Card.Text>
-                        Descripción: {selectedIntervention.descripcion}
+                        <Typography>
+                          {" "}
+                          Descripción: {selectedIntervention.descripcion}
+                        </Typography>
                       </Card.Text>
                     </div>
                     <div>
                       <Card.Text>
-                        Consultor:{" "}
-                        {nombreConsultor(selectedIntervention.id_consultor)}
+                        <Typography>
+                          Consultor:{" "}
+                          {nombreConsultor(selectedIntervention.id_consultor)}
+                        </Typography>
                       </Card.Text>
                       <Card.Text>
-                        Trabajador:{" "}
-                        {nombreTrabajador(selectedIntervention.id_trabajador)}
+                        <Typography>
+                          Trabajador:{" "}
+                          {nombreTrabajador(selectedIntervention.id_trabajador)}
+                        </Typography>
                       </Card.Text>
                     </div>
                   </div>

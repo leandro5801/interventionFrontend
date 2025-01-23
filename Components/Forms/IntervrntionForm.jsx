@@ -204,9 +204,12 @@ export default function FormUpdateIntervention({
       value: item.id_area,
       label: item.nombre_area,
     }));
+
   const trabajadoresOptions = trabajadores
     .filter((item) => {
       const area = areas.find((area) => area.id_area === item.id_area);
+      console.log(area);
+
       const direccion = direcciones.find(
         (direccion) => direccion.id_direccion === area.id_direccion
       );
@@ -645,13 +648,12 @@ export default function FormUpdateIntervention({
               />
               <div className={styles.error}>{errors.start?.message}</div>
             </div>
-            
+
             <div>
               <div className={styles.inputGroup}>
                 <InputLabel id="demo-simple-select-standard-label">
                   Fecha de fin*
                 </InputLabel>
-                
               </div>
 
               <Input

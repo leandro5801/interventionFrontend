@@ -1,0 +1,142 @@
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import useLocalStorage from "../helpers/useLocalStorage";
+
+export default function useRecomendationPage() {
+  const { get } = useLocalStorage();
+  const [interventions, setInterventions] = useState([]);
+  const [recomendations, setRecomendations] = useState([]);
+  const [consultores, setConsultores] = useState([]);
+  const [clasificaciones, setClasificaciones] = useState([]);
+  const [projects, setProjects] = useState([]);
+
+  const [error, setError] = useState(null);
+  const [cargando, setCargando] = useState(true);
+
+  //usuario autenticado
+  const [user, setUser] = useState(null);
+  let consultorAutenticado = {};
+  //datos filtrados
+  let filtredRecomendations = [];
+  let filtredInterventions = [];
+  let filtredProjects = [];
+
+  useEffect(() => {
+    async function fetchIntervention() {
+      const response = await axios.get(
+        "http://localhost:3000/api/intervencion"
+      );
+      setInterventions(response.data);
+    }
+    async function fetchRecomendacion() {
+      const response = await axios.get(
+        "http://localhost:3000/api/recomendacion"
+      );
+      setRecomendations(response.data);
+      console.log(response.data);
+    }
+    async function fetchProyecto() {
+      try {
+        const response = await axios.get("http://localhost:3000/api/proyecto");
+        setProjects(response.data);
+        console.log(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+      }
+    }
+    async function fetchConsultor() {
+      try {
+        const response = await axios.get("http://localhost:3000/api/consultor");
+        setConsultores(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+      }
+    }
+    async function fetchClasificacion() {
+      try {
+        const response = await axios.get(
+          "http://localhost:3000/api/clasificacion"
+        );
+        setClasificaciones(response.data);
+      } catch (error) {
+        setError(
+          "Hubo un problema al obtener los datos. Por favor, inténtalo de nuevo."
+        );
+        console.error(error);
+      } finally {
+      }
+    }
+    //cargando usuario autenticado
+    async function getProfile() {
+      try {
+        const token = get("access_token");
+        const response = await axios.get(
+          "http://localhost:3000/api/autenticacion/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data.user);
+      } catch (error) {
+        console.error("Error: en getProfile", error);
+      }
+    }
+    getProfile();
+
+    fetchIntervention();
+    fetchRecomendacion();
+    fetchProyecto();
+    fetchConsultor();
+    fetchClasificacion();
+    setCargando(false);
+  }, []);
+
+  if (user && consultores) {
+    consultorAutenticado = consultores.find(
+      (i) => i.id_usuario === user.id_usuario
+    );
+    if (consultorAutenticado) {
+      if (user.id_rol === 2) {
+        filtredRecomendations = recomendations.filter(
+          (i) => i.id_consultor === consultorAutenticado.id_consultor
+        );
+        filtredProjects = projects.filter((i) =>
+          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+        );
+        filtredInterventions = interventions.filter((i) =>
+          filtredProjects.some(
+            (project) => project.id_proyecto === i.id_proyecto
+          )
+        );
+      } else if (user.id_rol === 3) {
+        filtredRecomendations = recomendations;
+        filtredProjects = projects;
+        filtredInterventions = interventions;
+        console.log(filtredProjects);
+      }
+    }
+  }
+  return {
+    filtredInterventions,
+    filtredRecomendations,
+    recomendations,
+    setRecomendations,
+    filtredProjects,
+    consultorAutenticado,
+    consultores,
+    clasificaciones,
+    cargando,
+  };
+}

@@ -82,7 +82,7 @@
 }
 
 .logo {
-  padding: 3px;
+  padding: 0px;
   text-align: center;
   border-block-end-style: solid;
   border-block-end-width: 0.5px;
@@ -185,8 +185,10 @@
 }
 .switchTitle {
   color: var(--text-color-primary);
-  margin-top: 7px;
-  margin-bottom: 18px;
+  position: absolute;
+  right: 15mm;
+  margin-top: 6px;
+  margin-bottom: 20px;
 }
 
 .switchTheme {
@@ -203,6 +205,10 @@
   padding: 10px;
   margin-left: 220px;
   margin-top: 70px;
+}
+.title > h3 {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .titlePrincipal {
@@ -231,7 +237,7 @@
 .nombreUsuarioContent {
   position: absolute;
   right: 18mm;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 18px;
   margin-right: -5px;
 }
@@ -876,7 +882,7 @@ weight .table td {
   --color-orange: #ef5350;
   --color-outline: #e9eaeb;
   --border-radius: 5px;
-  --cell-height: 30px;
+  --cell-height: 36px;
   padding: 1rem;
 }
 
@@ -930,6 +936,7 @@ weight .table td {
   max-height: 310px;
   overflow-y: auto;
   width: 1000px;
+  /*   width: 95%;*/
 }
 
 /* ganttTask */
@@ -943,18 +950,27 @@ weight .table td {
   text-align: center;
   height: var(--cell-height);
   border: none;
+  width: 100%;
 }
 
 .inputTask {
-  width: 127px;
+  padding: 2px;
+  height: auto;
+  width: 100%;
   border: none;
   outline: none;
   background: none;
-  font-family: "Roboto", sans-serif;
   font-size: 14px;
   text-align: center;
   cursor: pointer;
   color: var(--text-color-general);
+
+  /*   overflow-wrap: break-word;**/
+  /*   white-space: normal;
+ */
+}
+.inputTask::-webkit-scrollbar {
+  display: none;
 }
 
 .inputTask:focus {

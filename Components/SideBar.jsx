@@ -25,19 +25,22 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 
 import Link from "next/link";
+import { Typography } from "@mui/material";
+import useLocalStorage from "../helpers/useLocalStorage";
 
 function SideBar({}) {
   const [showGestionarEmpresaOptions, setShowGestionarEmpresaOptions] =
     useState(false);
   const [showCargarEmpresaOptions, setShowCargarEmpresaOptions] =
     useState(false);
+  const { get } = useLocalStorage();
 
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function getProfile() {
       try {
-        const token = Cookies.get("access_token");
+        const token = get("access_token");
         const response = await axios.get(
           "http://localhost:3000/api/autenticacion/profile",
           {
@@ -59,27 +62,30 @@ function SideBar({}) {
       <div className={styles.logo}>
         <Image
           className={styles.logo}
-          src="/images/aica-ico.jpg" // Ruta al icono de usuario
+          src="/images/O4ayguJu_400x400-removebg-preview.png" // Ruta al icono de usuario
           alt="User Icon"
-          width={90}
-          height={55}
+          width={120}
+          height={120}
+          style={{ aspectRatio: "auto" }}
         />
       </div>
 
-      <div className={styles.wrapper}>
+      <Typography variant="caption" className={styles.wrapper}>
         <ul>
           {user && (user.id_rol === 3 || user.id_rol === 2) ? (
             <li>
               {" "}
               <Link href=" /Home/ganttPage">
-                <BarChartOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Gantt
+                <Typography>
+                  <BarChartOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Gantt
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -89,14 +95,16 @@ function SideBar({}) {
             <li>
               {" "}
               <Link href="/Home/proyectoPage">
-                <AttractionsOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Proyectos
+                <Typography>
+                  <AttractionsOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Proyectos
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -107,14 +115,16 @@ function SideBar({}) {
               {" "}
               <Link href="/Home/intervencionPage">
                 {" "}
-                <AssignmentOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Intervenciones
+                <Typography>
+                  <AssignmentOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Intervenciones
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -125,14 +135,16 @@ function SideBar({}) {
               {" "}
               <Link href="/Home/recomendacionPage">
                 {" "}
-                <NoteAltOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Recomendaciones
+                <Typography>
+                  <NoteAltOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Recomendaciones
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -143,14 +155,16 @@ function SideBar({}) {
               {" "}
               <Link href="/Home/empresaPage">
                 {" "}
-                <ApartmentOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Empresa
+                <Typography>
+                  <ApartmentOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Empresa
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -164,31 +178,33 @@ function SideBar({}) {
                   setShowGestionarEmpresaOptions(!showGestionarEmpresaOptions)
                 }
               >
-                <ManageSearchOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Gestionar Estructura
-                {showGestionarEmpresaOptions ? (
-                  <ExpandLessOutlinedIcon
+                <Typography>
+                  <ManageSearchOutlinedIcon
                     style={{
                       width: "18px",
                       cursor: "pointer",
                       verticalAlign: "middle",
                     }}
-                  />
-                ) : (
-                  <ExpandMoreOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      verticalAlign: "middle",
-                    }}
-                  />
-                )}
+                  />{" "}
+                  Gestionar Estructura
+                  {showGestionarEmpresaOptions ? (
+                    <ExpandLessOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />
+                  ) : (
+                    <ExpandMoreOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />
+                  )}
+                </Typography>
               </a>
             </li>
           ) : (
@@ -200,58 +216,66 @@ function SideBar({}) {
                 {" "}
                 <Link href="/Home/uebPage">
                   {" "}
-                  <CorporateFareOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  UEB
+                  <Typography>
+                    <CorporateFareOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    UEB
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/direccionPage">
-                  <BusinessOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Direcciones
+                  <Typography>
+                    <BusinessOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Direcciones
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/areaPage">
-                  <DragIndicatorOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Áreas
+                  <Typography>
+                    <DragIndicatorOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Áreas
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/trabajadorPage">
                   {" "}
-                  <EngineeringOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Trabajadores
+                  <Typography>
+                    <EngineeringOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Trabajadores
+                  </Typography>
                 </Link>
               </li>
             </>
@@ -264,31 +288,33 @@ function SideBar({}) {
                   setShowCargarEmpresaOptions(!showCargarEmpresaOptions)
                 }
               >
-                <PublishedWithChangesOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Cargar Estructura
-                {showCargarEmpresaOptions ? (
-                  <ExpandLessOutlinedIcon
+                <Typography>
+                  <PublishedWithChangesOutlinedIcon
                     style={{
                       width: "18px",
                       cursor: "pointer",
                       verticalAlign: "middle",
                     }}
-                  />
-                ) : (
-                  <ExpandMoreOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      verticalAlign: "middle",
-                    }}
-                  />
-                )}
+                  />{" "}
+                  Cargar Estructura
+                  {showCargarEmpresaOptions ? (
+                    <ExpandLessOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />
+                  ) : (
+                    <ExpandMoreOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />
+                  )}
+                </Typography>
               </a>
             </li>
           ) : (
@@ -300,58 +326,66 @@ function SideBar({}) {
                 {" "}
                 <Link href="/Home/uebCargarDatosPage">
                   {" "}
-                  <CorporateFareOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  UEB
+                  <Typography>
+                    <CorporateFareOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    UEB
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/direccionCargarDatosPage">
-                  <BusinessOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Direcciones
+                  <Typography>
+                    <BusinessOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Direcciones
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/areaCargarDatosPage">
-                  <DragIndicatorOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Áreas
+                  <Typography>
+                    <DragIndicatorOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Áreas
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/trabajadorCargarDatosPage">
                   {" "}
-                  <EngineeringOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      marginLeft: "10px",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Trabajadores
+                  <Typography>
+                    <EngineeringOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        marginLeft: "10px",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Trabajadores
+                  </Typography>
                 </Link>
               </li>
             </>
@@ -361,14 +395,16 @@ function SideBar({}) {
               {" "}
               <Link href="/Home/reportePage">
                 {" "}
-                <FeedOutlinedIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Reportes
+                <Typography>
+                  <FeedOutlinedIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Reportes
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -379,14 +415,16 @@ function SideBar({}) {
               {" "}
               <Link href="/Home/usuarioPage">
                 {" "}
-                <ManageAccountsIcon
-                  style={{
-                    width: "18px",
-                    cursor: "pointer",
-                    verticalAlign: "middle",
-                  }}
-                />{" "}
-                Usuarios
+                <Typography>
+                  <ManageAccountsIcon
+                    style={{
+                      width: "18px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                    }}
+                  />{" "}
+                  Usuarios
+                </Typography>
               </Link>
             </li>
           ) : (
@@ -398,28 +436,32 @@ function SideBar({}) {
                 {" "}
                 <Link href="/Home/consultorPage">
                   {" "}
-                  <PeopleAltOutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Consultores
+                  <Typography>
+                    <PeopleAltOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Consultores
+                  </Typography>
                 </Link>
               </li>
               <li>
                 {" "}
                 <Link href="/Home/clientePage">
                   {" "}
-                  <Person3OutlinedIcon
-                    style={{
-                      width: "18px",
-                      cursor: "pointer",
-                      verticalAlign: "middle",
-                    }}
-                  />{" "}
-                  Clientes
+                  <Typography>
+                    <Person3OutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Clientes
+                  </Typography>
                 </Link>
               </li>
             </>
@@ -427,7 +469,7 @@ function SideBar({}) {
             false
           )}
         </ul>
-      </div>
+      </Typography>
     </div>
   );
 }
