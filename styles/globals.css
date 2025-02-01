@@ -93,8 +93,8 @@ a {
 }
 
 body {
-  background-color: var(--bg-color-general);
-  color: var(--text-color-general);
+  /*  background-color: var(--bg-color-general);
+  color: var(--text-color-general); */
   margin: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
@@ -153,7 +153,7 @@ body {
 }
 
 .is-open .Dropdown-arrow {
-  border-color: transparent transparent #fff;
+  /* border-color: transparent transparent #fff; */
   border-width: 0 5px 5px;
 }
 

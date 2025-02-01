@@ -18,7 +18,7 @@ export default function FormDialog({
   FormComponent,
   ...formProps
 }) {
-//  const { isDark } = useContext(UserContext);
+  //  const { isDark } = useContext(UserContext);
   return (
     <Dialog
       open={open}
@@ -31,8 +31,8 @@ export default function FormDialog({
           maxWidth: "5000px", // Establece el ancho máximo que desees para el diálogo
           height: "fit-content",
           padding: "16px",
-          backgroundColor: "var(--bg-color-primary)",
-          color: "var(--text-color-primary)",
+          /* backgroundColor: "var(--bg-color-primary)",
+          color: "var(--text-color-primary)", */
           overflowX: "auto",
         },
       }}

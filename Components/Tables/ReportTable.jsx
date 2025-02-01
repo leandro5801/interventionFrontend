@@ -179,7 +179,7 @@ function ReportTable({
   );
 
   const handleClick = (e) => {
-    const taskId = parseInt(e.target.getAttribute("data-int-id"));
+    const taskId = parseInt(e.currentTarget.getAttribute("data-int-id"));
     const task = interventions.find((t) => t.id_intervencion === taskId);
     setSelectedIntervention(task);
   };
@@ -275,7 +275,13 @@ function ReportTable({
                   {filteredData
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((recomendation) => (
-                      <TableRow key={recomendation.id_recomendacion}>
+                      <TableRow
+                        key={recomendation.id_recomendacion}
+                        data-int-id={recomendation.id_intervencion}
+                        onClick={handleClick}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {console.log(recomendation)}
                         <TableCell>
                           {nombreProyecto(
                             intervencionPorId(recomendation.id_intervencion)
@@ -283,9 +289,9 @@ function ReportTable({
                           )}
                         </TableCell>
                         <TableCell
-                          data-int-id={recomendation.id_intervencion}
+                          // data-int-id={recomendation.id_intervencion}
                           value={recomendation.id_intervencion}
-                          onClick={handleClick}
+                          //  onClick={handleClick}
                         >
                           {nombreIntervencion(recomendation.id_intervencion)}
                         </TableCell>

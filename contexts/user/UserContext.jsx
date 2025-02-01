@@ -21,30 +21,15 @@ export default function UserProvider({ children }) {
     return null;
   });
 
-  /* async function fetchSession(idSession) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/api/session/${idSession}`
-      );
-      if (response.status === 200) {
-        console.log(response.data);
-
-        set("isDark", response.data.isDark);
-        set("font", response.data.font);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  } */
   const changeUser = (user) => {
     console.log(user);
 
     /* Cookies.set("id_session", user.id_session);
     Cookies.set("user", JSON.stringify(user)); */
-    set("id_session", user.id_session);
+    /* set("id_session", user.id_session);
     set("nombre_usuario", user.nombre_usuario);
     set("id_rol", user.id_rol);
-    set("id_usuario", user.id_usuario);
+    set("id_usuario", user.id_usuario); */
     //fetchSession(user ? user.id_session : get("id_session"));
     setUser(user);
   };

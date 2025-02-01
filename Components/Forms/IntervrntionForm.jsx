@@ -208,7 +208,6 @@ export default function FormUpdateIntervention({
   const trabajadoresOptions = trabajadores
     .filter((item) => {
       const area = areas.find((area) => area.id_area === item.id_area);
-      console.log(area);
 
       const direccion = direcciones.find(
         (direccion) => direccion.id_direccion === area.id_direccion

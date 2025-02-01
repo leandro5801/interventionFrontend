@@ -25,7 +25,7 @@ import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import ExpandLessOutlinedIcon from "@mui/icons-material/ExpandLessOutlined";
 
 import Link from "next/link";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useLocalStorage from "../helpers/useLocalStorage";
 
 function SideBar({}) {
@@ -33,6 +33,11 @@ function SideBar({}) {
     useState(false);
   const [showCargarEmpresaOptions, setShowCargarEmpresaOptions] =
     useState(false);
+
+  const [showCargarDatos, setShowCargarDatos] = useState(false);
+  const handleShowDatos = () => {
+    setShowCargarDatos(!showCargarDatos);
+  };
   const { get } = useLocalStorage();
 
   const [user, setUser] = useState(null);
@@ -58,7 +63,7 @@ function SideBar({}) {
   }, []);
 
   return (
-    <div className={styles.sidebarcontainer}>
+    <Box className={styles.sidebarcontainer}>
       <div className={styles.logo}>
         <Image
           className={styles.logo}
@@ -105,7 +110,7 @@ function SideBar({}) {
                   />{" "}
                   Proyectos
                 </Typography>
-              </Link>
+              </Link>{" "}
             </li>
           ) : (
             false
@@ -464,13 +469,100 @@ function SideBar({}) {
                   </Typography>
                 </Link>
               </li>
+              <li>
+                <a onClick={handleShowDatos}>
+                  {" "}
+                  <Typography>
+                    <PublishedWithChangesOutlinedIcon
+                      style={{
+                        width: "18px",
+                        cursor: "pointer",
+                        verticalAlign: "middle",
+                      }}
+                    />{" "}
+                    Cargar Datos
+                    {showCargarDatos ? (
+                      <ExpandLessOutlinedIcon
+                        style={{
+                          width: "18px",
+                          cursor: "pointer",
+                          verticalAlign: "middle",
+                        }}
+                      />
+                    ) : (
+                      <ExpandMoreOutlinedIcon
+                        style={{
+                          width: "18px",
+                          cursor: "pointer",
+                          verticalAlign: "middle",
+                        }}
+                      />
+                    )}
+                  </Typography>
+                </a>
+              </li>
+
+              {showCargarDatos && (
+                <>
+                  <li>
+                    {" "}
+                    <Link href="/Home/proyectoCargarDatosPage">
+                      <Typography>
+                        <AttractionsOutlinedIcon
+                          style={{
+                            width: "18px",
+                            cursor: "pointer",
+                            verticalAlign: "middle",
+                            marginLeft: "10px",
+                          }}
+                        />{" "}
+                        Proyectos
+                      </Typography>
+                    </Link>
+                  </li>
+                  <li>
+                    {" "}
+                    <Link href="/Home/intervencionCargarDatosPage">
+                      {" "}
+                      <Typography>
+                        <AssignmentOutlinedIcon
+                          style={{
+                            width: "18px",
+                            cursor: "pointer",
+                            verticalAlign: "middle",
+                            marginLeft: "10px",
+                          }}
+                        />{" "}
+                        Intervenciones
+                      </Typography>
+                    </Link>
+                  </li>
+                  <li>
+                    {" "}
+                    <Link href="/Home/recomendacionCargarDatosPage">
+                      {" "}
+                      <Typography>
+                        <NoteAltOutlinedIcon
+                          style={{
+                            width: "18px",
+                            cursor: "pointer",
+                            verticalAlign: "middle",
+                            marginLeft: "10px",
+                          }}
+                        />{" "}
+                        Recomendaciones
+                      </Typography>
+                    </Link>
+                  </li>
+                </>
+              )}
             </>
           ) : (
             false
-          )}
+          )}{" "}
         </ul>
       </Typography>
-    </div>
+    </Box>
   );
 }
 

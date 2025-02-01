@@ -9,7 +9,7 @@ import { SessionContext } from "../../contexts/session/SessionContext";
 import useLocalStorage from "../../helpers/useLocalStorage";
 
 const Logout = ({ setMostrarLogout }) => {
-  const { saveSession } = useContext(SessionContext);
+  const { saveSession, toggleTheme, isDark } = useContext(SessionContext);
   const { remove } = useLocalStorage();
   const router = useRouter();
   const handleLogout = () => {
@@ -33,16 +33,20 @@ const Logout = ({ setMostrarLogout }) => {
           willOpen: () => {
             Swal.showLoading();
           },
-          willClose: () => {
-            saveSession();
-            remove("access_token");
-            remove("id_session");
-            remove("session");
-            remove("id_rol");
-            remove("id_usuario");
-            remove("isDark");
-            remove("font");
-            router.push("/Login/Login");
+          willClose: async () => {
+            const saveSessionBr = async () => {
+              router.push("/Login/Login");
+              await saveSession();
+              remove("access_token");
+              /* remove("id_session");
+              remove("session");
+              remove("id_rol");
+              remove("id_usuario"); */
+              remove("font");
+              remove("isDark");
+            };
+            await saveSessionBr();
+            isDark && toggleTheme();
             document.documentElement.setAttribute("data-theme", "light");
           },
         });

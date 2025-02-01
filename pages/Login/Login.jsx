@@ -13,6 +13,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import useLocalStorage from "../../helpers/useLocalStorage";
+import { SessionContext } from "../../contexts/session/SessionContext";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -23,6 +24,7 @@ const Login = () => {
   //  const [usuario, setUsuario] = useState();
   // const { user, setUser, fetchSession } = useContext(UserContext);
   const { user, changeUser } = useContext(UserContext);
+  const { fetchSession } = useContext(SessionContext);
   const router = useRouter();
 
   // esto todavia no guarda ambas credenciales
@@ -49,7 +51,6 @@ const Login = () => {
         console.log(response.data.user);
 
         changeUser(response.data.user);
-        // fetchSession(response.data.user.id_session);
 
         Swal.fire({
           timer: 1500,
@@ -122,13 +123,42 @@ const Login = () => {
       </div>
       <div className={styles.smallContainer}>
         <div>
-          <h4 /* style={{ color: "black" }} */>Sistema de autenticación</h4>
+          <h4 style={{ color: "black" }}>Sistema de autenticación</h4>
         </div>
 
         <form onSubmit={handleLogin}>
           <TextField
-            className={styles.inputLoguin}
-            style={{ marginTop: "12px" }}
+            className={styles.inputLogin}
+            // autoComplete="off"
+            sx={{
+              marginTop: "12px",
+              // backgroundColor: "black",
+              "& .MuiInputBase-root": {
+                backgroundColor: "#fff",
+                color: "#000",
+                border: "1px solid #888",
+                "&:hover": {
+                  //backgroundColor: "#f0f0f0",
+                  border: "1px solid #000",
+                },
+                "&.Mui-focused": {
+                  //backgroundColor: "#e0e0e0",
+                  border: "1px #444",
+                },
+                "input:-webkit-autofill": {
+                  WebkitBoxShadow: "0 0 0 30px #fff inset", // Change the background color
+                  WebkitTextFillColor: "#000", // Change the text color
+                },
+
+                "&.MuiInputBase-filled": {
+                  // Estilos para cuando el campo está lleno
+                  backgroundColor: "#d3d3d3",
+                },
+              },
+              "& .MuiInputAdornment-root": {
+                color: "#000",
+              },
+            }}
             id="nombre_usuario"
             type="text"
             name="nombre_usuario"
@@ -136,7 +166,7 @@ const Login = () => {
             placeholder="Nombre del usuario"
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position="start" style={{ color: "#575252" }}>
                   <PersonIcon fontSize="small" />
                 </InputAdornment>
               ),
@@ -144,7 +174,38 @@ const Login = () => {
             onChange={handleChange}
           />
           <TextField
-            style={{ marginTop: "12px" }}
+            style={{
+              marginTop: "12px",
+            }}
+            sx={{
+              marginTop: "12px",
+              // backgroundColor: "black",
+              "& .MuiInputBase-root": {
+                backgroundColor: "#fff",
+                color: "#000",
+                border: "1px solid #888",
+                "&:hover": {
+                  //backgroundColor: "#f0f0f0",
+                  border: "1px solid #000",
+                },
+                "&.Mui-focused": {
+                  border: "1px #444",
+                  //backgroundColor: "#e0e0e0",
+                },
+                "input:-webkit-autofill": {
+                  WebkitBoxShadow: "0 0 0 30px #fff inset", // Change the background color
+                  WebkitTextFillColor: "#000", // Change the text color
+                },
+
+                "&.MuiInputBase-filled": {
+                  // Estilos para cuando el campo está lleno
+                  backgroundColor: "#d3d3d3",
+                },
+              },
+              "& .MuiInputAdornment-root": {
+                color: "#000",
+              },
+            }}
             id="contraseña"
             type="password"
             name="contraseña"
@@ -153,13 +214,12 @@ const Login = () => {
             onChange={handleChange}
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment position="start" style={{ color: "#575252" }}>
                   <LockIcon fontSize="small" />
                 </InputAdornment>
               ),
             }}
           />
-
           <input
             style={{ marginTop: "12px" }}
             type="submit"
