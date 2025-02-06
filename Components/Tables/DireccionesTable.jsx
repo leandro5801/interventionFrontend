@@ -37,6 +37,7 @@ import {
 } from "@mui/material";
 
 import Select from "react-select";
+import useDireccion from "./hooks/useDireccionesTable";
 
 function DireccionTable({
   direcciones,
@@ -44,190 +45,47 @@ function DireccionTable({
   empresas,
   uebs,
   cargando,
-  areas
+  areas,
 }) {
-  //para retornar el nombre de la empresa y no el id
-  const uebPorId = (id_ueb) => {
-    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
-    if (!ueb) {
-      console.error(`No se encontró ninguna UEB con id_ueb: ${id_ueb}`);
-      return;
-    }
-    return ueb;
-  };
-  const nombreEmpresa = (id_empresa) => {
-    const empresa = empresas.find((e) => e.id_empresa === id_empresa);
-    const name = empresa ? empresa.nombre_empresa : "no se encontro el nombre";
-    return name;
-  };
-  const nombreUeb = (id_ueb) => {
-    const ueb = uebs.find((e) => e.id_ueb === id_ueb);
-    const name = ueb ? ueb.nombre_ueb : "no se encontro el nombre";
-    return name;
-  };
+  const {
+    open,
+    dialogOpen,
+    showFilters,
+    page,
+    data,
+    rowsPerPage,
+    nameFilter,
+    empresaFilter,
+    uebFilter,
+    openDialogAdvertencia,
+    error,
+    editIIdx,
+    setOpenDialogAdvertencia,
+    setDialogOpen,
+    setEditIIdx,
+    handleClose,
+    toggleFilters,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    handleNameFilterChange,
+    handleEmpresaFilterChange,
+    handleUebFilterChange,
+    limpiarFiltrados,
+    openConfirmation,
+    handleDelete,
+    handleCloseDialogAdvertencia,
+    nombreEmpresa,
+    nombreUeb,
+    vinculado,
+    optionEmpresas,
+    uebPorId,
+    optionUebs,
+    paginatedData,
+    filteredData,
+    handleCloseForm,
+    handleCloseI,
+  } = useDireccion({ direcciones, setDirecciones, empresas, uebs, areas });
 
-  //para el sms de confirmacion
-  const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({});
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  function onSubmit(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setFormData(data);
-  }
-  //para el formulario
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-  //  Para el filtrado por criterios
-  const [showFilters, setShowFilters] = useState(false);
-
-  // Alternar la visibilidad de las opciones de filtrado y restablecer los valores de filtrado
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-
-  // Para el paginado de la tabla
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-  //Para filtrar la tabla
-
-  const [nameFilter, setNameFilter] = useState("");
-  const [empresaFilter, setEmpresaFilter] = useState([]);
-  const [uebFilter, setUebFilter] = useState([]);
-
-  const optionEmpresas =
-    empresas &&
-    empresas
-      .filter((item) => item.cargar_empresa === false)
-      .map((item) => ({
-        value: item.id_empresa,
-        label: item.nombre_empresa,
-      }));
-
-  const optionUebs =
-    uebs &&
-    uebs
-      .filter((item) =>
-        empresaFilter && empresaFilter.value
-          ? item.id_empresa === empresaFilter.value
-          : true
-      )
-      .map((item) => ({
-        value: item.id_ueb,
-        label: item.nombre_ueb,
-      }));
-  const handleNameFilterChange = (event) => {
-    setNameFilter(event.target.value);
-  };
-
-  const handleEmpresaFilterChange = (data) => {
-    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
-  };
-  const handleUebFilterChange = (data) => {
-    data ? setUebFilter(data) : setUebFilter([]);
-  };
-  const limpiarFiltrados = () => {
-    setNameFilter("");
-    setEmpresaFilter([]);
-    setUebFilter([]);
-  };
-  const filteredData = direcciones.filter(
-    (item) =>
-      (empresaFilter.length === 0 ||
-        uebPorId(item.id_ueb).id_empresa === empresaFilter.value) &&
-      (uebFilter.length === 0 || item.id_ueb === uebFilter.value) &&
-      item.nombre_direccion.toLowerCase().includes(nameFilter.toLowerCase())
-  );
-
-  // sms de confirmacion
-  const [data, setData] = useState("");
-
-  function openConfirmation(data) {
-    // event.preventDefault();
-    setOpen(true);
-    setData(data);
-  }
-
-  // function handleDelete(idNum) {
-  //   const newDireccion = direcciones.filter((direccion) => direccion.id !== idNum);
-  //   setDirecciones(newDireccion);
-  //   setOpen(false);
-  // }
-
-  const vinculado = (id_direccion) => {
-    const area = areas.find(
-      (dato) => dato.id_direccion === id_direccion
-    );
-    return area ? true : false;
-  };
-  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
-  const handleCloseDialogAdvertencia = () => {
-    setOpenDialogAdvertencia(false);
-  };
-
-
-  const [error, setError] = useState(null);
-  async function handleDelete(id) {
-    try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/direccion/${id}`
-      );
-      if (response.status === 200) {
-        const newDatos = direcciones.filter(
-          (direccion) => direccion.id_direccion !== id
-        );
-        setDirecciones(newDatos);
-        // Calcula el número total de páginas después de la eliminación
-        const totalPages = Math.ceil(newDatos.length / rowsPerPage) - 1;
-
-        // Si la página actual está fuera del rango, restablécela a la última página disponible
-        if (page > totalPages) {
-          setPage(totalPages);
-        }
-        setOpen(false);
-      } else {
-        throw new Error("Error al eliminar la dirección");
-      }
-    } catch (error) {
-      console.error(error);
-      setError(
-        "Hubo un problema al eliminar la dirección. Por favor, inténtalo de nuevo."
-      );
-    }
-  }
-
-  const [editIIdx, setEditIIdx] = useState(-1);
-
-  const handleSaveI = () => {
-    setEditIIdx(-1);
-  };
-
-  const handleCancelI = () => {
-    setEditIIdx(-1);
-  };
-
-  const direccionUpdate = (updatedRow) => {
-    // Crea una copia de los datos de la tabla
-    const updatedDireccionData = [...direcciones];
-
-    // Actualiza los datos de la fila que se está editando
-    updatedDireccionData[editIIdx] = updatedRow;
-
-    // Actualiza el estado de los datos en la tabla
-    setDirecciones(updatedDireccionData);
-  };
   if (cargando) {
     return (
       <div>
@@ -250,38 +108,25 @@ function DireccionTable({
               <div className={styles.btnNuevoContent}>
                 <Button
                   className={styles.btn}
-                  onClick={() => {
-                    setDialogOpen(true);
-                  }}
+                  onClick={() => setDialogOpen(true)}
                 >
                   Nuevo +
                 </Button>
+
                 <FormDialog
                   open={dialogOpen}
-                  onClose={() => {
-                    setDialogOpen(false);
-                  }}
-                  FormComponent={DireccionForm}
-                  setDirecciones={setDirecciones}
-                  direcciones={direcciones}
-                  onSave={() => {
-                    setDialogOpen(false);
-                  }}
-                  onCancel={() => {
-                    setDialogOpen(false);
-                  }}
-                  empresas={empresas}
+                  onClose={handleCloseForm}
+                  onCancel={handleCloseForm}
+                  onSave={handleCloseForm}
                   uebPorId={uebPorId}
-                  uebs={uebs}
-                ></FormDialog>
-                {/* SELECCIONAR PROYECTO ETC */}
+                  FormComponent={DireccionForm}
+                  {...{ setDirecciones, direcciones, empresas, uebs }}
+                />
+
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
                     <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
+                      onClick={toggleFilters}
                       style={{ width: "18px", cursor: "pointer" }}
                     />
                   ) : (
@@ -292,175 +137,148 @@ function DireccionTable({
                   )}
                 </div>
               </div>
-              <>
-                {direcciones.length === 0 && (
-                  <div className={styles.divIconH2}>
-                    <h5> No hay direcciones</h5>{" "}
-                  </div>
-                )}
-                {direcciones.length === 0 || (
-                  <Table stickyHeader>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell className={styles.spacing}>
-                          Empresa
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={empresaFilter}
-                              onChange={(empresaFilter) => {
-                                handleEmpresaFilterChange(empresaFilter);
-                              }}
-                              options={optionEmpresas}
-                              placeholder="Empresa"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Ueb
-                          {showFilters && (
-                            <Select
-                              styles={customStyles}
-                              className={styles.selectGestionesGantt}
-                              defaultValue={uebFilter}
-                              onChange={(uebFilter) => {
-                                handleUebFilterChange(uebFilter);
-                              }}
-                              options={optionUebs}
-                              placeholder="Ueb"
-                              isClearable
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell className={styles.spacing}>
-                          Dirección
-                          {showFilters && (
-                            <input
-                              className={styles.inputFilter}
-                              type="text"
-                              value={nameFilter}
-                              onChange={handleNameFilterChange}
-                              placeholder="Filtrar por dirección"
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell className={styles.spacing}></TableCell>
-                      </TableRow>
-                    </TableHead>
 
-                    <TableBody>
-                      {filteredData
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((direccion) => (
-                          <TableRow
-                            key={direccion.id_direccion}
-                            className={styles.trStyle}
-                          >
-                            <TableCell className={styles.tdStyle}>
-                              {nombreEmpresa(
-                                uebPorId(direccion.id_ueb).id_empresa
-                              )}
-                            </TableCell>
-                            <TableCell className={styles.tdStyle}>
-                              {nombreUeb(direccion.id_ueb)}
-                            </TableCell>
-                            <TableCell className={styles.tdStyle}>
-                              {direccion.nombre_direccion}
-                            </TableCell>
-                            <TableCell className={styles.tdStyleIcon}>
-                              <FontAwesomeIcon
-                                icon={faEdit}
-                                onClick={() =>
-                                  setEditIIdx(
-                                    filteredData.findIndex(
-                                      (item) =>
-                                        item.id_direccion ===
-                                        direccion?.id_direccion
-                                    )
-                                  )
-                                }
-                                className={styles.faIcon}
-                              />
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                onClick={() =>
-                                  vinculado(direccion?.id_direccion)
-                                    ? setOpenDialogAdvertencia(true)
-                                    : openConfirmation(direccion?.id_direccion)
-                                }
-                                data-task-id={direccion?.id_direccion}
-                                className={styles.faIcon}
-                              />
-                              <Dialog
-                                open={open}
-                                onClose={handleClose}
-                              >
-                                <DialogTitle>Confirmar Eliminación</DialogTitle>
-                                <DialogContent>
-                                  <p>
-                                    ¿Está seguro de eliminar esta dirección?
-                                  </p>
-                                </DialogContent>
-                                <DialogActions>
-                                  <Button onClick={() => handleDelete(data)}>
-                                    Aceptar
-                                  </Button>
-                                  <Button onClick={handleClose}>
-                                    Cancelar
-                                  </Button>
-                                </DialogActions>
-                              </Dialog>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                    </TableBody>
+              {direcciones.length === 0 ? (
+                <div className={styles.divIconH2}>
+                  <h5>No hay direcciones</h5>
+                </div>
+              ) : (
+                <Table stickyHeader>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className={styles.spacing}>
+                        Empresa
+                        {showFilters && (
+                          <Select
+                            styles={customStyles}
+                            value={empresaFilter}
+                            onChange={handleEmpresaFilterChange}
+                            options={optionEmpresas}
+                            isClearable
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell className={styles.spacing}>
+                        Ueb
+                        {showFilters && (
+                          <Select
+                            styles={customStyles}
+                            value={uebFilter}
+                            onChange={handleUebFilterChange}
+                            options={optionUebs}
+                            isClearable
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell className={styles.spacing}>
+                        Dirección
+                        {showFilters && (
+                          <input
+                            className={styles.inputFilter}
+                            value={nameFilter}
+                            onChange={handleNameFilterChange}
+                            placeholder="Filtrar por dirección"
+                          />
+                        )}
+                      </TableCell>
+                      <TableCell className={styles.spacing}></TableCell>
+                    </TableRow>
+                  </TableHead>
 
-                    <TableFooter>
-                      <TableRow>
-                        <TablePagination
-                          className={styles.tablePagination}
-                          rowsPerPageOptions={[4, 5, 10]}
-                          count={filteredData.length}
-                          rowsPerPage={rowsPerPage}
-                          page={page}
-                          onPageChange={handleChangePage}
-                          onRowsPerPageChange={handleChangeRowsPerPage}
-                          labelRowsPerPage="Filas por página:"
-                        />
+                  <TableBody>
+                    {paginatedData.map((direccion) => (
+                      <TableRow
+                        key={direccion.id_direccion}
+                        className={styles.trStyle}
+                      >
+                        <TableCell className={styles.tdStyle}>
+                          {nombreEmpresa(
+                            uebs.find((u) => u.id_ueb === direccion.id_ueb)
+                              ?.id_empresa
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.tdStyle}>
+                          {nombreUeb(direccion.id_ueb)}
+                        </TableCell>
+                        <TableCell className={styles.tdStyle}>
+                          {direccion.nombre_direccion}
+                        </TableCell>
+                        <TableCell className={styles.tdStyleIcon}>
+                          <FontAwesomeIcon
+                            icon={faEdit}
+                            className={styles.faIcon}
+                            onClick={() =>
+                              setEditIIdx(
+                                filteredData.findIndex(
+                                  (d) =>
+                                    d.id_direccion === direccion.id_direccion
+                                )
+                              )
+                            }
+                          />
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className={styles.faIcon}
+                            onClick={() =>
+                              vinculado(direccion.id_direccion)
+                                ? setOpenDialogAdvertencia(true)
+                                : openConfirmation(direccion.id_direccion)
+                            }
+                          />
+                        </TableCell>
                       </TableRow>
-                    </TableFooter>
-                  </Table>
-                )}
-              </>
+                    ))}
+                  </TableBody>
+
+                  <TableFooter>
+                    <TableRow>
+                      <TablePagination
+                        count={filteredData.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        rowsPerPageOptions={[5, 10, 25]}
+                        labelRowsPerPage="Filas por página:"
+                      />
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              )}
+
+              <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Confirmar Eliminación</DialogTitle>
+                <DialogContent>
+                  <p>¿Está seguro de eliminar esta dirección?</p>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={() => handleDelete(data)}>Aceptar</Button>
+                  <Button onClick={handleClose}>Cancelar</Button>
+                </DialogActions>
+              </Dialog>
+
               <Dialog
                 open={openDialogAdvertencia}
                 onClose={handleCloseDialogAdvertencia}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>
-                  No se puede eliminar una dirección que ya esté vinculada a
-                  un área
-                  <div className={styles.botonAlert}>
-                    <Button onClick={handleCloseDialogAdvertencia}>
-                      Aceptar
-                    </Button>
-                  </div>
+                  No se puede eliminar una dirección vinculada a un área
+                  <Button onClick={handleCloseDialogAdvertencia}>
+                    Aceptar
+                  </Button>
                 </Alert>
               </Dialog>
+
               <FormDialog
                 open={editIIdx !== -1}
-                onClose={handleCancelI}
+                onClose={handleCloseI}
                 FormComponent={DireccionForm}
                 setDirecciones={setDirecciones}
                 direcciones={direcciones}
                 direccion={direcciones[editIIdx]}
-                onSave={handleSaveI}
-                onCancel={handleCancelI}
+                onSave={handleCloseI}
+                onCancel={handleCloseI}
                 empresas={empresas}
                 uebPorId={uebPorId}
                 uebs={uebs}

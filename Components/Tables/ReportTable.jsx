@@ -33,6 +33,7 @@ import {
   Dialog,
   Button,
 } from "@mui/material";
+import { useReportTable } from "./hooks/useReportTable";
 
 function ReportTable({
   recomendations,
@@ -41,149 +42,40 @@ function ReportTable({
   projects,
   setSelectedIntervention,
 }) {
-  //para retornar el nombre de la empresa y no el id
-  const intervencionPorId = (id_intervencion) => {
-    const intervention = interventions.find(
-      (e) => e.id_intervencion === id_intervencion
-    );
-    return intervention;
-  };
-
-  const proyectoPorId = (id_proyecto) => {
-    const proyecto = projects.find((e) => e.id_proyecto === id_proyecto);
-    return proyecto;
-  };
-
-  const nombreProyecto = (id_proyecto) => {
-    const proyecto = projects.find(
-      (proyecto) => proyecto.id_proyecto === id_proyecto
-    );
-    const name = proyecto
-      ? proyecto.nombre_proyecto
-      : "no se encontro el nombre";
-    return name;
-  };
-
-  const nombreIntervencion = (id_intervencion) => {
-    const intervencion = interventions.find(
-      (intervencion) => intervencion.id_intervencion === id_intervencion
-    );
-    const name = intervencion
-      ? intervencion.nombre_intervencion
-      : "no se encontro el nombre";
-    return name;
-  };
-
-  const isFollow = (follow) => {
-    const name = follow ? "Sí" : "No";
-    return name;
-  };
-
-  //para los select de proyecto etc
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  // Para el paginado de la tabla
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-  //  Para el filtrado por criterios (consultor, trabajador)
-  const [showFilters, setShowFilters] = useState(false);
-
-  // Alternar la visibilidad de las opciones de filtrado y restablecer los valores de filtrado
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-
-  //para filtrar por proyecto e intervencion
-  const [projectFilter, setProjectFilter] = useState([]);
-  const optionProjects =
-    projects &&
-    projects.map((item) => ({
-      value: item.id_proyecto,
-      label: item.nombre_proyecto,
-    }));
-  const [interventionFilter, setInterventionFilter] = useState([]);
-  const optioninterventions =
-    interventions &&
-    interventions
-      .filter((item) =>
-        projectFilter && projectFilter.value
-          ? item.id_proyecto === projectFilter.value
-          : true
-      )
-      .map((item) => ({
-        value: item.id_intervencion,
-        label: item.nombre_intervencion,
-      }));
-  const handleProjectFilterChange = (data) => {
-    data ? setProjectFilter(data) : setProjectFilter([]);
-  };
-  const handleInterventionFilterChange = (data) => {
-    data ? setInterventionFilter(data) : setInterventionFilter([]);
-  };
-
-  //Para filtrar la tabla
-
-  const [nameFilter, setNameFilter] = useState("");
-  const [descriptionFilter, setDescriptionFilter] = useState("");
-  const [fechaFilter, setFechaFilter] = useState("");
-  const [followFilter, setFollowFilter] = useState("");
-
-  const handleNameFilterChange = (event) => {
-    setNameFilter(event.target.value);
-  };
-
-  const handleDescriptionFilterChange = (event) => {
-    setDescriptionFilter(event.target.value);
-  };
-  const handleFechaFilterChange = (event) => {
-    setFechaFilter(event.target.value);
-  };
-  const handleFollowFilterChange = (event) => {
-    setFollowFilter(event.target.value);
-  };
-  const limpiarFiltrados = () => {
-    setProjectFilter([]);
-    setInterventionFilter([]);
-    setNameFilter("");
-    setDescriptionFilter("");
-    setFechaFilter("");
-    setFollowFilter("");
-  };
-
-  const filteredData = recomendations.filter(
-    (item) =>
-      (projectFilter.length === 0 ||
-        intervencionPorId(item.id_intervencion).id_proyecto ===
-          projectFilter.value) &&
-      (interventionFilter.length === 0 ||
-        item.id_intervencion === interventionFilter.value) &&
-      item.nombre_recomendacion
-        .toLowerCase()
-        .includes(nameFilter.toLowerCase()) &&
-      item.descripcion_recomendacion
-        .toLowerCase()
-        .includes(descriptionFilter.toLowerCase()) &&
-      isFollow(item.seguimiento)
-        .toLowerCase()
-        .includes(followFilter.toLowerCase()) &&
-      item.fecha_recomendacion.toLowerCase().includes(fechaFilter.toLowerCase())
-  );
-
-  const handleClick = (e) => {
-    const taskId = parseInt(e.currentTarget.getAttribute("data-int-id"));
-    const task = interventions.find((t) => t.id_intervencion === taskId);
-    setSelectedIntervention(task);
-  };
-
+  const {
+    page,
+    rowsPerPage,
+    showFilters,
+    projectFilter,
+    interventionFilter,
+    fechaFilter,
+    nameFilter,
+    descriptionFilter,
+    followFilter,
+    nombreProyecto,
+    nombreIntervencion,
+    intervencionPorId,
+    isFollow,
+    optionProjects,
+    optioninterventions,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    toggleFilters,
+    handleProjectFilterChange,
+    handleInterventionFilterChange,
+    limpiarFiltrados,
+    handleClick,
+    setFechaFilter,
+    setNameFilter,
+    setDescriptionFilter,
+    setFollowFilter,
+    filteredData,
+  } = useReportTable({
+    recomendations,
+    interventions,
+    projects,
+    setSelectedIntervention,
+  });
   return (
     <>
       <>
@@ -198,6 +90,7 @@ function ReportTable({
                   defaultValue={projectFilter}
                   onChange={(projectFilter) => {
                     handleProjectFilterChange(projectFilter);
+                    setSelectedIntervention(null);
                   }}
                   options={optionProjects}
                   placeholder="Proyecto"
@@ -210,6 +103,7 @@ function ReportTable({
                   defaultValue={interventionFilter}
                   onChange={(interventionFilter) => {
                     handleInterventionFilterChange(interventionFilter);
+                    setSelectedIntervention(null);
                   }}
                   options={optioninterventions}
                   placeholder="Intervenci..."
@@ -281,7 +175,10 @@ function ReportTable({
                         onClick={handleClick}
                         style={{ cursor: "pointer" }}
                       >
-                        {console.log(recomendation)}
+                        {/* {console.log(recomendation)}
+                        {console.log(
+                          intervencionPorId(recomendation.id_intervencion)
+                        )} */}
                         <TableCell>
                           {nombreProyecto(
                             intervencionPorId(recomendation.id_intervencion)

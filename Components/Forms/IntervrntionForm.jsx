@@ -204,6 +204,7 @@ export default function FormUpdateIntervention({
       value: item.id_area,
       label: item.nombre_area,
     }));
+  console.log(uebId);
 
   const trabajadoresOptions = trabajadores
     .filter((item) => {

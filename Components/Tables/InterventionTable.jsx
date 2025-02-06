@@ -36,6 +36,7 @@ import {
 } from "@mui/material";
 
 import Select from "react-select";
+import { useInterventionTable } from "./hooks/useInterventionTable";
 
 function InterventionTable({
   filteredInterventions,
@@ -52,7 +53,77 @@ function InterventionTable({
   cargando,
   recomendations,
 }) {
-  //para retornar el nombre de y no el id
+  const {
+    page,
+    rowsPerPage,
+    dialogCreInteOpen,
+    editIIdx,
+    open,
+    data,
+    error,
+    openDialogAdvertencia,
+    showFilters,
+    projectFilter,
+    empresaFilter,
+    uebFilter,
+    structureFilter,
+    areaFilter,
+    consultorFilter,
+    nameFilter,
+    descriptionFilter,
+    workerFilter,
+    startFilter,
+    filteredData,
+    nombreEmpresa,
+    nombreUeb,
+    nombreDireccion,
+    nombreArea,
+    nombreConsultor,
+    nombreTrabajador,
+    nombreProyecto,
+    vinculado,
+    filterOptions,
+    handleChangePage,
+    handleChangeRowsPerPage,
+    handleCancelI,
+    handleSaveI,
+    toggleFilters,
+    limpiarFiltrados,
+    setDialogCreInteOpen,
+    handleCloseInterventionForm,
+    setEditIIdx,
+    handleDelete,
+    openConfirmation,
+    handleClose,
+    handleCloseDialogAdvertencia,
+    interventionUpdate,
+    setNameFilter,
+    setDescriptionFilter,
+    setWorkerFilter,
+    areaPorId,
+    direccionPorId,
+    uebPorId,
+    setStartFilter,
+    setProjectFilter,
+    setEmpresaFilter,
+    setUebFilter,
+    setStructureFilter,
+    setAreaFilter,
+    setConsultorFilter,
+  } = useInterventionTable({
+    filteredInterventions,
+    interventions,
+    setInterventions,
+    projects,
+    empresas,
+    uebs,
+    direcciones,
+    areas,
+    trabajadores,
+    consultores,
+    recomendations,
+  });
+  /*   //para retornar el nombre de y no el id
   const uebPorId = (id_ueb) => {
     const ueb = uebs.find((e) => e.id_ueb === id_ueb);
     if (!ueb) {
@@ -383,7 +454,7 @@ function InterventionTable({
 
     // Actualiza el estado de los datos en la tabla
     setInterventions(updatedInterventonsData);
-  };
+  }; */
   if (cargando) {
     return (
       <div>
@@ -405,71 +476,62 @@ function InterventionTable({
               <div className={styles.btnNuevoContent}>
                 <Button
                   className={styles.btn}
-                  onClick={() => {
-                    setDialogCreInteOpen(true);
-                  }}
+                  onClick={() => setDialogCreInteOpen(true)}
                 >
                   Nuevo +
                 </Button>
+
                 <div className={styles.filtrosEstructuraContentInt}>
-                  {" "}
                   <Select
                     styles={customStyles}
-                    className={styles.selectGestionesGantt}
-                    defaultValue={projectFilter}
-                    onChange={(projectFilter) => {
-                      handleProjectFilterChange(projectFilter);
-                    }}
-                    options={optionProjects}
+                    value={projectFilter}
+                    onChange={setProjectFilter}
+                    options={filterOptions.projects}
                     placeholder="Proyecto"
                     isClearable
+                    className={styles.selectGestionesGantt}
                   />
                   <Select
                     styles={customStyles}
-                    className={styles.selectGestionesGantt}
-                    defaultValue={consultorFilter}
-                    onChange={(consultorFilter) => {
-                      handleConsultorFilterChange(consultorFilter);
-                    }}
-                    options={optionConsultores}
+                    value={consultorFilter}
+                    onChange={setConsultorFilter}
+                    options={filterOptions.consultores}
                     placeholder="Consultor"
                     isClearable
+                    className={styles.selectGestionesGantt}
                   />
                 </div>
+
                 <FormDialog
                   open={dialogCreInteOpen}
-                  onClose={() => {
-                    setDialogCreInteOpen(false);
-                  }}
-                  FormComponent={IntervrntionForm}
-                  setInterventions={setInterventions}
-                  filteredInterventions={filteredInterventions}
-                  interventions={interventions}
-                  onSave={() => {
-                    setDialogCreInteOpen(false);
-                  }}
-                  onCancel={() => {
-                    setDialogCreInteOpen(false);
-                  }}
-                  consultores={consultores}
-                  trabajadores={trabajadores}
-                  empresas={empresas}
-                  uebs={uebs}
-                  direcciones={direcciones}
-                  areas={areas}
-                  projects={projects}
-                  nombreEmpresa={nombreEmpresa}
-                  nombreUeb={nombreUeb}
-                  nombreTrabajador={nombreTrabajador}
-                  nombreDireccion={nombreDireccion}
-                  nombreArea={nombreArea}
-                  nombreConsultor={nombreConsultor}
-                  nombreProyecto={nombreProyecto}
+                  onClose={handleCloseInterventionForm}
+                  onSave={handleCloseInterventionForm}
+                  onCancel={handleCloseInterventionForm}
                   areaPorId={areaPorId}
-                  direccionPorId={direccionPorId}
                   uebPorId={uebPorId}
-                  consultor={consultor}
-                ></FormDialog>
+                  direccionPorId={direccionPorId}
+                  FormComponent={IntervrntionForm}
+                  {...{
+                    setInterventions,
+                    filteredInterventions,
+                    interventions,
+                    consultores,
+                    trabajadores,
+                    empresas,
+                    uebs,
+                    direcciones,
+                    areas,
+                    projects,
+                    nombreEmpresa,
+                    nombreUeb,
+                    nombreTrabajador,
+                    nombreDireccion,
+                    nombreArea,
+                    nombreConsultor,
+                    nombreProyecto,
+                    consultor,
+                  }}
+                />
 
                 <div className={styles.filterListOffOutlinedContent}>
                   {showFilters ? (
@@ -488,227 +550,204 @@ function InterventionTable({
                   )}
                 </div>
               </div>
-              <div className={styles.filtrosEstructuraContentInt}>
-                {/* SELECCIONAR PROYECTO ETC */}
 
+              <div className={styles.filtrosEstructuraContentInt}>
                 {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={empresaFilter}
-                    onChange={(empresaFilter) => {
-                      handleEmpresaFilterChange(empresaFilter);
-                    }}
-                    options={optionEmpresas}
-                    placeholder="Empresa"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={uebFilter}
-                    onChange={(uebFilter) => {
-                      handleUebFilterChange(uebFilter);
-                    }}
-                    options={optionUebs}
-                    placeholder="Ueb"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={structureFilter}
-                    onChange={(structureFilter) => {
-                      handleStructureFilterChange(structureFilter);
-                    }}
-                    options={optionDirecciones}
-                    placeholder="Dirección"
-                    isClearable
-                  />
-                )}
-                {showFilters && (
-                  <Select
-                    styles={customStyles}
-                    className={styles.selectGestiones}
-                    defaultValue={areaFilter}
-                    onChange={(areaFilter) => {
-                      handleAreaFilterChange(areaFilter);
-                    }}
-                    options={optionAreas}
-                    placeholder="Área"
-                    isClearable
-                  />
-                )}
-                <div className={styles.divFechaFilter}>
-                  {showFilters && (
+                  <>
+                    <Select
+                      styles={customStyles}
+                      value={empresaFilter}
+                      onChange={setEmpresaFilter}
+                      options={filterOptions.empresas}
+                      placeholder="Empresa"
+                      isClearable
+                      className={styles.selectGestiones}
+                    />
+                    <Select
+                      styles={customStyles}
+                      value={uebFilter}
+                      onChange={setUebFilter}
+                      options={filterOptions.uebs}
+                      placeholder="Ueb"
+                      isClearable
+                      className={styles.selectGestiones}
+                    />
+                    <Select
+                      styles={customStyles}
+                      value={structureFilter}
+                      onChange={setStructureFilter}
+                      options={filterOptions.direcciones}
+                      placeholder="Dirección"
+                      isClearable
+                      className={styles.selectGestiones}
+                    />
+                    <Select
+                      styles={customStyles}
+                      value={areaFilter}
+                      onChange={setAreaFilter}
+                      options={filterOptions.areas}
+                      placeholder="Área"
+                      isClearable
+                      className={styles.selectGestiones}
+                    />
                     <input
                       className={styles.inputFilter}
                       type="date"
                       value={startFilter}
-                      onChange={handleStartFilterChange}
+                      onChange={(e) => setStartFilter(e.target.value)}
                       placeholder="Filtrar por fecha"
                     />
-                  )}
-                </div>
+                  </>
+                )}
               </div>
-              <>
-                {filteredInterventions.length === 0 && (
-                  <div className={styles.divIconH2}>
-                    <h5> No hay Intervenciones</h5>{" "}
-                  </div>
-                )}
-                {filteredInterventions.length === 0 || (
-                  <Table stickyHeader>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell className={styles.letraEnNegrita}>
-                          Proyecto
-                        </TableCell>
-                        <TableCell className={styles.letraEnNegrita}>
-                          Intervención
-                        </TableCell>
 
-                        <TableCell className={styles.letraEnNegrita}>
-                          Descripción
+              {filteredInterventions.length === 0 ? (
+                <div className={styles.divIconH2}>
+                  <h5> No hay Intervenciones</h5>
+                </div>
+              ) : (
+                <Table stickyHeader>
+                  <TableHead>
+                    <TableRow>
+                      {[
+                        "Proyecto",
+                        "Intervención",
+                        "Descripción",
+                        "Consultor",
+                        "Trabajador",
+                        "",
+                      ].map((header, idx) => (
+                        <TableCell key={idx} className={styles.letraEnNegrita}>
+                          {header}
                         </TableCell>
-                        <TableCell className={styles.letraEnNegrita}>
-                          Consultor
-                        </TableCell>
-                        <TableCell className={styles.letraEnNegrita}>
-                          Trabajador
-                        </TableCell>
-                        <TableCell
-                          className={styles.letraEnNegrita}
-                        ></TableCell>
-                      </TableRow>
-                    </TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHead>
 
-                    <TableBody>
-                      {filteredData
-                        .slice(
-                          page * rowsPerPage,
-                          page * rowsPerPage + rowsPerPage
-                        )
-                        .map((tsk) => (
-                          <TableRow key={tsk.id_intervencion}>
-                            <TableCell>
-                              {nombreProyecto(tsk.id_proyecto)}
-                            </TableCell>
-                            <TableCell>{tsk.nombre_intervencion}</TableCell>
-                            <TableCell>{tsk.descripcion}</TableCell>
-
-                            <TableCell>
-                              {nombreConsultor(tsk.id_consultor)}
-                            </TableCell>
-                            <TableCell>
-                              {nombreTrabajador(tsk.id_trabajador)}
-                            </TableCell>
-                            <TableCell className={styles.tdStyleIcon}>
-                              <FontAwesomeIcon
-                                icon={faEdit}
-                                onClick={() =>
-                                  setEditIIdx(
-                                    filteredInterventions.findIndex(
-                                      (item) =>
-                                        item.id_intervencion ===
-                                        tsk?.id_intervencion
-                                    )
+                  <TableBody>
+                    {filteredData
+                      .slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((tsk) => (
+                        <TableRow key={tsk.id_intervencion}>
+                          <TableCell>
+                            {nombreProyecto(tsk.id_proyecto)}
+                          </TableCell>
+                          <TableCell>{tsk.nombre_intervencion}</TableCell>
+                          <TableCell>{tsk.descripcion}</TableCell>
+                          <TableCell>
+                            {nombreConsultor(tsk.id_consultor)}
+                          </TableCell>
+                          <TableCell>
+                            {nombreTrabajador(tsk.id_trabajador)}
+                          </TableCell>
+                          <TableCell className={styles.tdStyleIcon}>
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              onClick={() =>
+                                setEditIIdx(
+                                  filteredInterventions.findIndex(
+                                    (item) =>
+                                      item.id_intervencion ===
+                                      tsk.id_intervencion
                                   )
-                                }
-                                className={styles.faIcon}
-                              />
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                onClick={() =>
-                                  vinculado(tsk?.id_intervencion)
-                                    ? setOpenDialogAdvertencia(true)
-                                    : openConfirmation(tsk?.id_intervencion)
-                                }
-                                data-task-id={tsk?.id_intervencion}
-                                className={styles.faIcon}
-                              />
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Confirmar Eliminación</DialogTitle>
-                        <DialogContent>
-                          <p>¿Está seguro de eliminar esta Intervención?</p>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={() => handleDelete(data)}>
-                            Aceptar
-                          </Button>
-                          <Button onClick={handleClose}>Cancelar</Button>
-                        </DialogActions>
-                      </Dialog>
-                    </TableBody>
+                                )
+                              }
+                              className={styles.faIcon}
+                            />
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              onClick={() =>
+                                vinculado(tsk.id_intervencion)
+                                  ? setOpenDialogAdvertencia(true)
+                                  : openConfirmation(tsk.id_intervencion)
+                              }
+                              className={styles.faIcon}
+                            />
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
 
-                    <TableFooter>
-                      <TableRow>
-                        <TablePagination
-                          className={styles.tablePagination}
-                          rowsPerPageOptions={[4, 5, 10]}
-                          count={filteredData.length}
-                          rowsPerPage={rowsPerPage}
-                          page={page}
-                          onPageChange={handleChangePage}
-                          onRowsPerPageChange={handleChangeRowsPerPage}
-                          labelRowsPerPage="Filas por página:"
-                        />
-                      </TableRow>
-                    </TableFooter>
-                  </Table>
-                )}
-              </>
-              <Dialog
-                open={openDialogAdvertencia}
-                onClose={handleCloseDialogAdvertencia}
-              >
-                <Alert severity="warning">
-                  <AlertTitle>Advertencia</AlertTitle>
-                  No se puede eliminar una intervención que ya esté vinculada a
-                  una recomendación
-                  <div className={styles.botonAlert}>
-                    <Button onClick={handleCloseDialogAdvertencia}>
-                      Aceptar
-                    </Button>
-                  </div>
-                </Alert>
-              </Dialog>
-              <FormDialog
-                open={editIIdx !== -1}
-                onClose={handleCancelI}
-                FormComponent={IntervrntionForm}
-                interventions={interventions}
-                setInterventions={setInterventions}
-                intervention={filteredInterventions[editIIdx]}
-                onSave={handleSaveI}
-                onCancel={handleCancelI}
-                consultores={consultores}
-                consultor={consultor}
-                trabajadores={trabajadores}
-                empresas={empresas}
-                uebs={uebs}
-                direcciones={direcciones}
-                areas={areas}
-                projects={projects}
-                nombreEmpresa={nombreEmpresa}
-                nombreUeb={nombreUeb}
-                nombreTrabajador={nombreTrabajador}
-                nombreDireccion={nombreDireccion}
-                nombreArea={nombreArea}
-                nombreConsultor={nombreConsultor}
-                nombreProyecto={nombreProyecto}
-                areaPorId={areaPorId}
-                direccionPorId={direccionPorId}
-                uebPorId={uebPorId}
-              ></FormDialog>
+                  <TableFooter>
+                    <TableRow>
+                      <TablePagination
+                        className={styles.tablePagination}
+                        rowsPerPageOptions={[4, 5, 10]}
+                        count={filteredData.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                        labelRowsPerPage="Filas por página:"
+                      />
+                    </TableRow>
+                  </TableFooter>
+                </Table>
+              )}
             </TableContainer>
+
+            {/* Diálogos */}
+            <Dialog open={open} onClose={handleClose}>
+              <DialogTitle>Confirmar Eliminación</DialogTitle>
+              <DialogContent>
+                <p>¿Está seguro de eliminar esta Intervención?</p>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => handleDelete(data)}>Aceptar</Button>
+                <Button onClick={handleClose}>Cancelar</Button>
+              </DialogActions>
+            </Dialog>
+
+            <Dialog
+              open={openDialogAdvertencia}
+              onClose={handleCloseDialogAdvertencia}
+            >
+              <Alert severity="warning">
+                <AlertTitle>Advertencia</AlertTitle>
+                No se puede eliminar una intervención que ya esté vinculada a
+                una recomendación
+                <div className={styles.botonAlert}>
+                  <Button onClick={handleCloseDialogAdvertencia}>
+                    Aceptar
+                  </Button>
+                </div>
+              </Alert>
+            </Dialog>
+
+            <FormDialog
+              open={editIIdx !== -1}
+              onClose={handleCancelI}
+              onSave={handleSaveI}
+              onCancel={handleCancelI}
+              areaPorId={areaPorId}
+              uebPorId={uebPorId}
+              direccionPorId={direccionPorId}
+              FormComponent={IntervrntionForm}
+              {...{
+                interventions,
+                setInterventions,
+                intervention: filteredInterventions[editIIdx],
+                consultores,
+                consultor,
+                trabajadores,
+                empresas,
+                uebs,
+                direcciones,
+                areas,
+                projects,
+                nombreEmpresa,
+                nombreUeb,
+                nombreTrabajador,
+                nombreDireccion,
+                nombreArea,
+                nombreConsultor,
+                nombreProyecto,
+              }}
+            />
           </div>
         </div>
       </>

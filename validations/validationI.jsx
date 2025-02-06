@@ -7,7 +7,7 @@ export const validationSchema = Yup.object().shape({
   }),
   name: Yup.string().required("Ingrese un nombre."),
   description: Yup.string().required("Ingrese una descripción."),
-  empresa:  Yup.object().shape({
+  empresa: Yup.object().shape({
     value: Yup.string().required("Seleccione una empresa."),
     label: Yup.string().required("Seleccione una empresa."),
   }),
@@ -32,18 +32,26 @@ export const validationSchema = Yup.object().shape({
     label: Yup.string().required("Seleccione un trabajador."),
   }),
   start: Yup.string()
-    .required("Seleccione una fecha de inicio.")
+    .required("Seleccione una fecha.")
     .matches(
-      /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01]0[1-9]|1[012])$/,
-      "La fecha debe tener el formato AAAA-MM-DD"
+      /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/,
+      "Formato debe ser YYYY-MM-DD"
     ),
-    end: Yup
-    .string()
+  end: Yup.string()
     .required("Seleccione una fecha de fin.")
-    .test("is-after-start", "La fecha de fin debe ser al menos un día después de la fecha de inicio", function (value) {
-      const { start } = this.parent;
-      return !start || !value || new Date(value) >= new Date(start).setDate(new Date(start).getDate() + 1);
-    })
+    .test(
+      "is-after-start",
+      "La fecha de fin debe ser al menos un día después de la fecha de inicio",
+      function (value) {
+        const { start } = this.parent;
+        return (
+          !start ||
+          !value ||
+          new Date(value) >=
+            new Date(start).setDate(new Date(start).getDate() + 1)
+        );
+      }
+    )
     .matches(
       /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
       "La fecha debe tener el formato AAAA-MM-DD"

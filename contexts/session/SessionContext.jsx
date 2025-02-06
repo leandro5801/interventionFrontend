@@ -21,7 +21,6 @@ export default function SessionProvider({ children }) {
     const dark = get("isDark");
 
     if (dark === "true") {
-      console.log(dark);
       return true;
     } else return false;
   });
@@ -44,7 +43,6 @@ export default function SessionProvider({ children }) {
         setIsDark(response.data.isDark);
         setFont(response.data.font);
         setId_session(idSession);
-        console.log(response.data);
       }
     } catch (error) {
       console.log(error);

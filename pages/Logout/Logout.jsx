@@ -34,8 +34,8 @@ const Logout = ({ setMostrarLogout }) => {
             Swal.showLoading();
           },
           willClose: async () => {
+            router.push("/Login/Login");
             const saveSessionBr = async () => {
-              router.push("/Login/Login");
               await saveSession();
               remove("access_token");
               /* remove("id_session");
@@ -46,8 +46,8 @@ const Logout = ({ setMostrarLogout }) => {
               remove("isDark");
             };
             await saveSessionBr();
-            isDark && toggleTheme();
-            document.documentElement.setAttribute("data-theme", "light");
+            /*  isDark && toggleTheme();
+            document.documentElement.setAttribute("data-theme", "light"); */
           },
         });
       }

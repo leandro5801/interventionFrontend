@@ -770,7 +770,7 @@ weight .table td {
   padding: 7px;
   /* border: none; */
   border: 1px solid #ccc;
-  /* background-color: #ccc; */
+  background-color: var(--bg-color-third);
   font-size: 14px;
   color: black;
   width: 510px;
