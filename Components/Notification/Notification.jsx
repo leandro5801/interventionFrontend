@@ -46,7 +46,6 @@ export function NotificationBell() {
     anchorEl,
     notifications,
     handleClearAll,
-    setIsMarkingAsRead,
     isMarkingAsRead,
     handleDelete,
     handleMarkAsRead,
@@ -118,7 +117,7 @@ export function NotificationBell() {
           maxHeight: "350px", // Limitar el ancho
         }}
       >
-        {notifications.length <= 0 ? (
+        {notifications?.length <= 0 ? (
           <Typography sx={{ p: 1 }}> No hay notificaciones</Typography>
         ) : (
           <Box sx={{ width: "full" }}>
@@ -144,7 +143,7 @@ export function NotificationBell() {
                 "&::-webkit-scrollbar-thumb:hover": { backgroundColor: "#555" },
               }}
             >
-              {notifications.map((notification) => (
+              {notifications?.map((notification) => (
                 <ListItemButton
                   dense
                   key={notification.id}
@@ -193,7 +192,7 @@ export function NotificationBell() {
                 } */
                   />
                   {/* Badge para notificaciones no leídas */}
-                  {!notification.isRead && (
+                  {!notification?.isRead && (
                     <Badge
                       color="primary"
                       variant="dot"

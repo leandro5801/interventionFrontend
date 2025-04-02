@@ -294,7 +294,9 @@ export default function useGanttPage() {
           (i) => i.id_consultor === consultorAutenticado.id_consultor
         );
         filtredProjects = projects.filter((i) =>
-          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+          i.consultores_asignados_id?.includes(
+            consultorAutenticado.id_consultor
+          )
         );
       } else if (user.id_rol === 3) {
         filtredInterventions = interventions;

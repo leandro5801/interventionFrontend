@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 
 export async function middleware(request) {
+  /* /*  const { get } = useLocalStorage();
+   const jwt = get("access_token"); */
   const jwt = request.cookies.get("access_token");
 
   if (jwt === undefined) {

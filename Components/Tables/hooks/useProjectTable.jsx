@@ -23,6 +23,7 @@ export const useProjectTable = ({
   const [objetivoFilter, setObjetivoFilter] = useState("");
   const [clienteFilter, setClienteFilter] = useState(null);
   const [consultoresFilter, setConsultoresFilter] = useState(null);
+  const [typeProjectFilter, setTypeProjectFilter] = useState("");
 
   // Helpers memoizados
   /* const getNombre = useCallback(
@@ -30,6 +31,14 @@ export const useProjectTable = ({
       list?.find((e) => e.id === id)?.[prop] || "No encontrado",
     []
   ); */
+  const handleTypeProjectFilterChange = useCallback(
+    (data) => {
+      console.log(data);
+
+      data ? setTypeProjectFilter(data.value) : setTypeProjectFilter("");
+    },
+    [data]
+  );
 
   const nombreCliente = useCallback(
     (id_cliente) => {
@@ -58,7 +67,18 @@ export const useProjectTable = ({
       interventions?.some((dato) => dato.id_proyecto === id_proyecto),
     [interventions]
   );
-
+  const tipos_proyecto = useMemo(() => {
+    return [
+      ...new Set(
+        projects
+          .filter((project) => project.tipo_proyecto)
+          .map((project) => project.tipo_proyecto)
+      ),
+    ]?.map((type) => ({
+      label: type,
+      value: type,
+    }));
+  }, [projects]);
   // Opciones de filtros memoizadas
   const filterOptions = useMemo(
     () => ({
@@ -72,9 +92,22 @@ export const useProjectTable = ({
           value: item.id_cliente,
           label: item.nombre_cliente,
         })) || [],
+      /* tipos_proyectos:
+        [
+          ...new Set(
+            projects
+              .filter((project) => project.tipo_proyecto?.length !== 0)
+              .map((project) => project.tipo_proyecto)
+          ),
+        ]?.map((type) => ({
+          label: type,
+          value: type,
+        })) || [], */
     }),
-    [consultores, clientes]
+    [consultores, clientes /* projects */]
   );
+
+  console.log(tipos_proyecto);
 
   // Handlers de paginación
   const handleChangePage = (_, newPage) => setPage(newPage);
@@ -98,21 +131,23 @@ export const useProjectTable = ({
   }, []);
 
   // Datos filtrados
-  const filteredData = useMemo(
-    () =>
-      projects.filter((item) => {
-        return (
-          item.nombre_proyecto
+  const filteredData = projects.filter((item) => {
+    return (
+      /* item.nombre_proyecto
             .toLowerCase()
             .includes(nameFilter.toLowerCase()) &&
-          item.objetivos.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
-          (!clienteFilter?.value || item.id_cliente === clienteFilter.value) &&
-          (!consultoresFilter?.value ||
-            item.consultores_asignados_id.includes(consultoresFilter.value))
-        );
-      }),
-    [projects, nameFilter, objetivoFilter, clienteFilter, consultoresFilter]
-  );
+          item.objetivos
+            .toLowerCase()
+            .includes(objetivoFilter.toLowerCase()) && */
+      (!clienteFilter?.value || item.id_cliente === clienteFilter.value) &&
+      (!consultoresFilter?.value ||
+        item.consultores_asignados_id?.includes(consultoresFilter.value)) &&
+      (typeProjectFilter.length === 0 ||
+        item.tipo_proyecto === typeProjectFilter)
+    );
+  });
+
+  console.log(filteredData);
 
   // Gestión de eliminación
   const handleDelete = useCallback(
@@ -176,6 +211,7 @@ export const useProjectTable = ({
     dialogOpen,
     setOpenDialogAdvertencia,
     editIIdx,
+
     open,
     data,
     error,
@@ -185,6 +221,7 @@ export const useProjectTable = ({
     clienteFilter,
     consultoresFilter,
     filteredData,
+    tipos_proyecto,
 
     // Helpers
     nombreCliente,
@@ -197,6 +234,7 @@ export const useProjectTable = ({
     // Handlers
     handleChangePage,
     handleChangeRowsPerPage,
+    handleTypeProjectFilterChange,
     limpiarFiltrados,
     setDialogOpen,
     setEditIIdx,

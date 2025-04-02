@@ -24,13 +24,7 @@ export default function SessionProvider({ children }) {
       return true;
     } else return false;
   });
-  const [font, setFont] = useState(() => {
-    // Establecer el estado inicial de isDark desde localStorage
-    const font = get("font");
-    if (font) {
-      return get("font");
-    } else return "Roboto";
-  });
+  const [font, setFont] = useState("");
 
   async function fetchSession(idSession) {
     try {
@@ -49,10 +43,20 @@ export default function SessionProvider({ children }) {
     }
   }
 
-  const toggleTheme = () => {
+  const toggleTheme = async () => {
     const newIsDark = !isDark;
     set("isDark", newIsDark);
     setIsDark(newIsDark);
+    try {
+      const response = await axios.patch(`http://localhost:3000/api/session/`, {
+        isDark: newIsDark,
+        id: id_session,
+      });
+      if (response.status === 200) {
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -74,18 +78,28 @@ export default function SessionProvider({ children }) {
         font: font,
         id: id_session,
       });
-      console.log(response);
 
       if (response.status === 200) {
-        changeFont("Roboto");
+        /* changeFont("Roboto"); */
       }
     } catch (error) {
       console.log(error);
     }
   }
-  const changeFont = (newFont) => {
+  const changeFont = async (newFont) => {
     set("font", newFont);
     setFont(newFont);
+    try {
+      const response = await axios.patch(`http://localhost:3000/api/session/`, {
+        font: newFont,
+        id: id_session,
+      });
+
+      if (response.status === 200) {
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (

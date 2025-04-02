@@ -12,11 +12,18 @@ export function useNotification() {
   const { notifications, setNotifications } = useContext(NotificationContext);
   const [unreadNotifications, setUnreadNotifications] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [idConsultor, setIdConsultor] = useState(false);
-  const [isMarkingAsRead, setIsMarkingAsRead] = useState(false); // Estado para el botón
+  const [idConsultor, setIdConsultor] = useState(0);
   const [selectedNotification, setSelectedNotification] = useState(null);
   const [openSelectedNotification, setOpenSelectedNotification] =
     useState(false);
+
+  const isMarkingAsRead = useMemo(
+    () =>
+      notifications &&
+      notifications.every((notification) => notification.isRead),
+    [notifications]
+  ); // Estado para el botón
+  console.log(isMarkingAsRead);
 
   const handleCloseDialogNotification = () => {
     setOpenSelectedNotification(false);
@@ -63,11 +70,18 @@ export function useNotification() {
     }
   };
   const handleMarkAsRead = () => {
-    setIsMarkingAsRead(true);
+    // setIsMarkingAsRead(true);
     setNotifications(
       notifications.map((notification) => ({ ...notification, isRead: true }))
     );
     setUnreadNotifications(0);
+    try {
+      axios.get(
+        `http://localhost:3000/api/notificacion/consultor/${idConsultor}/read`
+      );
+    } catch (e) {
+      console.log(e);
+    }
   };
   const handleClose = () => {
     setSelectedNotification(null);
@@ -95,7 +109,7 @@ export function useNotification() {
         .then((response) => {
           setNotifications(response.data.notifications);
           setIdConsultor(response.data.id_consultor);
-          if (response.data.notifications.length > 0)
+          if (response.data.notifications?.length > 0)
             response.data.notifications.forEach((notification) => {
               if (!notification.isRead) increment();
             });
@@ -114,7 +128,7 @@ export function useNotification() {
       socketIo.on("notification", (notification) => {
         console.log(notification);
         setNotifications((prev) => [...prev, notification]);
-        setIsMarkingAsRead(false);
+
         toast(
           <div className={style.toast_custom}>
             <Notifications className={style.toast_icon} />
@@ -159,7 +173,6 @@ export function useNotification() {
     handleMarkAsRead,
     handleDelete,
     isMarkingAsRead,
-    setIsMarkingAsRead,
     handleSelectedNotification,
     selectedNotification,
     handleCloseDialogNotification,

@@ -62,6 +62,7 @@ function InterventionTable({
     data,
     error,
     openDialogAdvertencia,
+    setOpenDialogAdvertencia,
     showFilters,
     projectFilter,
     empresaFilter,
@@ -636,7 +637,11 @@ function InterventionTable({
                             {nombreProyecto(tsk.id_proyecto)}
                           </TableCell>
                           <TableCell>{tsk.nombre_intervencion}</TableCell>
-                          <TableCell>{tsk.descripcion}</TableCell>
+                          <TableCell>
+                            {tsk.descripcion
+                              ? tsk.descripcion
+                              : "No encontrado"}
+                          </TableCell>
                           <TableCell>
                             {nombreConsultor(tsk.id_consultor)}
                           </TableCell>

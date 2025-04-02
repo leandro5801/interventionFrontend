@@ -15,14 +15,13 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-const animatedComponents = makeAnimated();
 export default function CargarProyectoForm({ onCancel, onLoad }) {
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({});
 
   const handleConfirm = () => {
     // Lógica para cargar el proyecto
-    console.log(formData);
+
     onLoad(formData); // Llama a la función para cargar el proyecto
     setOpen(false);
   };
@@ -37,7 +36,7 @@ export default function CargarProyectoForm({ onCancel, onLoad }) {
       <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
         <DialogTitle>Confirmar Carga</DialogTitle>
         <DialogContent>
-          <p>¿Está seguro de cargar este proyecto?</p>
+          <p>¿Está seguro de cargar los proyectos?</p>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleConfirm}>Aceptar</Button>

@@ -186,19 +186,24 @@ export const useInterventionTable = ({
           (!uebFilter?.value || direccion?.id_ueb === uebFilter.value) &&
           (!structureFilter?.value ||
             direccion?.id_direccion === structureFilter.value) &&
-          (!areaFilter?.value || item.id_area === areaFilter.value) &&
+          (!areaFilter?.value || item.id_area === areaFilter.value) /* &&
           item.nombre_intervencion
             .toLowerCase()
             .includes(nameFilter.toLowerCase()) &&
           item.descripcion
             .toLowerCase()
-            .includes(descriptionFilter.toLowerCase()) &&
+            .includes(descriptionFilter.toLowerCase())  */ &&
           (!consultorFilter?.value ||
             item.id_consultor === consultorFilter.value) &&
           nombreTrabajador(item.id_trabajador)
             .toLowerCase()
             .includes(workerFilter.toLowerCase()) &&
-          item.start_date.toLowerCase().includes(startFilter.toLowerCase())
+          (startFilter === "" ||
+            item.periodos.some(
+              (periodo) =>
+                new Date(startFilter) >= new Date(periodo.start_date) &&
+                new Date(startFilter) <= new Date(periodo.end_date)
+            ))
         );
       }),
     [
@@ -215,6 +220,7 @@ export const useInterventionTable = ({
       startFilter,
     ]
   );
+  console.log(filteredData);
 
   // Eliminación
   const handleDelete = useCallback(
@@ -342,5 +348,6 @@ export const useInterventionTable = ({
     setStructureFilter,
     setAreaFilter,
     setConsultorFilter,
+    setOpenDialogAdvertencia,
   };
 };

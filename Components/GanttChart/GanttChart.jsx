@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import Select from "react-select";
 import { customStyles } from "../../styles/SelectFilterStyles";
 
@@ -17,6 +17,7 @@ import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
 import { Button, Input, InputAdornment, TextField } from "@mui/material";
 import { CalendarToday } from "@mui/icons-material";
+import useGanttChart from "./hooks/useGanttChart";
 
 export default function GanttChart({
   interventions,
@@ -42,179 +43,253 @@ export default function GanttChart({
   direccionPorId,
   uebPorId,
 }) {
+  /*   const {
+    timeRange,
+    setTimeRange,
+    mostrarPeriodo,
+    mostrar,
+
+    limpiarFiltrados,
+    showFilters,
+    toggleFilters,
+    filteredData,
+    optionConsultores,
+    optionProjects,
+    optionEmpresas,
+    optionUebs,
+    optionDirecciones,
+    optionAreas,
+    // Estados y handlers de filtros
+    projectFilter,
+    setProjectFilter,
+    empresaFilter,
+    setEmpresaFilter,
+    uebFilter,
+    setUebFilter,
+    structureFilter,
+    setStructureFilter,
+    areaFilter,
+    setAreaFilter,
+    consultorFilter,
+    setConsultorFilter,
+    workerFilter,
+    setWorkerFilter,
+    startFilter,
+    setStartFilter,
+    nameFilter,
+    setNameFilter,
+    descriptionFilter,
+    setDescriptionFilter,
+
+    //handlers necesarios
+    handleAreaFilterChange,
+    handleConsultorFilterChange,
+    handleEmpresaFilterChange,
+    handleProjectFilterChange,
+    handleStartFilterChange,
+    handleStructureFilterChange,
+    handleUebFilterChange,
+    handleWorkerFilterChange,
+    // Resto de props necesarias
+  } = useGanttChart({
+    interventions,
+    setInterventions,
+    consultores,
+    projects,
+    empresas,
+    uebs,
+    direcciones,
+    areas,
+    nombreTrabajador,
+    areaPorId,
+    direccionPorId,
+    uebPorId,
+    setOpen,
+  }); */
   const [timeRange, setTimeRange] = useState({
-    fromSelectMonth: 11,
-    fromSelectYear: "2023",
-    toSelectMonth: 11,
+    fromSelectMonth: 1,
+    fromSelectYear: "2024",
+    toSelectMonth: 6,
     toSelectYear: "2025",
   });
-
-  // Para mostrar el periodo de tiempo
   const [mostrarPeriodo, setMostrarComponente] = useState(false);
-  function mostrar() {
-    setMostrarComponente(!mostrarPeriodo);
-  }
-  //para mostrar filtros por criterios en el diagrama
-  const [mostrarFiltros, setMostrarFiltros] = useState(false);
-  function mostrarFiltrado() {
-    setMostrarFiltros(!mostrarFiltros);
-    setSelectedConsultor(null);
-    setSelectedProcess(null);
-  }
-  const [selectedConsultor, setSelectedConsultor] = useState(null);
-  const [selectedProcess, setSelectedProcess] = useState(null);
-
-  //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
 
-  // Alternar la visibilidad de las opciones de filtrado y restablecer los valores de filtrado
-  const toggleFilters = () => {
-    setShowFilters(!showFilters);
-  };
-  //Para filtrar la tabla
-
-  const [nameFilter, setNameFilter] = useState("");
-  const [descriptionFilter, setDescriptionFilter] = useState("");
-  const [structureFilter, setStructureFilter] = useState([]);
-  const [areaFilter, setAreaFilter] = useState("");
-  const [consultorFilter, setConsultorFilter] = useState([]);
+  // Estados de filtrado
+  const [projectFilter, setProjectFilter] = useState(null);
+  const [empresaFilter, setEmpresaFilter] = useState(null);
+  const [uebFilter, setUebFilter] = useState(null);
+  const [structureFilter, setStructureFilter] = useState(null);
+  const [areaFilter, setAreaFilter] = useState(null);
+  const [consultorFilter, setConsultorFilter] = useState(null);
   const [workerFilter, setWorkerFilter] = useState("");
   const [startFilter, setStartFilter] = useState("");
 
-  const handleNameFilterChange = (event) => {
-    setNameFilter(event.target.value);
-  };
+  // Handlers memoizados
+  const mostrar = useCallback(() => {
+    setMostrarComponente((prev) => !prev);
+  }, []);
 
-  const handleDescriptionFilterChange = (event) => {
-    setDescriptionFilter(event.target.value);
-  };
+  const toggleFilters = useCallback(() => {
+    setShowFilters((prev) => !prev);
+  }, []);
 
-  const handleStructureFilterChange = (data) => {
-    data ? setStructureFilter(data) : setStructureFilter([]);
-  };
+  const handleProjectFilterChange = useMemo(
+    () => (data) => setProjectFilter(data || []),
+    []
+  );
+  const handleEmpresaFilterChange = useMemo(
+    () => (data) => setEmpresaFilter(data || []),
+    []
+  );
+  const handleUebFilterChange = useMemo(
+    () => (data) => setUebFilter(data || []),
+    []
+  );
+  const handleStructureFilterChange = useMemo(
+    () => (data) => setStructureFilter(data || []),
+    []
+  );
+  const handleAreaFilterChange = useMemo(
+    () => (data) => setAreaFilter(data || []),
+    []
+  );
+  const handleConsultorFilterChange = useMemo(
+    () => (data) => setConsultorFilter(data || []),
+    []
+  );
+  const handleWorkerFilterChange = useMemo(
+    () => (e) => setWorkerFilter(e.target.value),
+    []
+  );
+  const handleStartFilterChange = useMemo(
+    () => (e) => setStartFilter(e.target.value),
+    []
+  );
 
-  const handleAreaFilterChange = (data) => {
-    data ? setAreaFilter(data) : setAreaFilter([]);
-  };
-  const handleConsultorFilterChange = (data) => {
-    data ? setConsultorFilter(data) : setConsultorFilter([]);
-  };
-
-  const handleWorkerFilterChange = (event) => {
-    setWorkerFilter(event.target.value);
-  };
-  const handleStartFilterChange = (event) => {
-    setStartFilter(event.target.value);
-  };
-  const handleProjectFilterChange = (data) => {
-    data ? setProjectFilter(data) : setProjectFilter([]);
-  };
-  const handleEmpresaFilterChange = (data) => {
-    data ? setEmpresaFilter(data) : setEmpresaFilter([]);
-  };
-  const handleUebFilterChange = (data) => {
-    data ? setUebFilter(data) : setUebFilter([]);
-  };
-
-  const limpiarFiltrados = () => {
-    setProjectFilter([]);
-    setEmpresaFilter([]);
-    setUebFilter([]);
-    setStructureFilter([]);
-    setAreaFilter([]);
-    setConsultorFilter([]);
+  const limpiarFiltrados = useCallback(() => {
+    setProjectFilter(null);
+    setEmpresaFilter(null);
+    setUebFilter(null);
+    setStructureFilter(null);
+    setAreaFilter(null);
+    setConsultorFilter(null);
     setStartFilter("");
-    setNameFilter("");
-    setDescriptionFilter("");
     setWorkerFilter("");
-  };
-  //para los select de proyecto, empresa etc
-  const [projectFilter, setProjectFilter] = useState([]);
-  const [empresaFilter, setEmpresaFilter] = useState([]);
-  const [uebFilter, setUebFilter] = useState([]);
+  }, []);
 
-  const optionConsultores =
-    consultores &&
-    consultores.map((item) => ({
-      value: item.id_consultor,
-      label: item.nombre_consultor,
-    }));
-  const optionProjects =
-    projects &&
-    projects.map((item) => ({
-      value: item.id_proyecto,
-      label: item.nombre_proyecto,
-    }));
-  const optionEmpresas =
-    empresas &&
-    empresas.map((item) => ({
-      value: item.id_empresa,
-      label: item.nombre_empresa,
-    }));
+  // Opciones memoizadas para selects
+  const optionConsultores = useMemo(
+    () =>
+      consultores?.map((item) => ({
+        value: item.id_consultor,
+        label: item.nombre_consultor,
+      })) || [],
+    [consultores]
+  );
 
-  const optionUebs =
-    uebs &&
-    uebs
-      .filter((item) =>
-        empresaFilter && empresaFilter.value
-          ? item.id_empresa === empresaFilter.value
-          : true
-      )
-      .map((item) => ({
-        value: item.id_ueb,
-        label: item.nombre_ueb,
-      }));
+  const optionProjects = useMemo(
+    () =>
+      projects?.map((item) => ({
+        value: item.id_proyecto,
+        label: item.nombre_proyecto,
+      })) || [],
+    [projects]
+  );
 
-  const optionDirecciones =
-    direcciones &&
-    direcciones
-      .filter((item) =>
-        uebFilter && uebFilter.value ? item.id_ueb === uebFilter.value : true
-      )
-      .map((item) => ({
-        value: item.id_direccion,
-        label: item.nombre_direccion,
-      }));
+  const optionEmpresas = useMemo(
+    () =>
+      empresas?.map((item) => ({
+        value: item.id_empresa,
+        label: item.nombre_empresa,
+      })) || [],
+    [empresas]
+  );
 
-  const optionAreas =
-    areas &&
-    areas
-      .filter((item) =>
-        structureFilter && structureFilter.value
-          ? item.id_direccion === structureFilter.value
-          : true
-      )
-      .map((item) => ({
-        value: item.id_area,
-        label: item.nombre_area,
-      }));
-  //-----------------------------------------------
+  const optionUebs = useMemo(
+    () =>
+      uebs
+        ?.filter((item) =>
+          empresaFilter?.value ? item.id_empresa === empresaFilter.value : true
+        )
+        .map((item) => ({
+          value: item.id_ueb,
+          label: item.nombre_ueb,
+        })) || [],
+    [uebs, empresaFilter]
+  );
 
-  const filteredData = interventions.filter(
-    (item) =>
-      (projectFilter.length === 0 ||
-        item.id_proyecto === projectFilter.value) &&
-      (empresaFilter.length === 0 ||
-        uebPorId(direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb)
-          .id_empresa === empresaFilter.value) &&
-      (uebFilter.length === 0 ||
-        direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb ===
-          uebFilter.value) &&
-      (structureFilter.length === 0 ||
-        areaPorId(item.id_area).id_direccion === structureFilter.value) &&
-      (areaFilter.length === 0 || item.id_area === areaFilter.value) &&
-      item.nombre_intervencion
-        .toLowerCase()
-        .includes(nameFilter.toLowerCase()) &&
-      item.descripcion
-        .toLowerCase()
-        .includes(descriptionFilter.toLowerCase()) &&
-      (consultorFilter.length === 0 ||
-        item.id_consultor === consultorFilter.value) &&
-      nombreTrabajador(item.id_trabajador)
-        .toLowerCase()
-        .includes(workerFilter.toLowerCase()) &&
-      item.start_date.toLowerCase().includes(startFilter.toLowerCase())
+  const optionDirecciones = useMemo(
+    () =>
+      direcciones
+        ?.filter((item) =>
+          uebFilter?.value ? item.id_ueb === uebFilter.value : true
+        )
+        .map((item) => ({
+          value: item.id_direccion,
+          label: item.nombre_direccion,
+        })) || [],
+    [direcciones, uebFilter]
+  );
+
+  const optionAreas = useMemo(
+    () =>
+      areas
+        ?.filter((item) =>
+          structureFilter?.value
+            ? item.id_direccion === structureFilter.value
+            : true
+        )
+        .map((item) => ({
+          value: item.id_area,
+          label: item.nombre_area,
+        })) || [],
+    [areas, structureFilter]
+  );
+
+  // Datos filtrados memoizados
+  const filteredData = useMemo(
+    () =>
+      interventions.filter((item) => {
+        const area = item.id_area ? areaPorId(item.id_area) : null;
+        const direccion = direccionPorId(area?.id_direccion);
+        const ueb = uebPorId(direccion?.id_ueb);
+
+        return (
+          (!projectFilter?.value || item.id_proyecto === projectFilter.value) &&
+          (!empresaFilter?.value || ueb?.id_empresa === empresaFilter.value) &&
+          (!uebFilter?.value || direccion?.id_ueb === uebFilter.value) &&
+          (!structureFilter?.value ||
+            direccion?.id_direccion === structureFilter.value) &&
+          (!areaFilter?.value || item.id_area === areaFilter.value) &&
+          (!consultorFilter?.value ||
+            item.id_consultor === consultorFilter.value) &&
+          nombreTrabajador(item.id_trabajador)
+            .toLowerCase()
+            .includes(workerFilter.toLowerCase()) &&
+          (startFilter === "" ||
+            item.periodos.some(
+              (periodo) =>
+                new Date(startFilter) >= new Date(periodo.start_date) &&
+                new Date(startFilter) <= new Date(periodo.end_date)
+            ))
+        );
+      }),
+    [
+      interventions,
+      projectFilter,
+      empresaFilter,
+      uebFilter,
+      structureFilter,
+      areaFilter,
+      consultorFilter,
+      workerFilter,
+      startFilter,
+      nombreTrabajador,
+      areaPorId,
+      direccionPorId,
+      uebPorId,
+    ]
   );
   return (
     <div className={styles.ganttContainer} id="gantt-container">
@@ -385,8 +460,8 @@ export default function GanttChart({
           selectedUeb={selectedUeb}
           selectedStructure={selectedStructure}
           selectedArea={selectedArea}
-          selectedConsultor={selectedConsultor}
-          selectedProcess={selectedProcess}
+          /* selectedConsultor={selectedConsultor}
+          selectedProcess={selectedProcess} */
         />
       </Grid>
     </div>

@@ -45,7 +45,7 @@ const Login = () => {
       );
       if (response.status === 200) {
         // si el usuario es correcto
-        //para guardar el token en las cokies del navegador
+        //para guardar el token en las cookies del navegador
         document.cookie = `access_token=${response.data.access_token};  path=/`;
         set("access_token", response.data.access_token);
         console.log(response.data.user);
@@ -126,7 +126,7 @@ const Login = () => {
           <h4 style={{ color: "black" }}>Sistema de autenticación</h4>
         </div>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} id="form_login">
           <TextField
             className={styles.inputLogin}
             // autoComplete="off"
@@ -223,6 +223,7 @@ const Login = () => {
           <input
             style={{ marginTop: "12px" }}
             type="submit"
+            id="input-login"
             value="Continuar"
           />
         </form>

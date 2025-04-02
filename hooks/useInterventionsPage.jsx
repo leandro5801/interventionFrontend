@@ -182,12 +182,12 @@ export default function useInterventionsPage() {
           (i) => i.id_consultor === consultorAutenticado.id_consultor
         );
         filteredProjects = projects.filter((i) =>
-          i.consultores_asignados_id.includes(consultorAutenticado.id_consultor)
+          i.consultores_asignados_id?.includes(
+            consultorAutenticado.id_consultor
+          )
         );
       } else if (user.id_rol === 3) {
         filteredInterventions = interventions;
-        console.log(projects);
-        console.log(filteredInterventions);
         filteredProjects = projects;
       }
     }

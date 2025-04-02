@@ -33,6 +33,9 @@ import {
   Button,
   Alert,
   AlertTitle,
+  Tooltip,
+  Fade,
+  Zoom,
 } from "@mui/material";
 
 import Select from "react-select";
@@ -56,8 +59,7 @@ function ProjectTable({
     error,
     openDialogAdvertencia,
     setOpenDialogAdvertencia,
-    nameFilter,
-    objetivoFilter,
+    handleTypeProjectFilterChange,
     clienteFilter,
     consultoresFilter,
     filteredData,
@@ -77,6 +79,7 @@ function ProjectTable({
     proyectoUpdate,
     handleCancelI,
     handleSaveI,
+    tipos_proyecto,
     setNameFilter,
     setObjetivoFilter,
     setClienteFilter,
@@ -133,6 +136,19 @@ function ProjectTable({
                     isClearable
                     className={styles.selectGestionesGantt}
                   />
+                  {tipos_proyecto?.length > 0 && (
+                    <Select
+                      styles={customStyles}
+                      className={styles.selectGestionesGantt}
+                      // defaultValue={typeProjectFilter}
+                      onChange={(tipo_proyecto) => {
+                        handleTypeProjectFilterChange(tipo_proyecto);
+                      }}
+                      options={tipos_proyecto}
+                      placeholder="Tipo Proyecto"
+                      isClearable
+                    />
+                  )}
                 </div>
 
                 <FormDialog
@@ -179,49 +195,63 @@ function ProjectTable({
                         page * rowsPerPage,
                         page * rowsPerPage + rowsPerPage
                       )
-                      .map((project) => (
-                        <TableRow
-                          key={project.id_proyecto}
-                          className={styles.trStyle}
+                      .map((project, i) => (
+                        <Tooltip
+                          title={project.tipo_proyecto}
+                          followCursor
+                          TransitionComponent={Zoom}
+                          TransitionProps={{ timeout: 100 }}
+                          key={`${project.id_proyecto}-${i}`}
                         >
-                          <TableCell className={styles.tdStyle}>
-                            {project.nombre_proyecto}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {project.objetivos}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {nombreCliente(parseInt(project.id_cliente))}
-                          </TableCell>
-                          <TableCell className={styles.tdStyle}>
-                            {project.consultores_asignados_id
-                              .map((consultor) => nombreConsultor(consultor))
-                              .join(", ")}
-                          </TableCell>
-                          <TableCell className={styles.tdStyleIcon}>
-                            <FontAwesomeIcon
-                              icon={faEdit}
-                              onClick={() =>
-                                setEditIIdx(
-                                  filteredData.findIndex(
-                                    (item) =>
-                                      item.id_proyecto === project.id_proyecto
+                          <TableRow
+                            key={project.id_proyecto}
+                            className={styles.trStyle}
+                          >
+                            <TableCell className={styles.tdStyle}>
+                              {project.nombre_proyecto}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {project.objetivos
+                                ? project.objetivos
+                                : "No hay objetivos"}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {nombreCliente(parseInt(project.id_cliente))}
+                            </TableCell>
+                            <TableCell className={styles.tdStyle}>
+                              {project.consultores_asignados_id
+                                ? project.consultores_asignados_id
+                                    .map((consultor) =>
+                                      nombreConsultor(consultor)
+                                    )
+                                    .join(", ")
+                                : "No hay consultores"}
+                            </TableCell>
+                            <TableCell className={styles.tdStyleIcon}>
+                              <FontAwesomeIcon
+                                icon={faEdit}
+                                onClick={() =>
+                                  setEditIIdx(
+                                    filteredData.findIndex(
+                                      (item) =>
+                                        item.id_proyecto === project.id_proyecto
+                                    )
                                   )
-                                )
-                              }
-                              className={styles.faIcon}
-                            />
-                            <FontAwesomeIcon
-                              icon={faTrash}
-                              onClick={() =>
-                                vinculado(project.id_proyecto)
-                                  ? setOpenDialogAdvertencia(true)
-                                  : openConfirmation(project.id_proyecto)
-                              }
-                              className={styles.faIcon}
-                            />
-                          </TableCell>
-                        </TableRow>
+                                }
+                                className={styles.faIcon}
+                              />
+                              <FontAwesomeIcon
+                                icon={faTrash}
+                                onClick={() =>
+                                  vinculado(project.id_proyecto)
+                                    ? setOpenDialogAdvertencia(true)
+                                    : openConfirmation(project.id_proyecto)
+                                }
+                                className={styles.faIcon}
+                              />
+                            </TableCell>
+                          </TableRow>
+                        </Tooltip>
                       ))}
                   </TableBody>
 

@@ -22,6 +22,10 @@ import {
   TextField,
   Input,
   InputLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Box,
 } from "@mui/material";
 
 const animatedComponents = makeAnimated();
@@ -75,7 +79,7 @@ export default function ProyectoForm({
       label: item.nombre_cliente,
     }));
 
-  const consultoresIniciales = consultores.map((id) =>
+  const consultoresIniciales = consultores?.map((id) =>
     consultoresOptions.find((option) => option.value === id)
   );
   const handleConsultoresChange = (newValue) => {
@@ -98,14 +102,39 @@ export default function ProyectoForm({
 
     setConsultoresID(consultoresNuevos);
   };
+
+  //Manejo de Tipo de Proyecto
+
+  const [isSubProject, setIsSubProject] = useState(
+    project && project.tipo_proyecto?.length !== 0 ? true : false
+  );
+  const [subProjectName, setSubProjectName] = useState(
+    project && project.tipo_proyecto?.length !== 0 ? project.tipo_proyecto : ""
+  );
+
+  const handleSubProjectChange = (event) => {
+    const value = event.target.value === "true";
+    console.log(value);
+
+    setIsSubProject(value);
+    setValue("isSubProject", value);
+    // Limpiar el nombre del subproyecto si no es un subproyecto
+    if (!value) {
+      setSubProjectName("");
+      setValue("subProjectName", "");
+    }
+  };
+
   const defaultValues = {
     consultores: consultores,
     cliente: cliente,
+    isSubProject: isSubProject,
   };
 
   // form validation rules
   const formOptions = {
     resolver: yupResolver(validationSchema),
+
     defaultValues,
   };
 
@@ -197,6 +226,7 @@ export default function ProyectoForm({
       nombre_proyecto: data.name,
       objetivos: data.objetivo,
       consultores_asignados_id: data.consultores,
+      tipo_proyecto: isSubProject ? data.subProjectName : "",
     };
     project
       ? editProyecto(project.id_proyecto, updatedRow)
@@ -215,6 +245,7 @@ export default function ProyectoForm({
       <div style={{ marginRight: 8 }}>{label}</div>
     </div>
   );
+
   return (
     <>
       <DialogTitle>Proyecto</DialogTitle>
@@ -321,11 +352,56 @@ export default function ProyectoForm({
           </div>
         </div>
 
-        <DialogActions>
-          <Button type="submit">Aceptar</Button>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            padding: 10,
+            marginTop: 10,
+          }}
+        >
+          <div>
+            <InputLabel className={styles.inputLabel}>
+              ¿Es un subproyecto?
+            </InputLabel>
+            <RadioGroup
+              row
+              value={isSubProject.toString()}
+              onChange={handleSubProjectChange}
+            >
+              <FormControlLabel value="true" control={<Radio />} label="Sí" />
+              <FormControlLabel value="false" control={<Radio />} label="No" />
+            </RadioGroup>
+          </div>
 
-          <Button onClick={onCancel}>Cancelar</Button>
-        </DialogActions>
+          {isSubProject && (
+            <>
+              <Box>
+                <Input
+                  placeholder="Ingrese el proyecto en que se encuentra"
+                  className={`${styles.inputForm} ${
+                    errors.subProjectName ? "is-invalid" : ""
+                  }`}
+                  {...register("subProjectName")}
+                  value={subProjectName}
+                  onChange={(e) => {
+                    setSubProjectName(e.target.value);
+                    setValue("subProjectName", e.target.value);
+                  }}
+                />
+                <div className={styles.error}>
+                  {errors.subProjectName?.message}
+                </div>
+              </Box>
+            </>
+          )}
+          <DialogActions>
+            <Button type="submit">Aceptar</Button>
+
+            <Button onClick={onCancel}>Cancelar</Button>
+          </DialogActions>
+        </div>
         <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
           <DialogTitle>
             {type === "crear" ? "Confirmar creación" : "Confirmar modificación"}

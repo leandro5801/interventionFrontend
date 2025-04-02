@@ -67,6 +67,7 @@ export default function useProjectsCargarPage() {
       (project) => project.cargar_proyecto === true
     );
   }
+  console.log(filteredProjects);
 
   return {
     projects: filteredProjects,

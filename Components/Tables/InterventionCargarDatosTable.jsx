@@ -283,26 +283,25 @@ function InterventionCargarDatosTable({
       (projectFilter.length === 0 ||
         item.id_proyecto === projectFilter.value) &&
       (empresaFilter.length === 0 ||
-        uebPorId(direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb)
-          .id_empresa === empresaFilter.value) &&
+        (item.id_area &&
+          uebPorId(direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb)
+            .id_empresa === empresaFilter.value)) &&
       (uebFilter.length === 0 ||
-        direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb ===
-          uebFilter.value) &&
+        (item.id_area &&
+          direccionPorId(areaPorId(item.id_area).id_direccion).id_ueb ===
+            uebFilter.value)) &&
       (structureFilter.length === 0 ||
-        areaPorId(item.id_area).id_direccion === structureFilter.value) &&
+        (item.id_area &&
+          areaPorId(item.id_area).id_direccion === structureFilter.value)) &&
       (areaFilter.length === 0 || item.id_area === areaFilter.value) &&
-      item.nombre_intervencion
-        .toLowerCase()
-        .includes(nameFilter.toLowerCase()) &&
-      item.descripcion
-        .toLowerCase()
-        .includes(descriptionFilter.toLowerCase()) &&
       (consultorFilter.length === 0 ||
         item.id_consultor === consultorFilter.value) &&
-      nombreTrabajador(item.id_trabajador)
-        .toLowerCase()
-        .includes(workerFilter.toLowerCase()) &&
-      item.start_date.toLowerCase().includes(startFilter.toLowerCase())
+      (startFilter === "" ||
+        item.periodos.some(
+          (periodo) =>
+            new Date(startFilter) >= new Date(periodo.start_date) &&
+            new Date(startFilter) <= new Date(periodo.end_date)
+        ))
   );
 
   // sms de confirmacion
@@ -599,7 +598,11 @@ function InterventionCargarDatosTable({
                               {nombreProyecto(tsk.id_proyecto)}
                             </TableCell>
                             <TableCell>{tsk.nombre_intervencion}</TableCell>
-                            <TableCell>{tsk.descripcion}</TableCell>
+                            <TableCell>
+                              {tsk.descripcion
+                                ? tsk.descripcion
+                                : "no hay descripcion"}
+                            </TableCell>
 
                             <TableCell>
                               {nombreConsultor(tsk.id_consultor)}

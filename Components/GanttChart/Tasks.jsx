@@ -106,7 +106,7 @@ export default function Tasks({
       {interventions &&
         interventions.map((tsk, i) => (
           <div
-            key={`${i}-${tsk?.id_intervencion}-${tsk.nombre_intervencion}`}
+            key={`task-${i}-${tsk?.id_intervencion}-${tsk.nombre_intervencion}`}
             className={styles.ganttTaskRow}
           >
             <textarea

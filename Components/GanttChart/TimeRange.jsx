@@ -7,7 +7,7 @@ export default function TimeRange({ timeRange, setTimeRange }) {
   let monthsOptions = [];
   for (let i = 0; i < months.length; i++) {
     monthsOptions.push(
-      <option key={i} value={i}>
+      <option key={`month-${i}`} value={i}>
         {months[i]}
       </option>
     );
@@ -16,7 +16,7 @@ export default function TimeRange({ timeRange, setTimeRange }) {
   const yearsOptions = [];
   for (let i = 2018; i <= 2028; i++) {
     yearsOptions.push(
-      <option key={i} value={i}>
+      <option key={`year-${i}`} value={i}>
         {i}
       </option>
     );
@@ -91,7 +91,6 @@ export default function TimeRange({ timeRange, setTimeRange }) {
           {yearsOptions}
         </select>
       </div>
-
     </div>
   );
 }

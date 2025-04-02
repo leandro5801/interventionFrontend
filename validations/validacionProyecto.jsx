@@ -3,11 +3,24 @@ import * as Yup from "yup";
 export const validationSchema = Yup.object().shape({
   name: Yup.string().required("Ingrese un nombre para el proyecto."),
   objetivo: Yup.string().required("Ingrese el objetivo."),
-  cliente:  Yup.object().shape({
+  cliente: Yup.object().shape({
     value: Yup.string().required("Ingrese el cliente."),
     label: Yup.string().required("Ingrese el cliente."),
   }),
   consultores: Yup.array()
-  .required("Seleccione al menos un consultor")
-  .min(1, 'Seleccione al menos un consultor.'),
+    .required("Seleccione al menos un consultor")
+    .min(1, "Seleccione al menos un consultor."),
+  isSubProject: Yup.boolean(),
+
+  subProjectName: Yup.string().test(
+    "subProjectName-required-if-isSubProject-true",
+    "Ingrese el nombre del subproyecto.",
+    function (value) {
+      const { isSubProject } = this.parent;
+      if (isSubProject) {
+        return value && value.trim() !== "";
+      }
+      return true;
+    }
+  ),
 });

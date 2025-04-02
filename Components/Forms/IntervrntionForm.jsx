@@ -22,6 +22,9 @@ import {
   TextField,
   Input,
   InputLabel,
+  IconButton,
+  SpeedDialIcon,
+  Tooltip,
 } from "@mui/material";
 
 export default function FormUpdateIntervention({
@@ -79,8 +82,8 @@ export default function FormUpdateIntervention({
   const [empresaId, setEmpresaId] = useState(
     intervention
       ? uebPorId(
-          direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
-        ).id_empresa
+          direccionPorId(areaPorId(intervention?.id_area)?.id_direccion)?.id_ueb
+        )?.id_empresa
       : ""
   );
 
@@ -89,49 +92,56 @@ export default function FormUpdateIntervention({
       ? {
           label: nombreEmpresa(
             uebPorId(
-              direccionPorId(areaPorId(intervention.id_area).id_direccion)
-                .id_ueb
-            ).id_empresa
+              direccionPorId(areaPorId(intervention.id_area)?.id_direccion)
+                ?.id_ueb
+            )?.id_empresa
           ),
           value: uebPorId(
-            direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
-          ).id_empresa,
+            direccionPorId(areaPorId(intervention.id_area)?.id_direccion)
+              ?.id_ueb
+          )?.id_empresa,
         }
       : ""
   );
   const [uebId, setUebId] = useState(
     intervention
-      ? direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
+      ? direccionPorId(areaPorId(intervention.id_area)?.id_direccion)?.id_ueb
       : ""
   );
   const [ueb, setUeb] = useState(
     intervention
       ? {
           label: nombreUeb(
-            direccionPorId(areaPorId(intervention.id_area).id_direccion).id_ueb
+            direccionPorId(areaPorId(intervention?.id_area)?.id_direccion)
+              ?.id_ueb
           ),
-          value: direccionPorId(areaPorId(intervention.id_area).id_direccion)
-            .id_ueb,
+          value: direccionPorId(areaPorId(intervention?.id_area)?.id_direccion)
+            ?.id_ueb,
         }
       : ""
   );
   const [direccionId, setDireccionId] = useState(
-    intervention ? areaPorId(intervention.id_area).id_direccion : ""
+    intervention ? areaPorId(intervention?.id_area)?.id_direccion : ""
   );
   const [selectedStructure, setSelectedStructure] = useState(
     intervention
       ? {
-          label: nombreDireccion(areaPorId(intervention.id_area).id_direccion),
-          value: areaPorId(intervention.id_area).id_direccion,
+          label: nombreDireccion(
+            areaPorId(intervention?.id_area)?.id_direccion
+          ),
+          value: areaPorId(intervention?.id_area)?.id_direccion,
         }
       : ""
   );
   const [areaId, setAreaId] = useState(
-    intervention ? intervention.id_area : ""
+    intervention ? intervention?.id_area : ""
   );
   const [selectedArea, setSelectedArea] = useState(
     intervention
-      ? { label: nombreArea(intervention.id_area), value: intervention.id_area }
+      ? {
+          label: nombreArea(intervention?.id_area),
+          value: intervention?.id_area,
+        }
       : ""
   );
   // const [consultor, setConsultor] = useState(
@@ -142,10 +152,10 @@ export default function FormUpdateIntervention({
   //       }
   //     : ""
   // );
-  const [start, setStart] = useState(
+  /* const [start, setStart] = useState(
     intervention ? intervention.start_date : ""
   );
-  const [end, setEnd] = useState(intervention ? intervention.end_date : "");
+  const [end, setEnd] = useState(intervention ? intervention.end_date : ""); */
 
   // const consultoresOptions =
   //   consultores &&
@@ -341,8 +351,10 @@ export default function FormUpdateIntervention({
       // id_consultor: parseInt(data.consultor.value),
       id_consultor: consultor.id_consultor,
       id_trabajador: parseInt(data.worker.value),
-      start_date: data.start,
-      end_date: data.end,
+      periodos: periods.map((period) => ({
+        start_date: period.start,
+        end_date: period.end,
+      })),
     };
     // console.log(updatedRow)
     intervention
@@ -355,6 +367,28 @@ export default function FormUpdateIntervention({
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const [periods, setPeriods] = useState(
+    intervention
+      ? intervention.periodos.map((periodo) => ({
+          value: periodo.id,
+          start: periodo.start_date,
+          end: periodo.end_date,
+        }))
+      : [{ start: "", end: "" }]
+  );
+
+  const addPeriod = () => {
+    setPeriods([...periods, { start: "", end: "" }]);
+  };
+
+  const handleDateChange = (index, field, value) => {
+    const newPeriods = periods.map((period, i) =>
+      i === index ? { ...period, [field]: value } : period
+    );
+    setPeriods(newPeriods);
+    setValue(`periods[${index}].${field}`, value);
   };
 
   return (
@@ -537,9 +571,6 @@ export default function FormUpdateIntervention({
             <div className={styles.halfRow}>
               <div className={styles.inputGroup}>
                 <InputLabel>Área*</InputLabel>
-                {errors.area && (
-                  <div className={styles.error}>Seleccione un Área.</div>
-                )}
               </div>
 
               <Controller
@@ -566,6 +597,9 @@ export default function FormUpdateIntervention({
                   />
                 )}
               />
+              {errors.area && (
+                <div className={styles.error}>Seleccione un Área.</div>
+              )}
             </div>
 
             {/* <div className={styles.halfRow}>
@@ -599,9 +633,6 @@ export default function FormUpdateIntervention({
             <div className={styles.halfRow}>
               <div className={styles.inputGroup}>
                 <InputLabel>Trabajador*</InputLabel>
-                {errors.worker && (
-                  <div className={styles.error}>Seleccione un Trabajador.</div>
-                )}
               </div>
 
               <Controller
@@ -626,47 +657,79 @@ export default function FormUpdateIntervention({
                   />
                 )}
               />
+              {errors.worker && (
+                <div className={styles.error}>Seleccione un Trabajador.</div>
+              )}
             </div>
           </div>
-          <div className={styles.inputGroup}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <div>
-              <div className={styles.inputGroup}>
-                <InputLabel id="demo-simple-select-standard-label">
-                  Fecha de inicio*
-                </InputLabel>
-              </div>
-
-              <Input
-                className={`${styles.inputForm}  ${
-                  errors.start ? "is-invalid" : ""
-                }`}
-                type="date"
-                id="start"
-                {...register("start")}
-                value={start}
-                onChange={(event) => setStart(event.target.value)}
-              />
-              <div className={styles.error}>{errors.start?.message}</div>
+              {periods.map((period, index) => (
+                <div className={styles.inputGroup} key={index}>
+                  <div>
+                    <div className={styles.inputGroup}>
+                      <InputLabel id={`start-label-${index}`}>
+                        Fecha de inicio*
+                      </InputLabel>
+                    </div>
+                    <Input
+                      className={`${styles.inputForm}  ${
+                        errors.periods?.[index]?.start ? "is-invalid" : ""
+                      }`}
+                      type="date"
+                      id={`start-${index}`}
+                      {...register(`periods[${index}].start`)}
+                      value={period.start}
+                      onChange={(event) =>
+                        handleDateChange(index, "start", event.target.value)
+                      }
+                    />
+                    <div className={styles.error}>
+                      {errors.periods?.[index]?.start?.message}
+                    </div>
+                  </div>
+                  <div>
+                    <div className={styles.inputGroup}>
+                      <InputLabel id={`end-label-${index}`}>
+                        Fecha de fin*
+                      </InputLabel>
+                    </div>
+                    <Input
+                      type="date"
+                      id={`end-${index}`}
+                      {...register(`periods[${index}].end`)}
+                      className={`${styles.inputForm}  ${
+                        errors.periods?.[index]?.end ? "is-invalid" : ""
+                      }`}
+                      value={period.end}
+                      onChange={(event) =>
+                        handleDateChange(index, "end", event.target.value)
+                      }
+                    />
+                    <div className={styles.error}>
+                      {errors.periods?.[index]?.end?.message}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-
             <div>
-              <div className={styles.inputGroup}>
-                <InputLabel id="demo-simple-select-standard-label">
-                  Fecha de fin*
-                </InputLabel>
-              </div>
-
-              <Input
-                type="date"
-                id="end"
-                {...register("end")}
-                className={`${styles.inputForm}  ${
-                  errors.end ? "is-invalid" : ""
-                }`}
-                value={end}
-                onChange={(event) => setEnd(event.target.value)}
-              />
-              <div className={styles.error}>{errors.end?.message}</div>
+              <Tooltip
+                title="Añadir Periodo"
+                arrow
+                placement="top"
+                enterDelay={600}
+                sx={{ mt: 4.5 }}
+              >
+                <IconButton onClick={addPeriod} color="info">
+                  <SpeedDialIcon />
+                </IconButton>
+              </Tooltip>
             </div>
           </div>
         </div>

@@ -99,19 +99,23 @@ export default function InterventionCargarDatosForm({
     }
   }
 
-  async function createIntervencion(updatedRow) {
+  async function chargeIntervencion(updatedRow) {
     setLoading(true); // Inicia la carga
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/intervencion",
+        "http://localhost:3000/api/intervencion/intervencion",
         updatedRow
       );
+      console.log(response.data);
+
       if (response.status === 201) {
-        setInterventions([...filteredInterventions, response.data]);
+        setInterventions(response.data);
       } else {
         throw new Error("Error al crear la intervención");
       }
     } catch (error) {
+      console.log(error);
+
       setOpenDialogAdvertencia(true);
     } finally {
       setLoading(false); // Finaliza la carga
@@ -120,11 +124,11 @@ export default function InterventionCargarDatosForm({
 
   const handleConfirm = (data) => {
     const updatedRow = {
-      project: data.proyecto.label,
-      id_project: data.proyecto.value,
+      nombre_proyecto: data.proyecto.label,
+      id_proyecto: Number(data.proyecto.value),
     };
 
-    createIntervencion(updatedRow);
+    chargeIntervencion(updatedRow);
     onSave();
     setOpen(false);
   };
@@ -138,8 +142,8 @@ export default function InterventionCargarDatosForm({
   }; */
 
   return (
-    <>
-      <DialogTitle>Cargar </DialogTitle>
+    <div style={{ height: 230, width: 250 }}>
+      <DialogTitle>Cargar</DialogTitle>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <div>
@@ -174,14 +178,16 @@ export default function InterventionCargarDatosForm({
 
           <div className={styles.error}>{errors.intervention?.message}</div>
         </div>
-        <DialogActions>
-          <Button type="submit" disabled={loading}>
-            {loading ? <CircularProgress size={24} /> : "Aceptar"}
-          </Button>
-          <Button onClick={onCancel} disabled={loading}>
-            Cancelar
-          </Button>
-        </DialogActions>
+        <div className={styles.inputGroup} style={{ marginTop: 20 }}>
+          <DialogActions>
+            <Button type="submit" disabled={loading}>
+              {loading ? <CircularProgress size={24} /> : "Aceptar"}
+            </Button>
+            <Button onClick={onCancel} disabled={loading}>
+              Cancelar
+            </Button>
+          </DialogActions>
+        </div>
         <Dialog open={open} onClose={handleClose} className="my-custom-dialog">
           <DialogTitle>{"Confirmar la carga"}</DialogTitle>
           <DialogContent>
@@ -189,7 +195,11 @@ export default function InterventionCargarDatosForm({
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleConfirm(formData)} disabled={loading}>
-              {loading ? <CircularProgress size={24} /> : "Aceptar"}
+              {loading ? (
+                <CircularProgress size={24} color="primary" />
+              ) : (
+                "Aceptar"
+              )}
             </Button>
             <Button onClick={handleClose} disabled={loading}>
               Cancelar
@@ -211,6 +221,6 @@ export default function InterventionCargarDatosForm({
           </Alert>
         </Dialog> */}
       </form>
-    </>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import styles from "../../styles/Home.module.css";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import axios from "axios";
 import { customStyles } from "../../styles/SelectFilterStyles";
 
@@ -71,6 +71,20 @@ function ProjectCargarDatosTable({
     setOpen(false);
   };
 
+  const tipos_proyecto = useMemo(() => {
+    return [
+      ...new Set(
+        projects
+          .filter((project) => project.tipo_proyecto)
+          .map((project) => project.tipo_proyecto)
+      ),
+    ]?.map((type) => ({
+      label: type,
+      value: type,
+    }));
+  }, [projects]);
+  console.log(tipos_proyecto);
+
   function onSubmit(data) {
     // event.preventDefault();
     setOpen(true);
@@ -104,7 +118,7 @@ function ProjectCargarDatosTable({
   };
   //Para filtrar la tabla
 
-  const [nameFilter, setNameFilter] = useState("");
+  const [typeProjectFilter, setTypeProjectFilter] = useState("");
   const [objetivoFilter, setObjetivoFilter] = useState("");
   const [clienteFilter, setClienteFilter] = useState([]);
   const [consultoresFilter, setConsultoresFilter] = useState([]);
@@ -121,14 +135,18 @@ function ProjectCargarDatosTable({
       value: item.id_cliente,
       label: item.nombre_cliente,
     }));
-  const handleNameFilterChange = (event) => {
-    setNameFilter(event.target.value);
+  const handleTypeProjectFilterChange = (data) => {
+    console.log(data);
+
+    data ? setTypeProjectFilter(data.value) : setTypeProjectFilter("");
   };
 
   const handleObjetivoFilterChange = (event) => {
     setObjetivoFilter(event.target.value);
   };
   const handleConsultoresFilterChange = (data) => {
+    console.log(data);
+
     data ? setConsultoresFilter(data) : setConsultoresFilter([]);
   };
   const handleClienteFilterChange = (data) => {
@@ -136,20 +154,23 @@ function ProjectCargarDatosTable({
   };
 
   const limpiarFiltrados = () => {
-    setNameFilter("");
+    setTypeProjectFilter("");
     setObjetivoFilter("");
     setClienteFilter([]);
     setConsultoresFilter([]);
   };
+
   const filteredData = projects.filter(
     (item) =>
-      item.nombre_proyecto.toLowerCase().includes(nameFilter.toLowerCase()) &&
-      item.objetivos.toLowerCase().includes(objetivoFilter.toLowerCase()) &&
-      (clienteFilter.length === 0 || item.id_cliente === clienteFilter.value) &&
+      (clienteFilter.length === 0 ||
+        (item.id_cliente !== null &&
+          item.id_cliente === clienteFilter.value)) &&
       (consultoresFilter.length === 0 ||
-        item.consultores_asignados_id.some(
+        item.consultores_asignados_id?.some(
           (consultor) => consultor === consultoresFilter.value
-        ))
+        )) &&
+      (typeProjectFilter.length === 0 ||
+        item.tipo_proyecto === typeProjectFilter)
     //  && consultoresFilter &&
     //   item.consultores_asignados_id.some((consultor) => consultor === consultoresFilter)
   );
@@ -211,6 +232,26 @@ function ProjectCargarDatosTable({
       );
     }
   }
+  async function handleChargeProjects() {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/proyecto/proyecto`
+      );
+      if (response.status === 200) {
+        console.log(response.data);
+
+        setProjects(response.data);
+      } else {
+        throw new Error("Error al cargar los proyectos");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al cargar los proyectos. Por favor, inténtalo de nuevo."
+      );
+    }
+    setDialogOpen(false);
+  }
 
   // Para editar una recomendacion desde la tabla
 
@@ -234,6 +275,7 @@ function ProjectCargarDatosTable({
     // Actualiza el estado de los datos en la tabla
     setProjects(updatedProyectoData);
   };
+
   if (cargando) {
     return (
       <div>
@@ -285,6 +327,19 @@ function ProjectCargarDatosTable({
                     placeholder="Consultor"
                     isClearable
                   />
+                  {tipos_proyecto.length > 0 && (
+                    <Select
+                      styles={customStyles}
+                      className={styles.selectGestionesGantt}
+                      // defaultValue={typeProjectFilter}
+                      onChange={(tipo_proyecto) => {
+                        handleTypeProjectFilterChange(tipo_proyecto);
+                      }}
+                      options={tipos_proyecto}
+                      placeholder="Tipo Proyecto"
+                      isClearable
+                    />
+                  )}
                 </div>
                 <Dialog open={dialogOpen} onClose={handleCloseDialog}>
                   <DialogTitle /* position={"revert-layer"} */>
@@ -294,28 +349,10 @@ function ProjectCargarDatosTable({
                     <p>¿Está seguro de cargar todos los proyectos?</p>
                   </DialogContent>
                   <DialogActions>
-                    <Button onClick={""}>Aceptar</Button>
+                    <Button onClick={handleChargeProjects}>Aceptar</Button>
                     <Button onClick={handleCloseDialog}>Cancelar</Button>
                   </DialogActions>
                 </Dialog>
-                {/* SELECCIONAR PROYECTO ETC */}
-
-                {/* <div className={styles.filterListOffOutlinedContent}>
-                  {showFilters ? (
-                    <FilterListOffOutlinedIcon
-                      onClick={() => {
-                        toggleFilters();
-                        limpiarFiltrados();
-                      }}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  ) : (
-                    <FilterListOutlinedIcon
-                      onClick={toggleFilters}
-                      style={{ width: "18px", cursor: "pointer" }}
-                    />
-                  )}
-                </div> */}
               </div>
 
               <>
@@ -362,56 +399,24 @@ function ProjectCargarDatosTable({
                               {project.nombre_proyecto}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
-                              {project.objetivos}
+                              {project.objetivos
+                                ? project.objetivos
+                                : "No hay objetivos"}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               {nombreCliente(parseInt(project.id_cliente))}
                             </TableCell>
                             <TableCell className={styles.tdStyle}>
                               {project.consultores_asignados_id
-                                .map((consultor) => nombreConsultor(consultor))
-                                .join(", ")}
-                            </TableCell>
-
-                            <TableCell className={styles.tdStyleIcon}>
-                              <FontAwesomeIcon
-                                icon={faEdit}
-                                onClick={() =>
-                                  setEditIIdx(
-                                    filteredData.findIndex(
-                                      (item) =>
-                                        item.id_proyecto ===
-                                        project?.id_proyecto
+                                ? project.consultores_asignados_id
+                                    .map((consultor) =>
+                                      nombreConsultor(consultor)
                                     )
-                                  )
-                                }
-                                className={styles.faIcon}
-                              />
-                              <FontAwesomeIcon
-                                icon={faTrash}
-                                onClick={() =>
-                                  vinculado(project?.id_proyecto)
-                                    ? setOpenDialogAdvertencia(true)
-                                    : openConfirmation(project?.id_proyecto)
-                                }
-                                data-task-id={project?.id_proyecto}
-                                className={styles.faIcon}
-                              />
+                                    .join(", ")
+                                : "No hay consultores"}
                             </TableCell>
                           </TableRow>
                         ))}
-                      <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Confirmar Eliminación</DialogTitle>
-                        <DialogContent>
-                          <p>¿Está seguro de eliminar este proyecto?</p>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={() => handleDelete(data)}>
-                            Aceptar
-                          </Button>
-                          <Button onClick={handleClose}>Cancelar</Button>
-                        </DialogActions>
-                      </Dialog>
                     </TableBody>
 
                     <TableFooter>
@@ -431,35 +436,6 @@ function ProjectCargarDatosTable({
                   </Table>
                 )}
               </>
-              <Dialog
-                open={openDialogAdvertencia}
-                onClose={handleCloseDialogAdvertencia}
-              >
-                <Alert severity="warning">
-                  <AlertTitle>Advertencia</AlertTitle>
-                  No se puede eliminar un proyecto que ya esté vinculado a una
-                  intervención
-                  <div className={styles.botonAlert}>
-                    <Button onClick={handleCloseDialogAdvertencia}>
-                      Aceptar
-                    </Button>
-                  </div>
-                </Alert>
-              </Dialog>
-              <FormDialog
-                open={editIIdx !== -1}
-                onClose={handleCancelI}
-                FormComponent={ProyectoForm}
-                setProjects={setProjects}
-                projects={projects}
-                project={projects[editIIdx]}
-                onSave={handleSaveI}
-                onCancel={handleCancelI}
-                consultoress={consultores}
-                clientess={clientes}
-                nombreConsultor={nombreConsultor}
-                nombreCliente={nombreCliente}
-              ></FormDialog>
             </TableContainer>
           </div>
         </div>

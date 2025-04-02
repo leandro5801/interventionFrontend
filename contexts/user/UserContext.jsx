@@ -3,10 +3,12 @@ import useLocalStorage from "../../helpers/useLocalStorage";
 export const UserContext = createContext({});
 export default function UserProvider({ children }) {
   const { set, get } = useLocalStorage();
-  const [user, setUser] = useState(() => {
+  const [user, setUser] = useState(
+    /*() => {
     const token = get("access_token");
     if (token) {
-      try {
+      
+       try {
         return {
           id_session: Number(get("id_session")),
           nombre_usuario: get("nombre_usuario"),
@@ -16,10 +18,11 @@ export default function UserProvider({ children }) {
       } catch (error) {
         console.error("Error al parsear la cookie del usuario:", error);
         return null; // Retorna null si hay un error
-      }
+      } 
     }
     return null;
-  });
+  }*/ null
+  );
 
   const changeUser = (user) => {
     console.log(user);

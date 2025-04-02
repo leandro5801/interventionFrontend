@@ -10,6 +10,7 @@ export function dayDiff(startDate, endDate) {
   const difference =
     new Date(endDate).getTime() - new Date(startDate).getTime();
   const days = Math.ceil(difference / (1000 * 3600 * 24)) + 1;
+
   return days;
 }
 

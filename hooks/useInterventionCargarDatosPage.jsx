@@ -176,6 +176,8 @@ export default function useInterventionsCargarDatosPage() {
     consultorAutenticado = consultores.find(
       (i) => i.id_usuario === user.id_usuario
     );
+    console.log(consultorAutenticado);
+
     if (consultorAutenticado) {
       filteredInterventions = interventions.filter(
         (intervention) => intervention.cargar_intervencion

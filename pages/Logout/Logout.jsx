@@ -36,8 +36,9 @@ const Logout = ({ setMostrarLogout }) => {
           willClose: async () => {
             router.push("/Login/Login");
             const saveSessionBr = async () => {
-              await saveSession();
+              saveSession();
               remove("access_token");
+              remove("nombre_usuario");
               /* remove("id_session");
               remove("session");
               remove("id_rol");
@@ -45,6 +46,7 @@ const Logout = ({ setMostrarLogout }) => {
               remove("font");
               remove("isDark");
             };
+            //document.cookie();
             await saveSessionBr();
             /*  isDark && toggleTheme();
             document.documentElement.setAttribute("data-theme", "light"); */

@@ -1,0 +1,532 @@
+{
+  "intervenciones": [
+    {
+      "nombre": "Gestión de proyectos y dirección técnica"
+    },
+    {
+      "nombre": "Captura y especificación de los requisitos"
+    },
+    {
+      "nombre": "Evaluación de Arquitectura de software"
+    },
+    {
+      "nombre": "Implementación e integración técnicas"
+    },
+    {
+      "nombre": "Diseño y ejecución de pruebas"
+    },
+    {
+      "nombre": "Despliegue de los componentes integrados"
+    },
+    {
+      "nombre": "Implantación, capacitación y mejora continua"
+    },
+    {
+      "nombre": "Modelo de predicción"
+    },
+    {
+      "nombre": "Diagnósticos"
+    },
+    {
+      "nombre": "Levantamiento equipamiento"
+    },
+    {
+      "nombre": "Documentación"
+    }
+  ],
+  "proyectos": [
+    {
+      "nombre": "Documentación",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Gestión de proyectos y dirección técnica",
+          "periodo": [{ "start_date": "2024-6-01", "end_date": "2024-6-30" }]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-7-01", "end_date": "2024-9-30" }]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-11-01", "end_date": "2024-11-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Creación de documentos",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-2-01", "end_date": "2024-2-29" }]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-12-16", "end_date": "2024-12-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Coordinador de firmas",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": []
+    },
+    {
+      "nombre": "Módulo de trámites",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": []
+    },
+    {
+      "nombre": "Logística: Producción en proceso de lotes",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [
+            { "start_date": "2024-01-01", "end_date": "2024-01-31" },
+            { "start_date": "2024-04-01", "end_date": "2024-04-30" },
+            { "start_date": "2024-06-01", "end_date": "2024-06-30" },
+            { "start_date": "2024-10-21", "end_date": "2024-10-31" }
+          ]
+        },
+        {
+          "nombre": "Diseño y ejecución de pruebas",
+          "periodo": [
+            { "start_date": "2024-02-01", "end_date": "2024-02-29" },
+            { "start_date": "2024-05-01", "end_date": "2024-05-31" },
+            { "start_date": "2024-07-01", "end_date": "2024-07-31" },
+            { "start_date": "2024-11-01", "end_date": "2024-11-30" }
+          ]
+        },
+        {
+          "nombre": "Gestión de proyectos y dirección técnica",
+          "periodo": [{ "start_date": "2024-10-01", "end_date": "2024-10-10" }]
+        },
+        {
+          "nombre": "Modelo de predicción",
+          "periodo": [{ "start_date": "2024-10-11", "end_date": "2024-01-20" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Logística: Exportaciones",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [
+            { "start_date": "2024-01-01", "end_date": "2024-01-31" },
+            { "start_date": "2024-09-01", "end_date": "2024-09-30" },
+            { "start_date": "2024-12-01", "end_date": "2024-12-31" }
+          ]
+        },
+        {
+          "nombre": "Diseño y ejecución de pruebas",
+          "periodo": [{ "start_date": "2024-02-01", "end_date": "2024-02-29" }]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-04-01", "end_date": "2024-04-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Logística: Aseguramiento de la producción",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [{ "start_date": "2024-04-01", "end_date": "2024-04-30" }]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [
+            { "start_date": "2024-07-01", "end_date": "2024-07-31" },
+            { "start_date": "2024-09-01", "end_date": "2024-10-30" },
+            { "start_date": "2024-12-01", "end_date": "2024-12-15" }
+          ]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-08-01", "end_date": "2024-08-31" }]
+        },
+        {
+          "nombre": "Despliegue de los componentes integrados",
+          "periodo": [{ "start_date": "2024-11-01", "end_date": "2024-11-30" }]
+        },
+        {
+          "nombre": "Documentación",
+          "periodo": [{ "start_date": "2024-12-16", "end_date": "2024-12-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Módulo financiero",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-09-01", "end_date": "2024-09-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Módulo de carga de datos",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Documentación",
+          "periodo": [{ "start_date": "2024-04-01", "end_date": "2024-04-30" }]
+        },
+        {
+          "nombre": "Diseño y ejecución de pruebas",
+          "periodo": [{ "start_date": "2024-05-01", "end_date": "2024-06-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Logística: Situación de medicamentos",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [
+            { "start_date": "2024-07-01", "end_date": "2024-07-15" },
+            { "start_date": "2024-08-01", "end_date": "2024-08-15" }
+          ]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [
+            { "start_date": "2024-07-16", "end_date": "2024-07-31" },
+            { "start_date": "2024-08-16", "end_date": "2024-08-31" }
+          ]
+        },
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [{ "start_date": "2024-09-01", "end_date": "2024-09-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Servicios Analíticos",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": []
+    },
+    {
+      "nombre": "Módulo de configuración",
+      "tipo_proyecto": "Gerencial",
+      "intervenciones": [
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [
+            { "start_date": "2024-03-01", "end_date": "2024-03-31" },
+            { "start_date": "2024-08-01", "end_date": "2024-08-31" }
+          ]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-04-01", "end_date": "2024-05-31" }]
+        }
+      ]
+    },
+
+    {
+      "nombre": "DSS & Integración de aplicaciones: Apis",
+      "tipo_proyecto": "Gerencial: Infraestructura",
+      "intervenciones": [
+        {
+          "nombre": "Documentación",
+          "periodo": [
+            { "start_date": "2024-04-01", "end_date": "2024-04-30" },
+            { "start_date": "2024-12-01", "end_date": "2024-12-31" }
+          ]
+        },
+        {
+          "nombre": "Diseño y ejecución de pruebas",
+          "periodo": [{ "start_date": "2024-07-01", "end_date": "2024-11-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Flujo Knime",
+      "tipo_proyecto": "Gerencial: Infraestructura",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-02-01", "end_date": "2024-02-29" }]
+        }
+      ]
+    },
+    {
+      "nombre": "DSS & Integración de aplicaciones: Seguridad",
+      "tipo_proyecto": "Gerencial: Infraestructura",
+      "intervenciones": [
+        {
+          "nombre": "Diagnósticos",
+          "periodo": [{ "start_date": "2024-02-01", "end_date": "2024-02-29" }]
+        },
+        {
+          "nombre": "Documentación",
+          "periodo": [
+            { "start_date": "2024-03-01", "end_date": "2024-03-31" },
+            { "start_date": "2024-12-01", "end_date": "2024-12-31" }
+          ]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-07-01", "end_date": "2024-07-31" }]
+        },
+        {
+          "nombre": "Diseño y ejecución de pruebas",
+          "periodo": [{ "start_date": "2024-10-01", "end_date": "2024-10-31" }]
+        },
+        {
+          "nombre": "Implantación, capacitación y mejora continua",
+          "periodo": [{ "start_date": "2024-11-01", "end_date": "2024-11-30" }]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Autentificación de sistemas",
+      "tipo_proyecto": "Gerencial: Infraestructura",
+      "intervenciones": [
+        {
+          "nombre": "Documentación",
+          "periodo": [
+            { "start_date": "2024-03-01", "end_date": "2024-03-31" },
+            { "start_date": "2024-05-01", "end_date": "2024-06-30" }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "DSS & Integración de aplicaciones: Redes",
+      "tipo_proyecto": "Gerencial: Infraestructura",
+      "intervenciones": [
+        {
+          "nombre": "Diagnósticos",
+          "periodo": [{ "start_date": "2024-01-01", "end_date": "2024-01-31" }]
+        },
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [
+            { "start_date": "2024-01-01", "end_date": "2024-01-31" },
+            { "start_date": "2024-07-16", "end_date": "2024-07-31" }
+          ]
+        },
+        {
+          "nombre": "Levantamiento equipamiento",
+          "periodo": [{ "start_date": "2024-06-01", "end_date": "2024-06-30" }]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [
+            { "start_date": "2024-07-01", "end_date": "2024-07-15" },
+            { "start_date": "2024-08-01", "end_date": "2024-09-15" },
+            { "start_date": "2024-11-01", "end_date": "2024-11-30" }
+          ]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-09-16", "end_date": "2024-10-31" }]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Módulo de configuración",
+      "tipo_proyecto": "MES",
+      "intervenciones": [
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [
+            { "start_date": "2024-03-01", "end_date": "2024-03-31" },
+            { "start_date": "2024-09-01", "end_date": "2024-09-15" },
+            { "start_date": "2024-10-1", "end_date": "2024-10-10" }
+          ]
+        },
+        {
+          "nombre": "Documentación",
+          "periodo": [{ "start_date": "2024-05-01", "end_date": "2024-06-30" }]
+        },
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [
+            { "start_date": "2024-09-16", "end_date": "2024-09-30" },
+            { "start_date": "2024-10-11", "end_date": "2024-10-20" }
+          ]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [
+            { "start_date": "2024-10-21", "end_date": "2024-11-30" },
+            { "start_date": "2025-01-01", "end_date": "2025-01-31" }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Ilot",
+      "tipo_proyecto": "MES",
+      "intervenciones": [
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [{ "start_date": "2024-02-01", "end_date": "2024-02-29" }]
+        },
+        {
+          "nombre": "Diseño y ejecución de pruebas",
+          "periodo": [{ "start_date": "2024-11-01", "end_date": "2024-11-30" }]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2025-01-01", "end_date": "2025-01-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Módulo de ejecución",
+      "tipo_proyecto": "MES",
+      "intervenciones": [
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-07-01", "end_date": "2024-07-31" }]
+        },
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [{ "start_date": "2024-08-01", "end_date": "2024-08-15" }]
+        },
+        {
+          "nombre": "Documentación",
+          "periodo": [{ "start_date": "2024-08-16", "end_date": "2024-08-31" }]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-12-01", "end_date": "2024-12-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Módulo de control de acceso",
+      "tipo_proyecto": "MES",
+      "intervenciones": [
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2025-01-01", "end_date": "2025-01-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Módulo de auditoria",
+      "tipo_proyecto": "MES",
+      "intervenciones": []
+    },
+    {
+      "nombre": "Módulo de monitorización",
+      "tipo_proyecto": "MES",
+      "intervenciones": []
+    },
+    {
+      "nombre": "Módulo histórico",
+      "tipo_proyecto": "MES",
+      "intervenciones": []
+    },
+
+    {
+      "nombre": "Intervención Tecnológica",
+      "tipo_proyecto": "SCADA",
+      "intervenciones": [
+        {
+          "nombre": "Levantamiento equipamiento",
+          "periodo": [
+            { "start_date": "2024-02-01", "end_date": "2024-02-29" },
+            { "start_date": "2024-05-01", "end_date": "2024-05-31" }
+          ]
+        },
+        {
+          "nombre": "Diagnósticos",
+          "periodo": [{ "start_date": "2024-03-01", "end_date": "2024-03-31" }]
+        },
+        {
+          "nombre": "Documentación",
+          "periodo": [
+            { "start_date": "2024-04-01", "end_date": "2024-04-30" },
+            { "start_date": "2024-12-01", "end_date": "2024-12-31" }
+          ]
+        },
+        {
+          "nombre": "Evaluación de Arquitectura de software",
+          "periodo": [
+            { "start_date": "2024-06-01", "end_date": "2024-06-30" },
+            { "start_date": "2024-08-15", "end_date": "2024-09-15" },
+            { "start_date": "2024-10-01", "end_date": "2024-10-10" }
+          ]
+        },
+        {
+          "nombre": "Captura y especificación de los requisitos",
+          "periodo": [{ "start_date": "2024-08-01", "end_date": "2024-08-15" }]
+        },
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [
+            { "start_date": "2024-09-15", "end_date": "2024-09-30" },
+            { "start_date": "2024-10-11", "end_date": "2024-10-31" }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "Autoclave Baumer",
+      "tipo_proyecto": "SCADA",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-09-01", "end_date": "2024-09-30" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Autoclave Tesla",
+      "tipo_proyecto": "SCADA",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-10-01", "end_date": "2025-01-31" }]
+        }
+      ]
+    },
+
+    {
+      "nombre": "Planta de agua",
+      "tipo_proyecto": "SCADA",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-10-01", "end_date": "2024-12-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "Autoclave auxiliar",
+      "tipo_proyecto": "SCADA",
+      "intervenciones": [
+        {
+          "nombre": "Implementación e integración técnicas",
+          "periodo": [{ "start_date": "2024-12-01", "end_date": "2025-01-31" }]
+        }
+      ]
+    },
+    {
+      "nombre": "IA",
+      "tipo_proyecto": "SCADA",
+      "intervenciones": [
+        {
+          "nombre": "Modelo de predicción",
+          "periodo": [{ "start_date": "2024-01-01", "end_date": "2024-01-31" }]
+        }
+      ]
+    }
+  ]
+}

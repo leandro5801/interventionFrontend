@@ -24,7 +24,7 @@ function Header() {
           </div>
         </div>
 
-        {user.id_rol === 2 && <Notification />}
+        {user?.id_rol === 2 && <Notification />}
         <div className={styles.selectFont}>
           <SelectFont />
         </div>
@@ -75,7 +75,7 @@ function Header() {
         </div>
 
         <div className={styles.nombreUsuarioContent}>
-          <Typography variant="h2">{user.nombre_usuario}</Typography>
+          <Typography variant="h2">{user?.nombre_usuario}</Typography>
         </div>
 
         <div className={styles.faIconOutAltContent}>
