@@ -203,17 +203,18 @@ export default function TimeTable({
                     periodo?.start_date <= formattedDate &&
                     periodo?.end_date >= formattedDate
                   ) {
+                    let taskWidth =
+                      ((dayDiff(periodo.start_date, periodo.end_date) + 1) *
+                        100) /
+                      numDays;
+                    taskWidth = Math.min(taskWidth, 100);
+                    taskWidth = Math.max(taskWidth, 100);
                     return (
                       <div
                         key={`${task.id_intervencion}-${formattedDate}-${periodo.start_date}-${periodo.end_date}`}
                         style={{
                           ...taskDuration,
-                          width: `${
-                            ((dayDiff(periodo.start_date, periodo.end_date) -
-                              1) *
-                              100) /
-                            numDays
-                          }%`,
+                          width: `${taskWidth}%`,
                         }}
                       ></div>
                     );
