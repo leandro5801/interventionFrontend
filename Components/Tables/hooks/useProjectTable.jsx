@@ -12,6 +12,7 @@ export const useProjectTable = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogOpenCharge, setDialogOpenCharge] = useState(false);
   const [editIIdx, setEditIIdx] = useState(-1);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
@@ -107,8 +108,6 @@ export const useProjectTable = ({
     [consultores, clientes /* projects */]
   );
 
-  console.log(tipos_proyecto);
-
   // Handlers de paginación
   const handleChangePage = (_, newPage) => setPage(newPage);
 
@@ -147,8 +146,6 @@ export const useProjectTable = ({
     );
   });
 
-  console.log(filteredData);
-
   // Gestión de eliminación
   const handleDelete = useCallback(
     async (id) => {
@@ -172,6 +169,28 @@ export const useProjectTable = ({
     [projects, setProjects, page, rowsPerPage]
   );
 
+  //Manejo de la carga de datos
+  async function handleChargeProjects() {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/api/proyecto/proyecto`
+      );
+      if (response.status === 200) {
+        console.log(response.data);
+
+        setProjects((prev) => [...response.data, ...prev]);
+      } else {
+        throw new Error("Error al cargar los proyectos");
+      }
+    } catch (error) {
+      console.error(error);
+      setError(
+        "Hubo un problema al cargar los proyectos. Por favor, inténtalo de nuevo."
+      );
+    }
+    setDialogOpenCharge(false);
+  }
+
   const openConfirmation = useCallback((id) => {
     setOpen(true);
     setData(id);
@@ -192,6 +211,10 @@ export const useProjectTable = ({
   const handleCancelI = useCallback(() => {
     setEditIIdx(-1);
   }, []);
+
+  const handleCloseDialog = () => {
+    setDialogOpenCharge(false);
+  };
 
   // Gestión de edición
   const proyectoUpdate = useCallback(
@@ -216,6 +239,7 @@ export const useProjectTable = ({
     data,
     error,
     openDialogAdvertencia,
+    dialogOpenCharge,
     nameFilter,
     objetivoFilter,
     clienteFilter,
@@ -245,9 +269,12 @@ export const useProjectTable = ({
     proyectoUpdate,
     handleCancelI,
     handleSaveI,
+    handleCloseDialog,
+    handleChargeProjects,
 
     // Setters de filtros
     setNameFilter,
+    setDialogOpenCharge,
     setObjetivoFilter,
     setClienteFilter: handleFilterChange(setClienteFilter),
     setConsultoresFilter: handleFilterChange(setConsultoresFilter),

@@ -91,9 +91,9 @@ function ProjectCargarDatosTable({
     setFormData(data);
   }
   //para el formulario
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [dialogOpenCharge, setDialogOpenCharge] = useState(false);
   const handleCloseDialog = () => {
-    setDialogOpen(false);
+    setDialogOpenCharge(false);
   };
 
   //  Para el filtrado por criterios
@@ -250,7 +250,7 @@ function ProjectCargarDatosTable({
         "Hubo un problema al cargar los proyectos. Por favor, inténtalo de nuevo."
       );
     }
-    setDialogOpen(false);
+    setDialogOpenCharge(false);
   }
 
   // Para editar una recomendacion desde la tabla
@@ -298,10 +298,10 @@ function ProjectCargarDatosTable({
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogOpen(true);
+                    setDialogOpenCharge(true);
                   }}
                 >
-                  Cargar Proyectos
+                  Cargar
                 </Button>
                 <div className={styles.filtrosEstructuraContentInt}>
                   {" "}
@@ -341,7 +341,8 @@ function ProjectCargarDatosTable({
                     />
                   )}
                 </div>
-                <Dialog open={dialogOpen} onClose={handleCloseDialog}>
+
+                <Dialog open={dialogOpenCharge} onClose={handleCloseDialog}>
                   <DialogTitle /* position={"revert-layer"} */>
                     Confirmar Carga
                   </DialogTitle>

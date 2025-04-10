@@ -5,9 +5,7 @@ import { customStyles } from "../../styles/SelectFilterStyles";
 
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-
-import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
-import FilterListOffOutlinedIcon from "@mui/icons-material/FilterListOffOutlined";
+import PublishedWithChangesOutlinedIcon from "@mui/icons-material/PublishedWithChangesOutlined";
 
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
@@ -53,6 +51,7 @@ function ProjectTable({
     page,
     rowsPerPage,
     dialogOpen,
+    dialogOpenCharge,
     editIIdx,
     open,
     data,
@@ -82,8 +81,11 @@ function ProjectTable({
     tipos_proyecto,
     setNameFilter,
     setObjetivoFilter,
+    setDialogOpenCharge,
     setClienteFilter,
     setConsultoresFilter,
+    handleChargeProjects,
+    handleCloseDialog,
   } = useProjectTable({
     projects,
     setProjects,
@@ -115,6 +117,23 @@ function ProjectTable({
                   onClick={() => setDialogOpen(true)}
                 >
                   Nuevo +
+                </Button>
+                <Button
+                  className={styles.btn}
+                  onClick={() => {
+                    setDialogOpenCharge(true);
+                  }}
+                  style={{ margin: 5 }}
+                >
+                  Cargar
+                  <PublishedWithChangesOutlinedIcon
+                    style={{
+                      width: "14px",
+                      cursor: "pointer",
+                      verticalAlign: "middle",
+                      marginLeft: 2,
+                    }}
+                  />
                 </Button>
 
                 <div className={styles.filtrosEstructuraContentInt}>
@@ -318,6 +337,19 @@ function ProjectTable({
                 nombreCliente,
               }}
             />
+
+            <Dialog open={dialogOpenCharge} onClose={handleCloseDialog}>
+              <DialogTitle /* position={"revert-layer"} */>
+                Confirmar Carga
+              </DialogTitle>
+              <DialogContent>
+                <p>¿Está seguro de cargar todos los proyectos?</p>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleChargeProjects}>Aceptar</Button>
+                <Button onClick={handleCloseDialog}>Cancelar</Button>
+              </DialogActions>
+            </Dialog>
           </div>
         </div>
       </>

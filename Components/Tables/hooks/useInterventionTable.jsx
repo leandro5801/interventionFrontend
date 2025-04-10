@@ -18,6 +18,8 @@ export const useInterventionTable = ({
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [openConfirmCharge, setOpenConfirmCharge] = useState(false);
+  const [dialogChargeOpen, setDialogChargeOpen] = useState(false);
   const [editIIdx, setEditIIdx] = useState(-1);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
@@ -172,6 +174,10 @@ export const useInterventionTable = ({
     setStartFilter("");
   }, []);
 
+  const handleCloseConfirmDialog = () => {
+    setOpenConfirmCharge(false);
+  };
+
   // Datos filtrados
   const filteredData = useMemo(
     () =>
@@ -304,6 +310,8 @@ export const useInterventionTable = ({
     workerFilter,
     startFilter,
     filteredData,
+    openConfirmCharge,
+    dialogChargeOpen,
 
     // Helpers
     nombreEmpresa,
@@ -336,6 +344,7 @@ export const useInterventionTable = ({
     handleCancelI,
     handleSaveI,
     handleCloseInterventionForm,
+    handleCloseConfirmDialog,
 
     // Setters de filtros
     setNameFilter,
@@ -349,5 +358,7 @@ export const useInterventionTable = ({
     setAreaFilter,
     setConsultorFilter,
     setOpenDialogAdvertencia,
+    setOpenConfirmCharge,
+    setDialogChargeOpen,
   };
 };

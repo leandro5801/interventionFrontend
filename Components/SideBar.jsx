@@ -469,7 +469,7 @@ function SideBar({}) {
                   </Typography>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <a onClick={handleShowDatos}>
                   {" "}
                   <Typography>
@@ -555,7 +555,7 @@ function SideBar({}) {
                     </Link>
                   </li>
                 </>
-              )}
+              )}*/}
             </>
           ) : (
             false

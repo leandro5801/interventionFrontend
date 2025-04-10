@@ -127,19 +127,19 @@ function InterventionCargarDatosTable({
   };
 
   //para el sms de confirmacion
-  const [open, setOpen] = useState(false);
+  const [openConfirmCharge, setOpenConfirmCharge] = useState(false);
   const [formData, setFormData] = useState({});
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseConfirmDialog = () => {
+    setOpenConfirmCharge(false);
   };
 
   function onSubmit(data) {
     // event.preventDefault();
-    setOpen(true);
+    setOpenConfirmCharge(true);
     setFormData(data);
   }
   //para el formulario
-  const [dialogCreInteOpen, setDialogCreInteOpen] = useState(false);
+  const [dialogChargeOpen, setDialogChargeOpen] = useState(false);
 
   //  Para el filtrado por criterios
   const [showFilters, setShowFilters] = useState(false);
@@ -309,7 +309,7 @@ function InterventionCargarDatosTable({
 
   function openConfirmation(data) {
     // event.preventDefault();
-    setOpen(true);
+    setOpenConfirmCharge(true);
     setData(data);
   }
 
@@ -318,7 +318,7 @@ function InterventionCargarDatosTable({
   //     (intervencion) => intervencion.id !== idNum
   //   );
   //   setInterventions(newIntervention);
-  //   setOpen(false);
+  //   setOpenConfirmCharge(false);
   // }
 
   const vinculado = (id_intervencion) => {
@@ -327,9 +327,10 @@ function InterventionCargarDatosTable({
     );
     return recomendacion ? true : false;
   };
-  const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false);
-  const handleCloseDialogAdvertencia = () => {
-    setOpenDialogAdvertencia(false);
+  const [openDialogAdvertencia, setopenConfirmChargeDialogAdvertencia] =
+    useState(false);
+  const handleCloseDialogAdvertenciaConfirmDialog = () => {
+    setopenConfirmChargeDialogAdvertencia(false);
   };
 
   const [error, setError] = useState(null);
@@ -350,7 +351,7 @@ function InterventionCargarDatosTable({
         // if (page > totalPages) {
         //   setPage(totalPages);
         // }
-        setOpen(false);
+        setOpenConfirmCharge(false);
       } else {
         throw new Error("Error al eliminar la intervencion");
       }
@@ -406,7 +407,7 @@ function InterventionCargarDatosTable({
                 <Button
                   className={styles.btn}
                   onClick={() => {
-                    setDialogCreInteOpen(true);
+                    setDialogChargeOpen(true);
                   }}
                 >
                   Cargar
@@ -436,19 +437,19 @@ function InterventionCargarDatosTable({
                   />
                 </div>
                 <FormDialog
-                  open={dialogCreInteOpen}
+                  open={dialogChargeOpen}
                   onClose={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogChargeOpen(false);
                   }}
                   FormComponent={InterventionCargarDatosForm}
                   setInterventions={setInterventions}
                   filteredInterventions={filteredInterventions}
                   interventions={interventions}
                   onSave={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogChargeOpen(false);
                   }}
                   onCancel={() => {
-                    setDialogCreInteOpen(false);
+                    setDialogChargeOpen(false);
                   }}
                   consultores={consultores}
                   trabajadores={trabajadores}
@@ -628,7 +629,9 @@ function InterventionCargarDatosTable({
                                 icon={faTrash}
                                 onClick={() =>
                                   vinculado(tsk?.id_intervencion)
-                                    ? setOpenDialogAdvertencia(true)
+                                    ? setopenConfirmChargeDialogAdvertencia(
+                                        true
+                                      )
                                     : openConfirmation(tsk?.id_intervencion)
                                 }
                                 data-task-id={tsk?.id_intervencion}
@@ -637,7 +640,7 @@ function InterventionCargarDatosTable({
                             </TableCell>
                           </TableRow>
                         ))}
-                      <Dialog open={open} onClose={handleClose}>
+                      <Dialog open={open} onClose={handleCloseConfirmDialog}>
                         <DialogTitle>Confirmar Eliminación</DialogTitle>
                         <DialogContent>
                           <p>¿Está seguro de eliminar esta Intervención?</p>
@@ -646,7 +649,9 @@ function InterventionCargarDatosTable({
                           <Button onClick={() => handleDelete(data)}>
                             Aceptar
                           </Button>
-                          <Button onClick={handleClose}>Cancelar</Button>
+                          <Button onClick={handleCloseConfirmDialog}>
+                            Cancelar
+                          </Button>
                         </DialogActions>
                       </Dialog>
                     </TableBody>
@@ -670,14 +675,14 @@ function InterventionCargarDatosTable({
               </>
               <Dialog
                 open={openDialogAdvertencia}
-                onClose={handleCloseDialogAdvertencia}
+                onClose={handleCloseDialogAdvertenciaConfirmDialog}
               >
                 <Alert severity="warning">
                   <AlertTitle>Advertencia</AlertTitle>
                   No se puede eliminar una intervención que ya esté vinculada a
                   una recomendación
                   <div className={styles.botonAlert}>
-                    <Button onClick={handleCloseDialogAdvertencia}>
+                    <Button onClick={handleCloseDialogAdvertenciaConfirmDialog}>
                       Aceptar
                     </Button>
                   </div>

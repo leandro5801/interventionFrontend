@@ -4,7 +4,7 @@ import Select from "react-select";
 import data from "../../public/structure.json";
 
 import axios from "axios";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 // validaciones
 import { useForm } from "react-hook-form";
@@ -62,10 +62,16 @@ export default function InterventionCargarDatosForm({
   const [loading, setLoading] = useState(false); // Estado de carga
   const [openDialogAdvertencia, setOpenDialogAdvertencia] = useState(false); // Estado del dialog de advertencia
 
-  const proyectosOptions = projects.map((item) => ({
-    value: item.id_proyecto,
-    label: item.nombre_proyecto,
-  }));
+  const proyectosOptions = useMemo(
+    () =>
+      projects
+        .filter((project) => project.cargar_proyecto)
+        .map((item) => ({
+          value: item.id_proyecto,
+          label: item.nombre_proyecto,
+        })),
+    [projects]
+  );
 
   // form validation rules
   const formOptions = {
