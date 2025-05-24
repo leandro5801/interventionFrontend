@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema de Gestión de Intervenciones - Frontend
 
-## Getting Started
+## Descripción
 
-First, run the development server:
+Este es el frontend del sistema de gestión de intervenciones para una consultoría tecnológica. Está desarrollado con Next.js y React, y proporciona una interfaz de usuario para gestionar intervenciones, proyectos, recomendaciones y usuarios.
+
+## Instalación
+
+1. Navegar al directorio del frontend:
+
+```bash
+cd interventionFrontendTesis
+```
+
+2. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+## Ejecución
+
+Para iniciar el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir en el navegador [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Uso
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Inicie sesión con sus credenciales que deben encontrarse en la base de datos.
+- Según su rol (consultor o consultor jefe), podrá ver y gestionar intervenciones y proyectos asignados.
+- Puede crear, editar y eliminar intervenciones.
+- Utilice los filtros para buscar intervenciones por proyecto, consultor, empresa, UEB, dirección, área y fecha.
+- Los consultores jefes pueden realizar carga masiva de intervenciones.
+- Puede adoptar este sistema en otra empresa donde se realicen proyectos de transformación digital o industria 4.0.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Tecnologías
 
-## Learn More
+- Next.js
+- React
+- Material-UI
+- react-select
+- Axios
+- React Context API
 
-To learn more about Next.js, take a look at the following resources:
+## Licencia
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este proyecto está bajo licencia MIT.
