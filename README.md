@@ -26,7 +26,7 @@ Para iniciar el servidor de desarrollo:
 npm run dev
 ```
 
-Abrir en el navegador [http://localhost:3000](http://localhost:3000).
+Abrir en el navegador [http://localhost:3005](http://localhost:3005).
 
 ## Uso
 
